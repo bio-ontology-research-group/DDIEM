@@ -1,7 +1,7 @@
 var diseaseinfo='<ul>';
 $(document).ready(function() {
     $.ajax({
-    url: 'http://localhost:19000/searchByID.groovy?term=all',
+    url: 'http://localhost:9200/searchByID.groovy?term=all',
     dataType: "json",
     success: function(data) {
         $.each(data, function() {
@@ -21,7 +21,7 @@ $("#search").autocomplete({
     minLength: 0,
     source: function(request, response) {
         $.ajax({
-            url: 'http://localhost:19000/autocomplete.groovy?term=' + request.term,
+            url: 'http://localhost:9200/autocomplete.groovy?term=' + request.term,
             dataType: "json",
 
             success: function(data) {

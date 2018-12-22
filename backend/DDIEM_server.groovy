@@ -16,7 +16,7 @@ import org.eclipse.jetty.servlets.*
 
 //PORT = new Integer(args[0])
 def startServer() {
-  Server server = new Server(19000)
+  Server server = new Server(9200)
 
   def context = new ServletContextHandler(server, '/', ServletContextHandler.SESSIONS)
 

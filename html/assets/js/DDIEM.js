@@ -6,7 +6,7 @@
 
             $.ajax({
 
-                url: 'http://localhost:19000/autocomplete.groovy?term=' + request.term,
+                url: 'http://localhost:9200/autocomplete.groovy?term=' + request.term,
                 dataType: "json",
 
                 success: function(data) {
