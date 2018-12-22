@@ -20,7 +20,7 @@ function getUrlVars() {
 function showTreatments(j) {
     $('#links').empty();
     $.ajax({
-        url: 'http://localhost:9200/getLinks.groovy?term=' + j,
+        url: 'http://ddiem.phenomebrowser.net/backend/getLinks.groovy?term=' + j,
         dataType: "json",
         success: function(data) {
             links = '<ul>';

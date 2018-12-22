@@ -9,7 +9,7 @@ $("#search").autocomplete({
     minLength: 0,
     source: function(request, response) {
         $.ajax({
-            url: 'http://localhost:9200/autocomplete.groovy?term=' + request.term,
+            url: 'http://ddiem.phenomebrowser.net/backend/autocomplete.groovy?term=' + request.term,
             dataType: "json",
             success: function(data) {
                 response($.map(data, function(item) {
@@ -50,7 +50,7 @@ function showTreatments(j) {
     $('#disease').empty();
     $('#treatment').empty();
     $.ajax({
-        url: 'http://localhost:9200/searchByID.groovy?term=' + j,
+        url: 'http://ddiem.phenomebrowser.net/backend/searchByID.groovy?term=' + j,
         dataType: "json",
         success: function(data) {
             $.each(data, function() {
@@ -87,7 +87,7 @@ function showTreatments(j) {
         }
     });
     $.ajax({
-        url: 'http://localhost:9200/getTreatment.groovy?term=' + j,
+        url: 'http://ddiem.phenomebrowser.net/backend/getTreatment.groovy?term=' + j,
         dataType: "json",
         success: function(data) {
             treatment = '<table class="table"><thead><tr><th>Drug Names</th><th>Phenotypes corrected</th><th>Mutations improved by treatment</th><th>Mutation that did not benefit from treatment</th><th></th></tr></thead><tbody>'
