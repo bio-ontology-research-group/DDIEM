@@ -80,35 +80,36 @@ function showTreatments(j) {
                     </ul></div>';
             });
             $('#disease').append(diseaseinfo);
+            showDrugs();
         },
         error: function(data) {
             console.log("error");
 
         }
     });
+function showDrugs(){
     $.ajax({
         url: 'http://ddiem.phenomebrowser.net/backend/getTreatment.groovy?term=' + j,
         dataType: "json",
         success: function(data) {
-            treatment = '<table class="table"><thead><tr><th>Drug Names</th><th>Phenotypes corrected</th><th>Mutations improved by treatment</th><th>Mutation that did not benefit from treatment</th><th></th></tr></thead><tbody>'
-            var rowno = 1;
+            Mutation_did_not_benefit='';
+            Mutation_did_benefit='';
+            treatment_found=false;
             $.each(data, function() {
-                if(treatments_grouped[this.Drug_name]){
-                    tr_value=treatments_grouped[this.Drug_name];
-                    tr_value.push([[this.Phenotypes_IDS,this.Phenotypes_improved]]);
-                    treatments_grouped[this.Drug_name]=tr_value;
+                links = '<ul>';
+                if(this.Drug_name!=''){
+                    treatment_found=true;
+                }
+                if(this.Treatment_links==',,,,,,,,,,,'){
+                    links='';
                 }
                 else{
-                    treatments_grouped[this.Drug_name]=[[this.Phenotypes_IDS,this.Phenotypes_improved]];
-                }
-                
-                links = '<ul>';
-                links_array =this.Treatment_links.split(',');
-                $.each(links_array, function() {
-                    if (this != "" && this != "done") {
-                        if (this.includes("clinicaltrials") || this.includes("ClinicalTrials")) {
-                            links = links + '<li style="padding-bottom: 5px;"><a href="' + this + '" target="_blank">Clinical trials</a></li>';
-                        } else if (this.includes("sciencedirect")) {
+                    links_array =this.Treatment_links.split(',');
+                    $.each(links_array, function() {
+                        if (this != "" && this != "done") {
+                            if (this.includes("clinicaltrials") || this.includes("ClinicalTrials")) {
+                                links = links + '<li style="padding-bottom: 5px;"><a href="' + this + '" target="_blank">Clinical trials</a></li>';
+                            } else if (this.includes("sciencedirect")) {
                             links = links + '<li style="padding-bottom: 5px;"><a href="' + this + '" target="_blank">Science direct</a></li>';
                         } else if (this.includes("pubmed")) {
                             links = links + '<li style="padding-bottom: 5px;"><a href="' + this + '" target="_blank"> pubmed/' + this.split('/')[this.split('/').length - 1] + '</a></li>';
@@ -140,29 +141,10 @@ function showTreatments(j) {
                     }
                 });
                 links = links + '</ul>';
-                if (this.New_classification.includes("Symptomatic") || this.New_classification.includes("Supportive")) {
-                    treatment = treatment + '<tr class="Symptomatic">';
-                    $("#3").css({
-                        "font-size": "18px",
-                        "font-weight": "bolder"
-                    });
-                } else if (this.New_classification.includes("Direct interaction")) {
-                    treatment = treatment + '<tr class="Mechanistic-A">';
-                    $("#1").css({
-                        "font-size": "18px",
-                        "font-weight": "bolder"
-                    });
-                } else if (this.New_classification.includes("Functional interaction")) {
-                    treatment = treatment + '<tr class="Mechanistic-B">';
-                    $("#2").css({
-                        "font-size": "18px",
-                        "font-weight": "bolder"
-                    });
-                } else {
-                    treatment = treatment + '<tr>';
                 }
-                if(this.Drug_ID=='NA'){this_Drug_ID=""}
-                else{this_Drug_ID=this.Drug_ID}
+                
+                if(this.Drug_ID=='NA'){this_Drug_ID="";}
+                else{this_Drug_ID=this.Drug_ID;}
                 drugs='';
                 if(this.Drug_name.includes("+")){
                     drugs=''
@@ -180,26 +162,81 @@ function showTreatments(j) {
                     
                 }
                 else {
-                    drugs=((this_Drug_ID == "") ? this.Drug_name :'<u><a href="https://www.drugbank.ca/drugs/' + this_Drug_ID + '" target="_blank">' + this.Drug_name + '</a></u>')
+                    drugs=((this_Drug_ID == "") ? this.Drug_name :'<u><a href="https://www.drugbank.ca/drugs/' + this_Drug_ID + '" target="_blank">' + this.Drug_name + '</a></u>');
                 }
-                
-                treatment = treatment + '<td>'+drugs+'</td><td>'+((this.Phenotypes_IDS == "") ? this.Phenotypes_improved :'<u><a href="http://www.ontobee.org/ontology/HP?iri=http://purl.obolibrary.org/obo/' + this.Phenotypes_IDS.replace(":", "_") + '" target="_blank">' + this.Phenotypes_improved + '</a></u>')+'</td><td>' + this.Mutations_improved_by_treatment + '</td>\
-                    <td>' + this.Mutation_that_did_not_benefit_from_treatment + '</td><td class="ref"><a data-toggle="collapse" href="#faq' + rowno + '">References<i class="fa fa-angle-down"></i></a><div class="collapse hide" id="faq' + rowno + '">' + links + '</div></td></tr>\
-                    '
-                rowno = rowno + 1;
+                classification='';
+                if (this.New_classification.includes("Symptomatic") || this.New_classification.includes("Supportive")) {
+                    classification='class="Symptomatic"';
+                    $("#3").css({
+                        "font-size": "18px",
+                        "font-weight": "bolder"
+                    });
+                } else if (this.New_classification.includes("Direct interaction")) {
+                    classification='class="Mechanistic-A"';
+                    $("#1").css({
+                        "font-size": "18px",
+                        "font-weight": "bolder"
+                    });
+                } else if (this.New_classification.includes("Functional interaction")) {
+                    classification='class="Mechanistic-B"';
+                    $("#2").css({
+                        "font-size": "18px",
+                        "font-weight": "bolder"
+                    });
+                } else {
+                    classification='';
+                }
+
+
+                if(this.Mutations_improved_by_treatment!=''){
+                    Mutation_did_benefit=this.Mutations_improved_by_treatment;
+                }
+                if(this.Mutation_that_did_not_benefit_from_treatment!=''){
+                    Mutation_did_not_benefit=this.Mutation_that_did_not_benefit_from_treatment;
+                }
+                if(treatments_grouped[drugs]){
+                    tr_value=treatments_grouped[drugs];
+                    tr_value.push([this.Phenotypes_IDS,this.Phenotypes_improved,this.Mutations_improved_by_treatment,this.Mutation_that_did_not_benefit_from_treatment,classification,links]);
+                    treatments_grouped[drugs]=tr_value;
+                }
+                else{
+                    treatments_grouped[drugs]=[]
+                    tr_value=treatments_grouped[drugs];
+                    tr_value.push([this.Phenotypes_IDS,this.Phenotypes_improved,this.Mutations_improved_by_treatment,this.Mutation_that_did_not_benefit_from_treatment,classification,links]);
+                }
             });
-            treatment_html='';
-            for (var key in treatments_grouped) {
-                 tr_values=treatments_grouped[key];
-                 console.log(tr_values);
-                 $.each(tr_values, function() {
-                   
-                    /*treatment = treatment + '<td>'+drugs+'</td><td>'+this[0] +'</td><td>' + this[1] + '</td>\
-                    <td>' + this.Mutation_that_did_not_benefit_from_treatment + '</td><td class="ref"><a data-toggle="collapse" href="#faq' + rowno + '">References<i class="fa fa-angle-down"></i></a><div class="collapse hide" id="faq' + rowno + '">' + links + '</div></td></tr>\
-                    '*/
-                 });
+            console.log(Mutation_did_benefit);
+            console.log(Mutation_did_not_benefit);
+            treatment = '<table class="table"><thead><tr><th>Drug Names</th><th>Phenotypes corrected</th>';
+            if(Mutation_did_benefit!=''){
+                treatment = treatment+'<th>Mutations improved by treatment</th>';
             }
-            //console.log(treatments_grouped);
+            if(Mutation_did_not_benefit!=''){
+                treatment = treatment+'<th>Mutation that did not benefit from treatment</th>';
+            }
+            treatment = treatment+'<th></th></tr></thead><tbody>'; 
+            var rowno = 1;
+            if(treatment_found){
+                for (var key in treatments_grouped) {
+                    console.log(key);
+                    tr_values=treatments_grouped[key];
+                    var rownum = tr_values.length>1 ? tr_values.length-1 : tr_values.length;
+                    treatment = treatment+'<tr '+tr_values[0][4]+'> <th rowspan='+rownum+'>'+key+'</th><td>'+((tr_values[0][0] == "") ? tr_values[0][1] :'<u><a href="http://www.ontobee.org/ontology/HP?iri=http://purl.obolibrary.org/obo/' + tr_values[0][0].replace(":", "_") + '" target="_blank">' + tr_values[0][1] + '</a></u>')+'</td>'+((Mutation_did_benefit == '') ? '' :'<td>'+tr_values[0][2]+'</td>')+((Mutation_did_not_benefit == '') ? '' :'<td>'+tr_values[0][3]+'</td>')+' <td class="ref">'+((tr_values[0][5] == '') ? '' :'<a data-toggle="collapse" href="#faq' + rowno + '">References<i class="fa fa-angle-down"></i></a><div class="collapse hide" id="faq' + rowno + '">' + tr_values[0][5] + '</div>')+'</td></tr>';
+                    console.log(tr_values.length);
+                    rowno++;
+                    $.each(tr_values.slice(1,tr_values.length-1), function() {
+                        treatment = treatment+'<tr '+this[4]+'> <td>'+((this[0] == "") ? this[1] :'<u><a href="http://www.ontobee.org/ontology/HP?iri=http://purl.obolibrary.org/obo/' + this[0].replace(":", "_") + '" target="_blank">' + this[1] + '</a></u>')+((Mutation_did_benefit == '') ? '' :'<td>'+this[2]+'</td>')+((Mutation_did_not_benefit == '') ? '' :'<td>'+this[3]+'</td>')+'</td> <td class="ref">'+((this[5] == '') ? '' :'<a data-toggle="collapse" href="#faq' + rowno + '">References<i class="fa fa-angle-down"></i></a><div class="collapse hide" id="faq' + rowno + '">' + this[5] + '</div>')+'</td></tr>';
+                        console.log(treatment);
+                        console.log("*******************")
+                        rowno++;
+                    });
+                }
+            }
+            else{
+                treatment = treatment+'<tr><td><b> No treatment found</b></td><td></td><td></td></tr>'
+            }
+            
+            treatment = treatment+'</tbody></table>';
             $('#treatment').append(treatment);
         },
         error: function(data) {
@@ -207,6 +244,7 @@ function showTreatments(j) {
 
         }
     });
+}
 }
 
 function unique(list) {
