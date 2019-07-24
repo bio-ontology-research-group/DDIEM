@@ -1,0 +1,24 @@
+
+<div class="container p-2">
+  <div layout="row">
+    <div class="form-group has-search">
+      <span class="fa fa-search form-control-feedback"></span>
+      <input id="diseaseSearch" flex="90" type="text" class="form-control" [(ngModel)]="selectedDisease" 
+        [inputFormatter]="formatter" [ngbTypeahead]="search" placeholder="Search" [resultTemplate]="rt"/>
+    </div>
+  </div>
+</div>
+
+<ng-template #rt let-r="result" let-t="term">
+  <ngb-highlight [result]="r.disease_name.value" [term]="t"></ngb-highlight>
+</ng-template> 
+
+<div class="container p-1">
+    <div class="row">
+      <div class="col-sm">
+        <ul>
+          <li *ngFor="let disease of diseaseList; let index = index"><a routerLink=""><ins>{{disease.disease_name.value}}</ins></a></li>
+        </ul>
+      </div>
+    </div>
+</div>
