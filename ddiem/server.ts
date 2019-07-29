@@ -12,6 +12,18 @@ import * as express from 'express';
 import {join} from 'path';
 
 import {SparqlEndpointFetcher} from "fetch-sparql-endpoint";
+import {JsonLdSerializer} from "jsonld-streaming-serializer";
+import {RdfXmlParser} from "rdfxml-streaming-parser";
+
+const rdfXmlParser = new RdfXmlParser();
+const jsonLdSerializer = new JsonLdSerializer({
+  context : {
+    obo: 'http://purl.obolibrary.org/obo/',
+    ddiem: 'http://www.cbrc.kaust.edu.sa/ddiem/terms/',
+    n12: 'http://www.cbrc.kaust.edu.sa/ddiem/regimen_mechanism_of_action/Functional interaction(Mechanistic B)',
+    n13: 'http://www.cbrc.kaust.edu.sa/ddiem/regimen_mechanism_of_action/Supportive (C)',
+  }
+});
 
 const diseaseListQuery = `
           SELECT DISTINCT ?OMIM_ID ?disease_name 
@@ -22,7 +34,6 @@ const diseaseListQuery = `
               ?OMIM_entry <http://www.cbrc.kaust.edu.sa/ddiem/terms/has_omim_id> ?OMIM_ID .
               ?OMIM_entry <http://www.cbrc.kaust.edu.sa/ddiem/terms/has_disease_name> ?disease_name
           } ORDER BY ASC(?disease_name)`;
-
 
 
 // Faster server renders w/ Prod mode (dev mode never needed)
@@ -61,28 +72,36 @@ app.get('/api/disease', async (req: Request, res:Response) => {
   bindingsStream.on('end', function() {
     res.json(obs);
   });
-  // res.status(200).send("hey")
 });
 
-// app.get('/api/disease/:id', async (req: Request, res:Response) => {
-//   let query =`
-//     DESCRIBE ?OMIM_entry 
-//     FROM
-//       <http://www.cbrc.kaust.edu.sa/DDIEM>
-//     WHERE
-//     {
-//         ?OMIM_entry <http://www.cbrc.kaust.edu.sa/ddiem/terms/has_omim_id> ()
-//   `
-//   const bindingsStream = await fetcher.fetchBindings('http://ontolinator.kaust.edu.sa:8891/sparql', diseaseListQuery);
-//   let obs = [];
-//   bindingsStream.on('data', function(bindings) {
-//     obs.push(bindings);
-//   });
-//   bindingsStream.on('end', function() {
-//     res.json(obs);
-//   });
-//   // res.status(200).send("hey")
-// });
+app.get('/api/disease/:id', async (req: Request, res:Response) => {
+  var id = req.params.id;
+  console.log("diseaseId:" + id);
+  const diseaseQuery = `
+                prefix ns0:	<http://www.cbrc.kaust.edu.sa/ddiem/terms/>
+
+                Describe ${id} ?drug ?dataset ?phenotypeIdCol ?phenotypeTreatment ?reginmenMachanism ?studyTypeEvidence ?treatmentManuscript
+                WHERE {
+                  ${id} <http://purl.obolibrary.org/obo/RO_0004020> ?drug .
+                  ?dataset ns0:has_omim_id ${id} .
+                  ?dataset ns0:has_phenotype_ID__collection ?phenotypeIdCol .
+                  ?dataset ns0:has_phenotype_improved_by_treatment__bag ?phenotypeTreatment .
+                  ?dataset ns0:regimen_mechanism_of_action__collection ?reginmenMachanism .
+                  ?dataset ns0:study_type_evidence_code__collection ?studyTypeEvidence .
+                  ?dataset ns0:treatment_manuscript_reference__collection ?treatmentManuscript 
+                }`;
+
+  const rdfStream = await fetcher.fetchRawStream(
+    'http://ontolinator.kaust.edu.sa:8891/sparql', diseaseQuery, 'application/rdf+xml');
+
+  let obs = [];
+  rdfStream[1]
+  .pipe(rdfXmlParser)
+  .pipe(jsonLdSerializer)
+  .on('data', obs.push)
+  .on('error', console.error)
+  .on('end', () => res.json(obs));
+});
 
 
 // Server static files from /browser

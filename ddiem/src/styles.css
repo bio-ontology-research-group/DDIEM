@@ -2,6 +2,15 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "../node_modules/font-awesome/css/font-awesome.css";
 
+
+body {
+    background-color:  #f4f5fb !important;
+}
+
+.container {
+    background-color: white;
+}
+
 .has-search .form-control {
     padding-left: 2.375rem;
 }
@@ -17,3 +26,21 @@
     pointer-events: none;
     color: #aaa;
 }
+
+.shadow-base {
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.21);
+    border-radius: 3px;
+}
+
+.bg-teal-gradient {
+    background-image: linear-gradient(45deg,#00dcaf 0,#7536e6 100%);
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+  }
