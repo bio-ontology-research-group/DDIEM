@@ -25,4 +25,14 @@ export class DiseaseService {
 
     return this.http.get('/api/disease/' + iri, options);
   }
+
+  getTreatmentDrug(iri: any) {
+    let options = {
+      headers:  new HttpHeaders({
+        'Accept': 'application/json'
+      })
+    };
+
+    return this.http.get('/api/treatment/' + encodeURIComponent(iri) + '/drug', options);
+  }
 }

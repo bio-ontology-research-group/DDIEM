@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
 import { DiseaseService } from '../disease.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -15,13 +16,19 @@ export class HomeComponent implements OnInit {
   diseaseList: any = [];
   selectedDisease : any;
 
-  constructor(private service: DiseaseService) { }
+  constructor(private router: Router,
+              private service: DiseaseService) { }
 
   ngOnInit() {
     this.service.listDiseases().subscribe(data => {
       this.diseaseList = data;
     })
 
+  }
+
+  onDiseaseSelect(event){
+    console.log(event);
+    this.router.navigate(['/disease', encodeURIComponent(event.item.OMIM_entry.value)]);
   }
 
   search = (text$: Observable<string>) =>

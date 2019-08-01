@@ -1,0 +1,44 @@
+<form action="http://ontolinator.kaust.edu.sa:8891/sparql" method="get" target="_blank">
+  <label for="query">SPARQL:</label><br />
+  <textarea rows="10" name="query" id="query" onchange="javascript:format_select(this)" onkeyup="javascript:format_select(this)"></textarea>		
+  <br />
+  <label for="format">Results Format</label>
+  <select name="format" id="format" onchange="javascript:format_change(this)">
+    <option value="text/html" selected="selected">HTML</option>
+    <option value="application/sparql-results+xml" >XML</option>
+    <option value="application/sparql-results+json" >JSON</option>
+    <option value="application/javascript" >Javascript</option>
+    <option value="text/turtle" >Turtle</option>
+    <option value="application/rdf+xml" >RDF/XML</option>
+    <option value="text/plain" >N-Triples</option>
+    <option value="text/csv" >CSV</option>
+    <option value="text/tab-separated-values" >TSV</option>
+  </select>
+  <br />
+  
+  <input name="timeout" id="timeout" type="hidden" value="0" />
+
+
+  <table>
+    <tr><td><label class="regular-checkbox">
+    <input name="debug" id="debug" type="checkbox" checked="checked"/>
+    <small></small>
+    </label></td><td> Strict check</td></tr>
+
+    <tr><td><label class="regular-checkbox">
+    <input name="log_debug_info" id="log_debug_info" type="checkbox"/>
+    <small></small>
+    </label></td><td> Log debug info</td></tr>
+
+    
+    <tr><td><label class="regular-checkbox">
+    <input name="explain" id="explain" onclick="javascript:change_run_button(this)" type="checkbox"/>
+    <small></small>
+    </label></td><td> SPARQL compilation report only</td></tr>
+
+  </table>
+  <br />
+  <input type="submit" class="btn btn-primary" name="run" id="run" value="Go"/>
+  <input type="reset" class="btn btn-primary" value="Reset"/>
+  <p>&nbsp;</p>
+</form>

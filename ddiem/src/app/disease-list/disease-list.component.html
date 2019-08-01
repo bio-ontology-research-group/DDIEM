@@ -17,7 +17,7 @@
     <div class="row">
       <div class="col-sm">
         <ul>
-          <li *ngFor="let disease of diseaseList; let index = index"><a routerLink=""><ins>{{disease.disease_name.value}}</ins></a></li>
+          <li *ngFor="let disease of diseaseList; let index = index"><a routerLink="['/disease', disease.OMIM_entry.value]"><ins>{{disease.disease_name.value}}</ins></a></li>
         </ul>
       </div>
     </div>

@@ -10,13 +10,17 @@ import { DiseaseListComponent } from './disease-list/disease-list.component';
 import { FormsModule } from '@angular/forms';
 import { DiseaseService } from './disease.service';
 import { HttpClientModule } from '@angular/common/http';
+import { EllipsisPipe } from '../pipes/EllipsisPipe';
+import { SparqlComponent } from './sparql/sparql.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     DiseaseListComponent,
-    DiseaseComponent
+    DiseaseComponent,
+    SparqlComponent,
+    EllipsisPipe
   ],
   imports: [
     NgbModule,
