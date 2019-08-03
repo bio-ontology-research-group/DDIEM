@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import { DiseaseService } from '../disease.service';
 import { Observable } from 'rxjs';
 import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
@@ -17,37 +17,11 @@ export class DiseaseComponent implements OnInit {
   diseaseList: any = [];
   selectedDisease : any;
 
-  constructor(private route: ActivatedRoute,
+  constructor(private router: Router,
+              private route: ActivatedRoute,
               private service: DiseaseService) {
     this.route.params.subscribe( params => {
-      this.service.getDiseases(params.iri).subscribe(data => { 
-        this.disease = data ? data["@graph"] : null;
-        this.context = data ? data["@context"] : null;
-        this.datasets = this.findDatasets();
-        var drugCompositionIdSet = new Set();
-
-        for (var i=0; i < this.datasets.length; i++) {
-          var drugCompId = this.datasets[i]['obo:RO_0002302'][0]['@id'];
-          if (drugCompositionIdSet.has(drugCompId)) {
-            continue;
-          } 
-
-          drugCompositionIdSet.add(drugCompId);
-          this.service.getTreatmentDrug(drugCompId).subscribe(drugData => {
-            var drugs = drugData ? drugData["@graph"] : null;
-            if (drugs) {
-              var drugObjs = _.filter(drugs, drug => drug['ddiem:has_name']);
-              _.each(this.datasets, ds => { 
-                var id = _.findWhere(drugs, {'@id': ds['obo:RO_0002302'][0]['@id']});
-                if (id) {
-                  ds.drugs = drugObjs;
-                }
-              });
-            }         
-          });
-        }
-        console.log(this.disease);
-      });
+      this.initDisease(params.iri);
     });
   }
 
@@ -57,8 +31,39 @@ export class DiseaseComponent implements OnInit {
     })
   }
 
-  onDiseaseSelect(event){
-    console.log(event);
+  onDiseaseSelect(disease){
+    this.router.navigate(['/disease', encodeURIComponent(disease.OMIM_entry.value)]);
+  }
+
+  initDisease(iri) {
+    this.service.getDiseases(iri).subscribe(data => { 
+      this.disease = data ? data["@graph"] : null;
+      this.context = data ? data["@context"] : null;
+      this.datasets = this.findDatasets();
+      var drugCompositionIdSet = new Set();
+
+      for (var i=0; i < this.datasets.length; i++) {
+        var drugCompId = this.datasets[i]['obo:RO_0002302'][0]['@id'];
+        if (drugCompositionIdSet.has(drugCompId)) {
+          continue;
+        } 
+
+        drugCompositionIdSet.add(drugCompId);
+        this.service.getTreatmentDrug(drugCompId).subscribe(drugData => {
+          var drugs = drugData ? drugData["@graph"] : null;
+          if (drugs) {
+            var drugObjs = _.filter(drugs, drug => drug['ddiem:has_name']);
+            _.each(this.datasets, ds => { 
+              var id = _.findWhere(drugs, {'@id': ds['obo:RO_0002302'][0]['@id']});
+              if (id) {
+                ds.drugs = drugObjs;
+              }
+            });
+          }         
+        });
+      }
+      console.log(this.disease);
+    });
   }
 
   find(id) {
@@ -111,14 +116,4 @@ export class DiseaseComponent implements OnInit {
   openInNewTab(url: string){
     window.open(url, "_blank");
   }
-
-  search = (text$: Observable<string>) =>
-    text$.pipe(
-      debounceTime(200),
-      distinctUntilChanged(),
-      map(term => term.length < 2 ? []
-        : this.diseaseList.filter(v => v.disease_name.value.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
-    )
-
-  formatter = (x: {disease_name: { value: string}}) => x.disease_name.value;
 }

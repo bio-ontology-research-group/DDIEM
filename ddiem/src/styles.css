@@ -42,5 +42,8 @@ body {
     bottom: 0;
     width: 100%;
     color: white;
-    text-align: center;
   }
+
+  .font-13 {
+    font-size: 13px!important;
+}

@@ -1,23 +1,12 @@
-
-<div class="container shadow-base p-2 mt-3">
-  <div layout="row">
-    <div class="form-group has-search">
-      <span class="fa fa-search form-control-feedback"></span>
-      <input id="diseaseSearch" flex="90" type="text" class="form-control" [(ngModel)]="selectedDisease" 
-        [inputFormatter]="formatter" [ngbTypeahead]="search" placeholder="Search" [resultTemplate]="rt"/>
-    </div>
-  </div>
-</div>
-
-<ng-template #rt let-r="result" let-t="term">
-  <ngb-highlight [result]="r.disease_name.value" [term]="t"></ngb-highlight>
-</ng-template> 
-
+<app-disease-search [diseaseList]="diseaseList" (selectedDisease)="onDiseaseSelect($event)"></app-disease-search>
 <div class="container p-1 shadow-base mt-3">
     <div class="row">
       <div class="col-sm">
-        <ul>
-          <li *ngFor="let disease of diseaseList; let index = index"><a routerLink="['/disease', disease.OMIM_entry.value]"><ins>{{disease.disease_name.value}}</ins></a></li>
+        <p>Available Diseases:</p>
+        <ul class="pl-2">
+          <li *ngFor="let disease of diseaseList; let index = index">
+              <button type="button" class="btn btn-link" (click)="onDiseaseSelectNewTab(disease)"><ins>{{disease.disease_name.value}}</ins></button>
+          </li>
         </ul>
       </div>
     </div>

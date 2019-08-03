@@ -1,9 +1,9 @@
 <form action="http://ontolinator.kaust.edu.sa:8891/sparql" method="get" target="_blank">
   <label for="query">SPARQL:</label><br />
-  <textarea rows="10" name="query" id="query" onchange="javascript:format_select(this)" onkeyup="javascript:format_select(this)"></textarea>		
+  <textarea rows="10" name="query" id="query"></textarea>		
   <br />
   <label for="format">Results Format</label>
-  <select name="format" id="format" onchange="javascript:format_change(this)">
+  <select name="format" id="format">
     <option value="text/html" selected="selected">HTML</option>
     <option value="application/sparql-results+xml" >XML</option>
     <option value="application/sparql-results+json" >JSON</option>
@@ -32,7 +32,7 @@
 
     
     <tr><td><label class="regular-checkbox">
-    <input name="explain" id="explain" onclick="javascript:change_run_button(this)" type="checkbox"/>
+    <input name="explain" id="explain" type="checkbox"/>
     <small></small>
     </label></td><td> SPARQL compilation report only</td></tr>
 

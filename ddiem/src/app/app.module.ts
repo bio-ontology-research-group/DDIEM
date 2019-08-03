@@ -12,6 +12,7 @@ import { DiseaseService } from './disease.service';
 import { HttpClientModule } from '@angular/common/http';
 import { EllipsisPipe } from '../pipes/EllipsisPipe';
 import { SparqlComponent } from './sparql/sparql.component';
+import { DiseaseSearchComponent } from './disease-search/disease-search.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { SparqlComponent } from './sparql/sparql.component';
     HomeComponent,
     DiseaseListComponent,
     DiseaseComponent,
+    DiseaseSearchComponent,
     SparqlComponent,
     EllipsisPipe
   ],
