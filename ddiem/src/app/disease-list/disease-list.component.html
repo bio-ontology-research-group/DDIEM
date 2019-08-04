@@ -1,9 +1,9 @@
 <app-disease-search [diseaseList]="diseaseList" (selectedDisease)="onDiseaseSelect($event)"></app-disease-search>
-<div class="container p-1 shadow-base mt-3">
+<div class="container p-4 shadow-base mt-3">
     <div class="row">
       <div class="col-sm">
         <p>Available Diseases:</p>
-        <ul class="pl-2">
+        <ul>
           <li *ngFor="let disease of diseaseList; let index = index">
               <button type="button" class="btn btn-link" (click)="onDiseaseSelectNewTab(disease)"><ins>{{disease.disease_name.value}}</ins></button>
           </li>

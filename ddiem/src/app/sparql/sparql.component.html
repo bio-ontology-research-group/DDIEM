@@ -1,44 +1,50 @@
-<form action="http://ontolinator.kaust.edu.sa:8891/sparql" method="get" target="_blank">
-  <label for="query">SPARQL:</label><br />
-  <textarea rows="10" name="query" id="query"></textarea>		
-  <br />
-  <label for="format">Results Format</label>
-  <select name="format" id="format">
-    <option value="text/html" selected="selected">HTML</option>
-    <option value="application/sparql-results+xml" >XML</option>
-    <option value="application/sparql-results+json" >JSON</option>
-    <option value="application/javascript" >Javascript</option>
-    <option value="text/turtle" >Turtle</option>
-    <option value="application/rdf+xml" >RDF/XML</option>
-    <option value="text/plain" >N-Triples</option>
-    <option value="text/csv" >CSV</option>
-    <option value="text/tab-separated-values" >TSV</option>
-  </select>
-  <br />
-  
-  <input name="timeout" id="timeout" type="hidden" value="0" />
+<div class="container p-1 shadow-base mt-3" flex="90">
+
+  <div class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+      <table>
+        <tr><td colspan="4">Query Examples:<td></tr>
+        <tr>
+          <td><h5><button (click)="diseaseList()"  class="badge badge-success">Disease list</button></h5></td>
+          <td><h5><button (click)="diseaseByName()" class="badge badge-danger">Disease by name</button></h5></td>
+          <td><h5><button (click)="treatmentImprovedPhenotypes()"  class="badge badge-warning">Treatment improved phenotype</button></h5></td>
+          <td><h5><button (click)="drugByRegimen()" class="badge badge-info">Drug from regimen</button></h5></td>
+        </tr>
+      </table>
+    <form ngNoForm #htmlForm action="http://ontolinator.kaust.edu.sa:8891/sparql" method="get" target="_blank">
+      <label for="query">SPARQL:</label><br />
+      <textarea #sparqlEle class="form-control" aria-label="SPARQL" rows="10" name="query" id="query" ></textarea>		
+      <br />
+      <label for="format">Results Format</label>
+      <select class="form-control" name="format" id="format">
+        <option *ngFor="let format of formats" value="{{format.format}}" selected="{{format.name == 'HTML' ? format.format : ''}}" >{{format.name}}</option>
+      </select>
+      <br />
+      
+      <input name="timeout" id="timeout" type="hidden" value="0" />
 
 
-  <table>
-    <tr><td><label class="regular-checkbox">
-    <input name="debug" id="debug" type="checkbox" checked="checked"/>
-    <small></small>
-    </label></td><td> Strict check</td></tr>
+      <table>
+        <tr><td><label class="regular-checkbox">
+        <input name="debug" id="debug" type="checkbox" checked="checked"/>
+        <small></small>
+        </label></td><td> Strict check</td></tr>
 
-    <tr><td><label class="regular-checkbox">
-    <input name="log_debug_info" id="log_debug_info" type="checkbox"/>
-    <small></small>
-    </label></td><td> Log debug info</td></tr>
+        <tr><td><label class="regular-checkbox">
+        <input name="log_debug_info" id="log_debug_info" type="checkbox"/>
+        <small></small>
+        </label></td><td> Log debug info</td></tr>
 
-    
-    <tr><td><label class="regular-checkbox">
-    <input name="explain" id="explain" type="checkbox"/>
-    <small></small>
-    </label></td><td> SPARQL compilation report only</td></tr>
+        
+        <tr><td><label class="regular-checkbox">
+        <input name="explain" id="explain" type="checkbox"/>
+        <small></small>
+        </label></td><td> SPARQL compilation report only</td></tr>
 
-  </table>
-  <br />
-  <input type="submit" class="btn btn-primary" name="run" id="run" value="Go"/>
-  <input type="reset" class="btn btn-primary" value="Reset"/>
-  <p>&nbsp;</p>
-</form>
+      </table>
+      <br />
+      <input type="submit" class="btn btn-primary" name="run" id="run" value="Run Query" (click)="submit()"/>
+      <input type="reset" class="btn btn-secondary ml-3" value="Reset" (click)="clear()"/>
+      <p>&nbsp;</p>
+    </form>
+  </div>
+</div>

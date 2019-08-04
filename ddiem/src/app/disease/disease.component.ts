@@ -16,12 +16,15 @@ export class DiseaseComponent implements OnInit {
   context : any = {};
   diseaseList: any = [];
   selectedDisease : any;
+  iri: any;
 
   constructor(private router: Router,
               private route: ActivatedRoute,
               private service: DiseaseService) {
     this.route.params.subscribe( params => {
       this.initDisease(params.iri);
+      console.log(params.iri, decodeURIComponent(params.iri));
+      this.iri = decodeURIComponent(params.iri);
     });
   }
 
@@ -43,6 +46,10 @@ export class DiseaseComponent implements OnInit {
       var drugCompositionIdSet = new Set();
 
       for (var i=0; i < this.datasets.length; i++) {
+        if (!this.datasets[i]['obo:RO_0002302']) {
+          continue;
+        }
+
         var drugCompId = this.datasets[i]['obo:RO_0002302'][0]['@id'];
         if (drugCompositionIdSet.has(drugCompId)) {
           continue;
@@ -70,8 +77,12 @@ export class DiseaseComponent implements OnInit {
     return _.findWhere(this.disease, {'@id': id});
   }
 
+  d(){
+    return this.find(this.iri);
+  }
+
   gene() {
-    return this.find(this.disease[0]['obo:RO_0004020'][0]['@id']);
+    return this.find(this.d()['obo:RO_0004020'][0]['@id']);
   }
 
   ec_number() {
@@ -84,7 +95,7 @@ export class DiseaseComponent implements OnInit {
   findDatasets(){
     return _.filter(this.disease, (item) => {
       if (item['ddiem:has_omim_id'] && !item['ddiem:has_disease_name'] 
-            && item['ddiem:has_omim_id'][0]['@id'] === this.disease[0]['@id']) {
+            && item['ddiem:has_omim_id'][0]['@id'] === this.iri) {
         return true;
       } else { 
         return false;
@@ -94,14 +105,17 @@ export class DiseaseComponent implements OnInit {
 
   phenotype(ds) {
     if (ds['ddiem:has_phenotype_improved_by_treatment__bag']) {
-      return this.find(ds['ddiem:has_phenotype_improved_by_treatment__bag'][0]['@id'])['rdf:_1'][0]['@value'];
+      var phenotype = this.find(ds['ddiem:has_phenotype_improved_by_treatment__bag'][0]['@id']);
+      return phenotype['rdf:_1'] ? phenotype['rdf:_1'][0]['@value'] : '';
     } 
     return '';
   }
 
   reference(ds) {
     if (ds['ddiem:treatment_manuscript_reference__collection']) {
+      console.log(this.find(ds['ddiem:treatment_manuscript_reference__collection'][0]['@id'])['rdf:first'][0]['@id']);
       return this.find(ds['ddiem:treatment_manuscript_reference__collection'][0]['@id'])['rdf:first'][0]['@id'];
+      
     }
     return null;
   }

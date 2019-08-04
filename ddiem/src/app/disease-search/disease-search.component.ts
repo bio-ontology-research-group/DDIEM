@@ -13,6 +13,8 @@ export class DiseaseSearchComponent implements OnInit {
   @Input() diseaseList: any = [];
   @Output() selectedDisease = new EventEmitter<any>();
 
+  disease = null;
+
   formatter: any;
   
   search = (text$: Observable<string>) =>
@@ -26,11 +28,12 @@ export class DiseaseSearchComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
+    this.formatter = (x: {disease_name: { value: string}}) => x.disease_name ? x.disease_name.value : null;
   }
 
   ngOnChanges(change: SimpleChange) {
     if(change.currentValue && change.currentValue.diseaseList) {
-      this.formatter = (x: {disease_name: { value: string}}) => x.disease_name.value;
+      // this.formatter = (x: {disease_name: { value: string}}) => x.disease_name.value;
     }
   }
 
