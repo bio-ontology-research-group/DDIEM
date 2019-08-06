@@ -15,6 +15,7 @@ export class DiseaseComponent implements OnInit {
   datasets : any = [];
   context : any = {};
   diseaseList: any = [];
+  regimenTypes: any = new Set();
   selectedDisease : any;
   iri: any;
 
@@ -46,6 +47,11 @@ export class DiseaseComponent implements OnInit {
       var drugCompositionIdSet = new Set();
 
       for (var i=0; i < this.datasets.length; i++) {
+        if (this.datasets[i]['ddiem:has_regimen_mechanism_of_action__bag'] && this.datasets[i]['ddiem:has_regimen_mechanism_of_action__bag'][0]){
+          var bag = this.find(this.datasets[i]['ddiem:has_regimen_mechanism_of_action__bag'][0]['@id']);
+          bag && bag['rdf:_1'] ? this.regimenTypes.add(bag['rdf:_1'][0]['@value']) : null;
+        }
+
         if (!this.datasets[i]['obo:RO_0002302']) {
           continue;
         }
@@ -61,6 +67,10 @@ export class DiseaseComponent implements OnInit {
           if (drugs) {
             var drugObjs = _.filter(drugs, drug => drug['ddiem:has_name']);
             _.each(this.datasets, ds => { 
+              if (!ds['obo:RO_0002302']) {
+                return;
+              }
+
               var id = _.findWhere(drugs, {'@id': ds['obo:RO_0002302'][0]['@id']});
               if (id) {
                 ds.drugs = drugObjs;
@@ -113,7 +123,6 @@ export class DiseaseComponent implements OnInit {
 
   reference(ds) {
     if (ds['ddiem:treatment_manuscript_reference__collection']) {
-      console.log(this.find(ds['ddiem:treatment_manuscript_reference__collection'][0]['@id'])['rdf:first'][0]['@id']);
       return this.find(ds['ddiem:treatment_manuscript_reference__collection'][0]['@id'])['rdf:first'][0]['@id'];
       
     }

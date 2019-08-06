@@ -28,6 +28,7 @@ export class SparqlComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.diseaseList();
   }
 
   submit(){
@@ -35,7 +36,7 @@ export class SparqlComponent implements OnInit {
   }
 
   clear(){
-    this.sparqlEle.nativeElement.setAttribute('value', '');
+    this.sparqlEle.nativeElement.value = '';
   }
 
   diseaseList() {
@@ -45,7 +46,7 @@ export class SparqlComponent implements OnInit {
       ?OMIM_entry <http://www.cbrc.kaust.edu.sa/ddiem/terms/has_omim_id> ?OMIM_ID .
       ?OMIM_entry <http://www.cbrc.kaust.edu.sa/ddiem/terms/has_disease_name> ?Disease
     } ORDER BY 1 LIMIT 10`;
-    this.sparqlEle.nativeElement.setAttribute('value', query);
+    this.sparqlEle.nativeElement.value = query;
   }
 
   diseaseByName() {
@@ -62,7 +63,7 @@ export class SparqlComponent implements OnInit {
             FILTER (?disease_name="HYPERPHENYLALANINEMIA, BH4-DEFICIENT, C; HPABH4C"^^xsd:string)
             FILTER (?phenotype_improved_by_treatment__predicate != rdf:type)
       } ORDER BY 1 2 3 LIMIT 10`;
-      this.sparqlEle.nativeElement.setAttribute('value', query);
+      this.sparqlEle.nativeElement.value = query;
   }
 	
   treatmentImprovedPhenotypes() {
@@ -82,7 +83,7 @@ export class SparqlComponent implements OnInit {
           FILTER (?disease_name="HYPERPHENYLALANINEMIA, BH4-DEFICIENT, C; HPABH4C"^^xsd:string && ?phenotype_improved_by_treatment__object = "Abnormality of neurotransmitter metabolism"^^xsd:string)
           FILTER (?phenotype_improved_by_treatment__predicate != rdf:type)
       } ORDER BY 1 2 3 4 LIMIT 10`;
-      this.sparqlEle.nativeElement.setAttribute('value', query);
+      this.sparqlEle.nativeElement.value = query;
   }
 
 
@@ -103,7 +104,7 @@ export class SparqlComponent implements OnInit {
           }
           FILTER (?p=<http://www.cbrc.kaust.edu.sa/ddiem/terms/nonoptional>) .
         } ORDER BY 1 2 3`;
-    this.sparqlEle.nativeElement.setAttribute('value', query);
+    this.sparqlEle.nativeElement.value = query;
   }
 
 }
