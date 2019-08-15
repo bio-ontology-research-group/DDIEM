@@ -6,7 +6,7 @@ import { DiseaseComponent } from './disease/disease.component';
 import { SparqlComponent } from './sparql/sparql.component';
 
 const routes: Routes = [
-  {path: 'home',component: HomeComponent},  
+  {path: '',component: HomeComponent},  
   {path: 'disease-list',component: DiseaseListComponent},
   {path: 'disease/:iri',component: DiseaseComponent},
   {path: 'sparql',component: SparqlComponent}
