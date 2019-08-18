@@ -40,26 +40,23 @@ export class DiseaseDao {
   async getDiseases(iri: any) {
       console.log("diseaseId:" + iri);
       const diseaseQuery = `
-          prefix ns0:    <http://www.cbrc.kaust.edu.sa/ddiem/terms/>
-          prefix n1:     <http://purl.obolibrary.org/obo/>
-          CONSTRUCT {
-              <${iri}> ?prop ?value .
-              ?gene ?geneProp ?geneValue .
-              ?product ?productProp ?productValue .
-              ?dataset ?dsProp ?obj.
-              ?obj ?objProp ?objValue
-          }
-          WHERE {
-              <${iri}> ?prop ?value .
-              <${iri}> <http://purl.obolibrary.org/obo/RO_0004020> ?gene .
-              ?gene ?geneProp ?geneValue .
-              ?gene n1:RO_0002205 ?product .
-              ?product ?productProp ?productValue .
-              ?dataset ns0:has_omim_id <${iri}> .
-              ?dataset ?dsProp ?obj .
-              ?obj ?objProp ?objValue .
-              MINUS { ?dataset ns0:regimen_mechanism_of_action__collection ?obj }
-          }`;
+      prefix ns0:    <http://www.cbrc.kaust.edu.sa/ddiem/terms/>
+      prefix n1:     <http://purl.obolibrary.org/obo/>
+                CONSTRUCT {
+                    <${iri}> ?prop ?value .
+                    ?dataset ?dsProp ?obj.
+                    ?obj ?objProp ?objValue .
+                    ?gene ?geneProp ?geneValue .
+                }
+                WHERE {
+                    <${iri}> ?prop ?value .
+                    ?dataset ns0:has_omim_id <${iri}> .
+                    ?dataset ?dsProp ?obj .
+                    ?obj ?objProp ?objValue .
+                    ?dataset <http://purl.obolibrary.org/obo/RO_0004020> ?gene .
+                    ?gene ?geneProp ?geneValue .
+                    MINUS { ?dataset ns0:regimen_mechanism_of_action__collection ?obj }
+                }`;
     
       return await this.fetcher.fetchTriples('http://ontolinator.kaust.edu.sa:8891/sparql', diseaseQuery);
   }
@@ -154,8 +151,7 @@ const jsonLdSerializer = new JsonLdSerializer({
     obo: 'http://purl.obolibrary.org/obo/',
     ddiem: 'http://www.cbrc.kaust.edu.sa/ddiem/terms/',
     ds: 'http://www.cbrc.kaust.edu.sa/ddiem/dataset/',
-    n12: 'http://www.cbrc.kaust.edu.sa/ddiem/regimen_mechanism_of_action/Functional interaction(Mechanistic B)',
-    n13: 'http://www.cbrc.kaust.edu.sa/ddiem/regimen_mechanism_of_action/Supportive (C)',
+    ec: 'http://www.cbrc.kaust.edu.sa/ddiem/gene_product/EC/',
     pubmed: 'https://www.ncbi.nlm.nih.gov/pubmed/',
     rdf:	'http://www.w3.org/1999/02/22-rdf-syntax-ns#'
   }

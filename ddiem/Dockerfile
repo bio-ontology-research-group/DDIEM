@@ -15,6 +15,6 @@ RUN npm install
 # Bundle app source
 COPY . .
 
-EXPOSE 80
+EXPOSE 8080
 EXPOSE 8891 
-CMD npm run build:ssr && PORT=80 npm run serve:ssr
+CMD npm run build:ssr && PORT=8080 npm run serve:ssr

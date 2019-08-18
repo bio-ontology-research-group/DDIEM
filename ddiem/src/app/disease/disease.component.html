@@ -9,7 +9,9 @@
       <strong>Disease name:</strong>
     </div>
     <div class="col-md-9">
-      {{d()['ddiem:has_disease_name'][0]['@value']}}
+        <button type="button" class="btn btn-link p-0" (click)="openInNewTab(iri)">
+          {{d()['ddiem:has_disease_name'][0]['@value']}}
+        </button>
     </div>
   </div>
   <div class="row">
@@ -65,9 +67,13 @@
           </thead>
           <tbody>
             <tr *ngFor="let ds of datasets">
-              <td style="width: 30%;"><span *ngFor="let drug of ds?.drugs; let index = index">{{drug['ddiem:has_name'][0]['@value']}} </span></td>
-              <td style="width: 40%;">{{phenotype(ds)}}</td>
-              <td style="width: 30%;"><button type="button" class="btn btn-link p-0" (click)="openPubmedRef(reference(ds))">{{reference(ds) | ellipsis:50}}</button></td>
+              <td style="width: 30%;">
+                <span *ngFor="let drug of ds?.drugs; let index = index">
+                  <button type="button" class="btn btn-link p-0 grid-link" (click)="openInNewTab(drug['ddiem:drugbank_ID'][0]['@id'])">
+                      {{drug['ddiem:has_name'][0]['@value']}}
+                  </button></span></td>
+              <td style="width: 40%;"><button type="button" class="btn btn-link p-0 grid-link" (click)="openInNewTab(phenotypeUrl(ds))">{{phenotype(ds)}}</button></td>
+              <td style="width: 30%;"><button type="button" class="btn btn-link p-0 grid-link" (click)="openPubmedRef(reference(ds))">{{referenceDisplay(ds)}}</button></td>
             </tr>
           </tbody>
         </table>

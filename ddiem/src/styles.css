@@ -5,6 +5,7 @@
 
 body {
     background-color:  #f4f5fb !important;
+    font-family: Times New Roman;
 }
 
 .container {
@@ -49,4 +50,7 @@ body {
 }
 #contact-us .btn:focus {
     outline: none !important;
+}
+.grid-link {
+    color: #212529 !important;
 }

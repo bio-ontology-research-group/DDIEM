@@ -87,18 +87,24 @@ export class DiseaseComponent implements OnInit {
     return _.findWhere(this.disease, {'@id': id});
   }
 
+  //Finds Disease object
   d(){
     return this.find(this.iri);
   }
 
   gene() {
-    return this.find(this.d()['obo:RO_0004020'][0]['@id']);
+    return this.find(this.datasets[0]['obo:RO_0004020'][0]['@id']);
   }
 
   ec_number() {
-    if (this.gene()['obo:RO_0002205'] && this.gene()['obo:RO_0002205'][0]['@id']){ 
-      var ecNumber = this.find(this.gene()['obo:RO_0002205'][0]['@id']);
-      return ecNumber &&  ecNumber['ddiem:has_ec_number'] ? ecNumber['ddiem:has_ec_number'][0]['@value'] : '';
+    if (this.gene()['obo:RO_0002205']) {
+      var ecIri = _.find(this.gene()['obo:RO_0002205'], (obj) => {
+        if (!obj['@id']) {
+          return false;
+        }
+        return obj['@id'].startsWith("ec:");
+      });
+      return ecIri ? ecIri['@id'].substr(ecIri['@id'].lastIndexOf(':') + 1) : '';
     }
   }
 
@@ -121,10 +127,30 @@ export class DiseaseComponent implements OnInit {
     return '';
   }
 
+  phenotypeUrl(ds) {
+    if (ds['ddiem:has_phenotype_ID__collection']) {
+      var phenotype = this.find(ds['ddiem:has_phenotype_ID__collection'][0]['@id']);
+      var compactUri = phenotype['rdf:first'] ? phenotype['rdf:first'][0]['@id'] : '';
+      if (compactUri.startsWith('obo:')) {
+        return this.context.obo + compactUri.substr(compactUri.lastIndexOf(':') + 1);;
+      }
+    } 
+    return '';
+  }
+
+  referenceDisplay(ds) {
+    var ref = this.reference(ds);
+    if (ref && ref.startsWith('pubmed:')) {
+      return ref;
+    } else if (ref) {
+      return 'Clinical trials';
+    }
+    return '';
+  }
+
   reference(ds) {
     if (ds['ddiem:treatment_manuscript_reference__collection']) {
       return this.find(ds['ddiem:treatment_manuscript_reference__collection'][0]['@id'])['rdf:first'][0]['@id'];
-      
     }
     return null;
   }
