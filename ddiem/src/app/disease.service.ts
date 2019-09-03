@@ -4,35 +4,27 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 @Injectable()
 export class DiseaseService {
 
+  options = {
+    headers:  new HttpHeaders({
+      'Accept': 'application/json'
+    })
+  };
+
   constructor(private http: HttpClient) { }
 
   listDiseases() {
-    let options = {
-      headers:  new HttpHeaders({
-        'Accept': 'application/json'
-      })
-    };
-
-    return this.http.get('/api/disease', options);
+    return this.http.get('/api/disease', this.options);
   }
 
   getDiseases(iri: any) {
-    let options = {
-      headers:  new HttpHeaders({
-        'Accept': 'application/json'
-      })
-    };
-
-    return this.http.get('/api/disease/' + iri, options);
+    return this.http.get('/api/disease/' + iri, this.options);
   }
 
-  getTreatmentDrug(iri: any) {
-    let options = {
-      headers:  new HttpHeaders({
-        'Accept': 'application/json'
-      })
-    };
+  getDiseasePhenotypes(diseaseIri: any) {
+    return this.http.get('/api/disease/' + diseaseIri + '/phenotype', this.options);
+  }
 
-    return this.http.get('/api/treatment/' + encodeURIComponent(iri) + '/drug', options);
+  getDiseaseDrugs(diseaseIri: any) {
+    return this.http.get('/api/disease/' + diseaseIri + '/drug', this.options);
   }
 }

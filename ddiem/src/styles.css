@@ -5,11 +5,12 @@
 
 body {
     background-color:  #f4f5fb !important;
-    font-family: Times New Roman;
+    font-family: Times New Roman !important;
 }
 
-.container {
+.container-fluid {
     background-color: white;
+    width:90% !important;
 }
 
 .has-search .form-control {
@@ -53,4 +54,17 @@ body {
 }
 .grid-link {
     color: #212529 !important;
+}
+
+.w-20 {
+    width: 20%;
+}
+.w-25 {
+    width: 25%;
+}
+.w-30 {
+    width: 30%;
+}
+.w-40 {
+    width: 40%;
 }

@@ -1,6 +1,5 @@
 <app-disease-search [diseaseList]="diseaseList" (selectedDisease)="onDiseaseSelect($event)"></app-disease-search>
-<div class="container p-1 shadow-base mt-3" flex="90">
-
+<div class="container-fluid p-1 shadow-base mt-3">
   <div class="m-3 bd-content">
   <div class="row">
   <div class="col-md-8"> 
@@ -9,8 +8,9 @@
       <strong>Disease name:</strong>
     </div>
     <div class="col-md-9">
-        <button type="button" class="btn btn-link p-0" (click)="openInNewTab(iri)">
-          {{d()['ddiem:has_disease_name'][0]['@value']}}
+        <button type="button" class="btn btn-link p-0" 
+        (click)="openInNewTab(d()['dc:identifier'][0]['@value'])" [ngbTooltip]="d()['rdfs:comment'] ? d()['rdfs:comment'][0]['@value'] : ''">
+          {{toTitleCase(d()['rdfs:label'][0]['@value'])}}
         </button>
     </div>
   </div>
@@ -19,7 +19,8 @@
       <strong>Gene affected:</strong>
     </div>
     <div class="col-md-9">
-      <button type="button" class="btn btn-link p-0" (click)="openInNewTab(gene()['ddiem:gene_id'][0]['@id'])">{{gene()['ddiem:has_name'][0]['@value']}}</button>
+      <button type="button" class="btn btn-link p-0"  (click)="openInNewTab(gene()['dc:identifier'][0]['@value'])">
+        {{gene()['rdfs:label'][0]['@value']}}</button>
     </div>
   </div>
   <div class="row">
@@ -27,6 +28,7 @@
       <strong>Enzyme/ protein affected:</strong>
     </div>
     <div class="col-md-9">
+      {{protienEffected() ? protienEffected()['rdfs:label'][0]['@value'] : ''}}
     </div>
   </div>
   <div class="row">
@@ -34,47 +36,87 @@
       <strong>EC number:</strong>
     </div>
     <div class="col-md-9">
-        {{ec_number()}}
+      <span *ngIf="protienEffected()">
+        <button *ngIf="protienEffected()['ddiem:ecNumber'][0]['@value'] !== ''" type="button" class="btn btn-link p-0"  (click)="openInNewTab(ecNumberUri(protienEffected()['ddiem:ecNumber'][0]['@value']))">
+            {{protienEffected()['ddiem:ecNumber'][0]['@value']}}</button>
+        <span *ngIf="protienEffected()['ddiem:ecNumber'][0]['@value'] !== '' && protienEffected()['ddiem:uniprotId'][0]['@value'] !== ''"> / </span>
+        <button *ngIf="protienEffected()['ddiem:uniprotId'][0]['@value'] !== ''" type="button" class="btn btn-link p-0"  (click)="openInNewTab(uniprotUri(protienEffected()['ddiem:uniprotId'][0]['@value']))">
+            {{protienEffected()['ddiem:uniprotId'][0]['@value']}}</button>
+      </span>
     </div>
   </div>
-  </div>
-  <div class="col-4">
-    <div class="row">
-      <div class="col-md-12">
-        <strong>Treatment Types:</strong>
-      </div>
-      <div class="col-md-12">
-        <ul>
-          <li *ngFor="let regimenType of regimenTypes">{{regimenType}}</li>
-        </ul>
-      </div>
-    </div>
   </div>
   </div>
   </div>
 </div>
-<div class="container p-1 shadow-base mt-3" flex="90">
-
+<div class="container-fluid p-1 shadow-base mt-3">
+    <h5 class="p-3">Treatments</h5>
+    <hr />
     <div class="col-11 m-3 bd-content">
       <div class="row">
         <table class="table table-bordered">
           <thead>
             <tr>
               <th scope="col">Drug Names</th>
+              <th scope="col">Type</th>
+              <th scope="col">Study Type</th>
               <th scope="col">Phenotypes Corrected</th>
-              <th scope="col">Reference</th>
+              <th scope="col" *ngIf="isMutationExists">Mutations improved by treatment</th>
+              <th scope="col" *ngIf="isMutationExists">Mutation that didn't get benefits out the treatment</th>
+              <th scope="col"></th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let ds of datasets">
-              <td style="width: 30%;">
-                <span *ngFor="let drug of ds?.drugs; let index = index">
-                  <button type="button" class="btn btn-link p-0 grid-link" (click)="openInNewTab(drug['ddiem:drugbank_ID'][0]['@id'])">
-                      {{drug['ddiem:has_name'][0]['@value']}}
-                  </button></span></td>
-              <td style="width: 40%;"><button type="button" class="btn btn-link p-0 grid-link" (click)="openInNewTab(phenotypeUrl(ds))">{{phenotype(ds)}}</button></td>
-              <td style="width: 30%;"><button type="button" class="btn btn-link p-0 grid-link" (click)="openPubmedRef(reference(ds))">{{referenceDisplay(ds)}}</button></td>
-            </tr>
+              <ng-container *ngFor="let procedure of procedures">
+              <tr *ngFor="let phenotype of (procedure['obo:RO_0002212'] && procedure['obo:RO_0002212'].length > 0 ? procedure['obo:RO_0002212'] : [{}]); let phenotypeIndex = index">
+                <td [ngClass]="{'w-25': isMutationExists, 'w-30': !isMutationExists}" [attr.rowspan] = "procedure['obo:RO_0002212'] ? procedure['obo:RO_0002212'].length : 1"  *ngIf="phenotypeIndex === 0">
+                  <span *ngFor="let drugAnd of procedure['obo:RO_0000057']; let index = index">
+                    <span *ngFor="let drugOr of findAltList(drugAnd['@id']); let orIndex = index">
+              
+                      <button type="button" class="btn btn-link p-0 grid-link" [ngbTooltip]="procedure['rdfs:comment'] ? procedure['rdfs:comment'][0]['@value'] : ''"
+                        (click)="openInNewTab(drugOr['ddiem:url'] ? drugOr['ddiem:url']['0']['@value']: '')">
+                          {{drugOr['rdfs:label']['0']['@value']}}
+                      </button>
+                      <span *ngIf="orIndex !== findAltList(drugAnd['@id']).length - 1" style="color:blue;" > or </span> 
+                    </span>
+                    <span *ngIf="index !== procedure['obo:RO_0000057'].length - 1 && findAltList(drugAnd['@id']).length > 0" style="color:blue;"> and </span>
+                  </span> 
+                  (<button type="button" class="btn btn-link p-0 grid-link" ngbTooltip="Number of trials/papers that describe treatment">
+                   <strong>{{procedure['dc:bibliographicCitation'] ?  procedure['dc:bibliographicCitation'].length : '0'}}</strong></button>)
+                </td>
+                <td [ngClass]="{'w-20': isMutationExists, 'w-30': !isMutationExists}" [attr.rowspan] = "procedure['obo:RO_0002212'] ? procedure['obo:RO_0002212'].length : 1"  *ngIf="phenotypeIndex === 0">
+                  {{procedure['rdfs:subClassOf'] ? find(procedure['rdfs:subClassOf'][0]['@id'])['rdfs:label']['0']['@value'] : ''}}
+                </td>
+                <td [attr.rowspan] = "procedure['obo:RO_0002212'] ? procedure['obo:RO_0002212'].length : 1" *ngIf="phenotypeIndex === 0" > 
+                  <span *ngIf="procedure['obo:RO_0002558']">
+                    <span *ngFor="let evidence of procedure['obo:RO_0002558']; let evidenceIdx = index"> {{evidenceName(evidence['@id'])}} 
+                      <span *ngIf="evidenceIdx !== procedure['obo:RO_0002558'].length - 1">,</span> </span>
+                  </span>
+                </td>
+                <td [ngClass]="{'w-25': isMutationExists, 'w-30': !isMutationExists}">
+                  <span *ngIf="phenotype['@id']">
+                    <button type="button" class="btn btn-link p-0 grid-link" (click)="openInNewTab(phenotypeUrl(phenotype['@id']))"
+                    [ngbTooltip]="phenotypeRes(phenotype['@id'])['rdfs:comment'] ? phenotypeRes(phenotype['@id'])['rdfs:comment'][0]['@value'] : ''">
+                      {{phenotypeRes(phenotype['@id'])['rdfs:label'][0]['@value']}}
+                    </button>
+                  </span>
+                </td>
+
+                <td scope="col" *ngIf="isMutationExists">{{procedure['obo:RO_0003304'] ? procedure['obo:RO_0003304'][0]['@value'] : ''}}</td>
+                <td scope="col" *ngIf="isMutationExists">{{procedure['dc:failedToContributeToCondition'] ? procedure['dc:failedToContributeToCondition'][0]['@value'] : ''}}</td>
+                <td >
+                    <div ngbDropdown class="d-inline-block">
+                      <button class="btn btn-link p-0 grid-link" id="references" ngbDropdownToggle>References</button>
+                      <div ngbDropdownMenu>
+                        <button ngbDropdownItem *ngFor="let reference of procedure['dc:bibliographicCitation']" 
+                          class="btn btn-link p-2 grid-link" (click)="openInNewTab(reference['@value'])">
+                          {{referenceDisplay(reference['@value']) | ellipsis:30 }}
+                        </button>
+                      </div>
+                    </div>
+                </td>
+              </tr>
+              </ng-container>
           </tbody>
         </table>
       </div>

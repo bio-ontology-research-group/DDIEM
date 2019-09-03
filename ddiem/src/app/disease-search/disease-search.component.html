@@ -1,4 +1,4 @@
-<div class="container p-2 shadow-base  mt-3">
+<div class="container-fluid p-1 shadow-base mt-3">
   <div layout="row">
     <div class="form-group has-search">
       <span class="fa fa-search form-control-feedback"></span>
@@ -9,5 +9,5 @@
   </div>
 </div>
 <ng-template #rt let-r="result" let-t="term">
-  <ngb-highlight [result]="r.disease_name.value" [term]="t"></ngb-highlight>
+  <ngb-highlight [result]="toTitleCase(r.label.value)" [term]="t"></ngb-highlight>
 </ng-template> 

@@ -18,6 +18,7 @@ import {SparqlEndpointFetcher} from "fetch-sparql-endpoint";
 
 export class DiseaseDao {
   private fetcher:SparqlEndpointFetcher;
+  private serverUrl = "http://ontolinator.kaust.edu.sa:8891/sparql";
 
   constructor() { 
       this.fetcher = new SparqlEndpointFetcher();
@@ -25,59 +26,95 @@ export class DiseaseDao {
   
   async listDiseases() {
       const diseaseListQuery = `
-          SELECT DISTINCT ?OMIM_ID ?disease_name ?OMIM_entry
-          FROM
-              <http://www.cbrc.kaust.edu.sa/DDIEM>
-          WHERE
-          {
-              ?OMIM_entry <http://www.cbrc.kaust.edu.sa/ddiem/terms/has_omim_id> ?OMIM_ID .
-              ?OMIM_entry <http://www.cbrc.kaust.edu.sa/ddiem/terms/has_disease_name> ?disease_name
-          } ORDER BY ASC(?disease_name)`;
-      return await this.fetcher.fetchBindings('http://ontolinator.kaust.edu.sa:8891/sparql', diseaseListQuery);
+      PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+      PREFIX ddiem: <http://ddiem.phenomebrowser.net/>
+      PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      
+      SELECT ?disease ?label
+      FROM <http://www.cbrc.kaust.edu.sa/DDIEM>
+      WHERE {
+        ?disease rdf:type ddiem:Disease . 
+        ?disease rdfs:label ?label
+      }`;
+      return await this.fetcher.fetchBindings(this.serverUrl, diseaseListQuery);
     
   }
 
   async getDiseases(iri: any) {
       console.log("diseaseId:" + iri);
       const diseaseQuery = `
-      prefix ns0:    <http://www.cbrc.kaust.edu.sa/ddiem/terms/>
-      prefix n1:     <http://purl.obolibrary.org/obo/>
-                CONSTRUCT {
-                    <${iri}> ?prop ?value .
-                    ?dataset ?dsProp ?obj.
-                    ?obj ?objProp ?objValue .
-                    ?gene ?geneProp ?geneValue .
-                }
-                WHERE {
-                    <${iri}> ?prop ?value .
-                    ?dataset ns0:has_omim_id <${iri}> .
-                    ?dataset ?dsProp ?obj .
-                    ?obj ?objProp ?objValue .
-                    ?dataset <http://purl.obolibrary.org/obo/RO_0004020> ?gene .
-                    ?gene ?geneProp ?geneValue .
-                    MINUS { ?dataset ns0:regimen_mechanism_of_action__collection ?obj }
-                }`;
+      PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+      PREFIX ddiem: <http://ddiem.phenomebrowser.net/>
+      PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX obo: <http://purl.obolibrary.org/obo/>
+
+      CONSTRUCT {
+        <${iri}> ?prop ?obj .
+        ?gene ?geneProp ?geneObj.
+        ?protien ?protienProp ?protienObj .
+        ?procedure ?procedureProp ?procedureObj .
+        ?type ?typeProp ?typeObj .
+      }
+      FROM <http://www.cbrc.kaust.edu.sa/DDIEM>
+      WHERE {
+        <${iri}> rdf:type ddiem:Disease .
+        <${iri}> ?prop ?obj .
+
+        <${iri}> obo:RO_0004020 ?gene .
+        ?gene ?geneProp ?geneObj .
+
+        ?protien obo:RO_0002204 ?gene .
+        ?protien ?protienProp ?protienObj .
+
+        ?procedure obo:RO_0002606 <${iri}> .
+        ?procedure ?procedureProp ?procedureObj .
+
+        OPTIONAL { 
+          ?procedure rdfs:subClassOf ?type .
+          ?type ?typeProp ?typeObj .
+        }
+      }`;
     
-      return await this.fetcher.fetchTriples('http://ontolinator.kaust.edu.sa:8891/sparql', diseaseQuery);
+      return await this.fetcher.fetchTriples(this.serverUrl, diseaseQuery);
   }
 
-  async getTreatmentDrug(iri: any) {
-      console.log("treatment:" + iri);
+  async getDiseasePhenotypes(iri: any) {
+      console.log("diseaseId:" + iri);
       const diseaseQuery = `
-          prefix ns0:    <http://www.cbrc.kaust.edu.sa/ddiem/regimen/>
-          prefix n1:     <http://purl.obolibrary.org/obo/>
-          CONSTRUCT {
-              <${iri}> ?prop ?drug.
-          ?drug ?drugProp ?drugObj .
-          ?drugObj ?drugObjProp ?drugObjValue
-          } WHERE {
-          <${iri}> ?prop ?drug .
-          ?drug ?drugProp ?drugObj .
-          ?drugObj ?drugObjProp ?drugObjValue
-          }`;
+      PREFIX obo: <http://purl.obolibrary.org/obo/>
+      
+      CONSTRUCT {
+        ?phenotype ?phenotypeProp ?phenotypeObj .
+      }
+      FROM <http://www.cbrc.kaust.edu.sa/DDIEM>
+      WHERE {
+        ?procedure obo:RO_0002606 <${iri}>  .
+        ?procedure obo:RO_0002212 ?phenotype .
+        ?phenotype ?phenotypeProp ?phenotypeObj .
+      }`;
     
-      return await this.fetcher.fetchTriples('http://ontolinator.kaust.edu.sa:8891/sparql', diseaseQuery);
+      return await this.fetcher.fetchTriples(this.serverUrl, diseaseQuery);
   }
+
+  async getDiseaseDrugs(iri: any) {
+    console.log("diseaseId:" + iri);
+    const diseaseQuery = `
+    PREFIX obo: <http://purl.obolibrary.org/obo/>
+    
+    CONSTRUCT {
+      ?drugAlt ?drugAltProp ?drug .
+      ?drug ?drugProp ?drugObj .
+    }
+    FROM <http://www.cbrc.kaust.edu.sa/DDIEM>
+    WHERE {
+      ?procedure obo:RO_0002606 <${iri}>  .
+      ?procedure obo:RO_0000057 ?drugAlt .
+      ?drugAlt ?drugAltProp ?drug .
+      ?drug ?drugProp ?drugObj .
+    }`;
+  
+    return await this.fetcher.fetchTriples(this.serverUrl, diseaseQuery);
+}
 }
 
 
@@ -125,9 +162,15 @@ app.get('/api/disease/:id', async (req: Request, res:Response) => {
   jsonLd(res, rdfStream);
 });
 
-app.get('/api/treatment/:id/drug', async (req: Request, res:Response) => {
+app.get('/api/disease/:id/phenotype', async (req: Request, res:Response) => {
   var id = req.params.id;
-  var rdfStream = await diseaseDao.getTreatmentDrug(id);
+  var rdfStream = await diseaseDao.getDiseasePhenotypes(id);
+  jsonLd(res, rdfStream);
+});
+
+app.get('/api/disease/:id/drug', async (req: Request, res:Response) => {
+  var id = req.params.id;
+  var rdfStream = await diseaseDao.getDiseaseDrugs(id);
   jsonLd(res, rdfStream);
 });
 
@@ -149,9 +192,10 @@ app.listen(PORT, () => {
 const jsonLdSerializer = new JsonLdSerializer({
   context : {
     obo: 'http://purl.obolibrary.org/obo/',
-    ddiem: 'http://www.cbrc.kaust.edu.sa/ddiem/terms/',
-    ds: 'http://www.cbrc.kaust.edu.sa/ddiem/dataset/',
-    ec: 'http://www.cbrc.kaust.edu.sa/ddiem/gene_product/EC/',
+    dc: 'http://purl.org/dc/elements/1.1/',
+    rdfs: 'http://www.w3.org/2000/01/rdf-schema#',
+    ddiem: 'http://ddiem.phenomebrowser.net/',
+    omim: 'https://www.omim.org/entry/',
     pubmed: 'https://www.ncbi.nlm.nih.gov/pubmed/',
     rdf:	'http://www.w3.org/1999/02/22-rdf-syntax-ns#'
   }

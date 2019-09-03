@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
 import { DiseaseService } from '../disease.service';
 import { Router } from '@angular/router';
+import { TitleCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-disease-list',
@@ -15,6 +16,7 @@ export class DiseaseListComponent implements OnInit {
   diseaseList: any = [];
 
   constructor(private router: Router,
+              private titlecasePipe:TitleCasePipe,
               private service: DiseaseService) { }
 
   ngOnInit() {
@@ -25,12 +27,17 @@ export class DiseaseListComponent implements OnInit {
   }
 
   onDiseaseSelect(disease){
-    this.router.navigate(['/disease', encodeURIComponent(disease.OMIM_entry.value)]);
+    console.log(disease.disease)
+    this.router.navigate(['/disease', encodeURIComponent(disease.disease.value)]);
   }
 
   onDiseaseSelectNewTab(disease) {
-    console.log(encodeURIComponent(disease.OMIM_entry.value), disease.OMIM_entry.value);
-    this.router.navigate([]).then(result => {  window.open('/disease/' + encodeURIComponent(encodeURIComponent(disease.OMIM_entry.value)), '_blank'); });
+    console.log(disease.disease)
+    this.router.navigate([]).then(result => {  window.open('/disease/' + encodeURIComponent(encodeURIComponent(disease.disease.value)), '_blank'); });
+  }
+
+  toTitleCase(text){
+    return this.titlecasePipe.transform(text);
   }
 
 }

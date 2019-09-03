@@ -4,6 +4,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { TitleCasePipe } from '@angular/common';
 import { HomeComponent } from './home/home.component';
 import { DiseaseComponent } from './disease/disease.component';
 import { DiseaseListComponent } from './disease-list/disease-list.component';
@@ -31,7 +32,7 @@ import { DiseaseSearchComponent } from './disease-search/disease-search.componen
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule
   ],
-  providers: [DiseaseService],
+  providers: [DiseaseService, TitleCasePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

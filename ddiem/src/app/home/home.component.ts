@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
   }
 
   onDiseaseSelect(disease){
-    this.router.navigate(['/disease', encodeURIComponent(disease.OMIM_entry.value)]);
+    this.router.navigate(['/disease', encodeURIComponent(disease.disease.value)]);
   }
 
 }

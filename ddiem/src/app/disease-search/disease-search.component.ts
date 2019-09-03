@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter, SimpleChange } from '@a
 import { Observable } from 'rxjs';
 import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { TitleCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-disease-search',
@@ -22,18 +23,19 @@ export class DiseaseSearchComponent implements OnInit {
           debounceTime(200),
           distinctUntilChanged(),
           map(term => term.length < 2 ? []
-            : this.diseaseList.filter(v => v.disease_name.value.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
+            : this.diseaseList.filter(v => v.label.value.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
         )
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+              private titlecasePipe:TitleCasePipe) { }
 
   ngOnInit() {
-    this.formatter = (x: {disease_name: { value: string}}) => x.disease_name ? x.disease_name.value : null;
+    this.formatter = (x: {label: { value: string}}) => x.label ? this.toTitleCase(x.label.value) : null;
   }
 
   ngOnChanges(change: SimpleChange) {
     if(change.currentValue && change.currentValue.diseaseList) {
-      // this.formatter = (x: {disease_name: { value: string}}) => x.disease_name.value;
+      // this.formatter = (x: {label: { value: string}}) => x.label.value;
     }
   }
 
@@ -41,5 +43,8 @@ export class DiseaseSearchComponent implements OnInit {
     this.selectedDisease.emit(event.item);
   }
 
+  toTitleCase(text){
+    return this.titlecasePipe.transform(text);
+  }
   
 }

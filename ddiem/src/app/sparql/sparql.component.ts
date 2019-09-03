@@ -40,12 +40,16 @@ export class SparqlComponent implements OnInit {
   }
 
   diseaseList() {
-    var query = `SELECT DISTINCT ?OMIM_ID ?Disease
-    FROM <http://www.cbrc.kaust.edu.sa/DDIEM>
-    WHERE {
-      ?OMIM_entry <http://www.cbrc.kaust.edu.sa/ddiem/terms/has_omim_id> ?OMIM_ID .
-      ?OMIM_entry <http://www.cbrc.kaust.edu.sa/ddiem/terms/has_disease_name> ?Disease
-    } ORDER BY 1 LIMIT 10`;
+    var query = `PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX ddiem: <http://ddiem.phenomebrowser.net/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+    
+SELECT ?disease ?label
+FROM <http://www.cbrc.kaust.edu.sa/DDIEM>
+WHERE {
+  ?disease rdf:type ddiem:Disease . 
+  ?disease rdfs:label ?label
+} ORDER BY 1 LIMIT 10`;
     this.sparqlEle.nativeElement.value = query;
   }
 
