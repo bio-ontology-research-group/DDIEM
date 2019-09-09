@@ -19,8 +19,10 @@
       <strong>Gene affected:</strong>
     </div>
     <div class="col-md-9">
-      <button type="button" class="btn btn-link p-0"  (click)="openInNewTab(gene()['dc:identifier'][0]['@value'])">
-        {{gene()['rdfs:label'][0]['@value']}}</button>
+      <span *ngFor="let geneObj of genes; let geneIndex = index"> 
+        <button type="button" class="btn btn-link p-0"  (click)="openInNewTab(geneObj['dc:identifier'][0]['@value'])">
+          {{geneObj['rdfs:label'][0]['@value']}}</button><span *ngIf="geneIndex !== genes.length - 1">,</span> 
+      </span>
     </div>
   </div>
   <div class="row">
@@ -28,7 +30,7 @@
       <strong>Enzyme/ protein affected:</strong>
     </div>
     <div class="col-md-9">
-      {{protienEffected() ? protienEffected()['rdfs:label'][0]['@value'] : ''}}
+      {{protienEffected ? protienEffected['rdfs:label'][0]['@value'] : ''}}
     </div>
   </div>
   <div class="row">
@@ -36,12 +38,17 @@
       <strong>EC number:</strong>
     </div>
     <div class="col-md-9">
-      <span *ngIf="protienEffected()">
-        <button *ngIf="protienEffected()['ddiem:ecNumber'][0]['@value'] !== ''" type="button" class="btn btn-link p-0"  (click)="openInNewTab(ecNumberUri(protienEffected()['ddiem:ecNumber'][0]['@value']))">
-            {{protienEffected()['ddiem:ecNumber'][0]['@value']}}</button>
-        <span *ngIf="protienEffected()['ddiem:ecNumber'][0]['@value'] !== '' && protienEffected()['ddiem:uniprotId'][0]['@value'] !== ''"> / </span>
-        <button *ngIf="protienEffected()['ddiem:uniprotId'][0]['@value'] !== ''" type="button" class="btn btn-link p-0"  (click)="openInNewTab(uniprotUri(protienEffected()['ddiem:uniprotId'][0]['@value']))">
-            {{protienEffected()['ddiem:uniprotId'][0]['@value']}}</button>
+      <span *ngIf="protienEffected">
+        <span *ngFor="let ecNum of protienEffected['ddiem:ecNumber']; let ecNumIndex = index">
+          <button *ngIf="ecNum['@value'] !== ''" type="button" class="btn btn-link p-0"  (click)="openInNewTab(ecNumberUri(ecNum['@value']))">
+              {{ecNum['@value']}}</button><span *ngIf="ecNumIndex !== protienEffected['ddiem:ecNumber'].length - 1">, </span> 
+        </span>
+        <span *ngIf="protienEffected['ddiem:ecNumber'] && protienEffected['ddiem:ecNumber'][0]['@value'] !== '' && protienEffected['ddiem:uniprotId'] && protienEffected['ddiem:uniprotId'][0]['@value'] !== ''"> / </span>
+        <span *ngFor="let uniprotId of protienEffected['ddiem:uniprotId']; let uniprotIdIndex = index">
+          <button *ngIf="uniprotId['@value'] !== ''" type="button" class="btn btn-link p-0"  (click)="openInNewTab(uniprotUri(uniprotId['@value']))">
+              {{uniprotId['@value']}}
+          </button><span *ngIf="uniprotIdIndex !== protienEffected['ddiem:uniprotId'].length - 1">, </span> 
+        </span>
       </span>
     </div>
   </div>
@@ -54,7 +61,8 @@
     <hr />
     <div class="col-11 m-3 bd-content">
       <div class="row">
-        <table class="table table-bordered">
+        <div class="d-flex justify-content-center" *ngIf="procedures.length == 0">No treatment is available in DDIEM</div>
+        <table class="table table-bordered" *ngIf="procedures.length > 0">
           <thead>
             <tr>
               <th scope="col">Drug Names</th>
@@ -85,7 +93,7 @@
                    <strong>{{procedure['dc:bibliographicCitation'] ?  procedure['dc:bibliographicCitation'].length : '0'}}</strong></button>)
                 </td>
                 <td [ngClass]="{'w-20': isMutationExists, 'w-30': !isMutationExists}" [attr.rowspan] = "procedure['obo:RO_0002212'] ? procedure['obo:RO_0002212'].length : 1"  *ngIf="phenotypeIndex === 0">
-                  {{procedure['rdfs:subClassOf'] ? find(procedure['rdfs:subClassOf'][0]['@id'])['rdfs:label']['0']['@value'] : ''}}
+                  {{procedure['rdfs:subClassOf'] ? findProcedureData(procedure['rdfs:subClassOf'][0]['@id'])['rdfs:label']['0']['@value'] : ''}}
                 </td>
                 <td [attr.rowspan] = "procedure['obo:RO_0002212'] ? procedure['obo:RO_0002212'].length : 1" *ngIf="phenotypeIndex === 0" > 
                   <span *ngIf="procedure['obo:RO_0002558']">

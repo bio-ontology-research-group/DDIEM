@@ -35,7 +35,7 @@ export class DiseaseDao {
       WHERE {
         ?disease rdf:type ddiem:Disease . 
         ?disease rdfs:label ?label
-      }`;
+      } ORDER BY ASC(?label) `;
       return await this.fetcher.fetchBindings(this.serverUrl, diseaseListQuery);
     
   }
@@ -52,8 +52,6 @@ export class DiseaseDao {
         <${iri}> ?prop ?obj .
         ?gene ?geneProp ?geneObj.
         ?protien ?protienProp ?protienObj .
-        ?procedure ?procedureProp ?procedureObj .
-        ?type ?typeProp ?typeObj .
       }
       FROM <http://www.cbrc.kaust.edu.sa/DDIEM>
       WHERE {
@@ -65,14 +63,6 @@ export class DiseaseDao {
 
         ?protien obo:RO_0002204 ?gene .
         ?protien ?protienProp ?protienObj .
-
-        ?procedure obo:RO_0002606 <${iri}> .
-        ?procedure ?procedureProp ?procedureObj .
-
-        OPTIONAL { 
-          ?procedure rdfs:subClassOf ?type .
-          ?type ?typeProp ?typeObj .
-        }
       }`;
     
       return await this.fetcher.fetchTriples(this.serverUrl, diseaseQuery);
@@ -115,6 +105,32 @@ export class DiseaseDao {
   
     return await this.fetcher.fetchTriples(this.serverUrl, diseaseQuery);
 }
+
+async getDiseaseProcedures(iri: any) {
+  console.log("diseaseId:" + iri);
+  const query = `
+  PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+  PREFIX obo: <http://purl.obolibrary.org/obo/>
+
+  CONSTRUCT {
+    ?procedure ?procedureProp ?procedureObj .
+    ?type ?typeProp ?typeObj .
+  }
+  FROM <http://www.cbrc.kaust.edu.sa/DDIEM>
+  WHERE {
+    ?procedure obo:RO_0002606 <${iri}> .
+    ?procedure ?procedureProp ?procedureObj .
+
+    OPTIONAL { 
+      ?procedure rdfs:subClassOf ?type .
+      ?type ?typeProp ?typeObj .
+    }
+
+  }`;
+
+  return await this.fetcher.fetchTriples(this.serverUrl, query);
+}
+
 }
 
 
@@ -174,6 +190,12 @@ app.get('/api/disease/:id/drug', async (req: Request, res:Response) => {
   jsonLd(res, rdfStream);
 });
 
+app.get('/api/disease/:id/procedure', async (req: Request, res:Response) => {
+  var id = req.params.id;
+  var rdfStream = await diseaseDao.getDiseaseProcedures(id);
+  jsonLd(res, rdfStream);
+});
+
 // Server static files from /browser
 app.get('*.*', express.static(DIST_FOLDER, {
   maxAge: '1y'
@@ -205,6 +227,9 @@ function jsonLd(res: Response, rdfStream: Stream<Quad>) {
   let responseStr = "";
   jsonLdSerializer.import(rdfStream)
   .on('data', (triples) => {responseStr += triples;})
-  .on('error', console.error)
+  .on('error', (err) => { 
+    console.error(err.stack);  
+    res.status(500).send('Something broke!')
+  })
   .on('end', () => res.json(JSON.parse(responseStr)));
 }

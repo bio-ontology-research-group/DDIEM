@@ -27,4 +27,8 @@ export class DiseaseService {
   getDiseaseDrugs(diseaseIri: any) {
     return this.http.get('/api/disease/' + diseaseIri + '/drug', this.options);
   }
+
+  getDiseaseProcedures(diseaseIri: any) {
+    return this.http.get('/api/disease/' + diseaseIri + '/procedure', this.options);
+  }
 }

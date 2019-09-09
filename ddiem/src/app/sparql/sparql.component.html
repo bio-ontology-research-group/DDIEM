@@ -1,15 +1,15 @@
 <div class="container-fluid p-1 shadow-base mt-3">
 
   <div class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
-      <!-- <table>
+      <table>
         <tr><td colspan="4">Query Examples:<td></tr>
         <tr>
           <td><h5><a href="javascript:void(0);" (click)="diseaseList()"  class="badge badge-success">Disease list</a></h5></td>
           <td><h5><a href="javascript:void(0);" (click)="diseaseByName()" class="badge badge-danger">Disease by name</a></h5></td>
-          <td><h5><a href="javascript:void(0);" (click)="treatmentImprovedPhenotypes()"  class="badge badge-warning">Treatment improved phenotype</a></h5></td>
-          <td><h5><a href="javascript:void(0);" (click)="drugByRegimen()" class="badge badge-info">Drug from regimen</a></h5></td>
+          <td><h5><a href="javascript:void(0);" (click)="proceduresByDisease()"  class="badge badge-warning">Procedure that treated a disease</a></h5></td>
+          <td><h5><a href="javascript:void(0);" (click)="drugParticipatedInProcedure()" class="badge badge-info">Drugs participated in procedure</a></h5></td>
         </tr>
-      </table> -->
+      </table>
     <form ngNoForm #htmlForm action="http://ontolinator.kaust.edu.sa:8891/sparql" method="get" target="_blank">
       <label for="query">SPARQL:</label><br />
       <textarea #sparqlEle class="form-control" aria-label="SPARQL" rows="10" name="query" id="query" ></textarea>		

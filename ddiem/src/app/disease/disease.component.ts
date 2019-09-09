@@ -14,6 +14,9 @@ export class DiseaseComponent implements OnInit {
   phenotypes : any = [];
   drugs : any = [];
   procedures : any = [];
+  proceduressData: any;
+  genes : any = [];
+  protienEffected : any = {};
   context : any = {};
   diseaseList: any = [];
   regimenTypes: any = new Set();
@@ -49,6 +52,12 @@ export class DiseaseComponent implements OnInit {
       this.disease = data ? data["@graph"] : null;
       this.context = data ? data["@context"] : null;
     
+      this.service.getDiseaseProcedures(iri).subscribe(proceduressData => {
+        this.proceduressData = proceduressData ? proceduressData["@graph"] : null;     
+        this.procedures = _.filter(this.proceduressData, (obj) => obj['@type'].includes("ddiem:TheraputicProcedure"));
+        console.log(this.procedures);
+      });
+
       this.service.getDiseasePhenotypes(iri).subscribe(phenotypesData => {
         this.phenotypes = phenotypesData ? phenotypesData["@graph"] : null;   
         console.log(this.phenotypes);
@@ -58,15 +67,20 @@ export class DiseaseComponent implements OnInit {
         this.drugs = drugsData ? drugsData["@graph"] : null;    
         console.log(this.drugs);
       });
-
-      this.procedures = _.filter(this.disease, (obj) => obj['@type'].includes("ddiem:TheraputicProcedure"));
+      
+      this.genes = _.map(this.d()['obo:RO_0004020'], (gene) => this.find(gene['@id']));
+      this.protienEffected = _.find(this.disease, (obj) => obj['obo:RO_0002204'] && _.findWhere(obj['obo:RO_0002204'], (value) => value['@id'] === this.genes[0]['@id']));
       this.isMutationExists = _.filter(this.disease, (obj) => obj['obo:RO_0003304'] || obj['ddiem:failedToContributeToCondition']).length > 0
-      console.log(this.disease, this.procedures);
+      console.log(this.disease, this.genes, this.protienEffected);
     });
   }
 
-  find(id) {
+  find(id:string) {
     return _.findWhere(this.disease, {'@id': id});
+  }
+
+  findProcedureData(id:string) {
+    return _.findWhere(this.proceduressData, {'@id': id});
   }
 
   //Finds Disease object
@@ -75,28 +89,6 @@ export class DiseaseComponent implements OnInit {
       return this.find("ddiem:" + this.iri.substr(this.iri.lastIndexOf('/') + 1));
     } 
     return null;
-  }
-
-  gene() {
-    return this.find(this.d()['obo:RO_0004020'][0]['@id']);
-  }
-
-  protienEffected() {
-    var geneId = this.gene()['@id'];
-    return _.find(this.disease, (obj) => obj['obo:RO_0002204'] && obj['obo:RO_0002204'][0]['@id'] === geneId);
-  }
-
-  ecNumber() {
-    var protien = this.protienEffected()
-    if (protien) {
-      if (protien['ddiem:ecNumber'][0]['@value'] !== "" && protien['ddiem:uniprotId'][0]['@value'] !== "")  {
-        return protien['ddiem:ecNumber'][0]['@value'] + " / " + protien['ddiem:uniprotId'][0]['@value'];
-      } else if (protien['ddiem:ecNumber'][0]['@value'] !== "") {
-        return protien['ddiem:ecNumber'][0]['@value'];
-      } else {
-        return protien['ddiem:uniprotId'][0]['@value'];
-      }
-    }
   }
 
   ecNumberUri(number){ 
@@ -144,6 +136,7 @@ export class DiseaseComponent implements OnInit {
   }
 
   openInNewTab(url: string){
+    console.log(url);
     window.open(url, "_blank");
   }
 
