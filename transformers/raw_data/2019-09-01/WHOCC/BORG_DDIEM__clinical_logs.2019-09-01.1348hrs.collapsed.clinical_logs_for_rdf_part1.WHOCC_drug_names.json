@@ -1,0 +1,72 @@
+{
+	"A06AA":{
+		"name":" Softeners, emollients"
+	}
+	"A11":{
+		"name":"VITAMINS"
+	}
+	"A11EA":{
+		"name":"Vitamin B-complex, plain"
+	}
+	"A11EB":{
+		"name":"Vitamin B-complex with vitamin C"
+	}
+	"B01":{
+		"name":"ANTITHROMBOTIC AGENTS"
+	}
+	"B01A":{
+		"name":"ANTITHROMBOTIC AGENTS"
+	}
+	"B02BA":{
+		"name":"Vitamin K"
+	}
+	"B05BB01":{
+		"name":"electrolytes"
+	}
+	"C03":{
+		"name":"DIURETICS"
+	}
+	"C03D":{
+		"name":"POTASSIUM-SPARING AGENTS"
+	}
+	"C04":{
+		"name":"PERIPHERAL VASODILATORS"
+	}
+	"C07":{
+		"name":"BETA BLOCKING AGENTS"
+	}
+	"C09":{
+		"name":"AGENTS ACTING ON THE RENIN-ANGIOTENSIN SYSTEM"
+	}
+	"C09A":{
+		"name":"ACE INHIBITORS, PLAIN"
+	}
+	"C09C":{
+		"name":"ANGIOTENSIN II RECEPTOR BLOCKERS (ARBs), PLAIN"
+	}
+	"C09CA":{
+		"name":"Angiotensin II receptor blockers (ARBs), plain"
+	}
+	"D07A":{
+		"name":"CORTICOSTEROIDS, PLAIN"
+	}
+	"H02":{
+		"name":"CORTICOSTEROIDS FOR SYSTEMIC USE"
+	}
+	"L04":{
+		"name":"IMMUNOSUPPRESSANTS"
+	}
+	"M01AX":{
+		"name":"Other antiinflammatory and antirheumatic agents, non-steroids"
+	}
+	"M02AA":{
+		"name":"Antiinflammatory preparations, non-steroids for topical use"
+	}
+	"S01BC":{
+		"name":"Antiinflammatory agents, non-steroids"
+	}
+	"S01EC":{
+		"name":"Carbonic anhydrase inhibitors"
+	}
+}
+
