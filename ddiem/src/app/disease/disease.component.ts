@@ -135,6 +135,13 @@ export class DiseaseComponent implements OnInit {
     return name.substr(name.indexOf(':') + 1);
   }
 
+  evidenceUrl(iri) {
+    if (iri && this.findProcedureData(iri)['ddiem:url']) {
+      return "http://aber-owl.net/ontology/ECO/#/Browse/" + encodeURIComponent("<" + this.findProcedureData(iri)['ddiem:url'][0]['@value'] + ">");
+    } 
+    return '';
+  }
+
   openInNewTab(url: string){
     console.log(url);
     window.open(url, "_blank");

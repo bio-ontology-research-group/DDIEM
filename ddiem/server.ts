@@ -12,9 +12,10 @@ import * as express from 'express';
 import {join} from 'path';
 
 import {JsonLdSerializer} from "jsonld-streaming-serializer";
-import { Quad, Stream } from 'rdf-js';
 import {SparqlEndpointFetcher} from "fetch-sparql-endpoint";
 
+// tslint:disable-next-line:no-var-requires
+const n3 = require('n3');
 
 export class DiseaseDao {
   private fetcher:SparqlEndpointFetcher;
@@ -65,7 +66,7 @@ export class DiseaseDao {
         ?protien ?protienProp ?protienObj .
       }`;
     
-      return await this.fetcher.fetchTriples(this.serverUrl, diseaseQuery);
+    return await this.fetcher.fetchRawStream(this.serverUrl, diseaseQuery, SparqlEndpointFetcher.CONTENTTYPE_TURTLE);
   }
 
   async getDiseasePhenotypes(iri: any) {
@@ -83,7 +84,7 @@ export class DiseaseDao {
         ?phenotype ?phenotypeProp ?phenotypeObj .
       }`;
     
-      return await this.fetcher.fetchTriples(this.serverUrl, diseaseQuery);
+    return await this.fetcher.fetchRawStream(this.serverUrl, diseaseQuery, SparqlEndpointFetcher.CONTENTTYPE_TURTLE);
   }
 
   async getDiseaseDrugs(iri: any) {
@@ -103,7 +104,7 @@ export class DiseaseDao {
       ?drug ?drugProp ?drugObj .
     }`;
   
-    return await this.fetcher.fetchTriples(this.serverUrl, diseaseQuery);
+    return await this.fetcher.fetchRawStream(this.serverUrl, diseaseQuery, SparqlEndpointFetcher.CONTENTTYPE_TURTLE);
 }
 
 async getDiseaseProcedures(iri: any) {
@@ -115,10 +116,11 @@ async getDiseaseProcedures(iri: any) {
   CONSTRUCT {
     ?procedure ?procedureProp ?procedureObj .
     ?type ?typeProp ?typeObj .
+    ?evidence ?evidenceProp ?evidenceObj .
   }
   FROM <http://www.cbrc.kaust.edu.sa/DDIEM>
   WHERE {
-    ?procedure obo:RO_0002606 <${iri}> .
+    ?procedure obo:RO_0002606 <${iri}>.
     ?procedure ?procedureProp ?procedureObj .
 
     OPTIONAL { 
@@ -126,9 +128,13 @@ async getDiseaseProcedures(iri: any) {
       ?type ?typeProp ?typeObj .
     }
 
+    OPTIONAL { 
+      ?procedure obo:RO_0002558 ?evidence .
+      ?evidence ?evidenceProp ?evidenceObj .
+    }
   }`;
 
-  return await this.fetcher.fetchTriples(this.serverUrl, query);
+  return await this.fetcher.fetchRawStream(this.serverUrl, query, SparqlEndpointFetcher.CONTENTTYPE_TURTLE);
 }
 
 }
@@ -157,6 +163,10 @@ app.engine('html', ngExpressEngine({
 
 app.set('view engine', 'html');
 app.set('views', DIST_FOLDER);
+app.use(function (err, req, res, next) {
+  console.error(err.stack)
+  res.status(500).send('Something broke!')
+})
 
 // Example Express Rest API endpoints
 // app.get('/api/**', (req, res) => { });
@@ -175,25 +185,26 @@ app.get('/api/disease', async (req: Request, res:Response) => {
 app.get('/api/disease/:id', async (req: Request, res:Response) => {
   var id = req.params.id;
   var rdfStream = await diseaseDao.getDiseases(id);
-  jsonLd(res, rdfStream);
+  jsonLd(res, rdfStream[1]);
 });
 
 app.get('/api/disease/:id/phenotype', async (req: Request, res:Response) => {
   var id = req.params.id;
   var rdfStream = await diseaseDao.getDiseasePhenotypes(id);
-  jsonLd(res, rdfStream);
+  jsonLd(res, rdfStream[1]);
 });
 
 app.get('/api/disease/:id/drug', async (req: Request, res:Response) => {
   var id = req.params.id;
   var rdfStream = await diseaseDao.getDiseaseDrugs(id);
-  jsonLd(res, rdfStream);
+  jsonLd(res, rdfStream[1]);
 });
 
 app.get('/api/disease/:id/procedure', async (req: Request, res:Response) => {
   var id = req.params.id;
-  var rdfStream = await diseaseDao.getDiseaseProcedures(id);
-  jsonLd(res, rdfStream);
+    var responseStr='';
+    var rdfStream = await diseaseDao.getDiseaseProcedures(id);
+    jsonLd(res, rdfStream[1])
 });
 
 // Server static files from /browser
@@ -223,9 +234,15 @@ const jsonLdSerializer = new JsonLdSerializer({
   }
 });
 
-function jsonLd(res: Response, rdfStream: Stream<Quad>) {
+function jsonLd(res: Response, rdfStream: NodeJS.ReadableStream) {
   let responseStr = "";
-  jsonLdSerializer.import(rdfStream)
+  let n3Stream = rdfStream.on('error', (err) => { 
+                    console.error(err)
+                    res.status(500).send('Something broke!')
+                  })
+                  .pipe(new n3.StreamParser({ format: SparqlEndpointFetcher.CONTENTTYPE_TURTLE }));
+  
+  jsonLdSerializer.import(n3Stream)
   .on('data', (triples) => {responseStr += triples;})
   .on('error', (err) => { 
     console.error(err.stack);  
