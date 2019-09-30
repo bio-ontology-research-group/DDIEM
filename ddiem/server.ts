@@ -9,6 +9,7 @@ import {provideModuleMap} from '@nguniversal/module-map-ngfactory-loader';
 import {Request, Response} from "express";
 
 import * as express from 'express';
+
 import {join} from 'path';
 
 import {JsonLdSerializer} from "jsonld-streaming-serializer";
@@ -24,19 +25,42 @@ export class DiseaseDao {
   constructor() { 
       this.fetcher = new SparqlEndpointFetcher();
   }
-  
-  async listDiseases() {
+
+  async listDiseasesAndDrugs() {
       const diseaseListQuery = `
       PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
       PREFIX ddiem: <http://ddiem.phenomebrowser.net/>
       PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
       
-      SELECT ?disease ?label
+      SELECT ?resource ?label ?type 
       FROM <http://www.cbrc.kaust.edu.sa/DDIEM>
       WHERE {
-        ?disease rdf:type ddiem:Disease . 
-        ?disease rdfs:label ?label
+        VALUES ?type { ddiem:Disease ddiem:Drug } 
+        ?resource rdf:type ?type . 
+        ?resource rdfs:label ?label
       } ORDER BY ASC(?label) `;
+      return await this.fetcher.fetchBindings(this.serverUrl, diseaseListQuery);
+    
+  }
+
+  async listDiseasesByDrug(iri: any) {
+    console.log("drugId:" + iri);
+    const diseaseListQuery = `PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX ddiem: <http://ddiem.phenomebrowser.net/>
+    PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+    PREFIX obo: <http://purl.obolibrary.org/obo/>
+    
+    SELECT ?resource ?label ?drugLabel ?drugUrl
+    FROM <http://www.cbrc.kaust.edu.sa/DDIEM>
+    WHERE {
+      <${iri}> rdf:type ddiem:Drug;
+          rdfs:label ?drugLabel;
+          obo:RO_0000056 ?procedure .
+      optional {<${iri}>   ddiem:url ?drugUrl . } .
+      ?procedure obo:RO_0002606 ?resource .
+      ?resource rdf:type ddiem:Disease; 
+          rdfs:label ?label .
+    } ORDER BY ASC(?label) `;
       return await this.fetcher.fetchBindings(this.serverUrl, diseaseListQuery);
     
   }
@@ -171,8 +195,20 @@ app.use(function (err, req, res, next) {
 // Example Express Rest API endpoints
 // app.get('/api/**', (req, res) => { });
 
+app.get('/api/diseaseordrug', async (req: Request, res:Response) => {
+  const bindingsStream = await diseaseDao.listDiseasesAndDrugs();
+  let obs = [];
+  bindingsStream.on('data', function(bindings) {
+    obs.push(bindings);
+  });
+  bindingsStream.on('end', function() {
+    res.json(obs);
+  });
+});
+
 app.get('/api/disease', async (req: Request, res:Response) => {
-  const bindingsStream = await diseaseDao.listDiseases();
+  var drugId = req.query.drug_id
+  const bindingsStream = await diseaseDao.listDiseasesByDrug(drugId);
   let obs = [];
   bindingsStream.on('data', function(bindings) {
     obs.push(bindings);

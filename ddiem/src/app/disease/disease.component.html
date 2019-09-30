@@ -90,7 +90,7 @@
                     <span *ngIf="index !== procedure['obo:RO_0000057'].length - 1 && findAltList(drugAnd['@id']).length > 0" class="font-weight-bold"> and </span>
                   </span> 
                   (<button type="button" class="btn btn-link p-0" ngbTooltip="Number of trials/papers that describe treatment">
-                   <strong>{{procedure['dc:bibliographicCitation'] ?  procedure['dc:bibliographicCitation'].length : '0'}}</strong></button>)
+                   <strong>{{procedure['dc:provenance'] ?  procedure['dc:provenance'].length : '0'}}</strong></button>)
                 </td>
                 <td [ngClass]="{'w-20': isMutationExists, 'w-30': !isMutationExists}" [attr.rowspan] = "procedure['obo:RO_0002212'] ? procedure['obo:RO_0002212'].length : 1"  *ngIf="phenotypeIndex === 0">
                   {{procedure['rdfs:subClassOf'] ? findProcedureData(procedure['rdfs:subClassOf'][0]['@id'])['rdfs:label']['0']['@value'] : ''}}
@@ -119,7 +119,7 @@
                     <div ngbDropdown class="d-inline-block">
                       <button class="btn btn-link p-0 grid-link" id="references" ngbDropdownToggle>References</button>
                       <div ngbDropdownMenu>
-                        <button ngbDropdownItem *ngFor="let reference of procedure['dc:bibliographicCitation']" 
+                        <button ngbDropdownItem *ngFor="let reference of procedure['dc:provenance']" 
                           class="btn btn-link p-2" (click)="openInNewTab(reference['@value'])">
                           {{referenceDisplay(reference['@value']) | ellipsis:30 }}
                         </button>
