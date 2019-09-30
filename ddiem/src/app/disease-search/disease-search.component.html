@@ -9,5 +9,6 @@
   </div>
 </div>
 <ng-template #rt let-r="result" let-t="term">
+  <span class="font-weight-bold">{{r.type.value.substring(r.type.value.lastIndexOf("/") + 1)}}: </span>
   <ngb-highlight [result]="toTitleCase(r.label.value)" [term]="t"></ngb-highlight>
 </ng-template> 

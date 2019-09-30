@@ -1,13 +1,25 @@
 <app-disease-search [diseaseList]="diseaseList" (selectedDisease)="onDiseaseSelect($event)"></app-disease-search>
 <div class="container-fluid p-4 shadow-base mt-3">
-    <div class="row">
-      <div class="col-sm">
-        <p>Available Diseases:</p>
-        <ul>
-          <li *ngFor="let disease of diseaseList; let index = index">
-              <button type="button" class="btn btn-link" (click)="onDiseaseSelectNewTab(disease)"><ins>{{toTitleCase(disease.label.value)}}</ins></button>
-          </li>
-        </ul>
-      </div>
+  <div class="row">
+    <div class="col-md-1">
+      <strong>Drug name:</strong>
     </div>
+    <div class="col-md-9">
+          <button *ngIf="diseaseLinksList[0].drugUrl" type="button" class="btn btn-link p-0" (click)="openInNewTab(diseaseLinksList[0].drugUrl.value)">
+              {{diseaseLinksList[0].drugLabel.value}}
+          </button>
+          <span *ngIf="!diseaseLinksList[0].drugUrl">{{diseaseLinksList[0].drugLabel.value}}</span>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-sm">
+      <p *ngIf="!drugIri" >Available Diseases:</p>
+      <p *ngIf="drugIri"> List of diseases treated by procedures that included this drug: </p>
+      <ul>
+        <li *ngFor="let disease of diseaseLinksList; let index = index">
+            <button type="button" class="btn btn-link" (click)="onDiseaseSelectNewTab(disease)"><ins>{{toTitleCase(disease.label.value)}}</ins></button>
+        </li>
+      </ul>
+    </div>
+  </div>
 </div>

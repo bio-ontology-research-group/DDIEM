@@ -78,7 +78,7 @@ WHERE {
     PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
     PREFIX obo: <http://purl.obolibrary.org/obo/>
     
-    SELECT ?procedure ?comment ?evidenceCode ?typeName ?phenotypeCorrected ?reference
+    SELECT ?procedure ?comment ?evidenceCode ?typeName ?phenotypeCorrected ?provenance
     FROM <http://www.cbrc.kaust.edu.sa/DDIEM>
     WHERE {
     <http://ddiem.phenomebrowser.net/210200> rdf:type ddiem:Disease .
@@ -86,7 +86,7 @@ WHERE {
                 rdf:type ddiem:TheraputicProcedure;
                 obo:RO_0002558 ?evidenceCode;
                 obo:RO_0002212 ?phenotype;
-                dc:bibliographicCitation ?reference;
+                dc:provenance ?provenance;
                 rdfs:comment ?comment .
     OPTIONAL {
       ?procedure rdfs:subClassOf ?type .

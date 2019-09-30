@@ -12,8 +12,12 @@ export class DiseaseService {
 
   constructor(private http: HttpClient) { }
 
-  listDiseases() {
-    return this.http.get('/api/disease', this.options);
+  listDiseasesAndDrugs() {
+    return this.http.get('/api/diseaseordrug', this.options);
+  }
+
+  listDiseasesByDrug(drugIri: any) {
+    return this.http.get('/api/disease?drug_id=' + drugIri, this.options);
   }
 
   getDiseases(iri: any) {

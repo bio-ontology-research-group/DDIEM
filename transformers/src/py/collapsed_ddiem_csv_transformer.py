@@ -232,8 +232,8 @@ if __name__ == '__main__':
 
                 for referenceStr in row[39].split(","):
                     referenceLiteral = Literal(referenceStr.strip()) if referenceStr.strip() else None
-                    if referenceLiteral and referenceLiteral not in store.objects(procedure_dict[encrypt_string(procedure_id)], DC.bibliographicCitation) :
-                        procedure_dict[encrypt_string(procedure_id)].add(DC.bibliographicCitation, referenceLiteral)
+                    if referenceLiteral and referenceLiteral not in store.objects(procedure_dict[encrypt_string(procedure_id)], DC.provenance) :
+                        procedure_dict[encrypt_string(procedure_id)].add(DC.provenance, referenceLiteral)
                 
                 #drug ored columns
                 drug_container = None
