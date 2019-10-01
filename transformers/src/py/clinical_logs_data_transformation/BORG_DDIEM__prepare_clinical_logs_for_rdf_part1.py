@@ -11,8 +11,8 @@ Incoorperate WHOCC drug names from "/local/data/development.minor/KAUST/BORG/raw
 
 #export src_clinical_log_dataset_csv_file_name="../raw_data/2019-05-27/BORG_DDIEM__clinical_logs.2019-05-27.1340hrs.collapsed.csv";
 #export src_clinical_log_dataset_csv_file_name="../raw_data/2019-09-01/BORG_DDIEM__clinical_logs.2019-09-01.1348hrs.collapsed.csv";
-export src_clinical_log_dataset_csv_file_name="../raw_data/2019-09-29/BORG_DDIEM__clinical_logs.2019-09-29.1713hrs.collapsed.csv";
-export dest_rdf_statement_triple_dataset_dir_name="../raw_data/2019-09-29";
+export src_clinical_log_dataset_csv_file_name="../raw_data/2019-10-01/BORG_DDIEM__clinical_logs.2019-10-01.1418hrs.collapsed.csv";
+export dest_rdf_statement_triple_dataset_dir_name="../raw_data/2019-10-01";
 working_dir_file_name="/local/data/tmp/BORG_DDIEM/BORG_DDIEM__prepare_clinical_logs_for_rdf_part1.working_dir" \
  && count_of_workers=1 \
  && log_file_name="/local/data/tmp/BORG_DDIEM/logs/BORG_DDIEM__dataset.csv.log.`date +%Y-%m-%d.%H%M.%S.%N.%Z`" \
