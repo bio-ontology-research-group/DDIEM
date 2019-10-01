@@ -1,0 +1,512 @@
+{
+    "CHEBI_2786": [
+        {
+            "ChEBI_names_id": "4440",
+            "compound_id": "2786",
+            "type": "SYNONYM",
+            "source": "KEGG COMPOUND",
+            "name": "Apotransferrin",
+            "adapted_language": "F"
+        }
+    ],
+    "CHEBI_15724": [
+        {
+            "ChEBI_names_id": "35604",
+            "compound_id": "15724",
+            "type": "IUPAC NAME",
+            "source": "IUPAC",
+            "name": "N,N-dimethylmethanamine oxide",
+            "adapted_language": "F"
+        },
+        {
+            "ChEBI_names_id": "67480",
+            "compound_id": "15724",
+            "type": "SYNONYM",
+            "source": "IUPAC",
+            "name": "(CH3)3NO",
+            "adapted_language": "F"
+        },
+        {
+            "ChEBI_names_id": "67479",
+            "compound_id": "15724",
+            "type": "SYNONYM",
+            "source": "NIST Chemistry WebBook",
+            "name": "trimethylamine oxide",
+            "adapted_language": "T"
+        },
+        {
+            "ChEBI_names_id": "67478",
+            "compound_id": "15724",
+            "type": "SYNONYM",
+            "source": "ChemIDplus",
+            "name": "trimethyloxamine",
+            "adapted_language": "T"
+        },
+        {
+            "ChEBI_names_id": "67477",
+            "compound_id": "15724",
+            "type": "SYNONYM",
+            "source": "NIST Chemistry WebBook",
+            "name": "TMAO",
+            "adapted_language": "T"
+        },
+        {
+            "ChEBI_names_id": "70737",
+            "compound_id": "15724",
+            "type": "SYNONYM",
+            "source": "ChEBI",
+            "name": "Trimethylaminoxid",
+            "adapted_language": "F"
+        },
+        {
+            "ChEBI_names_id": "70736",
+            "compound_id": "15724",
+            "type": "SYNONYM",
+            "source": "ChEBI",
+            "name": "N(CH3)3O",
+            "adapted_language": "F"
+        },
+        {
+            "ChEBI_names_id": "754880",
+            "compound_id": "15724",
+            "type": "NAME",
+            "source": "UniProt",
+            "name": "trimethylamine N-oxide",
+            "adapted_language": "F"
+        },
+        {
+            "ChEBI_names_id": "823907",
+            "compound_id": "15724",
+            "type": "SYNONYM",
+            "source": "ChEBI",
+            "name": "Me3N(+)O(-)",
+            "adapted_language": "F"
+        },
+        {
+            "ChEBI_names_id": "823906",
+            "compound_id": "15724",
+            "type": "SYNONYM",
+            "source": "ChEBI",
+            "name": "Me3N(O)",
+            "adapted_language": "F"
+        },
+        {
+            "ChEBI_names_id": "917941",
+            "compound_id": "15724",
+            "type": "SYNONYM",
+            "source": "HMDB",
+            "name": "Triox",
+            "adapted_language": "F"
+        },
+        {
+            "ChEBI_names_id": "917940",
+            "compound_id": "15724",
+            "type": "SYNONYM",
+            "source": "HMDB",
+            "name": "TMA-oxide",
+            "adapted_language": "F"
+        },
+        {
+            "ChEBI_names_id": "917939",
+            "compound_id": "15724",
+            "type": "SYNONYM",
+            "source": "HMDB",
+            "name": "N,N-Dimethylmethanamine N-oxide",
+            "adapted_language": "F"
+        },
+        {
+            "ChEBI_names_id": "917938",
+            "compound_id": "15724",
+            "type": "SYNONYM",
+            "source": "HMDB",
+            "name": "Trimethylamine-N-oxide",
+            "adapted_language": "F"
+        },
+        {
+            "ChEBI_names_id": "910839",
+            "compound_id": "15724",
+            "type": "SYNONYM",
+            "source": "ChEBI",
+            "name": "N,N-dimethylmethanamine oxide",
+            "adapted_language": "F"
+        }
+    ],
+    "CHEBI_17012": [
+        {
+            "ChEBI_names_id": "41319",
+            "compound_id": "17012",
+            "type": "IUPAC NAME",
+            "source": "IUPAC",
+            "name": "5-acetamido-3,5-dideoxy-D-glycero-D-galacto-non-2-ulopyranosonic acid",
+            "adapted_language": "F"
+        },
+        {
+            "ChEBI_names_id": "824628",
+            "compound_id": "17012",
+            "type": "SYNONYM",
+            "source": "ChEBI",
+            "name": "NeuAc",
+            "adapted_language": "F"
+        },
+        {
+            "ChEBI_names_id": "817880",
+            "compound_id": "17012",
+            "type": "INN",
+            "source": "ChemIDplus",
+            "name": "acido aceneuramico",
+            "adapted_language": "F"
+        },
+        {
+            "ChEBI_names_id": "817879",
+            "compound_id": "17012",
+            "type": "INN",
+            "source": "ChemIDplus",
+            "name": "acide aceneuramique",
+            "adapted_language": "F"
+        },
+        {
+            "ChEBI_names_id": "817878",
+            "compound_id": "17012",
+            "type": "INN",
+            "source": "ChemIDplus",
+            "name": "acidium aceneuramicum",
+            "adapted_language": "F"
+        },
+        {
+            "ChEBI_names_id": "817877",
+            "compound_id": "17012",
+            "type": "SYNONYM",
+            "source": "ChemIDplus",
+            "name": "Aceneuramic acid",
+            "adapted_language": "F"
+        },
+        {
+            "ChEBI_names_id": "817876",
+            "compound_id": "17012",
+            "type": "INN",
+            "source": "ChemIDplus",
+            "name": "aceneuramic acid",
+            "adapted_language": "F"
+        },
+        {
+            "ChEBI_names_id": "829537",
+            "compound_id": "17012",
+            "type": "SYNONYM",
+            "source": "MetaCyc",
+            "name": "O-sialic acid",
+            "adapted_language": "F"
+        },
+        {
+            "ChEBI_names_id": "910567",
+            "compound_id": "17012",
+            "type": "SYNONYM",
+            "source": "ChEBI",
+            "name": "(4S,5R,6R)-5-acetamido-2,4-dihydroxy-6-[(1S,2R)-1,2,3-trihydroxypropyl]tetrahydropyran-2-carboxylic acid",
+            "adapted_language": "F"
+        },
+        {
+            "ChEBI_names_id": "910566",
+            "compound_id": "17012",
+            "type": "SYNONYM",
+            "source": "ChEBI",
+            "name": "(4S,5R,6R)-5-acetamido-2,4-dihydroxy-6-[(1S,2R)-1,2,3-trihydroxypropyl]oxane-2-carboxylic acid",
+            "adapted_language": "F"
+        }
+    ],
+    "CHEBI_32362": [
+        {
+            "ChEBI_names_id": "48991",
+            "compound_id": "32362",
+            "type": "SYNONYM",
+            "source": "IUPAC",
+            "name": "CH3-[CH2]5-COO(-)",
+            "adapted_language": "F"
+        },
+        {
+            "ChEBI_names_id": "48990",
+            "compound_id": "32362",
+            "type": "SYNONYM",
+            "source": "ChemIDplus",
+            "name": "heptanoic acid, ion(1-)",
+            "adapted_language": "F"
+        },
+        {
+            "ChEBI_names_id": "48989",
+            "compound_id": "32362",
+            "type": "IUPAC NAME",
+            "source": "IUPAC",
+            "name": "heptanoate",
+            "adapted_language": "F"
+        },
+        {
+            "ChEBI_names_id": "773778",
+            "compound_id": "32362",
+            "type": "SYNONYM",
+            "source": "ChEBI",
+            "name": "enanthate",
+            "adapted_language": "F"
+        },
+        {
+            "ChEBI_names_id": "773777",
+            "compound_id": "32362",
+            "type": "SYNONYM",
+            "source": "ChEBI",
+            "name": "n-heptylate",
+            "adapted_language": "F"
+        },
+        {
+            "ChEBI_names_id": "773776",
+            "compound_id": "32362",
+            "type": "SYNONYM",
+            "source": "ChEBI",
+            "name": "oenanthate",
+            "adapted_language": "F"
+        },
+        {
+            "ChEBI_names_id": "773775",
+            "compound_id": "32362",
+            "type": "SYNONYM",
+            "source": "ChEBI",
+            "name": "n-heptoate",
+            "adapted_language": "F"
+        },
+        {
+            "ChEBI_names_id": "773774",
+            "compound_id": "32362",
+            "type": "SYNONYM",
+            "source": "ChEBI",
+            "name": "oenanthylate",
+            "adapted_language": "F"
+        },
+        {
+            "ChEBI_names_id": "773773",
+            "compound_id": "32362",
+            "type": "SYNONYM",
+            "source": "ChEBI",
+            "name": "heptylate",
+            "adapted_language": "F"
+        },
+        {
+            "ChEBI_names_id": "773772",
+            "compound_id": "32362",
+            "type": "SYNONYM",
+            "source": "ChEBI",
+            "name": "enanthylate",
+            "adapted_language": "F"
+        },
+        {
+            "ChEBI_names_id": "773771",
+            "compound_id": "32362",
+            "type": "SYNONYM",
+            "source": "ChEBI",
+            "name": "1-hexanecarboxylate",
+            "adapted_language": "F"
+        },
+        {
+            "ChEBI_names_id": "773770",
+            "compound_id": "32362",
+            "type": "SYNONYM",
+            "source": "ChEBI",
+            "name": "n-heptanoate",
+            "adapted_language": "F"
+        },
+        {
+            "ChEBI_names_id": "773769",
+            "compound_id": "32362",
+            "type": "SYNONYM",
+            "source": "ChEBI",
+            "name": "heptoate",
+            "adapted_language": "F"
+        },
+        {
+            "ChEBI_names_id": "971505",
+            "compound_id": "32362",
+            "type": "NAME",
+            "source": "UniProt",
+            "name": "heptanoate",
+            "adapted_language": "F"
+        },
+        {
+            "ChEBI_names_id": "971157",
+            "compound_id": "32362",
+            "type": "SYNONYM",
+            "source": "ChEBI",
+            "name": "(7:0)",
+            "adapted_language": "F"
+        }
+    ],
+    "CHEBI_32030": [
+        {
+            "ChEBI_names_id": "48243",
+            "compound_id": "32030",
+            "type": "SYNONYM",
+            "source": "KEGG COMPOUND",
+            "name": "Potassium bromide",
+            "adapted_language": "F"
+        },
+        {
+            "ChEBI_names_id": "50340",
+            "compound_id": "32030",
+            "type": "SYNONYM",
+            "source": "ChEBI",
+            "name": "Kaliumbromid",
+            "adapted_language": "F"
+        },
+        {
+            "ChEBI_names_id": "50339",
+            "compound_id": "32030",
+            "type": "SYNONYM",
+            "source": "IUPAC",
+            "name": "KBr",
+            "adapted_language": "F"
+        },
+        {
+            "ChEBI_names_id": "50338",
+            "compound_id": "32030",
+            "type": "IUPAC NAME",
+            "source": "IUPAC",
+            "name": "potassium bromide",
+            "adapted_language": "F"
+        }
+    ],
+    "CHEBI_26537": [
+        {
+            "ChEBI_names_id": "59659",
+            "compound_id": "26537",
+            "type": "IUPAC NAME",
+            "source": "IUPAC",
+            "name": "retinoids",
+            "adapted_language": "F"
+        },
+        {
+            "ChEBI_names_id": "60604",
+            "compound_id": "26537",
+            "type": "SYNONYM",
+            "source": "ChEBI",
+            "name": "retinoid",
+            "adapted_language": "F"
+        },
+        {
+            "ChEBI_names_id": "111238",
+            "compound_id": "26537",
+            "type": "SYNONYM",
+            "source": "ChEBI",
+            "name": "retinoids",
+            "adapted_language": "F"
+        }
+    ],
+    "CHEBI_25548": [
+        {
+            "ChEBI_names_id": "73114",
+            "compound_id": "25548",
+            "type": "SYNONYM",
+            "source": "IUPAC",
+            "name": "nta(3-)",
+            "adapted_language": "F"
+        },
+        {
+            "ChEBI_names_id": "73113",
+            "compound_id": "25548",
+            "type": "IUPAC NAME",
+            "source": "IUPAC",
+            "name": "2,2',2''-nitrilotriacetate",
+            "adapted_language": "F"
+        },
+        {
+            "ChEBI_names_id": "73110",
+            "compound_id": "25548",
+            "type": "SYNONYM",
+            "source": "ChemIDplus",
+            "name": "nitrilotriacetic acid ion(3-)",
+            "adapted_language": "T"
+        },
+        {
+            "ChEBI_names_id": "73108",
+            "compound_id": "25548",
+            "type": "SYNONYM",
+            "source": "UM-BBD",
+            "name": "nitrilotriacetate",
+            "adapted_language": "T"
+        },
+        {
+            "ChEBI_names_id": "828605",
+            "compound_id": "25548",
+            "type": "NAME",
+            "source": "UniProt",
+            "name": "nitrilotriacetate",
+            "adapted_language": "F"
+        }
+    ],
+    "CHEBI_28384": [
+        {
+            "ChEBI_names_id": "90482",
+            "compound_id": "28384",
+            "type": "SYNONYM",
+            "source": "ChEBI",
+            "name": "vitamine K",
+            "adapted_language": "F"
+        }
+    ],
+    "CHEBI_23456": [
+        {
+            "ChEBI_names_id": "113471",
+            "compound_id": "23456",
+            "type": "SYNONYM",
+            "source": "ChEBI",
+            "name": "cyclodextrins",
+            "adapted_language": "F"
+        }
+    ],
+    "CHEBI_84293": [
+        {
+            "ChEBI_names_id": "899352",
+            "compound_id": "84293",
+            "type": "SYNONYM",
+            "source": "ChEBI",
+            "name": "dimethyldithiocarbamic acid anion",
+            "adapted_language": "F"
+        },
+        {
+            "ChEBI_names_id": "899351",
+            "compound_id": "84293",
+            "type": "SYNONYM",
+            "source": "ChEBI",
+            "name": "dimethyldithiocarbamic acid(1-)",
+            "adapted_language": "F"
+        }
+    ],
+    "CHEBI_113373": [
+        {
+            "ChEBI_names_id": "965174",
+            "compound_id": "113373",
+            "type": "IUPAC NAME",
+            "source": "IUPAC",
+            "name": "sodium 3-hydroxybutanoate",
+            "adapted_language": "F"
+        },
+        {
+            "ChEBI_names_id": "965173",
+            "compound_id": "113373",
+            "type": "SYNONYM",
+            "source": "ChEBI",
+            "name": "sodium beta-hydroxybutyrate",
+            "adapted_language": "F"
+        },
+        {
+            "ChEBI_names_id": "965172",
+            "compound_id": "113373",
+            "type": "SYNONYM",
+            "source": "ChEBI",
+            "name": "sodium beta-hydroxybutanoate",
+            "adapted_language": "F"
+        },
+        {
+            "ChEBI_names_id": "965171",
+            "compound_id": "113373",
+            "type": "SYNONYM",
+            "source": "ChemIDplus",
+            "name": "sodium beta-Hydroxybutyrate",
+            "adapted_language": "F"
+        }
+    ]
+}
