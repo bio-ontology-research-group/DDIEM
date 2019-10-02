@@ -136,17 +136,26 @@ if __name__ == '__main__':
     with open(DDIEM_SOURCE_FILE, "r", encoding="utf-8") as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
         line_count = 0
+        use_drug_name = False
         for row in csv_reader:
             if line_count == 1:
                 print("Column names are :" + ", ".join(row))
             elif line_count > 1:
                 disease_id_col = row[1].replace('#', '').replace('*', '').replace('%', '').strip()
-                drug_comb_col = (row[24].strip() if row[24] else '') + (row[25].strip() if row[25] else '') + (row[26].strip() if row[26] else '') + (row[28].strip() if row[28] else '') + (row[29].strip() if row[29] else '') + (row[30].strip() if row[30] else '')
+                if not disease_id_col:
+                    print("Empty disease id column:" + disease_id_col)
+                    line_count += 1
+                    continue
+
+                drug_comb_col = (row[23].strip() if row[23] else '') + (row[24].strip() if row[24] else '') + (row[25].strip() if row[25] else '') + (row[27].strip() if row[27] else '') + (row[28].strip() if row[28] else '') + (row[29].strip() if row[29] else '')
+                print("drug_comb_col:" + drug_comb_col)
                 drug_name = row[17]
-                use_drug_name = False
                 if not drug_comb_col.strip() and drug_name.strip():
                     drug_comb_col = drug_name
                     use_drug_name = True
+
+                if drug_comb_col.strip():
+                    use_drug_name = False
 
                 disease = None
                 if disease_id_col not in disease_dict :
