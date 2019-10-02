@@ -52,9 +52,9 @@ if __name__ == '__main__':
         ]
     )
 
-    DDIEM_SOURCE_FILE = "../../raw_data/2019-09-29/BORG_DDIEM__clinical_logs.2019-09-29.1713hrs.collapsed.clinical_logs_for_rdf_part1.csv"
-    DRUG_BANK_FILE = "../../raw_data/2019-09-29/BORG_DDIEM__clinical_logs.2019-09-29.1713hrs.collapsed.clinical_logs_for_rdf_part1.drugbank_drug_names.json"
-    CHEBI_FILE = "../../raw_data/2019-09-29/BORG_DDIEM__clinical_logs.2019-09-29.1713hrs.collapsed.clinical_logs_for_rdf_part1.ChEBI_drug_names.json"
+    DDIEM_SOURCE_FILE = "../../raw_data/2019-10-01/BORG_DDIEM__clinical_logs.2019-10-01.1418hrs.collapsed.clinical_logs_for_rdf_part1.csv"
+    DRUG_BANK_FILE = "../../raw_data/2019-10-01/BORG_DDIEM__clinical_logs.2019-10-01.1418hrs.collapsed.clinical_logs_for_rdf_part1.drugbank_drug_names.json"
+    CHEBI_FILE = "../../raw_data/2019-10-01/BORG_DDIEM__clinical_logs.2019-10-01.1418hrs.collapsed.clinical_logs_for_rdf_part1.ChEBI_drug_names.json"
     WHOCC_FILE = "../../raw_data/2019-09-01/WHOCC/BORG_DDIEM__clinical_logs.2019-09-01.1348hrs.collapsed.clinical_logs_for_rdf_part1.WHOCC_drug_names.json"
 
     drug_bank = {}
@@ -313,4 +313,4 @@ if __name__ == '__main__':
         print("Processed " + str(line_count) + " lines.")
 
     # Serialize the file to rdf/xml representation
-    store.serialize("../../raw_data/2019-09-29/ddiem.rdf", format="pretty-xml", max_depth=3)
+    store.serialize("../../raw_data/2019-10-01/ddiem.rdf", format="pretty-xml", max_depth=3)
