@@ -115,17 +115,24 @@ export class DiseaseDao {
     console.log("diseaseId:" + iri);
     const diseaseQuery = `
     PREFIX obo: <http://purl.obolibrary.org/obo/>
+    PREFIX ddiem: <http://ddiem.phenomebrowser.net/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX dc: <http://purl.org/dc/elements/1.1/>
     
     CONSTRUCT {
       ?drugAlt ?drugAltProp ?drug .
-      ?drug ?drugProp ?drugObj .
+      ?drug rdfs:label ?label;
+            dc:identifier ?identifier;
+            ddiem:url ?url .
     }
     FROM <http://www.cbrc.kaust.edu.sa/DDIEM>
     WHERE {
       ?procedure obo:RO_0002606 <${iri}>  .
       ?procedure obo:RO_0000057 ?drugAlt .
       ?drugAlt ?drugAltProp ?drug .
-      ?drug ?drugProp ?drugObj .
+      ?drug rdfs:label ?label;
+            dc:identifier ?identifier;
+            ddiem:url ?url .
     }`;
   
     return await this.fetcher.fetchRawStream(this.serverUrl, diseaseQuery, SparqlEndpointFetcher.CONTENTTYPE_TURTLE);
