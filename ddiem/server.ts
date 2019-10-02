@@ -130,9 +130,11 @@ export class DiseaseDao {
       ?procedure obo:RO_0002606 <${iri}>  .
       ?procedure obo:RO_0000057 ?drugAlt .
       ?drugAlt ?drugAltProp ?drug .
-      ?drug rdfs:label ?label;
-            dc:identifier ?identifier;
-            ddiem:url ?url .
+      ?drug rdfs:label ?label .
+      optional { 
+        ?drug dc:identifier ?identifier;
+              ddiem:url ?url .
+      } .
     }`;
   
     return await this.fetcher.fetchRawStream(this.serverUrl, diseaseQuery, SparqlEndpointFetcher.CONTENTTYPE_TURTLE);
