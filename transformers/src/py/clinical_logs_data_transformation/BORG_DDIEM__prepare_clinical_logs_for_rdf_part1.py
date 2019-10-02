@@ -11,8 +11,8 @@ Incoorperate WHOCC drug names from "/local/data/development.minor/KAUST/BORG/raw
 
 #export src_clinical_log_dataset_csv_file_name="../raw_data/2019-05-27/BORG_DDIEM__clinical_logs.2019-05-27.1340hrs.collapsed.csv";
 #export src_clinical_log_dataset_csv_file_name="../raw_data/2019-09-01/BORG_DDIEM__clinical_logs.2019-09-01.1348hrs.collapsed.csv";
-export src_clinical_log_dataset_csv_file_name="../raw_data/2019-09-29/BORG_DDIEM__clinical_logs.2019-09-29.1713hrs.collapsed.csv";
-export dest_rdf_statement_triple_dataset_dir_name="../raw_data/2019-09-29";
+export src_clinical_log_dataset_csv_file_name="../raw_data/2019-10-01/BORG_DDIEM__clinical_logs.2019-10-01.1418hrs.collapsed.csv";
+export dest_rdf_statement_triple_dataset_dir_name="../raw_data/2019-10-01";
 working_dir_file_name="/local/data/tmp/BORG_DDIEM/BORG_DDIEM__prepare_clinical_logs_for_rdf_part1.working_dir" \
  && count_of_workers=1 \
  && log_file_name="/local/data/tmp/BORG_DDIEM/logs/BORG_DDIEM__dataset.csv.log.`date +%Y-%m-%d.%H%M.%S.%N.%Z`" \
@@ -1247,7 +1247,7 @@ id,entity class,entity instance field,subject represented by,example value,entit
                         ec_number__csv=list_to_csv(remove_empty_values_from_list(ec_number__list));
                     regimen_name=row[8];#this should be ignored and the regimen_name obtained from ontology resource via drug_ID should be used instead.
                     regimen_comments=row[9];
-                    phenotype_improved_by_treatment_comments=row[20];
+                    phenotype_improved_by_treatment_comments=row[22];
                     
                     drug_IDs__str__orig=row[10];
                     
@@ -1327,17 +1327,17 @@ id,entity class,entity instance field,subject represented by,example value,entit
                     mutation_not_improved_by_treatment__list=row[14].split("\n");
                     regimen_mechanism_of_action__list=row[16].split("/");
                     regimen_mechanism_of_action_abbreviation__list=row[17].split("/");
-                    phenotype_improved_by_treatment__list=row[19].split("/");
+                    phenotype_improved_by_treatment__list=row[21].split("/");
                     if(len(phenotype_improved_by_treatment__list)>1):
                         #Found multiple phenotype_improved_by_treatments
                         #print the ommim_id and row_id
                         pass;
-                    phenotype_ID__list=row[21].split("/");
+                    phenotype_ID__list=row[23].split("/");
                     if(treatment_manuscript_reference__list!=None):
                         del treatment_manuscript_reference__list[0:len(treatment_manuscript_reference__list)-1];
                     else:
                         treatment_manuscript_reference__list=[];
-                    for i in range(22,32):
+                    for i in range(24,32):
                         if(len(row[i])>0):
                             if(row[i]=='""' or row[i]=="''" or row[i]==""):
                                 pass;
