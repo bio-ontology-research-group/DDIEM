@@ -129,10 +129,16 @@ export class DiseaseComponent implements OnInit {
   }
 
   referenceDisplay(url) {
-    if (url.startsWith(this.context.pubmed)) {
-      return "pubmed:" + url.substr(url.lastIndexOf('/') + 1)
+    if (url.startsWith(this.context.PMID) || url.startsWith(this.context.PMIDs)) {
+      return "PMID:" + url.substr(url.lastIndexOf('/') + 1)
+    } else if (url.startsWith(this.context.PMCID)) {
+      return "PMCID:" + url.substr(url.lastIndexOf('/') + 1)
+    } else if (url.startsWith(this.context.ClinicalTrials) 
+        || url.startsWith(this.context.ClinicalTrial) 
+        || url.startsWith(this.context.ClinicalTrialswww)) {
+      return "Clinical trial ID:" + url.substr(url.lastIndexOf('/') + 1)
     } else {
-      return 'Clinical trials';
+      return 'Clinical trial';
     }
   }
 

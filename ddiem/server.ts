@@ -274,7 +274,12 @@ const jsonLdSerializer = new JsonLdSerializer({
     rdfs: 'http://www.w3.org/2000/01/rdf-schema#',
     ddiem: 'http://ddiem.phenomebrowser.net/',
     omim: 'https://www.omim.org/entry/',
-    pubmed: 'https://www.ncbi.nlm.nih.gov/pubmed/',
+    PMID: 'https://www.ncbi.nlm.nih.gov/pubmed/',
+    PMIDs: 'http://www.ncbi.nlm.nih.gov/pubmed/',
+    PMCID: 'https://www.ncbi.nlm.nih.gov/pmc/',
+    ClinicalTrials: 'https://clinicaltrials.gov/ct2/show/',
+    ClinicalTrial: 'http://clinicaltrials.gov/ct2/show/',
+    ClinicalTrialswww: 'https://www.clinicaltrials.gov/ct2/show',
     rdf:	'http://www.w3.org/1999/02/22-rdf-syntax-ns#'
   }
 });
