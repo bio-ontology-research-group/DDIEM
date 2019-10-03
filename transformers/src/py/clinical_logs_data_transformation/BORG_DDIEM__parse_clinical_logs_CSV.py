@@ -156,7 +156,8 @@ This information will help me know how to
 
 
 	""";
-	trickle_down_eligible_field__list=[2,3,5,6,8,10,22,23,24,25,26,27,28,29,30,31,32];
+	trickle_down_eligible_field__list=[2,3,5,6,7,8,10,22,23,24,25,26,27,28,29,30,31,32];
+	#trickle_down_eligible_field__list=[2,3,5,6,7];
 	
 	src_dataset_csv_file_name=_srcCSVFileName;
 	dest_dataset_csv_file_name=os.path.join(
@@ -189,6 +190,7 @@ This information will help me know how to
 	cnt_of_fields=0;
 	row_cnt=0;
 	src_dataset_csv_fh.seek(0);
+	drug_name=None;
 	for row in src_dataset_csv_reader:
 		row_cnt+=1;
 		del row2[:];
@@ -203,7 +205,15 @@ This information will help me know how to
 			for i in range(9,32+1):
 				populated_fields__dict[i]=None;#
 			
-			
+		"""
+		Here we test if the drug name field is non empty.
+		If it is empty we reset the stored values of the fields to the right of it.
+		"""
+		drug_name=row[8].strip();
+		if(drug_name==""):
+			for i in range(8,32+1):
+				populated_fields__dict[i]=None;
+				
 		for i, val in enumerate(row):
 			row[i]=row[i].strip();
 			"""
