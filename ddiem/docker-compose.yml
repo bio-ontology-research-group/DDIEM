@@ -4,7 +4,7 @@ services:
     build: .
     container_name: ddiem
     ports:
-      - 8080:8080
+      - 80:80
     networks:
       - esnet
     restart: unless-stopped
