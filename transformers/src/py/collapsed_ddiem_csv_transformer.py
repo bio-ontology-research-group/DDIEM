@@ -240,6 +240,8 @@ if __name__ == '__main__':
                             procedure_dict[encrypt_string(procedure_id)].add(OBO.RO_0002558, evidence)
 
                 for referenceStr in row[39].split(","):
+                    referenceStr = referenceStr[0:referenceStr.index('?')] if referenceStr.find('?') > -1 else referenceStr
+                    referenceStr = referenceStr[0:referenceStr.rindex('/')] if referenceStr.rfind('/') > -1 and referenceStr.rfind('/') == len(referenceStr) - 1 else referenceStr
                     referenceLiteral = Literal(referenceStr.strip()) if referenceStr.strip() else None
                     if referenceLiteral and referenceLiteral not in store.objects(procedure_dict[encrypt_string(procedure_id)], DC.provenance) :
                         procedure_dict[encrypt_string(procedure_id)].add(DC.provenance, referenceLiteral)

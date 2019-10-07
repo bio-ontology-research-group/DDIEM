@@ -14,11 +14,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { EllipsisPipe } from '../pipes/EllipsisPipe';
 import { SparqlComponent } from './sparql/sparql.component';
 import { DiseaseSearchComponent } from './disease-search/disease-search.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
+    AboutComponent,
     DiseaseListComponent,
     DiseaseComponent,
     DiseaseSearchComponent,
