@@ -26,6 +26,7 @@ working_dir_file_name="/local/data/tmp/BORG_DDIEM/BORG_DDIEM__prepare_clinical_l
  --OMIM_mimTitles_dataset_tsv_file_name="../raw_data/2019-08-08/OMIM/mimTitles.txt" \
  --drugbank_drug_names_dataset_tsv_file_name="../raw_data/2019-08-01/drugbank/drugbank_drugnames.full_database.tsv" \
  --ChEBI_drug_names_dataset_tsv_file_name="../raw_data/2019-08-04/ChEBI/names.tsv" \
+ --gene_info_tsv_file_name="../raw_data/2019-08-05/ncbi_gene/gene_info" \
  -d"${dest_rdf_statement_triple_dataset_dir_name}" \
  --count_of_workers=${count_of_workers} \
  2>&1|tee "${log_file_name}" \
@@ -92,6 +93,7 @@ class BORG_DDIEM__prepare_clinical_logs_for_rdf_part1():
         ,_OMIM_mimTitles_dataset_tsv_file_name
         ,_drugbank_drug_names_dataset_tsv_file_name
         ,_ChEBI_drug_names_dataset_tsv_file_name
+        ,_gene_info_tsv_file_name
     ):
         doc="""
         an object if this class performs the tranformation of XML to JSON.
@@ -113,8 +115,9 @@ class BORG_DDIEM__prepare_clinical_logs_for_rdf_part1():
         self._src_clinical_log_dataset_csv_file_name=_src_clinical_log_dataset_csv_file_name;
         self._dest_rdf_statement_triple_dir_file_name=_dest_rdf_statement_triple_dir_file_name;
         self._OMIM_mimTitles_dataset_tsv_file_name=_OMIM_mimTitles_dataset_tsv_file_name;
-        self._drugbank_drug_names_dataset_tsv_file_name=_drugbank_drug_names_dataset_tsv_file_name
-        self._ChEBI_drug_names_dataset_tsv_file_name=_ChEBI_drug_names_dataset_tsv_file_name
+        self._drugbank_drug_names_dataset_tsv_file_name=_drugbank_drug_names_dataset_tsv_file_name;
+        self._ChEBI_drug_names_dataset_tsv_file_name=_ChEBI_drug_names_dataset_tsv_file_name;
+        self._gene_info_tsv_file_name=_gene_info_tsv_file_name;
         self._processing_outcome__dict=None;
         
         try:
@@ -124,6 +127,15 @@ class BORG_DDIEM__prepare_clinical_logs_for_rdf_part1():
             if(_OMIM_mimTitles_dataset_tsv_file_name==None or len(_OMIM_mimTitles_dataset_tsv_file_name.strip())<0):
                 pass;
                 raise ValueError("_OMIM_mimTitles_dataset_tsv_file_name is empty the supplied value is '%s'"%(_OMIM_mimTitles_dataset_tsv_file_name));
+            if(_drugbank_drug_names_dataset_tsv_file_name==None or len(_drugbank_drug_names_dataset_tsv_file_name.strip())<0):
+                pass;
+                raise ValueError("_drugbank_drug_names_dataset_tsv_file_name is empty the supplied value is '%s'"%(_drugbank_drug_names_dataset_tsv_file_name));
+            if(_ChEBI_drug_names_dataset_tsv_file_name==None or len(_ChEBI_drug_names_dataset_tsv_file_name.strip())<0):
+                pass;
+                raise ValueError("_ChEBI_drug_names_dataset_tsv_file_name is empty the supplied value is '%s'"%(_ChEBI_drug_names_dataset_tsv_file_name));
+            if(_gene_info_tsv_file_name==None or len(_gene_info_tsv_file_name.strip())<0):
+                pass;
+                raise ValueError("_gene_info_tsv_file_name is empty the supplied value is '%s'"%(_gene_info_tsv_file_name));
         except ValueError as error:
             #see "/local/data/BCL_FE_ABI3730_sequencer_plate_data_generator_jobs_data/2018/2018-09/2018-09-20/2018-09-20_171025_103.processing_outcome.json"
             #LOGGER.info(" '%s', -------------- cmd is:'%s', row_cnt is:%d"%(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f'),cmd,row_cnt));
@@ -152,6 +164,14 @@ class BORG_DDIEM__prepare_clinical_logs_for_rdf_part1():
             };
         """;
         LOGGER.info("self._distinct_ids__list__dict is:'%s'"%(json.dumps(self._distinct_ids__list__dict,indent=4)));
+        
+        self._gene_info__dict=package_gene_info(
+            self._gene_info_tsv_file_name
+            ,self._distinct_ids__list__dict["gene_symbol__list"]
+        );
+        LOGGER.info("self._distinct_ids__list__dict[\"gene_symbol__list\"] is:'%s'"%(json.dumps(self._distinct_ids__list__dict["gene_symbol__list"],indent=4)));
+        LOGGER.info("self._gene_info__dict is:'%s'"%(json.dumps(self._gene_info__dict,indent=4)));
+        
         self._DDIEM_drugbank_drug_name__dict=package_drugbank_drug_names(
             self._drugbank_drug_names_dataset_tsv_file_name
             ,self._distinct_ids__list__dict["drugbank_ID__list"]
@@ -194,6 +214,7 @@ class BORG_DDIEM__prepare_clinical_logs_for_rdf_part1():
                 ,self._src_clinical_log_dataset_csv_file_name
                 ,self._dest_rdf_statement_triple_dir_file_name
                 ,self._OMIM_mimTitles_dataset_tsv_file_name
+                ,self._gene_info__dict
             );
             LOGGER.info("self._processing_outcome__dict is:'%s'"%(json.dumps(self._processing_outcome__dict,indent=4)));
     def get_processing_outcome(self):
@@ -208,6 +229,61 @@ oRegPattern_digits=re.compile("^.*?(?P<digits>[0-9]+).*$",re.IGNORECASE);
 oRegPattern_ec_number=re.compile("^\s*(EC\s*:?)?(?P<ec_number>([0-9]+|\-)\.([0-9]+|\-)\.([0-9]+|\-)\.([0-9]+|\-))\s*$",re.IGNORECASE);
 #oRegPattern_uniprot_ID=re.compile("^\s*(?P<uniprot_ID>[A-Z][A-Z,0-9]{5})\s*$");
 oRegPattern_uniprot_ID=re.compile("^\s*(?P<uniprot_ID>[OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9]([A-Z][A-Z0-9]{2}[0-9]){1,2})\s*$");#see "https://www.uniprot.org/help/accession_numbers" thanks Ali for sharing this resource.
+
+def package_gene_info(
+    _gene_info_tsv_file_name
+    ,_gene_symbol__list
+):
+    pass;
+    _gene_info__dict={};
+    
+    src_dataset_csv_fh=None;
+    src_dataset_csv_reader=None;
+    src_dataset_csv_fh=open(_gene_info_tsv_file_name,"r");
+    src_dataset_csv_reader=csv.reader(
+        src_dataset_csv_fh
+        ,delimiter="\t"
+        ,quotechar='"'
+        ,quoting=csv.QUOTE_MINIMAL
+    );
+    cnt_of_fields__max=0;
+    row2=[];
+    cnt_of_fields=0;
+    row_cnt=0;
+    src_dataset_csv_fh.seek(0);
+    for row in src_dataset_csv_reader:
+        row_cnt+=1;
+        #del row2[:];
+        for i, val in enumerate(row):
+            if(row[i]==None):
+                row[i]="";
+            else:
+                row[i]=row[i].strip();
+            if(row[i]=='""' or row[i]=="''"):
+                row[i]="";
+        if(row_cnt>1):
+            row_id=None;
+            record_ordinal_position=None;
+            taxon_id=None;
+            gene_id=None;
+            gene_symbol=None;
+            locus_tag=None;
+            record_ordinal_position=row_cnt;
+            taxon_id=row[0];
+            gene_id=row[1];
+            gene_symbol=row[2];
+            locus_tag=row[3];
+            if(gene_symbol.upper() in _gene_symbol__list):
+                _gene_info__dict[gene_symbol.upper()]={
+                    "record_ordinal_position":record_ordinal_position
+                    ,"taxon_id":taxon_id
+                    ,"gene_id":gene_id
+                    ,"gene_symbol":gene_symbol
+                    ,"locus_tag":locus_tag
+                };
+    src_dataset_csv_fh.close();
+    src_dataset_csv_fh=None;
+    return _gene_info__dict;
 
 def package_drugbank_drug_names(
     _drugbank_drug_names_dataset_tsv_file_name
@@ -443,6 +519,7 @@ date;time less "${log_file_name}";date;
     
     drugbank_ID=None;chEBI_ID=None;wHOCC_ID=None;
     
+    gene_symbol__list=[];
     gene_affected__list=[];
     gene_affected_unresolved__list=[];
     uniprot_ID__list=[];
@@ -538,6 +615,7 @@ date;time less "${log_file_name}";date;
                         """;
                     disease_name=row[3];
                     disease_comments=row[4];
+                    """
                     tmp_str__list=None;
                     tmp_str__list=re.sub("\s+"," ",row[5]).strip().replace("/",",").replace(" ",",").split(",");
                     #tmp_str__list=re.sub("\s+","",row[5]).strip().replace("/",",").split(",");
@@ -547,9 +625,43 @@ date;time less "${log_file_name}";date;
                             if(tmp_str!="gene"):
                                 gene_affected=tmp_str.strip(" gene").strip();
                                 if("?" in gene_affected):
-                                	gene_affected_unresolved__list.append(gene_affected);
+                                    gene_affected_unresolved__list.append(gene_affected);
                                 else:
-                                	gene_affected__list.append(gene_affected);
+                                    gene_affected__list.append(gene_affected);
+                                    
+                    """;
+                    
+                    #############
+                    #gene_affected=row[5].strip(" gene").strip();
+                    gene_affected=None;gene_affected__list__minor=[];gene_affected__csv=None;
+                    genes_affected__str=row[5];
+                    genes_affected__str__transformed=genes_affected__str.strip(" gene").strip().replace(" and ",",");
+                    genes_affected__str__transformed=genes_affected__str__transformed.replace(" or ",",");
+                    genes_affected__str__transformed=genes_affected__str__transformed.replace("+",",");
+                    genes_affected__str__transformed=genes_affected__str__transformed.replace("/",",");
+                    genes_affected__str__transformed=genes_affected__str__transformed.replace("(","");
+                    genes_affected__str__transformed=genes_affected__str__transformed.replace(")","");
+                    genes_affected__str__transformed=genes_affected__str__transformed.replace("+",",");
+                    genes_affected__str__transformed=re.sub("\s+", " ", genes_affected__str__transformed).strip();
+                    genes_affected__str__transformed=genes_affected__str__transformed.replace(" ",",");
+                    genes_affected__str__transformed=re.sub(",+", ",", genes_affected__str__transformed).strip();
+                    
+                    
+                    
+                    #gene_affected__list__minor=remove_empty_values_from_list(csv_to_list(genes_affected__str__transformed));
+                    gene_affected__list__minor2=csv_to_list(genes_affected__str__transformed);
+                    gene_affected__list__minor2=remove_empty_values_from_list(gene_affected__list__minor2);
+                    gene_affected__list__minor3=[];
+                    if(gene_affected__list__minor!=None):
+                        for gene_affected in gene_affected__list__minor2:
+                            if("?" in gene_affected):
+                                gene_affected_unresolved__list.append(gene_affected);
+                            else:
+                                gene_affected__list__minor3.append(gene_affected);
+                        gene_affected__list__minor2=gene_affected__list__minor3;
+                        gene_affected__list.extend(gene_affected__list__minor2);
+                    #############
+                                    
                     enzyme_or_protein_detected=row[6];#Enzyme or protein short name
                     enzyme_or_protein_detected__sha256=encrypt_string(enzyme_or_protein_detected);
                     ec_number=None;
@@ -566,8 +678,8 @@ date;time less "${log_file_name}";date;
                             else:
                                 match=oRegPattern_uniprot_ID.search(tmp_str);
                                 if(match!=None and match.group(0)!=None):
-                                	uniprot_ID=match.group("uniprot_ID");
-                                	uniprot_ID__list.append(uniprot_ID);
+                                    uniprot_ID=match.group("uniprot_ID");
+                                    uniprot_ID__list.append(uniprot_ID);
                                 else:
                                     enzyme_or_protein_detected_unresolved=tmp_str;
                                     enzyme_or_protein_detected_unresolved__list.append(enzyme_or_protein_detected_unresolved);
@@ -672,7 +784,7 @@ date;time less "${log_file_name}";date;
     if(gene_affected__list!=None):
         gene_affected__list.sort(reverse=False);
     if(gene_affected_unresolved__list!=None):
-    	gene_affected_unresolved__list.sort(reverse=False);
+        gene_affected_unresolved__list.sort(reverse=False);
     if(uniprot_ID__list!=None):
         uniprot_ID__list.sort(reverse=False);
     if(ec_number__list!=None):
@@ -690,6 +802,9 @@ date;time less "${log_file_name}";date;
     
     src_dataset_csv_fh.close();
     src_dataset_csv_fh=None;
+    
+    for gene_affected in gene_affected__list:
+        gene_symbol__list.append(gene_affected.upper());
     
     
     task_completion_time_obj=datetime.datetime.now();
@@ -714,6 +829,7 @@ date;time less "${log_file_name}";date;
     distinct_ids__list__dict={
         "gene_affected__list":gene_affected__list
         ,"gene_affected_unresolved__list":gene_affected_unresolved__list
+        ,"gene_symbol__list":gene_symbol__list
         ,"uniprot_ID__list":uniprot_ID__list
         ,"ec_number__list":ec_number__list
         ,"enzyme_or_protein_detected_unresolved__list":enzyme_or_protein_detected_unresolved__list
@@ -832,6 +948,7 @@ def cascade_fields_values(
     ,_src_clinical_log_dataset_csv_file_name
     ,_dest_rdf_statement_triple_dir_file_name
     ,_OMIM_mimTitles_dataset_tsv_file_name
+    ,_gene_info__dict
 ):
     pass;
     processing_outcome__dict={};
@@ -1023,6 +1140,8 @@ date;time less "${log_file_name}";date;
         ,"phenotype_ID__csv"
         ,"phenotype_improved_by_treatment_comments"
         ,"treatment_manuscript_reference__csv"
+        ,"gene_id__csv"
+        ,"gene_symbol__csv"
         ,"XML/RDF"
     ];
     dest_dataset_csv_writer.writerow(list(range(1,len(clinical_log_rdf_base_fields_dataset_header__list)+1)));
@@ -1186,6 +1305,8 @@ id,entity class,entity instance field,subject represented by,example value,entit
                     #############
                     #gene_affected=row[5].strip(" gene").strip();
                     gene_affected=None;gene_affected__list=[];gene_affected__csv=None;
+                    gene_id__list=[];gene_id__csv=None;
+                    gene_symbol__list=[];gene_symbol__csv=None;
                     genes_affected__str=row[5];
                     genes_affected__str__transformed=genes_affected__str.strip(" gene").strip().replace(" and ",",");
                     genes_affected__str__transformed=genes_affected__str__transformed.replace(" or ",",");
@@ -1200,16 +1321,27 @@ id,entity class,entity instance field,subject represented by,example value,entit
                     
                     
                     
-                    #genes_affected__list=remove_empty_values_from_list(csv_to_list(genes_affected__str__transformed));
-                    genes_affected__list=csv_to_list(genes_affected__str__transformed);
-                    if(genes_affected__list!=None):
-                        gene_affected__csv=list_to_csv(remove_empty_values_from_list(gene_affected__list));
+                    #gene_affected__list=remove_empty_values_from_list(csv_to_list(genes_affected__str__transformed));
+                    gene_affected__list=csv_to_list(genes_affected__str__transformed);
+                    gene_affected__list=remove_empty_values_from_list(gene_affected__list);
+                    if(gene_affected__list!=None):
+                        #gene_affected__csv=list_to_csv(remove_empty_values_from_list(gene_affected__list));
+                        gene_affected__csv=list_to_csv(gene_affected__list);
+                        for gene_affected in gene_affected__list:
+                        	if gene_affected.upper() in _gene_info__dict:
+                        	    gene_id__list.append(_gene_info__dict[gene_affected.upper()]["gene_id"]);
+                        	    gene_symbol__list.append(_gene_info__dict[gene_affected.upper()]["gene_symbol"]);
+                        	else:
+                        	    gene_id__list.append("");
+                        	    gene_symbol__list.append("");
                     """
-                    LOGGER.info("====genes_affected__str is:'%s', oMIM_ID:%d, row_id:%d, genes_affected__str__transformed:'%s', genes_affected__list:'%s', gene_affected__csv:'%s', list_to_csv(gene_affected__list) is:'%s'"%(
-                        genes_affected__str,int(oMIM_ID),int(row_id),genes_affected__str__transformed,genes_affected__list,gene_affected__csv,list_to_csv(gene_affected__list))
+                    LOGGER.info("====genes_affected__str is:'%s', oMIM_ID:%d, row_id:%d, genes_affected__str__transformed:'%s', gene_affected__list:'%s', gene_affected__csv:'%s', list_to_csv(gene_affected__list) is:'%s'"%(
+                        genes_affected__str,int(oMIM_ID),int(row_id),genes_affected__str__transformed,gene_affected__list,gene_affected__csv,list_to_csv(gene_affected__list))
                     );
                     """;
-                    gene_affected__csv=genes_affected__str__transformed;
+                    ##gene_affected__csv=genes_affected__str__transformed;
+                    gene_id__csv=list_to_csv(gene_id__list);
+                    gene_symbol__csv=list_to_csv(gene_symbol__list);
                     #############
                     
                     
@@ -1402,6 +1534,8 @@ id,entity class,entity instance field,subject represented by,example value,entit
                         ,"phenotype_ID__csv":phenotype_ID__csv
                         ,"phenotype_improved_by_treatment_comments":phenotype_improved_by_treatment_comments
                         ,"treatment_manuscript_reference__csv":treatment_manuscript_reference__csv
+                        ,"gene_id__csv":gene_id__csv
+                        ,"gene_symbol__csv":gene_symbol__csv
                     };
                     xml_data=None;
                     if(1==2):
@@ -1475,6 +1609,8 @@ id,entity class,entity instance field,subject represented by,example value,entit
                         ,phenotype_ID__csv
                         ,phenotype_improved_by_treatment_comments
                         ,treatment_manuscript_reference__csv
+                        ,gene_id__csv
+                        ,gene_symbol__csv
                         ,xml_data
                     ];
                     dest_dataset_csv_writer.writerow(clinical_log_rdf_base_fields_dataset_row);
@@ -2402,6 +2538,8 @@ if __name__ == '__main__':
     OMIM_mimTitles_dataset_tsv_file_name=None;
     drugbank_drug_names_dataset_tsv_file_name=None;
     ChEBI_drug_names_dataset_tsv_file_name=None;
+    gene_info_tsv_file_name=None;
+    
     count_of_workers=1;
     usage="usage: %prog [options] arg1 [[arg2]..]"
     version="version: 0.001"
@@ -2421,6 +2559,7 @@ if __name__ == '__main__':
         parser.add_argument("-m","--OMIM_mimTitles_dataset_tsv_file_name",action="append",type=str,dest="op__OMIM_mimTitles_dataset_tsv_file_name",help="The full path to the TSV morbidmap.txt file from OMIM where OMIM id to OMIM names are to be found.")
         parser.add_argument("-b","--drugbank_drug_names_dataset_tsv_file_name",action="append",type=str,dest="op__drugbank_drug_names_dataset_tsv_file_name",help="The full path to the TSV file containing the drug names of the drug entries in the drugbank dataset. This file was generated by the python script 'BORG_DDIEM__split_drugbank_xml.py', this script extracted the drug metadata from each drug entry in the large drugbank xml documents.")
         parser.add_argument("-c","--ChEBI_drug_names_dataset_tsv_file_name",action="append",type=str,dest="op__ChEBI_drug_names_dataset_tsv_file_name",help="The full path to the TSV (ordinarily named 'names.tsv') provided by ChEBI which contains the names of the drugs.")
+        parser.add_argument("-e","--gene_info_tsv_file_name",action="append",type=str,dest="op__gene_info_tsv_file_name",help="The full path to the ncbi gene_info dataset encoded as a TSV text file.")
         
         parser.add_argument("-w","--count_of_workers",action="append",type=int,dest="op__count_of_workers",help="""
             The count of workers to launch (via multiprocessing).
@@ -2446,6 +2585,8 @@ if __name__ == '__main__':
                     The full path to the TSV file containing the drug names of the drug entries in the drugbank dataset. This file was generated by the python script 'BORG_DDIEM__split_drugbank_xml.py', this script extracted the drug metadata from each drug entry in the large drugbank xml documents.
                 -c, --ChEBI_drug_names_dataset_tsv_file_name
                     The full path to the TSV (ordinarily named 'names.tsv') provided by ChEBI which contains the names of the drugs.
+                -e, --gene_info_tsv_file_name
+                    The full path to the ncbi gene_info dataset encoded as a TSV text file.
                 -w, --count_of_workers
                     The count of workers to launch (via multiprocessing).
             """);
@@ -2468,6 +2609,8 @@ if __name__ == '__main__':
             drugbank_drug_names_dataset_tsv_file_name=options.op__drugbank_drug_names_dataset_tsv_file_name[0];
         if(options.op__ChEBI_drug_names_dataset_tsv_file_name):
             ChEBI_drug_names_dataset_tsv_file_name=options.op__ChEBI_drug_names_dataset_tsv_file_name[0];
+        if(options.op__gene_info_tsv_file_name):
+            gene_info_tsv_file_name=options.op__gene_info_tsv_file_name[0];
             
         if(options.op__count_of_workers):
             count_of_workers=int(options.op__count_of_workers[0]);
@@ -2498,6 +2641,8 @@ if __name__ == '__main__':
     LOGGER.info(" '%s', -------------- src_clinical_log_dataset_csv_file_name is:'%s'"%(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f'),src_clinical_log_dataset_csv_file_name));
     LOGGER.info(" '%s', -------------- dest_rdf_statement_triple_dataset_dir_name is:'%s'"%(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f'),dest_rdf_statement_triple_dataset_dir_name));
     LOGGER.info(" '%s', -------------- OMIM_mimTitles_dataset_tsv_file_name is:'%s'"%(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f'),OMIM_mimTitles_dataset_tsv_file_name));
+    LOGGER.info(" '%s', -------------- ChEBI_drug_names_dataset_tsv_file_name is:'%s'"%(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f'),ChEBI_drug_names_dataset_tsv_file_name));
+    LOGGER.info(" '%s', -------------- gene_info_tsv_file_name is:'%s'"%(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f'),gene_info_tsv_file_name));
     LOGGER.info(" '%s', -------------- count_of_workers is:'%s'"%(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f'),count_of_workers));
     process_list=[];
     queue_list=[];#this array will contain objects of multiprocessing.Queue (which is a near clone of queue.Queue)
@@ -2524,6 +2669,7 @@ if __name__ == '__main__':
                 ,OMIM_mimTitles_dataset_tsv_file_name
                 ,drugbank_drug_names_dataset_tsv_file_name
                 ,ChEBI_drug_names_dataset_tsv_file_name
+                ,gene_info_tsv_file_name
             );
             """
             t=threading.Thread(
