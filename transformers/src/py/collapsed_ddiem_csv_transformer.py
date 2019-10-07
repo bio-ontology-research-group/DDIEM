@@ -149,13 +149,13 @@ if __name__ == '__main__':
 
                 drug_comb_col = (row[23].strip() if row[23] else '') + (row[24].strip() if row[24] else '') + (row[25].strip() if row[25] else '') + (row[27].strip() if row[27] else '') + (row[28].strip() if row[28] else '') + (row[29].strip() if row[29] else '')
                 print("drug_comb_col:" + drug_comb_col)
+                if drug_comb_col.strip():
+                    use_drug_name = False
+                
                 drug_name = row[17]
                 if not drug_comb_col.strip() and drug_name.strip():
                     drug_comb_col = drug_name
                     use_drug_name = True
-
-                if drug_comb_col.strip():
-                    use_drug_name = False
 
                 disease = None
                 if disease_id_col not in disease_dict :
@@ -240,6 +240,8 @@ if __name__ == '__main__':
                             procedure_dict[encrypt_string(procedure_id)].add(OBO.RO_0002558, evidence)
 
                 for referenceStr in row[39].split(","):
+                    referenceStr = referenceStr[0:referenceStr.index('?')] if referenceStr.find('?') > -1 else referenceStr
+                    referenceStr = referenceStr[0:referenceStr.rindex('/')] if referenceStr.rfind('/') > -1 and referenceStr.rfind('/') == len(referenceStr) - 1 else referenceStr
                     referenceLiteral = Literal(referenceStr.strip()) if referenceStr.strip() else None
                     if referenceLiteral and referenceLiteral not in store.objects(procedure_dict[encrypt_string(procedure_id)], DC.provenance) :
                         procedure_dict[encrypt_string(procedure_id)].add(DC.provenance, referenceLiteral)
