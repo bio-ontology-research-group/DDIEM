@@ -187,6 +187,10 @@ if __name__ == '__main__':
                     protein_enzyme = protien_dict[encrypt_string(row[protein_enzyme_col])]
 
                 gene_col=11
+                gene_id_col=40
+                gene_split_count=0
+                gene_ids=row[gene_id_col].split(",")
+                print(row[gene_col], row[gene_id_col], row[41])
                 for geneCode in row[gene_col].split(","):
                     if not geneCode.strip():
                         continue
@@ -195,7 +199,7 @@ if __name__ == '__main__':
                         gene = store.resource(str(DDIEM.uri) + str(uuid.uuid4()))
                         gene.set(RDF.type, DDIEM.Gene)
                         gene.set(RDFS.label, Literal(geneCode))
-                        gene.add(DC.identifier, Literal("https://ghr.nlm.nih.gov/gene/" + geneCode))
+                        gene.add(DC.identifier, Literal("https://www.ncbi.nlm.nih.gov/gene/" + gene_ids[gene_split_count] if gene_ids[gene_split_count] else "https://ghr.nlm.nih.gov/gene/" + geneCode))
                         disease.set(OBO.RO_0004020, gene)
                         gene_dict[geneCode] = gene
                     else :
@@ -203,7 +207,10 @@ if __name__ == '__main__':
 
                     if gene_dict[geneCode] not in store.objects(protein_enzyme, OBO.RO_0002204):
                         protein_enzyme.add(OBO.RO_0002204, gene_dict[geneCode])
+                    
+                    gene_split_count+=1
 
+                
                 if not drug_comb_col.strip() or drug_comb_col.strip() == "No treatment is available in DDIEM":
                     print("disease dont have treatment :" + disease_id_col)
                     line_count += 1

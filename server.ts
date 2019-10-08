@@ -204,6 +204,16 @@ app.use(function (err, req, res, next) {
 // Example Express Rest API endpoints
 // app.get('/api/**', (req, res) => { });
 
+// For resolving Resource URI to sparql endpoint
+app.get('/(\\d+)|([a-f0-9]{8}-?[a-f0-9]{4}-?4[a-f0-9]{3}-?[89ab][a-f0-9]{3}-?[a-f0-9]{12})', async (req: Request, res:Response) => {
+  var sparqlServerUrl = "http://ontolinator.kaust.edu.sa:8891/sparql"
+  var defaultGraphUri = "http://www.cbrc.kaust.edu.sa/DDIEM";
+  var query = `describe <${req.protocol}://${req.get('host')}${req.originalUrl}> from <${defaultGraphUri}>`;
+  var format = 'text/html';
+  var queryString = `query=${encodeURIComponent(query)}&format=${encodeURIComponent(format)}&timeout=0&debug=on&run=${encodeURIComponent('Run Query')}`;
+  res.redirect(`${sparqlServerUrl}?${queryString}`);
+});
+
 app.get('/api/diseaseordrug', async (req: Request, res:Response) => {
   const bindingsStream = await diseaseDao.listDiseasesAndDrugs();
   let obs = [];
