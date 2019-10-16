@@ -11,8 +11,11 @@ Incoorperate WHOCC drug names from "/local/data/development.minor/KAUST/BORG/raw
 
 #export src_clinical_log_dataset_csv_file_name="../raw_data/2019-05-27/BORG_DDIEM__clinical_logs.2019-05-27.1340hrs.collapsed.csv";
 #export src_clinical_log_dataset_csv_file_name="../raw_data/2019-09-01/BORG_DDIEM__clinical_logs.2019-09-01.1348hrs.collapsed.csv";
-export src_clinical_log_dataset_csv_file_name="../raw_data/2019-10-01/BORG_DDIEM__clinical_logs.2019-10-01.1418hrs.collapsed.csv";
-export dest_rdf_statement_triple_dataset_dir_name="../raw_data/2019-10-01";
+#export src_clinical_log_dataset_csv_file_name="../raw_data/2019-10-01/BORG_DDIEM__clinical_logs.2019-10-01.1418hrs.collapsed.csv";
+#export src_clinical_log_dataset_csv_file_name="../raw_data/2019-10-10/BORG_DDIEM__clinical_logs.2019-10-10.0958hrs.collapsed.csv";
+export src_clinical_log_dataset_csv_file_name="../raw_data/2019-10-16/BORG_DDIEM__clinical_logs.2019-10-16.0900hrs.collapsed.csv";
+export dest_rdf_statement_triple_dataset_dir_name="../raw_data/2019-10-16";
+
 working_dir_file_name="/local/data/tmp/BORG_DDIEM/BORG_DDIEM__prepare_clinical_logs_for_rdf_part1.working_dir" \
  && count_of_workers=1 \
  && log_file_name="/local/data/tmp/BORG_DDIEM/logs/BORG_DDIEM__dataset.csv.log.`date +%Y-%m-%d.%H%M.%S.%N.%Z`" \
@@ -169,8 +172,8 @@ class BORG_DDIEM__prepare_clinical_logs_for_rdf_part1():
             self._gene_info_tsv_file_name
             ,self._distinct_ids__list__dict["gene_symbol__list"]
         );
-        LOGGER.info("self._distinct_ids__list__dict[\"gene_symbol__list\"] is:'%s'"%(json.dumps(self._distinct_ids__list__dict["gene_symbol__list"],indent=4)));
-        LOGGER.info("self._gene_info__dict is:'%s'"%(json.dumps(self._gene_info__dict,indent=4)));
+        #LOGGER.info("self._distinct_ids__list__dict[\"gene_symbol__list\"] is:'%s'"%(json.dumps(self._distinct_ids__list__dict["gene_symbol__list"],indent=4)));
+        #LOGGER.info("self._gene_info__dict is:'%s'"%(json.dumps(self._gene_info__dict,indent=4)));
         
         self._DDIEM_drugbank_drug_name__dict=package_drugbank_drug_names(
             self._drugbank_drug_names_dataset_tsv_file_name
@@ -236,6 +239,7 @@ def package_gene_info(
 ):
     pass;
     _gene_info__dict={};
+    _gene_id__list=[];
     
     src_dataset_csv_fh=None;
     src_dataset_csv_reader=None;
@@ -281,8 +285,13 @@ def package_gene_info(
                     ,"gene_symbol":gene_symbol
                     ,"locus_tag":locus_tag
                 };
+                _gene_id__list.append(gene_id);
     src_dataset_csv_fh.close();
     src_dataset_csv_fh=None;
+    _gene_id__list=list(set(_gene_id__list));
+    _gene_id__list.sort(reverse=False)
+    LOGGER.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>_gene_id__list is:'%s'"%(json.dumps(_gene_id__list,indent=4)));
+    LOGGER.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>_gene_info__dict is:'%s'"%(json.dumps(_gene_info__dict,indent=4)));
     return _gene_info__dict;
 
 def package_drugbank_drug_names(
@@ -952,6 +961,9 @@ def cascade_fields_values(
 ):
     pass;
     processing_outcome__dict={};
+    gene_affected__symbol__found_in_geneinfo__list=[];
+    gene_affected__symbol__not_found_in_geneinfo__list=[];
+    
     task_commencement_time_obj=datetime.datetime.now();
     task_commencement_time_str=task_commencement_time_obj.strftime('%Y-%m-%d %H:%M:%S.%f');
     
@@ -1328,12 +1340,14 @@ id,entity class,entity instance field,subject represented by,example value,entit
                         #gene_affected__csv=list_to_csv(remove_empty_values_from_list(gene_affected__list));
                         gene_affected__csv=list_to_csv(gene_affected__list);
                         for gene_affected in gene_affected__list:
-                        	if gene_affected.upper() in _gene_info__dict:
-                        	    gene_id__list.append(_gene_info__dict[gene_affected.upper()]["gene_id"]);
-                        	    gene_symbol__list.append(_gene_info__dict[gene_affected.upper()]["gene_symbol"]);
-                        	else:
-                        	    gene_id__list.append("");
-                        	    gene_symbol__list.append("");
+                            if gene_affected.upper() in _gene_info__dict:
+                                gene_affected__symbol__found_in_geneinfo__list.append(gene_affected);
+                                gene_id__list.append(_gene_info__dict[gene_affected.upper()]["gene_id"]);
+                                gene_symbol__list.append(_gene_info__dict[gene_affected.upper()]["gene_symbol"]);
+                            else:
+                                gene_affected__symbol__not_found_in_geneinfo__list.append(gene_affected);
+                                gene_id__list.append("");
+                                gene_symbol__list.append("");
                     """
                     LOGGER.info("====genes_affected__str is:'%s', oMIM_ID:%d, row_id:%d, genes_affected__str__transformed:'%s', gene_affected__list:'%s', gene_affected__csv:'%s', list_to_csv(gene_affected__list) is:'%s'"%(
                         genes_affected__str,int(oMIM_ID),int(row_id),genes_affected__str__transformed,gene_affected__list,gene_affected__csv,list_to_csv(gene_affected__list))
@@ -1661,7 +1675,12 @@ id,entity class,entity instance field,subject represented by,example value,entit
     dest_dataset_csv_fh=None;
     src_dataset_csv_fh=None;
     
-    
+    gene_affected__symbol__found_in_geneinfo__list=list(set(remove_empty_values_from_list(gene_affected__symbol__found_in_geneinfo__list)));gene_affected__symbol__found_in_geneinfo__list.sort(reverse=False);
+    gene_affected__symbol__not_found_in_geneinfo__list=list(set(remove_empty_values_from_list(gene_affected__symbol__not_found_in_geneinfo__list)));gene_affected__symbol__not_found_in_geneinfo__list.sort(reverse=False);
+
+    LOGGER.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>gene_affected__symbol__found_in_geneinfo__list is:'%s'"%(json.dumps(gene_affected__symbol__found_in_geneinfo__list,indent=4)));
+    LOGGER.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>gene_affected__symbol__not_found_in_geneinfo__list is:'%s'"%(json.dumps(gene_affected__symbol__not_found_in_geneinfo__list,indent=4)));
+
     task_completion_time_obj=datetime.datetime.now();
     task_completion_time_str="%s"%(task_completion_time_obj.strftime('%Y-%m-%d %H:%M:%S.%f'));
     duration_obj=task_completion_time_obj-task_commencement_time_obj;

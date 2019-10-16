@@ -7,7 +7,9 @@ This script will trickle down the value of each non empty field to all the conti
 
 pushd .;cd /local/data/development.minor/KAUST/BORG/try1;
 
-export src_csv_dataset_file_name="../raw_data/2019-10-01/BORG_DDIEM__clinical_logs.2019-10-01.1418hrs.csv";
+#export src_csv_dataset_file_name="../raw_data/2019-10-01/BORG_DDIEM__clinical_logs.2019-10-01.1418hrs.csv";
+#export src_csv_dataset_file_name="../raw_data/2019-10-10/BORG_DDIEM__clinical_logs.2019-10-10.0958hrs.csv";
+export src_csv_dataset_file_name="../raw_data/2019-10-16/BORG_DDIEM__clinical_logs.2019-10-16.0900hrs.csv";
 working_dir_file_name="/local/data/tmp/BORG_DDIEM/BORG_DDIEM__parse_clinical_logs_CSV.working_dir" \
  && count_of_workers=1 \
  && log_file_name="/local/data/tmp/BORG_DDIEM/logs/BORG_DDIEM__dataset.csv.log.`date +%Y-%m-%d.%H%M.%S.%N.%Z`" \
@@ -22,7 +24,7 @@ working_dir_file_name="/local/data/tmp/BORG_DDIEM/BORG_DDIEM__parse_clinical_log
  2>&1|tee "${log_file_name}" \
  && popd && date;
  
-rm -rf /local/data/development.minor/KAUST/BORG/raw_data/2019-10-01/.~lock.*
+rm -rf /local/data/development.minor/KAUST/BORG/raw_data/2019-10-10/.~lock.*
 
 """;
 
