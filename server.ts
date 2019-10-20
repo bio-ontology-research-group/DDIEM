@@ -17,6 +17,7 @@ import {SparqlEndpointFetcher} from "fetch-sparql-endpoint";
 
 // tslint:disable-next-line:no-var-requires
 const n3 = require('n3');
+const httpProxy = require('http-proxy');
 
 export class DiseaseDao {
   private fetcher:SparqlEndpointFetcher;
@@ -179,6 +180,9 @@ enableProdMode();
 
 // Express server
 const app = express();
+const apiProxy = httpProxy.createProxyServer();
+const sparqlEndpoint = 'http://ontolinator.kaust.edu.sa:8891';
+
 const diseaseDao = new DiseaseDao();
 const PORT = process.env.PORT || 4000;
 const DIST_FOLDER = join(process.cwd(), 'dist/browser');
@@ -206,12 +210,18 @@ app.use(function (err, req, res, next) {
 
 // For resolving Resource URI to sparql endpoint
 app.get('/(\\d+)|([a-f0-9]{8}-?[a-f0-9]{4}-?4[a-f0-9]{3}-?[89ab][a-f0-9]{3}-?[a-f0-9]{12})', async (req: Request, res:Response) => {
-  var sparqlServerUrl = "http://ontolinator.kaust.edu.sa:8891/sparql"
   var defaultGraphUri = "http://www.cbrc.kaust.edu.sa/DDIEM";
   var query = `describe <${req.protocol}://${req.get('host')}${req.originalUrl}> from <${defaultGraphUri}>`;
   var format = 'text/html';
   var queryString = `query=${encodeURIComponent(query)}&format=${encodeURIComponent(format)}&timeout=0&debug=on&run=${encodeURIComponent('Run Query')}`;
-  res.redirect(`${sparqlServerUrl}?${queryString}`);
+  req.url = `/sparql?${queryString}`;
+  console.log('redirecting to ontolinator', req.url);
+  apiProxy.web(req, res, {target: sparqlEndpoint});
+});
+
+app.get('/sparql', async (req: Request, res:Response) => {
+  console.log('redirecting to ontolinator');
+  apiProxy.web(req, res, {target: sparqlEndpoint});
 });
 
 app.get('/api/diseaseordrug', async (req: Request, res:Response) => {
@@ -290,6 +300,9 @@ const jsonLdSerializer = new JsonLdSerializer({
     ClinicalTrials: 'https://clinicaltrials.gov/ct2/show/',
     ClinicalTrial: 'http://clinicaltrials.gov/ct2/show/',
     ClinicalTrialswww: 'https://www.clinicaltrials.gov/ct2/show',
+    semanticscholar: 'https://pdfs.semanticscholar.org',
+    sciencedirect: 'https://www.sciencedirect.com',
+    researchgate: 'https://www.researchgate.net',
     rdf:	'http://www.w3.org/1999/02/22-rdf-syntax-ns#'
   }
 });

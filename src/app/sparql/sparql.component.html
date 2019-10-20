@@ -10,7 +10,7 @@
           <td><h5><a href="javascript:void(0);" (click)="drugParticipatedInProcedure()" class="badge badge-info">Drugs participated in procedure</a></h5></td>
         </tr>
       </table>
-    <form ngNoForm #htmlForm action="http://ontolinator.kaust.edu.sa:8891/sparql" method="get" target="_blank">
+    <form ngNoForm #htmlForm action="sparql" method="get" target="_blank">
       <label for="query">SPARQL:</label><br />
       <textarea #sparqlEle class="form-control" aria-label="SPARQL" rows="10" name="query" id="query" ></textarea>		
       <br />
