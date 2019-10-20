@@ -153,7 +153,7 @@ if __name__ == '__main__':
                     use_drug_name = False
                 
                 drug_name = row[17]
-                if not drug_comb_col.strip() and drug_name.strip():
+                if (not drug_comb_col.strip() or drug_comb_col.strip() == 'NA') and drug_name.strip():
                     drug_comb_col = drug_name
                     use_drug_name = True
 
@@ -190,7 +190,7 @@ if __name__ == '__main__':
                 gene_id_col=40
                 gene_split_count=0
                 gene_ids=row[gene_id_col].split(",")
-                print(row[gene_col], row[gene_id_col], row[41])
+                # print(row[gene_col], row[gene_id_col], row[41])
                 for geneCode in row[gene_col].split(","):
                     if not geneCode.strip():
                         continue
@@ -211,7 +211,7 @@ if __name__ == '__main__':
                     gene_split_count+=1
 
                 
-                if not drug_comb_col.strip() or drug_comb_col.strip() == "No treatment is available in DDIEM":
+                if not drug_comb_col.strip() or drug_comb_col.strip().lower() == "No treatment is available in DDIEM".lower():
                     print("disease dont have treatment :" + disease_id_col)
                     line_count += 1
                     continue
@@ -286,7 +286,7 @@ if __name__ == '__main__':
                         else :
                             drug_container = store.resource(str(DDIEM.uri) + str(uuid.uuid4()))
                             drug_container.add(RDF.type, RDF.Alt)
-                            drug_res = drug(item.strip())
+                            drug_res = (drug(item.strip()) if item.strip() != 'NA' else drug_by_name(item.strip()))
                             drug_res.add(OBO.RO_0000056, procedure_dict[encrypt_string(procedure_id)])
                             drug_container.add(RDF.li, drug_res)
                             drug_container_dict[encrypt_string(item.strip())] = drug_container
@@ -313,9 +313,10 @@ if __name__ == '__main__':
                         phenotype.set(RDF.type, DDIEM.Phenotype)
                         phenotype.set(RDFS.label, Literal(row[phenotype_col_id]))
                         phenotype.set(RDFS.comment, Literal(row[38]))
-                        phenotype.add(DC.identifier, Literal(row[37]))
+                        if row[37].strip() and row[37].strip() != 'NA':
+                            phenotype.add(DC.identifier, Literal(row[37]))
+                            phenotype.add(DDIEM.url, Literal("http://purl.obolibrary.org/obo/" + row[37].replace(":", "_").replace("*", "")))
                         pheno_dict[encrypt_string(row[phenotype_col_id])] = phenotype
-                        phenotype.add(DDIEM.url, Literal("http://purl.obolibrary.org/obo/" + row[37].replace(":", "_").replace("*", "")))
                     else :
                         phenotype = pheno_dict[encrypt_string(row[phenotype_col_id])]
 

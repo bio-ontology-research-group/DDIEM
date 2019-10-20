@@ -137,6 +137,12 @@ export class DiseaseComponent implements OnInit {
         || url.startsWith(this.context.ClinicalTrial) 
         || url.startsWith(this.context.ClinicalTrialswww)) {
       return "Clinical trial ID:" + url.substr(url.lastIndexOf('/') + 1)
+    } else if (url.startsWith(this.context.semanticscholar)) {
+      return "semanticscholar"
+    } else if (url.startsWith(this.context.sciencedirect)) {
+      return "sciencedirect"
+    } else if (url.startsWith(this.context.PMCID)) {
+      return "researchgate"
     } else {
       return 'Clinical trial';
     }
