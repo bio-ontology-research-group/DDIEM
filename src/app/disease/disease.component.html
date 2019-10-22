@@ -9,7 +9,8 @@
     </div>
     <div class="col-md-9">
         <button type="button" class="btn btn-link p-0" 
-        (click)="openInNewTab(d()['dc:identifier'][0]['@value'])" [ngbTooltip]="d()['rdfs:comment'] ? d()['rdfs:comment'][0]['@value'] : ''">
+        (click)="openInNewTab(d()['ddiem:iembaseUrl'] ? d()['ddiem:iembaseUrl'][0]['@value'] : d()['dc:identifier'][0]['@value'])"
+          [ngbTooltip]="d()['rdfs:comment'] ? d()['rdfs:comment'][0]['@value'] : ''">
           {{toTitleCase(d()['rdfs:label'][0]['@value'])}}
         </button>
     </div>

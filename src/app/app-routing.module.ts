@@ -12,7 +12,7 @@ const routes: Routes = [
   {path: 'disease-list',component: DiseaseListComponent},
   {path: 'disease-list-by-drug/:iri',component: DiseaseListComponent},
   {path: 'disease/:iri',component: DiseaseComponent},
-  {path: 'sparql',component: SparqlComponent}
+  {path: 'isparql',component: SparqlComponent}
 ];
 
 @NgModule({

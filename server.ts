@@ -41,7 +41,6 @@ export class DiseaseDao {
         ?resource rdfs:label ?label
       } ORDER BY ASC(?label) `;
       return await this.fetcher.fetchBindings(this.serverUrl, diseaseListQuery);
-    
   }
 
   async listDiseasesByDrug(iri: any) {
