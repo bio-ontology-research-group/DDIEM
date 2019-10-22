@@ -3,10 +3,11 @@ a="""
 
 
 
-Incoorperate drugbank drug metadata from "/local/data/development.minor/KAUST/BORG/try1/../raw_data/2019-08-01/drugbank/drugbank_drugnames.full_database.tsv"
-Incoorperate ChEBI drug metadata from "/local/data/development.minor/KAUST/BORG/try1/../raw_data/2019-08-04/ChEBI/names.tsv"
+Incooperate drugbank drug metadata from "/local/data/development.minor/KAUST/BORG/try1/../raw_data/2019-08-01/drugbank/drugbank_drugnames.full_database.tsv"
+Incooperate ChEBI drug metadata from "/local/data/development.minor/KAUST/BORG/try1/../raw_data/2019-08-04/ChEBI/names.tsv"
+Incooperate IEMbase data from "/local/data/development.minor/KAUST/BORG/try1/../raw_data/2019-10-17/disorderID_omimID.csv"
 #https://www.whocc.no/atc_ddd_index/?code=M01AX
-Incoorperate WHOCC drug names from "/local/data/development.minor/KAUST/BORG/raw_data/2019-09-01/WHOCC/BORG_DDIEM__clinical_logs.2019-09-01.1348hrs.collapsed.clinical_logs_for_rdf_part1.WHOCC_drug_names.json"
+Incooperate WHOCC drug names from "/local/data/development.minor/KAUST/BORG/raw_data/2019-09-01/WHOCC/BORG_DDIEM__clinical_logs.2019-09-01.1348hrs.collapsed.clinical_logs_for_rdf_part1.WHOCC_drug_names.json"
 
 
 #export src_clinical_log_dataset_csv_file_name="../raw_data/2019-05-27/BORG_DDIEM__clinical_logs.2019-05-27.1340hrs.collapsed.csv";
@@ -14,7 +15,7 @@ Incoorperate WHOCC drug names from "/local/data/development.minor/KAUST/BORG/raw
 #export src_clinical_log_dataset_csv_file_name="../raw_data/2019-10-01/BORG_DDIEM__clinical_logs.2019-10-01.1418hrs.collapsed.csv";
 #export src_clinical_log_dataset_csv_file_name="../raw_data/2019-10-10/BORG_DDIEM__clinical_logs.2019-10-10.0958hrs.collapsed.csv";
 export src_clinical_log_dataset_csv_file_name="../raw_data/2019-10-16/BORG_DDIEM__clinical_logs.2019-10-16.0900hrs.collapsed.csv";
-export dest_rdf_statement_triple_dataset_dir_name="../raw_data/2019-10-16";
+export dest_dir_file_name="../raw_data/2019-10-16";
 
 working_dir_file_name="/local/data/tmp/BORG_DDIEM/BORG_DDIEM__prepare_clinical_logs_for_rdf_part1.working_dir" \
  && count_of_workers=1 \
@@ -30,7 +31,8 @@ working_dir_file_name="/local/data/tmp/BORG_DDIEM/BORG_DDIEM__prepare_clinical_l
  --drugbank_drug_names_dataset_tsv_file_name="../raw_data/2019-08-01/drugbank/drugbank_drugnames.full_database.tsv" \
  --ChEBI_drug_names_dataset_tsv_file_name="../raw_data/2019-08-04/ChEBI/names.tsv" \
  --gene_info_tsv_file_name="../raw_data/2019-08-05/ncbi_gene/gene_info" \
- -d"${dest_rdf_statement_triple_dataset_dir_name}" \
+ --iembase_mapping_csv_file_name="../raw_data/2019-10-17/disorderID_omimID.csv" \
+ -d"${dest_dir_file_name}" \
  --count_of_workers=${count_of_workers} \
  2>&1|tee "${log_file_name}" \
  && popd && date \
@@ -38,6 +40,16 @@ working_dir_file_name="/local/data/tmp/BORG_DDIEM/BORG_DDIEM__prepare_clinical_l
 ;
 
 
+date;time ls -tr /local/data/development.minor/KAUST/BORG/try1/../raw_data/2019-10-16/;date;
+
+
+date;time tail -n+2 /local/data/development.minor/KAUST/BORG/try1/../raw_data/2019-10-16/BORG_DDIEM__clinical_logs.2019-10-16.0900hrs.collapsed.gene_id__list.csv|head -n3|sed -r "s:^([^,]+),(.+)$:\2:g"|head -n3;date;
+date;time tail -n+2 /local/data/development.minor/KAUST/BORG/try1/../raw_data/2019-10-16/BORG_DDIEM__clinical_logs.2019-10-16.0900hrs.collapsed.gene_id__list.csv|sed -r "s:^([^,]+),(.+)$:\2:g">/local/data/tmp/gene_id.csv;date;
+TODO 2019-10-21 1502hrs
+
+1) capture the various distinct key field values to file.
+2) include the gene_id to uniprot_id file.
+3) include the omim_id to IEMbase file.
 
 """;
 
@@ -92,11 +104,12 @@ class BORG_DDIEM__prepare_clinical_logs_for_rdf_part1():
         ,working_dir_file_name
         ,_borg_ddiem_relational_ontology_graph_csv_file_name
         ,_src_clinical_log_dataset_csv_file_name
-        ,_dest_rdf_statement_triple_dir_file_name
+        ,_dest_dir_file_name
         ,_OMIM_mimTitles_dataset_tsv_file_name
         ,_drugbank_drug_names_dataset_tsv_file_name
         ,_ChEBI_drug_names_dataset_tsv_file_name
         ,_gene_info_tsv_file_name
+        ,_iembase_mapping_csv_file_name
     ):
         doc="""
         an object if this class performs the tranformation of XML to JSON.
@@ -116,17 +129,21 @@ class BORG_DDIEM__prepare_clinical_logs_for_rdf_part1():
         self.worker_number=worker_number;
         self._borg_ddiem_relational_ontology_graph_csv_file_name=_borg_ddiem_relational_ontology_graph_csv_file_name;
         self._src_clinical_log_dataset_csv_file_name=_src_clinical_log_dataset_csv_file_name;
-        self._dest_rdf_statement_triple_dir_file_name=_dest_rdf_statement_triple_dir_file_name;
+        self._dest_dir_file_name=_dest_dir_file_name;
         self._OMIM_mimTitles_dataset_tsv_file_name=_OMIM_mimTitles_dataset_tsv_file_name;
         self._drugbank_drug_names_dataset_tsv_file_name=_drugbank_drug_names_dataset_tsv_file_name;
         self._ChEBI_drug_names_dataset_tsv_file_name=_ChEBI_drug_names_dataset_tsv_file_name;
         self._gene_info_tsv_file_name=_gene_info_tsv_file_name;
+        self._iembase_mapping_csv_file_name=_iembase_mapping_csv_file_name;
         self._processing_outcome__dict=None;
         
         try:
             if(_src_clinical_log_dataset_csv_file_name==None or len(_src_clinical_log_dataset_csv_file_name.strip())<0):
                 pass;
                 raise ValueError("_src_clinical_log_dataset_csv_file_name is empty the supplied value is '%s'"%(_src_clinical_log_dataset_csv_file_name));
+            if(_dest_dir_file_name==None or len(_dest_dir_file_name.strip())<0):
+                pass;
+                raise ValueError("_dest_dir_file_name is empty the supplied value is '%s'"%(_dest_dir_file_name));
             if(_OMIM_mimTitles_dataset_tsv_file_name==None or len(_OMIM_mimTitles_dataset_tsv_file_name.strip())<0):
                 pass;
                 raise ValueError("_OMIM_mimTitles_dataset_tsv_file_name is empty the supplied value is '%s'"%(_OMIM_mimTitles_dataset_tsv_file_name));
@@ -139,6 +156,9 @@ class BORG_DDIEM__prepare_clinical_logs_for_rdf_part1():
             if(_gene_info_tsv_file_name==None or len(_gene_info_tsv_file_name.strip())<0):
                 pass;
                 raise ValueError("_gene_info_tsv_file_name is empty the supplied value is '%s'"%(_gene_info_tsv_file_name));
+            if(_iembase_mapping_csv_file_name==None or len(_iembase_mapping_csv_file_name.strip())<0):
+                pass;
+                raise ValueError("_iembase_mapping_csv_file_name is empty the supplied value is '%s'"%(_iembase_mapping_csv_file_name));
         except ValueError as error:
             #see "/local/data/BCL_FE_ABI3730_sequencer_plate_data_generator_jobs_data/2018/2018-09/2018-09-20/2018-09-20_171025_103.processing_outcome.json"
             #LOGGER.info(" '%s', -------------- cmd is:'%s', row_cnt is:%d"%(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f'),cmd,row_cnt));
@@ -168,10 +188,17 @@ class BORG_DDIEM__prepare_clinical_logs_for_rdf_part1():
         """;
         LOGGER.info("self._distinct_ids__list__dict is:'%s'"%(json.dumps(self._distinct_ids__list__dict,indent=4)));
         
-        self._gene_info__dict=package_gene_info(
+        self._omim_id__dict, self._iembase_id__list=package_omim_id(
+            self._iembase_mapping_csv_file_name
+            ,self._distinct_ids__list__dict["omim_id__list"]
+        );
+        self._distinct_ids__list__dict["iembase_id__list"]=self._iembase_id__list;
+        
+        self._gene_info__dict, self._gene_id__list=package_gene_info(
             self._gene_info_tsv_file_name
             ,self._distinct_ids__list__dict["gene_symbol__list"]
         );
+        self._distinct_ids__list__dict["gene_id__list"]=self._gene_id__list;
         #LOGGER.info("self._distinct_ids__list__dict[\"gene_symbol__list\"] is:'%s'"%(json.dumps(self._distinct_ids__list__dict["gene_symbol__list"],indent=4)));
         #LOGGER.info("self._gene_info__dict is:'%s'"%(json.dumps(self._gene_info__dict,indent=4)));
         
@@ -180,7 +207,7 @@ class BORG_DDIEM__prepare_clinical_logs_for_rdf_part1():
             ,self._distinct_ids__list__dict["drugbank_ID__list"]
         );
         #LOGGER.info("self._DDIEM_drugbank_drug_name__dict is:'%s'"%(json.dumps(self._DDIEM_drugbank_drug_name__dict,indent=4)));
-        dest_dataset_json_file_name=os.path.join(self._dest_rdf_statement_triple_dir_file_name,"%s.clinical_logs_for_rdf_part1.drugbank_drug_names.json"%(os.path.splitext(os.path.basename(self._src_clinical_log_dataset_csv_file_name))[0]));
+        dest_dataset_json_file_name=os.path.join(self._dest_dir_file_name,"%s.clinical_logs_for_rdf_part1.drugbank_drug_names.json"%(os.path.splitext(os.path.basename(self._src_clinical_log_dataset_csv_file_name))[0]));
         dest_dataset_json_fh=None;
         dest_dataset_json_writer=None;
         dest_dataset_json_fh=open(dest_dataset_json_file_name,"wb");
@@ -194,8 +221,32 @@ class BORG_DDIEM__prepare_clinical_logs_for_rdf_part1():
             self._ChEBI_drug_names_dataset_tsv_file_name
             ,self._distinct_ids__list__dict["chEBI_ID__list"]
         );
+        
+        ####for each distinct class of datatype found in the self._distinct_ids__list__dict write to file (start) 2019-10-21 1528hrs###
+        for datatype_name, datatype_value__list in self._distinct_ids__list__dict.items():
+            #construct file to write out these values.
+            dest_dataset_csv_file_name=os.path.join(self._dest_dir_file_name,"%s.%s.csv"%(os.path.splitext(os.path.basename(self._src_clinical_log_dataset_csv_file_name))[0],datatype_name));
+            dest_dataset_csv_fh=None;
+            dest_dataset_csv_writer=None;
+            dest_dataset_csv_fh=open(dest_dataset_csv_file_name,"w");
+            dest_dataset_csv_writer=csv.writer(dest_dataset_csv_fh,delimiter=',',quotechar='"',quoting=csv.QUOTE_MINIMAL);
+            
+            dest_dataset_csv_writer.writerow(["row_id","datatype_value"]);
+            row_cnt=0;
+            #iterate through the list of values.
+            for datatype_value in datatype_value__list:
+                row_cnt+=1;
+                dest_dataset_csv_writer.writerow([row_cnt,datatype_value]);
+            
+            dest_dataset_csv_fh.flush();
+            dest_dataset_csv_fh.close();
+            dest_dataset_csv_fh=None;
+        ####for each distinct class of datatype found in the self._distinct_ids__list__dict write to file (end) 2019-10-21 1538hrs###
+        
+        
+        
         #LOGGER.info("self._DDIEM_ChEBI_drug_name__dict is:'%s'"%(json.dumps(self._DDIEM_ChEBI_drug_name__dict,indent=4)));
-        dest_dataset_json_file_name=os.path.join(self._dest_rdf_statement_triple_dir_file_name,"%s.clinical_logs_for_rdf_part1.ChEBI_drug_names.json"%(os.path.splitext(os.path.basename(self._src_clinical_log_dataset_csv_file_name))[0]));
+        dest_dataset_json_file_name=os.path.join(self._dest_dir_file_name,"%s.clinical_logs_for_rdf_part1.ChEBI_drug_names.json"%(os.path.splitext(os.path.basename(self._src_clinical_log_dataset_csv_file_name))[0]));
         dest_dataset_json_fh=None;
         dest_dataset_json_writer=None;
         dest_dataset_json_fh=open(dest_dataset_json_file_name,"wb");
@@ -215,9 +266,10 @@ class BORG_DDIEM__prepare_clinical_logs_for_rdf_part1():
                 ,self.worker_number
                 ,self._borg_ddiem_relational_ontology_graph_csv_file_name
                 ,self._src_clinical_log_dataset_csv_file_name
-                ,self._dest_rdf_statement_triple_dir_file_name
+                ,self._dest_dir_file_name
                 ,self._OMIM_mimTitles_dataset_tsv_file_name
                 ,self._gene_info__dict
+                ,self._omim_id__dict
             );
             LOGGER.info("self._processing_outcome__dict is:'%s'"%(json.dumps(self._processing_outcome__dict,indent=4)));
     def get_processing_outcome(self):
@@ -232,6 +284,69 @@ oRegPattern_digits=re.compile("^.*?(?P<digits>[0-9]+).*$",re.IGNORECASE);
 oRegPattern_ec_number=re.compile("^\s*(EC\s*:?)?(?P<ec_number>([0-9]+|\-)\.([0-9]+|\-)\.([0-9]+|\-)\.([0-9]+|\-))\s*$",re.IGNORECASE);
 #oRegPattern_uniprot_ID=re.compile("^\s*(?P<uniprot_ID>[A-Z][A-Z,0-9]{5})\s*$");
 oRegPattern_uniprot_ID=re.compile("^\s*(?P<uniprot_ID>[OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9]([A-Z][A-Z0-9]{2}[0-9]){1,2})\s*$");#see "https://www.uniprot.org/help/accession_numbers" thanks Ali for sharing this resource.
+
+    
+def package_omim_id(
+    _iembase_mapping_csv_file_name
+    ,_omim_id__list
+):
+    pass;
+    _omim_id__dict={};
+    _iembase_id__list=[];
+    
+    src_dataset_csv_fh=None;
+    src_dataset_csv_reader=None;
+    src_dataset_csv_fh=open(_iembase_mapping_csv_file_name,"r");
+    src_dataset_csv_reader=csv.reader(
+        src_dataset_csv_fh
+        ,delimiter=","
+        ,quotechar='"'
+        ,quoting=csv.QUOTE_MINIMAL
+    );
+    cnt_of_fields__max=0;
+    row2=[];
+    cnt_of_fields=0;
+    row_cnt=0;
+    src_dataset_csv_fh.seek(0);
+    for row in src_dataset_csv_reader:
+        row_cnt+=1;
+        #del row2[:];
+        for i, val in enumerate(row):
+            if(row[i]==None):
+                row[i]="";
+            else:
+                row[i]=row[i].strip();
+            if(row[i]=='""' or row[i]=="''"):
+                row[i]="";
+        if(row_cnt>1):
+            row_id=None;
+            record_ordinal_position=None;
+            taxon_id=None;
+            gene_id=None;
+            gene_symbol=None;
+            locus_tag=None;
+            record_ordinal_position=row_cnt;
+            iembase_id=row[0];
+            iembase_name=row[1];
+            omim_id_raw=row[2];
+            #import re;omim_id_value="612940; 614438";omim_id_value__list=re.split('\s*;\s*|\s*,\s*',omim_id_value);omim_id_value__list;
+            #import re;omim_id_value="615350, 615351, 615352";omim_id_value__list=re.split('\s*;\s*|\s*,\s*',omim_id_value);omim_id_value__list;
+            omim_id_value__list=re.split('\s*;\s*|\s*,\s*',omim_id_raw);
+            for omim_id_value in omim_id_value__list:
+                if(omim_id_value in _omim_id__list):
+                    _omim_id__dict[omim_id_value]={
+                        "record_ordinal_position":record_ordinal_position
+                        ,"iembase_id":iembase_id
+                        ,"omim_id":omim_id_value
+                    };
+                    _iembase_id__list.append(iembase_id);
+    src_dataset_csv_fh.close();
+    src_dataset_csv_fh=None;
+    _iembase_id__list=list(set(_iembase_id__list));
+    _iembase_id__list.sort(reverse=False)
+    LOGGER.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>_iembase_id__list is:'%s'"%(json.dumps(_iembase_id__list,indent=4)));
+    LOGGER.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>_omim_id__dict is:'%s'"%(json.dumps(_omim_id__dict,indent=4)));
+    return (_omim_id__dict, _iembase_id__list);
 
 def package_gene_info(
     _gene_info_tsv_file_name
@@ -292,7 +407,7 @@ def package_gene_info(
     _gene_id__list.sort(reverse=False)
     LOGGER.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>_gene_id__list is:'%s'"%(json.dumps(_gene_id__list,indent=4)));
     LOGGER.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>_gene_info__dict is:'%s'"%(json.dumps(_gene_info__dict,indent=4)));
-    return _gene_info__dict;
+    return (_gene_info__dict, _gene_id__list);
 
 def package_drugbank_drug_names(
     _drugbank_drug_names_dataset_tsv_file_name
@@ -528,6 +643,7 @@ date;time less "${log_file_name}";date;
     
     drugbank_ID=None;chEBI_ID=None;wHOCC_ID=None;
     
+    omim_id__list=[];
     gene_symbol__list=[];
     gene_affected__list=[];
     gene_affected_unresolved__list=[];
@@ -614,6 +730,7 @@ date;time less "${log_file_name}";date;
                     match=oRegPattern_digits.search(row[2]);
                     if(match!=None and match.group(0)!=None):
                         oMIM_ID=match.group("digits");
+                        omim_id__list.append(oMIM_ID);
                         """
                         if(oMIM_ID in OMIM_mimTitles_dict):
                             omim_number_prefix=OMIM_mimTitles_dict[oMIM_ID][0];
@@ -779,7 +896,8 @@ date;time less "${log_file_name}";date;
                         chEBI_ID__list.extend(remove_empty_values_from_list(csv_to_list(chEBI_ID__ANDed__csv)));
                     if(wHOCC_ID__ANDed__csv!=None and len(wHOCC_ID__ANDed__csv.strip())>0):
                         wHOCC_ID__list.extend(remove_empty_values_from_list(csv_to_list(wHOCC_ID__ANDed__csv)));
-                    
+    
+    omim_id__list=list(set(omim_id__list));
     gene_affected__list=list(set(gene_affected__list));
     gene_affected_unresolved__list=list(set(gene_affected_unresolved__list));
     uniprot_ID__list=list(set(uniprot_ID__list));
@@ -790,6 +908,8 @@ date;time less "${log_file_name}";date;
     pubChem_CID__list=list(set(pubChem_CID__list));
     wHOCC_ID__list=list(set(wHOCC_ID__list));
     
+    if(omim_id__list!=None):
+        omim_id__list.sort(reverse=False);
     if(gene_affected__list!=None):
         gene_affected__list.sort(reverse=False);
     if(gene_affected_unresolved__list!=None):
@@ -836,7 +956,8 @@ date;time less "${log_file_name}";date;
     processing_outcome__dict["src_clinical_log_dataset_csv_file_name"]=src_clinical_log_dataset_csv_file_name;
     processing_outcome__dict["cnt_of_fields__max"]=cnt_of_fields__max;
     distinct_ids__list__dict={
-        "gene_affected__list":gene_affected__list
+        "omim_id__list":omim_id__list
+        ,"gene_affected__list":gene_affected__list
         ,"gene_affected_unresolved__list":gene_affected_unresolved__list
         ,"gene_symbol__list":gene_symbol__list
         ,"uniprot_ID__list":uniprot_ID__list
@@ -955,9 +1076,10 @@ def cascade_fields_values(
     ,worker_number
     ,_borg_ddiem_relational_ontology_graph_csv_file_name
     ,_src_clinical_log_dataset_csv_file_name
-    ,_dest_rdf_statement_triple_dir_file_name
+    ,_dest_dir_file_name
     ,_OMIM_mimTitles_dataset_tsv_file_name
     ,_gene_info__dict
+    ,_omim_id__dict
 ):
     pass;
     processing_outcome__dict={};
@@ -1021,8 +1143,8 @@ date;time less "${log_file_name}";date;
     
     src_clinical_log_dataset_csv_file_name=_src_clinical_log_dataset_csv_file_name;
     OMIM_mimTitles_dataset_tsv_file_name=_OMIM_mimTitles_dataset_tsv_file_name;
-    dest_dataset_csv_file_name=os.path.join(_dest_rdf_statement_triple_dir_file_name,"%s.clinical_logs_for_rdf_part1.csv"%(os.path.splitext(os.path.basename(_src_clinical_log_dataset_csv_file_name))[0]));
-    dest_DB_DBA_RDF_LOAD_RDFXML_MT__file_name=os.path.join(_dest_rdf_statement_triple_dir_file_name,"%s.DB.DBA.RDF_LOAD_RDFXML_MT.txt"%(os.path.splitext(os.path.basename(_src_clinical_log_dataset_csv_file_name))[0]));
+    dest_dataset_csv_file_name=os.path.join(_dest_dir_file_name,"%s.clinical_logs_for_rdf_part1.csv"%(os.path.splitext(os.path.basename(_src_clinical_log_dataset_csv_file_name))[0]));
+    dest_DB_DBA_RDF_LOAD_RDFXML_MT__file_name=os.path.join(_dest_dir_file_name,"%s.DB.DBA.RDF_LOAD_RDFXML_MT.txt"%(os.path.splitext(os.path.basename(_src_clinical_log_dataset_csv_file_name))[0]));
     dest_DB_DBA_RDF_LOAD_RDFXML_MT__fh=open(dest_DB_DBA_RDF_LOAD_RDFXML_MT__file_name,"w");
     
     OMIM_mimTitles_dict=None;
@@ -1154,6 +1276,7 @@ date;time less "${log_file_name}";date;
         ,"treatment_manuscript_reference__csv"
         ,"gene_id__csv"
         ,"gene_symbol__csv"
+        ,"iembase_id__csv"
         ,"XML/RDF"
     ];
     dest_dataset_csv_writer.writerow(list(range(1,len(clinical_log_rdf_base_fields_dataset_header__list)+1)));
@@ -1237,6 +1360,10 @@ id,entity class,entity instance field,subject represented by,example value,entit
             phenotype_ID__csv=None;
             treatment_manuscript_reference__csv=None;
             
+            iembase_id__list=None;
+            iembase_id__csv=None;
+            
+            
             if(row_cnt<=2):
                 pass;
                 #row2=row[:];
@@ -1291,6 +1418,11 @@ id,entity class,entity instance field,subject represented by,example value,entit
                     match=oRegPattern_digits.search(row[2]);
                     if(match!=None and match.group(0)!=None):
                         oMIM_ID=match.group("digits");
+                        if(oMIM_ID in _omim_id__dict):
+                            if(iembase_id__list==None):
+                                iembase_id__list=[];
+                            iembase_id__list.append(_omim_id__dict[oMIM_ID]["iembase_id"]);
+                        
                         if(oMIM_ID in OMIM_mimTitles_dict):
                             omim_number_prefix=OMIM_mimTitles_dict[oMIM_ID][0];
                             omim_number=OMIM_mimTitles_dict[oMIM_ID][1];
@@ -1501,6 +1633,8 @@ id,entity class,entity instance field,subject represented by,example value,entit
                     phenotype_improved_by_treatment__csv=list_to_csv(remove_empty_values_from_list(phenotype_improved_by_treatment__list));
                     phenotype_ID__csv=list_to_csv(remove_empty_values_from_list(phenotype_ID__list));
                     treatment_manuscript_reference__csv=list_to_csv(remove_empty_values_from_list(treatment_manuscript_reference__list));
+                    iembase_id__csv=list_to_csv(remove_empty_values_from_list(iembase_id__list));
+                    
                     
                     
                     clinical_log_rdf_base_fields_dataset_row__dict={
@@ -1550,11 +1684,12 @@ id,entity class,entity instance field,subject represented by,example value,entit
                         ,"treatment_manuscript_reference__csv":treatment_manuscript_reference__csv
                         ,"gene_id__csv":gene_id__csv
                         ,"gene_symbol__csv":gene_symbol__csv
+                        ,"iembase_id__csv":iembase_id__csv
                     };
                     xml_data=None;
                     if(1==2):
                         ##generate the RDF/XML
-                        dest_clinical_log_rdf_base_fields_dataset_row_RDFXML_file_name=os.path.join(_dest_rdf_statement_triple_dir_file_name,"%s"%(os.path.splitext(os.path.basename(_src_clinical_log_dataset_csv_file_name))[0]),"RDFXML","%s.clinical_log_rdf_base_fields_dataset_row_RDFXML__%d.xml"%(os.path.splitext(os.path.basename(_src_clinical_log_dataset_csv_file_name))[0],int(row_id)));
+                        dest_clinical_log_rdf_base_fields_dataset_row_RDFXML_file_name=os.path.join(_dest_dir_file_name,"%s"%(os.path.splitext(os.path.basename(_src_clinical_log_dataset_csv_file_name))[0]),"RDFXML","%s.clinical_log_rdf_base_fields_dataset_row_RDFXML__%d.xml"%(os.path.splitext(os.path.basename(_src_clinical_log_dataset_csv_file_name))[0],int(row_id)));
                         #construct the parent directory
                         
                         mkdir_p(os.path.abspath(os.path.join(dest_clinical_log_rdf_base_fields_dataset_row_RDFXML_file_name, os.pardir)));
@@ -1625,6 +1760,7 @@ id,entity class,entity instance field,subject represented by,example value,entit
                         ,treatment_manuscript_reference__csv
                         ,gene_id__csv
                         ,gene_symbol__csv
+                        ,iembase_id__csv
                         ,xml_data
                     ];
                     dest_dataset_csv_writer.writerow(clinical_log_rdf_base_fields_dataset_row);
@@ -2552,7 +2688,8 @@ if __name__ == '__main__':
     working_dir_file_name=None;
     borg_ddiem_relational_ontology_graph_csv_file_name=None;
     src_clinical_log_dataset_csv_file_name=None;
-    dest_rdf_statement_triple_dataset_dir_name=None;
+    dest_dir_file_name=None;
+    dest_dir_file_name=None;
     drugbank_drug_names_dataset_tsv_file_name=None;
     OMIM_mimTitles_dataset_tsv_file_name=None;
     drugbank_drug_names_dataset_tsv_file_name=None;
@@ -2574,11 +2711,12 @@ if __name__ == '__main__':
         """);
         parser.add_argument("-g","--borg_ddiem_relational_ontology_graph_csv_file_name",action="append",type=str,dest="op__borg_ddiem_relational_ontology_graph_csv_file_name",help="The full path to the BORG_DDIEM graph CSV file.")
         parser.add_argument("-f","--src_clinical_log_dataset_csv_file_name",action="append",type=str,dest="op__src_clinical_log_dataset_csv_file_name",help="The full path to the CSV file where the input dataset is to be found.")
-        parser.add_argument("-d","--dest_rdf_statement_triple_dataset_dir_name",action="append",type=str,dest="op__dest_rdf_statement_triple_dataset_dir_name",help="The full directory path where the resultant CSV file will be written.")
+        parser.add_argument("-d","--dest_dir_file_name",action="append",type=str,dest="op__dest_dir_file_name",help="The full directory path where the resultant CSV file will be written.")
         parser.add_argument("-m","--OMIM_mimTitles_dataset_tsv_file_name",action="append",type=str,dest="op__OMIM_mimTitles_dataset_tsv_file_name",help="The full path to the TSV morbidmap.txt file from OMIM where OMIM id to OMIM names are to be found.")
         parser.add_argument("-b","--drugbank_drug_names_dataset_tsv_file_name",action="append",type=str,dest="op__drugbank_drug_names_dataset_tsv_file_name",help="The full path to the TSV file containing the drug names of the drug entries in the drugbank dataset. This file was generated by the python script 'BORG_DDIEM__split_drugbank_xml.py', this script extracted the drug metadata from each drug entry in the large drugbank xml documents.")
         parser.add_argument("-c","--ChEBI_drug_names_dataset_tsv_file_name",action="append",type=str,dest="op__ChEBI_drug_names_dataset_tsv_file_name",help="The full path to the TSV (ordinarily named 'names.tsv') provided by ChEBI which contains the names of the drugs.")
         parser.add_argument("-e","--gene_info_tsv_file_name",action="append",type=str,dest="op__gene_info_tsv_file_name",help="The full path to the ncbi gene_info dataset encoded as a TSV text file.")
+        parser.add_argument("-i","--iembase_mapping_csv_file_name",action="append",type=str,dest="op__iembase_mapping_csv_file_name",help="The full path to the IEMbase dataset encoded as a CSV text file.")
         
         parser.add_argument("-w","--count_of_workers",action="append",type=int,dest="op__count_of_workers",help="""
             The count of workers to launch (via multiprocessing).
@@ -2596,7 +2734,7 @@ if __name__ == '__main__':
                     The full path to the BORG_DDIEM graph CSV file.
                 -f, --src_clinical_log_dataset_csv_file_name
                     The full path to the CSV file where the input dataset is to be found.
-                -d, --dest_rdf_statement_triple_dataset_dir_name
+                -d, --dest_dir_file_name
                     The full directory path where the resultant CSV file will be written.
                 -m, --OMIM_mimTitles_dataset_tsv_file_name
                     The full path to the CSV file where the input dataset is to be found.
@@ -2606,6 +2744,8 @@ if __name__ == '__main__':
                     The full path to the TSV (ordinarily named 'names.tsv') provided by ChEBI which contains the names of the drugs.
                 -e, --gene_info_tsv_file_name
                     The full path to the ncbi gene_info dataset encoded as a TSV text file.
+                -i, --iembase_mapping_csv_file_name
+                    The full path to the IEMbase mapping dataset encoded as a CSV text file.
                 -w, --count_of_workers
                     The count of workers to launch (via multiprocessing).
             """);
@@ -2618,10 +2758,10 @@ if __name__ == '__main__':
             borg_ddiem_relational_ontology_graph_csv_file_name=options.op__borg_ddiem_relational_ontology_graph_csv_file_name[0];
         if(options.op__src_clinical_log_dataset_csv_file_name):
             src_clinical_log_dataset_csv_file_name=options.op__src_clinical_log_dataset_csv_file_name[0];
-        if(options.op__dest_rdf_statement_triple_dataset_dir_name):
-            dest_rdf_statement_triple_dataset_dir_name=options.op__dest_rdf_statement_triple_dataset_dir_name[0];
-            mkdir_p(os.path.abspath(os.path.join(dest_rdf_statement_triple_dataset_dir_name, os.pardir)));
-            mkdir_p(os.path.abspath(dest_rdf_statement_triple_dataset_dir_name));
+        if(options.op__dest_dir_file_name):
+            dest_dir_file_name=options.op__dest_dir_file_name[0];
+            mkdir_p(os.path.abspath(os.path.join(dest_dir_file_name, os.pardir)));
+            mkdir_p(os.path.abspath(dest_dir_file_name));
         if(options.op__OMIM_mimTitles_dataset_tsv_file_name):
             OMIM_mimTitles_dataset_tsv_file_name=options.op__OMIM_mimTitles_dataset_tsv_file_name[0];
         if(options.op__drugbank_drug_names_dataset_tsv_file_name):
@@ -2630,6 +2770,8 @@ if __name__ == '__main__':
             ChEBI_drug_names_dataset_tsv_file_name=options.op__ChEBI_drug_names_dataset_tsv_file_name[0];
         if(options.op__gene_info_tsv_file_name):
             gene_info_tsv_file_name=options.op__gene_info_tsv_file_name[0];
+        if(options.op__iembase_mapping_csv_file_name):
+            iembase_mapping_csv_file_name=options.op__iembase_mapping_csv_file_name[0];
             
         if(options.op__count_of_workers):
             count_of_workers=int(options.op__count_of_workers[0]);
@@ -2640,7 +2782,7 @@ if __name__ == '__main__':
         usage()
         sys.exit(2)
     
-    print("dest_rdf_statement_triple_dataset_dir_name is:'%s'"%(dest_rdf_statement_triple_dataset_dir_name));
+    print("dest_dir_file_name is:'%s'"%(dest_dir_file_name));
     #print("dest_ddl_file_name is:'%s'"%(dest_ddl_file_name));
     logging.basicConfig(level=logging.INFO, format=LOG_FORMAT);
     
@@ -2658,10 +2800,11 @@ if __name__ == '__main__':
     LOGGER.info(" '%s', -------------- hostname:'%s', ipAddress:'%s', pid:%d, worker_id:'%s', task_id:'%s'"%(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f'),hostname,ipAddress,pid,worker_id,task_id));
     LOGGER.info(" '%s', -------------- borg_ddiem_relational_ontology_graph_csv_file_name is:'%s'"%(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f'),borg_ddiem_relational_ontology_graph_csv_file_name));
     LOGGER.info(" '%s', -------------- src_clinical_log_dataset_csv_file_name is:'%s'"%(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f'),src_clinical_log_dataset_csv_file_name));
-    LOGGER.info(" '%s', -------------- dest_rdf_statement_triple_dataset_dir_name is:'%s'"%(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f'),dest_rdf_statement_triple_dataset_dir_name));
+    LOGGER.info(" '%s', -------------- dest_dir_file_name is:'%s'"%(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f'),dest_dir_file_name));
     LOGGER.info(" '%s', -------------- OMIM_mimTitles_dataset_tsv_file_name is:'%s'"%(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f'),OMIM_mimTitles_dataset_tsv_file_name));
     LOGGER.info(" '%s', -------------- ChEBI_drug_names_dataset_tsv_file_name is:'%s'"%(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f'),ChEBI_drug_names_dataset_tsv_file_name));
     LOGGER.info(" '%s', -------------- gene_info_tsv_file_name is:'%s'"%(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f'),gene_info_tsv_file_name));
+    LOGGER.info(" '%s', -------------- iembase_mapping_csv_file_name is:'%s'"%(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f'),iembase_mapping_csv_file_name));
     LOGGER.info(" '%s', -------------- count_of_workers is:'%s'"%(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f'),count_of_workers));
     process_list=[];
     queue_list=[];#this array will contain objects of multiprocessing.Queue (which is a near clone of queue.Queue)
@@ -2684,11 +2827,12 @@ if __name__ == '__main__':
                 ,working_dir_file_name
                 ,borg_ddiem_relational_ontology_graph_csv_file_name
                 ,src_clinical_log_dataset_csv_file_name
-                ,"%s"%(dest_rdf_statement_triple_dataset_dir_name)
+                ,"%s"%(dest_dir_file_name)
                 ,OMIM_mimTitles_dataset_tsv_file_name
                 ,drugbank_drug_names_dataset_tsv_file_name
                 ,ChEBI_drug_names_dataset_tsv_file_name
                 ,gene_info_tsv_file_name
+                ,iembase_mapping_csv_file_name
             );
             """
             t=threading.Thread(
