@@ -168,7 +168,7 @@ if __name__ == '__main__':
                     iembase_id_col = row[42]
                     if iembase_id_col.strip():
                         disease.set(DDIEM.iembaseAccessionNumber, Literal(iembase_id_col))
-                        disease.set(DDIEM.iembaseUrl, Literal('http://iembase.org/ app/#!/disorder/' + iembase_id_col))
+                        disease.set(DDIEM.iembaseUrl, Literal('http://iembase.org/app/#!/disorder/' + iembase_id_col))
                     disease.add(DC.identifier, Literal("https://www.omim.org/entry/" + disease_id_col))
                     disease_dict[disease_id_col] = disease
                 else :
