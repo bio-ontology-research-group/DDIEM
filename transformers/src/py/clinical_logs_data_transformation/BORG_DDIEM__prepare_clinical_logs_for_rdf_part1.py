@@ -14,8 +14,9 @@ Incooperate WHOCC drug names from "/local/data/development.minor/KAUST/BORG/raw_
 #export src_clinical_log_dataset_csv_file_name="../raw_data/2019-09-01/BORG_DDIEM__clinical_logs.2019-09-01.1348hrs.collapsed.csv";
 #export src_clinical_log_dataset_csv_file_name="../raw_data/2019-10-01/BORG_DDIEM__clinical_logs.2019-10-01.1418hrs.collapsed.csv";
 #export src_clinical_log_dataset_csv_file_name="../raw_data/2019-10-10/BORG_DDIEM__clinical_logs.2019-10-10.0958hrs.collapsed.csv";
-export src_clinical_log_dataset_csv_file_name="../raw_data/2019-10-16/BORG_DDIEM__clinical_logs.2019-10-16.0900hrs.collapsed.csv";
-export dest_dir_file_name="../raw_data/2019-10-16";
+#export src_clinical_log_dataset_csv_file_name="../raw_data/2019-10-16/BORG_DDIEM__clinical_logs.2019-10-16.0900hrs.collapsed.csv";
+export src_clinical_log_dataset_csv_file_name="../raw_data/2019-10-27/BORG_DDIEM__clinical_logs.2019-10-27.1048hrs.collapsed.csv";
+export dest_dir_file_name="../raw_data/2019-10-27";
 
 working_dir_file_name="/local/data/tmp/BORG_DDIEM/BORG_DDIEM__prepare_clinical_logs_for_rdf_part1.working_dir" \
  && count_of_workers=1 \
@@ -40,7 +41,7 @@ working_dir_file_name="/local/data/tmp/BORG_DDIEM/BORG_DDIEM__prepare_clinical_l
 ;
 
 
-date;time ls -tr /local/data/development.minor/KAUST/BORG/try1/../raw_data/2019-10-16/;date;
+date;time ls -tr /local/data/development.minor/KAUST/BORG/try1/../raw_data/2019-10-27/;date;
 
 
 date;time tail -n+2 /local/data/development.minor/KAUST/BORG/try1/../raw_data/2019-10-16/BORG_DDIEM__clinical_logs.2019-10-16.0900hrs.collapsed.gene_id__list.csv|head -n3|sed -r "s:^([^,]+),(.+)$:\2:g"|head -n3;date;
@@ -392,7 +393,9 @@ def package_gene_info(
             gene_id=row[1];
             gene_symbol=row[2];
             locus_tag=row[3];
-            if(gene_symbol.upper() in _gene_symbol__list):
+            
+            if(gene_symbol.upper() in _gene_symbol__list and taxon_id=="9606"):
+                gene_symbol_ordinal_position=_gene_symbol__list.index(gene_symbol.upper());
                 _gene_info__dict[gene_symbol.upper()]={
                     "record_ordinal_position":record_ordinal_position
                     ,"taxon_id":taxon_id
@@ -400,7 +403,8 @@ def package_gene_info(
                     ,"gene_symbol":gene_symbol
                     ,"locus_tag":locus_tag
                 };
-                _gene_id__list.append(gene_id);
+                #_gene_id__list.append(gene_id);
+                _gene_id__list.append("%s,%s,%d"%(gene_id,gene_symbol,gene_symbol_ordinal_position));
     src_dataset_csv_fh.close();
     src_dataset_csv_fh=None;
     _gene_id__list=list(set(_gene_id__list));
