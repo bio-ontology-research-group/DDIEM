@@ -1,0 +1,298 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://purl.obolibrary.org/obo/"
+     xml:base="http://purl.obolibrary.org/obo/"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://purl.obolibrary.org/obo/">
+        <owl:imports rdf:resource="https://github.com/OGMS/ogms/releases/tag/v2019-04-30"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/IAO_0000115 -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000115"/>
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/creator -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/creator"/>
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/date -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/date"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/DDIEM_0000002 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/DDIEM_0000002">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DDIEM_0000005"/>
+        <IAO_0000115 xml:lang="en">A therapeutic procedure in which a treatment directly or indirectly compensates for the loss or gain of activity of a genetically defective protein within the network or pathway of which that protein is a member. [PNS]</IAO_0000115>
+        <rdfs:label xml:lang="en">complementation therapy</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/DDIEM_0000004 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/DDIEM_0000004">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DDIEM_0000002"/>
+        <IAO_0000115 xml:lang="en">A therapeutic procedure in which a genetically defective protein is replaced by a canonical source of the same protein, genetically as in gene therapy, or by some other means of delivery, whose completion is hypothesized by a health care provider to eliminate a disorder or to alleviate the signs and symptoms of a disorder or pathological process. [PNS]</IAO_0000115>
+        <dc:creator>leechuck</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-07-15T10:19:07Z</dc:date>
+        <rdfs:label xml:lang="en">direct complementation of genetically defective protein</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/DDIEM_0000005 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/DDIEM_0000005">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/metabolic_disease_treatment"/>
+        <IAO_0000115 xml:lang="en">A therapeutic procedure which directly addresses the effects of a protein defect produced by the mutation, its structure, activity or end product. Therapies which target the local interaction or regulatory network or pathway in which the affected proten lies are also regarded as mechanistic therapies. [PNS]</IAO_0000115>
+        <dc:creator>leechuck</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-07-15T17:59:32Z</dc:date>
+        <rdfs:label xml:lang="en">mechanistically predicated therapeutic procedure</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/DDIEM_0000006 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/DDIEM_0000006">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DDIEM_0000002"/>
+        <IAO_0000115 xml:lang="en">A therapeutic procedure in which the normal product of a defective enzyme or protein is provided to alter its concentration or availability by delivery, stabilisation or modulation of turnover. [PNS]</IAO_0000115>
+        <dc:creator>leechuck</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-07-15T18:02:30Z</dc:date>
+        <rdfs:label xml:lang="en">compensatory complementation of a genetically defective protein</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/DDIEM_0000007 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/DDIEM_0000007">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DDIEM_0000002"/>
+        <IAO_0000115 xml:lang="en">A therapeutic procedure in which the composition or metabolic activity of the pathway or network in which the defective protein is found is modified, compensating for alteration of activity of that protein. [PNS]</IAO_0000115>
+        <dc:creator>leechuck</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-07-15T18:03:22Z</dc:date>
+        <rdfs:label xml:lang="en">functional complementation of a genetically defective protein</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/DDIEM_0000008 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/DDIEM_0000008">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DDIEM_0000005"/>
+        <IAO_0000115 xml:lang="en">A therapeutic procedure in which the diet is supplemented with or depleted in molecules  closely related to the products or end processes of a genetically defective protein which occur as natural products in the diet. [PNS]</IAO_0000115>
+        <dc:creator>leechuck</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-07-15T18:03:52Z</dc:date>
+        <rdfs:label xml:lang="en">dietary regime modification</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/DDIEM_0000009 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/DDIEM_0000009">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DDIEM_0000008"/>
+        <IAO_0000115 xml:lang="en">A therapeutic procedure in which the diet is depleted in molecules closely related to the products or end processes of a genetically defective protein which occur naturally in the diet. [PNS]</IAO_0000115>
+        <dc:creator>leechuck</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-07-15T18:04:24Z</dc:date>
+        <rdfs:label xml:lang="en">dietary exclusion</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/DDIEM_0000010 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/DDIEM_0000010">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DDIEM_0000008"/>
+        <IAO_0000115 xml:lang="en">A therapeutic procedure in which the diet is supplemented with foodstuffs containing molecules closely related to the products or end processes of a genetically defective protein, which occur naturally in the diet. [PNS]</IAO_0000115>
+        <dc:creator>leechuck</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-07-15T18:04:54Z</dc:date>
+        <rdfs:label xml:lang="en">dietary supplementation</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/DDIEM_0000011 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/DDIEM_0000011">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DDIEM_0000006"/>
+        <IAO_0000115 xml:lang="en">A therapeutic procedure involving enteral, parenteral or transdermal provision of small molecules closely related to the products or end processes of a genetically defective protein. [PNS]</IAO_0000115>
+        <dc:creator>leechuck</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-07-15T18:06:25Z</dc:date>
+        <rdfs:label xml:lang="en">metabolite replacement</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/DDIEM_0000012 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/DDIEM_0000012">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DDIEM_0000006"/>
+        <IAO_0000115 xml:lang="en">A therapeutic procedure in which  generally small molecules are delivered to the organism in order to to directly increase, decrease or alter the activity or stability of a genetically defective protein.[PNS]</IAO_0000115>
+        <dc:creator>leechuck</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-07-15T18:07:23Z</dc:date>
+        <rdfs:label xml:lang="en">activity modification of a genetically defective protein</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/DDIEM_0000013 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/DDIEM_0000013">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/metabolic_disease_treatment"/>
+        <IAO_0000115 xml:lang="en">A therapeutic procedure aimed at amelioration of one or more abnormal phenotypes generated as a consequence of a defective protein or process by a means unrelated to the immediate pathway or network environment of the defective protein. Generally working at the level of the tissue or overall organismal physiology. [PNS]</IAO_0000115>
+        <dc:creator>leechuck</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-07-15T18:07:49Z</dc:date>
+        <rdfs:label xml:lang="en">symptomatic treatment procedure</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/DDIEM_0000014 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/DDIEM_0000014">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/metabolic_disease_treatment"/>
+        <IAO_0000115 xml:lang="en">A therapeutic procedure to mitigate the immediate or future effects of the presence of a genetically defective protein which involves physical conditioning or anatomical modification.[PNS]</IAO_0000115>
+        <dc:creator>leechuck</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-07-15T18:08:30Z</dc:date>
+        <rdfs:label xml:lang="en">surgical or physical treatment procedure</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/DDIEM_0000015 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/DDIEM_0000015">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DDIEM_0000007"/>
+        <IAO_0000115 xml:lang="en">A therapeutic procedure that inhibits  a component of the pathway or network in which a genetically defective protein is found, compensating for alteration of activity of that protein.[PNS]</IAO_0000115>
+        <dc:creator>leechuck</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-07-15T18:08:56Z</dc:date>
+        <rdfs:label xml:lang="en">functional complementation of a defective protein by inhibition</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/DDIEM_0000016 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/DDIEM_0000016">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DDIEM_0000007"/>
+        <IAO_0000115 xml:lang="en">A therapeutic procedure that stimulates a component of the pathway or network in which a genetically defective defective protein is found, compensating for alteration of activity of that protein. [PNS]</IAO_0000115>
+        <dc:creator>leechuck</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-07-15T18:09:20Z</dc:date>
+        <rdfs:label xml:lang="en">functional complementation or a defective protein by stimulation</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OGMS_0000112 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000112"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/activity_modification_of_a_genetically_defective_protein_by_epigenetic_manipulation -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/activity_modification_of_a_genetically_defective_protein_by_epigenetic_manipulation">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DDIEM_0000012"/>
+        <IAO_0000115 xml:lang="en">Modulation of the level or specificity of expression of a genetically defective gene through modification of an epigenetic mark or process using chemical, biological or genetic means.</IAO_0000115>
+        <dc:creator>https://orcid.org/0000-0002-5111-7263</dc:creator>
+        <rdfs:label xml:lang="en">activity modification of a genetically defective protein by epigenetic manipulation</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/activity_modification_of_a_genetically_defective_protein_by_genome_editing -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/activity_modification_of_a_genetically_defective_protein_by_genome_editing">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DDIEM_0000012"/>
+        <IAO_0000115 xml:lang="en">Modulation of the activity or stability of a genetically defective gene through direct modification of one or both endogenous alleles of the gene, using genome editing techniques such as CRISPR/Cas</IAO_0000115>
+        <dc:creator>https://orcid.org/0000-0002-5111-7263</dc:creator>
+        <rdfs:label xml:lang="en">activity modification of a genetically defective protein by genome editing</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/activity_modification_of_a_genetically_defective_protein_by_transcriptional_or_translational_modification -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/activity_modification_of_a_genetically_defective_protein_by_transcriptional_or_translational_modification">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DDIEM_0000012"/>
+        <IAO_0000115>any procedure designed to suppress or mitigate the effects of a recessive genetic change in an abnormal protein by modification of its transcription or translation, excluding those strategies which involve epigenetic modification or modification of the germline or somatic genome sequence. For example an abnormal Vmax of reaction, alteration of KM, failure to respond to positive  feedback, acquisition of neofunction.</IAO_0000115>
+        <IAO_0000115>modification of the amount or stability of a transcript or the efficiency of translation of a transcript in order to reduce or increase the expression of a  genetically abnormal protein.</IAO_0000115>
+        <dc:creator>ORCID: 0000-0002-5111-7263</dc:creator>
+        <dc:date>3.10.19</dc:date>
+        <rdfs:label>activity_modification_of_a_genetically_defective_protein_by_transcriptional_or_translational_modification</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/direct_complementation_of_a_genetically_defective_protein_by_gene_therapy -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/direct_complementation_of_a_genetically_defective_protein_by_gene_therapy">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DDIEM_0000004"/>
+        <IAO_0000115 xml:lang="en">Insertion of one or more normal copies of a genetically defective gene into the genome of affected cells.</IAO_0000115>
+        <dc:creator>https://orcid.org/0000-0002-5111-7263</dc:creator>
+        <rdfs:label xml:lang="en">direct complementation of a genetically defective protein by gene therapy</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/metabolic_disease_treatment -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/metabolic_disease_treatment">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000112"/>
+        <IAO_0000115 xml:lang="en">a treatment strategy or plan which the clinician beleives will cure or ameliorate a disease caused by a deleterious genetic variation in a patient, affecting their metabolism. It may modify some or all of its signs or symptoms, or alter the prognosis and course of the disease, either by severity, timecourse or phenotypic quality.</IAO_0000115>
+        <dc:creator xml:lang="en">https://orcid.org/0000-0002-5111-7263</dc:creator>
+        <rdfs:label xml:lang="en">metabolic disease treatment</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/procedure_to_mitigate_dominant_effects_of_a_genetically_abnormal_protein -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/procedure_to_mitigate_dominant_effects_of_a_genetically_abnormal_protein">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DDIEM_0000005"/>
+        <IAO_0000115>a procedure to suppress or mitigate the effects of a dominant alteration in a genetically abnormal protein by reducing or suppressing  transcription or translation of the abnormal protein gene or rna, or destabilising or otherwise inhibiting an abnormally increased activity or neoactivity of the abnormal protein.</IAO_0000115>
+        <dc:creator>ORCID: 0000-0002-5111-7263</dc:creator>
+        <dc:date>4.10.19</dc:date>
+    </owl:Class>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+

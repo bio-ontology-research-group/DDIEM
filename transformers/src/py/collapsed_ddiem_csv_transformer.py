@@ -52,9 +52,9 @@ if __name__ == '__main__':
         ]
     )
 
-    DDIEM_SOURCE_FILE = "../../raw_data/2019-10-16/BORG_DDIEM__clinical_logs.2019-10-16.0900hrs.collapsed.clinical_logs_for_rdf_part1.csv"
-    DRUG_BANK_FILE = "../../raw_data/2019-10-16/BORG_DDIEM__clinical_logs.2019-10-16.0900hrs.collapsed.clinical_logs_for_rdf_part1.drugbank_drug_names.json"
-    CHEBI_FILE = "../../raw_data/2019-10-16/BORG_DDIEM__clinical_logs.2019-10-16.0900hrs.collapsed.clinical_logs_for_rdf_part1.ChEBI_drug_names.json"
+    DDIEM_SOURCE_FILE = "../../raw_data/2019-10-27/BORG_DDIEM__clinical_logs.2019-10-27.1048hrs.collapsed.clinical_logs_for_rdf_part1.csv"
+    DRUG_BANK_FILE = "../../raw_data/2019-10-27/BORG_DDIEM__clinical_logs.2019-10-27.1048hrs.collapsed.clinical_logs_for_rdf_part1.drugbank_drug_names.json"
+    CHEBI_FILE = "../../raw_data/2019-10-27/BORG_DDIEM__clinical_logs.2019-10-27.1048hrs.collapsed.clinical_logs_for_rdf_part1.ChEBI_drug_names.json"
     WHOCC_FILE = "../../raw_data/2019-09-01/WHOCC/BORG_DDIEM__clinical_logs.2019-09-01.1348hrs.collapsed.clinical_logs_for_rdf_part1.WHOCC_drug_names.json"
 
     drug_bank = {}
@@ -94,6 +94,7 @@ if __name__ == '__main__':
     store.bind("foaf", FOAF)
     store.bind("ddiem", DDIEM)
     store.bind("obo", OBO)
+    store.load("../../ontology/ddiem.owl")
 
     disease_dict = {}
     gene_dict = {}
@@ -149,7 +150,7 @@ if __name__ == '__main__':
 
                 drug_comb_col = (row[23].strip() if row[23] else '') + (row[24].strip() if row[24] else '') + (row[25].strip() if row[25] else '') + (row[27].strip() if row[27] else '') + (row[28].strip() if row[28] else '') + (row[29].strip() if row[29] else '')
                 print("iembase number:" + row[42]) if ',' in row[42] else None
-                # print("drug_comb_col:" + drug_comb_col)
+                print("drug_comb_col:" + drug_comb_col)
                 if drug_comb_col.strip():
                     use_drug_name = False
                 
@@ -338,4 +339,4 @@ if __name__ == '__main__':
         print("Processed " + str(line_count) + " lines.")
 
     # Serialize the file to rdf/xml representation
-    store.serialize("../../raw_data/2019-10-16/ddiem.rdf", format="pretty-xml", max_depth=3)
+    store.serialize("../../raw_data/2019-10-27/ddiem.rdf", format="pretty-xml", max_depth=3)
