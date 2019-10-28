@@ -5,7 +5,7 @@
 
 body {
     background-color:  #f4f5fb !important;
-    font-family: Times New Roman !important;
+    font-family: AtlasGrotesk,sans-serif !important;
 }
 
 .content {
@@ -80,4 +80,14 @@ body {
     background: #fafafa;
     box-shadow: 0 0 8px 0 rgba(0,0,0,.2);
     margin-bottom: 20px;
+}
+
+.ddiem_logo {
+    height: 40px;
+    width: 50px;
+}
+
+.ddiem_logo_text{
+    color: #0000FF !important;
+    font-weight: 500;
 }
