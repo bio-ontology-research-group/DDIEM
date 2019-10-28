@@ -154,7 +154,7 @@ if __name__ == '__main__':
                 if drug_comb_col.strip():
                     use_drug_name = False
                 
-                drug_name = row[17]
+                drug_name = row[8]
                 if (not drug_comb_col.strip() or drug_comb_col.strip() == 'NA') and drug_name.strip():
                     drug_comb_col = drug_name
                     use_drug_name = True
