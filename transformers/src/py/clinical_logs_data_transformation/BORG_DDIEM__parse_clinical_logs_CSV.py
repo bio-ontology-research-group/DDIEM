@@ -159,7 +159,7 @@ This information will help me know how to
 
 
 	""";
-	trickle_down_eligible_field__list=[2,3,5,6,7,8,10,22,23,24,25,26,27,28,29,30,31,32];
+	trickle_down_eligible_field__list=[2,3,5,6,7,8,9,10,22,23,24,25,26,27,28,29,30,31,32];
 	#trickle_down_eligible_field__list=[2,3,5,6,7];
 	
 	src_dataset_csv_file_name=_srcCSVFileName;
@@ -197,73 +197,82 @@ This information will help me know how to
 	for row in src_dataset_csv_reader:
 		row_cnt+=1;
 		del row2[:];
-		
-		"""
-		Here we test to see if the drug value in the new row matches that of the preceeding row.
-		If it does not match we reset the stored values of the fields right of it. 
-		"""
-		drug_ID=row[11].strip();
-		if(drug_ID==drug_ID__previous):
-			pass;
-			for i in range(9,32+1):
-				populated_fields__dict[i]=None;#
-			
-		"""
-		Here we test if the drug name field is non empty.
-		If it is empty we reset the stored values of the fields to the right of it.
-		"""
-		drug_name=row[8].strip();
-		if(drug_name==""):
-			for i in range(8,32+1):
-				populated_fields__dict[i]=None;
-				
-		for i, val in enumerate(row):
-			row[i]=row[i].strip();
+		if(1==1 or row_cnt<5):
 			"""
-			For each non-trickle-down-eligible-field clean out its previous value.
+			Here we test to see if the drug value in the new row matches that of the preceeding row.
+			If it does not match we reset the stored values of the fields right of it. 
 			"""
-			if(i in trickle_down_eligible_field__list):
+			drug_ID=row[10].strip();
+			#LOGGER.info("--------------------------------------------------------------------------drug_ID is '%s'"%(drug_ID));
+			if(drug_ID==drug_ID__previous):
 				pass;
-			else:
-				populated_fields__dict[i]=None;
-			"""
-			Test if the field is non-empty, if it is inject this value into the populated_fields__dict dictionary, use the field ordinal position as the key and the field value as the value.
-			"""
-			if(len(row[i])>0):
-				"""
-				Inject this value into the populated_fields__dict dictionary.
-				"""
-				populated_fields__dict[i]=row[i];
-			
-		LOGGER.info("row_cnt is:%d, row is:'%s', populated_fields__dict is:'%s'"%(row_cnt,json.dumps(row,indent=4),json.dumps(populated_fields__dict,indent=4)));
-		if(1==1):
-			cnt_of_fields=len(row);
-			if(cnt_of_fields__max<cnt_of_fields):
-				cnt_of_fields__max=cnt_of_fields;
-			"""
-			Now loop through the dictionary using values from 0 till cnt_of_fields__max-1 as key.
-			write out these values into an array which will be printed out to file.
-			"""
-			i=0;
-			while i<cnt_of_fields__max:
-				if(i in populated_fields__dict):
-					row2.append(populated_fields__dict[i]);
-				else:
-					row2.append("");
-				i+=1;
-			"""
-			If the current row is the header row, reset the populated_fields__dict dictionary and obtain the values to write to the destination CSV from the row list.
-			"""
-			if(row_cnt<=2):
-				row2=row[:];
-				"""
-				These are header rows, let's reset the dictionary.
-				"""
-				populated_fields__dict={};
+				for i in range(10,33+1):
+					pass;
+					#populated_fields__dict[i]=None;#
 				
-			dest_dataset_csv_writer.writerow(row2);
-			drug_ID__previous=row2[11];
-			del row2[0:len(row2)-1];
+			"""
+			Here we test if the drug name field is non empty.
+			If it is empty we reset the stored values of the fields to the right of it.
+			"""
+			drug_name=row[9].strip();
+			if(drug_name.upper()=="No treatment is available in DDIEM".upper()):
+				pass;
+				#drug_name="";
+				for i in range(10,33+1):
+					pass;
+					populated_fields__dict[i]=None;
+			elif(drug_name==""):
+				for i in range(9,33+1):
+					pass;
+					#populated_fields__dict[i]=None;
+					
+			for i, val in enumerate(row):
+				row[i]=row[i].strip();
+				"""
+				For each non-trickle-down-eligible-field clean out its previous value.
+				"""
+				if(i in trickle_down_eligible_field__list):
+					pass;
+				else:
+					populated_fields__dict[i]=None;
+				"""
+				Test if the field is non-empty, if it is inject this value into the populated_fields__dict dictionary, use the field ordinal position as the key and the field value as the value.
+				"""
+				if(len(row[i])>0):
+					"""
+					Inject this value into the populated_fields__dict dictionary.
+					"""
+					populated_fields__dict[i]=row[i];
+				
+			#LOGGER.info("row_cnt is:%d, row is:'%s', populated_fields__dict is:'%s'"%(row_cnt,json.dumps(row,indent=4),json.dumps(populated_fields__dict,indent=4)));
+			if(1==1):
+				cnt_of_fields=len(row);
+				if(cnt_of_fields__max<cnt_of_fields):
+					cnt_of_fields__max=cnt_of_fields;
+				"""
+				Now loop through the dictionary using values from 0 till cnt_of_fields__max-1 as key.
+				write out these values into an array which will be printed out to file.
+				"""
+				i=0;
+				while i<cnt_of_fields__max:
+					if(i in populated_fields__dict):
+						row2.append(populated_fields__dict[i]);
+					else:
+						row2.append("");
+					i+=1;
+				"""
+				If the current row is the header row, reset the populated_fields__dict dictionary and obtain the values to write to the destination CSV from the row list.
+				"""
+				if(row_cnt<=2):
+					row2=row[:];
+					"""
+					These are header rows, let's reset the dictionary.
+					"""
+					populated_fields__dict={};
+					
+				dest_dataset_csv_writer.writerow(row2);
+				drug_ID__previous=row2[11];
+				del row2[0:len(row2)-1];
 	dest_dataset_csv_fh.close();
 	src_dataset_csv_fh.close();
 	
