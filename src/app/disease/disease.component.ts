@@ -108,8 +108,7 @@ export class DiseaseComponent implements OnInit {
     var drugAlt = _.findWhere(this.drugs, {'@id': drugAltIri})
     if (drugAlt) {
       var drugs = _.map(
-        _.filter(
-          _.keys(drugAlt), (key) => key.includes('rdf:_')), (key) => {
+        _.filter( _.keys(drugAlt), (key) => key.includes('rdf:_')), (key) => {
             return _.findWhere(this.drugs, {'@id': drugAlt[key][0]['@id']})
           });
       return drugs;

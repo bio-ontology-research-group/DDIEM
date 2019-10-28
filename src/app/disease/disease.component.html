@@ -107,7 +107,7 @@
                 </td>
                 <td [ngClass]="{'w-25': isMutationExists, 'w-30': !isMutationExists}">
                   <span *ngIf="phenotype['@id']">
-                    <button type="button" class="btn btn-link p-0" (click)="openInNewTab(phenotypeUrl(phenotype['@id']))"
+                    <button type="button" class="btn btn-link p-0" (click)="openInNewTab(phenotypeUrl(phenotype['@id']))" [disabled]="phenotypeUrl(phenotype['@id']) ? false : true"
                     [ngbTooltip]="phenotypeRes(phenotype['@id'])['rdfs:comment'] ? phenotypeRes(phenotype['@id'])['rdfs:comment'][0]['@value'] : ''">
                       {{phenotypeRes(phenotype['@id'])['rdfs:label'][0]['@value']}}
                     </button>
@@ -117,7 +117,7 @@
                 <td scope="col" *ngIf="isMutationExists">{{procedure['obo:RO_0003304'] ? procedure['obo:RO_0003304'][0]['@value'] : ''}}</td>
                 <td scope="col" *ngIf="isMutationExists">{{procedure['dc:failedToContributeToCondition'] ? procedure['dc:failedToContributeToCondition'][0]['@value'] : ''}}</td>
                 <td >
-                    <div ngbDropdown class="d-inline-block">
+                    <div ngbDropdown class="d-inline-block" *ngIf="procedure['dc:provenance'] && procedure['dc:provenance'].length > 0">
                       <button class="btn btn-link p-0 grid-link" id="references" ngbDropdownToggle>References</button>
                       <div ngbDropdownMenu>
                         <button ngbDropdownItem *ngFor="let reference of procedure['dc:provenance']" 
