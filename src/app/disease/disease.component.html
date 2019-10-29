@@ -79,16 +79,16 @@
               <ng-container *ngFor="let procedure of procedures">
               <tr *ngFor="let phenotype of (procedure['obo:RO_0002212'] && procedure['obo:RO_0002212'].length > 0 ? procedure['obo:RO_0002212'] : [{}]); let phenotypeIndex = index">
                 <td [ngClass]="{'w-25': isMutationExists, 'w-30': !isMutationExists}" [attr.rowspan] = "procedure['obo:RO_0002212'] ? procedure['obo:RO_0002212'].length : 1"  *ngIf="phenotypeIndex === 0">
-                  <span *ngFor="let drugAnd of procedure['obo:RO_0000057']; let index = index">
+                  <span *ngFor="let drugAnd of procedure['obo:RO_0000057']; let andIndex = index">
                     <span *ngFor="let drugOr of findAltList(drugAnd['@id']); let orIndex = index">
               
                       <button type="button" class="btn btn-link p-0" [ngbTooltip]="procedure['rdfs:comment'] ? procedure['rdfs:comment'][0]['@value'] : ''"
-                        (click)="openInNewTab(drugOr['ddiem:url'] ? drugOr['ddiem:url']['0']['@value']: '')">
+                        (click)="openInNewTab(drugOr['ddiem:url'] ? drugOr['ddiem:url']['0']['@value']: '')" [disabled]="drugOr['ddiem:url'] ? false : true" >
                           {{drugOr['rdfs:label']['0']['@value']}}
                       </button>
                       <span *ngIf="orIndex !== findAltList(drugAnd['@id']).length - 1" class="font-weight-bold"> or </span> 
                     </span>
-                    <span *ngIf="index !== procedure['obo:RO_0000057'].length - 1 && findAltList(drugAnd['@id']).length > 0" class="font-weight-bold"> and </span>
+                    <span *ngIf="andIndex !== procedure['obo:RO_0000057'].length - 1 && findAltList(drugAnd['@id']).length > 0" class="font-weight-bold"> and </span>
                   </span> 
                   (<button type="button" class="btn btn-link p-0" ngbTooltip="Number of trials/papers that describe treatment">
                    <strong>{{procedure['dc:provenance'] ?  procedure['dc:provenance'].length : '0'}}</strong></button>)

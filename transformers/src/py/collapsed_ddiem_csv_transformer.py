@@ -150,7 +150,7 @@ if __name__ == '__main__':
 
                 drug_comb_col = (row[23].strip() if row[23] else '') + (row[24].strip() if row[24] else '') + (row[25].strip() if row[25] else '') + (row[27].strip() if row[27] else '') + (row[28].strip() if row[28] else '') + (row[29].strip() if row[29] else '')
                 print("iembase number:" + row[42]) if ',' in row[42] else None
-                print("drug_comb_col:" + drug_comb_col)
+                # print("drug_comb_col:" + drug_comb_col)
                 if drug_comb_col.strip():
                     use_drug_name = False
                 
@@ -237,7 +237,7 @@ if __name__ == '__main__':
                 if encrypt_string(procedure_id) not in procedure_dict :
                     procedure = store.resource(str(DDIEM.uri) + str(uuid.uuid4()))
                     procedure.set(RDF.type, DDIEM.TheraputicProcedure)
-                    procedure.set(RDFS.comment, Literal(row[18]))
+                    procedure.set(RDFS.comment, Literal(row[17]))
                     procedure.set(OBO.RO_0002606, disease)
                     if procedure_type:
                         procedure.set(RDFS.subClassOf, procedure_type) 
@@ -263,23 +263,24 @@ if __name__ == '__main__':
                 #drug ored columns
                 drug_container = None
                 ored_drug_comb_col =(row[23].strip() if row[23] else '') + (row[24].strip() if row[24] else '') + (row[25].strip() if row[25] else '')
-                if ored_drug_comb_col.strip() and encrypt_string(ored_drug_comb_col.strip()) in drug_container_dict :
-                    drug_container =  drug_container_dict[ encrypt_string(ored_drug_comb_col.strip())]
-                    procedure_dict[encrypt_string(procedure_id)].add(OBO.RO_0000057, drug_container)
-                else :
-                    drug_container = store.resource(str(DDIEM.uri) + str(uuid.uuid4()))
-                    drug_container.add(RDF.type, RDF.Alt)
-                    drug_container_dict[ encrypt_string(ored_drug_comb_col.strip())] = drug_container
-                    procedure_dict[encrypt_string(procedure_id)].add(OBO.RO_0000057, drug_container)
+                if ored_drug_comb_col.strip():
+                    if encrypt_string(ored_drug_comb_col.strip()) in drug_container_dict :
+                        drug_container =  drug_container_dict[ encrypt_string(ored_drug_comb_col.strip())]
+                        procedure_dict[encrypt_string(procedure_id)].add(OBO.RO_0000057, drug_container)
+                    else :
+                        drug_container = store.resource(str(DDIEM.uri) + str(uuid.uuid4()))
+                        drug_container.add(RDF.type, RDF.Alt)
+                        drug_container_dict[ encrypt_string(ored_drug_comb_col.strip())] = drug_container
+                        procedure_dict[encrypt_string(procedure_id)].add(OBO.RO_0000057, drug_container)
 
-                for drug_col in row[23:26]:
-                    if not drug_col.strip() : 
-                        continue
-                    
-                    for item in drug_col.split(','):
-                        drug_res = drug(drug_id=item.strip())
-                        drug_res.add(OBO.RO_0000056, procedure_dict[encrypt_string(procedure_id)])
-                        drug_container.add(RDF.li, drug_res) 
+                    for drug_col in row[23:26]:
+                        if not drug_col.strip() : 
+                            continue
+                        
+                        for item in drug_col.split(','):
+                            drug_res = drug(drug_id=item.strip())
+                            drug_res.add(OBO.RO_0000056, procedure_dict[encrypt_string(procedure_id)])
+                            drug_container.add(RDF.li, drug_res) 
                 
                 #drug and columns
                 for drug_col in row[27:30]:
