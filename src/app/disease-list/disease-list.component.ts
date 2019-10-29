@@ -15,6 +15,7 @@ export class DiseaseListComponent implements OnInit {
   diseaseList: any = [];
   diseaseLinksList: any = [];
   drugIri: any;
+  modeIri: any;
 
   constructor(private router: Router,
               private titlecasePipe:TitleCasePipe,
@@ -22,38 +23,45 @@ export class DiseaseListComponent implements OnInit {
               private service: DiseaseService) { 
     
     this.route.params.subscribe( params => {
-      console.log("param:", params.iri)
-      if (params.iri) {
-        this.drugIri = decodeURIComponent(params.iri);
-        this.service.listDiseasesByDrug(params.iri).subscribe(data => { 
-          this.diseaseLinksList = data;
-        });
+      this.drugIri = null;
+      this.modeIri = null;
+      if (params.iri && params.type) {
+        if (decodeURIComponent(params.type) === 'http://ddiem.phenomebrowser.net/Drug') {
+          this.drugIri = decodeURIComponent(params.iri);
+          this.service.listDiseasesByDrug(params.iri).subscribe(data => { 
+            this.diseaseLinksList = data;
+          });
+        } else {
+          this.modeIri = decodeURIComponent(params.iri);
+          this.service.listDiseasesByMode(params.iri).subscribe(data => { 
+            this.diseaseLinksList = data;
+          });
+        }
       }
     });
   }
 
   ngOnInit() {
-    console.log("drugIri:", this.drugIri)
-    this.service.listDiseasesAndDrugs().subscribe(data => {
+    this.service.listLookupResoruces().subscribe(data => {
       this.diseaseList = data;
-      if (!this.drugIri) {
+      if (!this.drugIri && !this.modeIri) {
         this.diseaseLinksList = _.filter(data, (obj) => obj.type.value === 'http://ddiem.phenomebrowser.net/Disease');
       }
     })
   }
 
-  onDiseaseSelect(diseaseOrDrug){
-    console.log(diseaseOrDrug.resource)
-    if (diseaseOrDrug.type.value === 'http://ddiem.phenomebrowser.net/Disease') {
-      this.router.navigate(['/disease', encodeURIComponent(diseaseOrDrug.resource.value)]);
+  onDiseaseSelect(lookupResource){
+    console.log(lookupResource.resource)
+    if (lookupResource.type.value === 'http://ddiem.phenomebrowser.net/Disease') {
+      this.router.navigate(['/disease', encodeURIComponent(lookupResource.resource.value)]);
     } else {
-      this.router.navigate(['/disease-list-by-drug', encodeURIComponent(diseaseOrDrug.resource.value)]);
+      this.router.navigate(['/disease-list-by-resource', encodeURIComponent(lookupResource.resource.value), encodeURIComponent(lookupResource.type.value)]);
     }
   }
 
-  onDiseaseSelectNewTab(diseaseOrDrug) {
-    console.log(diseaseOrDrug.resource)
-    this.router.navigate([]).then(result => {  window.open('/disease/' + encodeURIComponent(encodeURIComponent(diseaseOrDrug.resource.value)), '_blank'); });
+  onDiseaseSelectNewTab(lookupResource) {
+    console.log(lookupResource.resource)
+    this.router.navigate([]).then(result => {  window.open('/disease/' + encodeURIComponent(encodeURIComponent(lookupResource.resource.value)), '_blank'); });
   }
 
   toTitleCase(text){

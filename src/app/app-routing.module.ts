@@ -10,7 +10,7 @@ const routes: Routes = [
   {path: '',component: HomeComponent},  
   {path: 'about',component: AboutComponent},  
   {path: 'disease-list',component: DiseaseListComponent},
-  {path: 'disease-list-by-drug/:iri',component: DiseaseListComponent},
+  {path: 'disease-list-by-resource/:iri/:type',component: DiseaseListComponent},
   {path: 'disease/:iri',component: DiseaseComponent},
   {path: 'isparql',component: SparqlComponent}
 ];

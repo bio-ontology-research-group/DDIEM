@@ -38,17 +38,17 @@ export class DiseaseComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.service.listDiseasesAndDrugs().subscribe(data => {
+    this.service.listLookupResoruces().subscribe(data => {
       this.diseaseList = data;
     })
   }
 
-  onDiseaseSelect(diseaseOrDrug){
-    console.log(diseaseOrDrug.resource)
-    if (diseaseOrDrug.type.value === 'http://ddiem.phenomebrowser.net/Disease') {
-      this.router.navigate(['/disease', encodeURIComponent(diseaseOrDrug.resource.value)]);
-    } else {
-      this.router.navigate(['/disease-list-by-drug', encodeURIComponent(diseaseOrDrug.resource.value)]);
+  onDiseaseSelect(lookupResource){
+    console.log(lookupResource.resource)
+    if (lookupResource.type.value === 'http://ddiem.phenomebrowser.net/Disease') {
+      this.router.navigate(['/disease', encodeURIComponent(lookupResource.resource.value)]);
+    }  else {
+      this.router.navigate(['/disease-list-by-resource', encodeURIComponent(lookupResource.resource.value), encodeURIComponent(lookupResource.type.value)]);
     }
   }
 

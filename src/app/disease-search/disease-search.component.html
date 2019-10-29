@@ -1,14 +1,20 @@
 <div class="container-fluid p-1 shadow-base mt-3">
   <div layout="row">
-    <div class="form-group has-search">
+    <div class="form-group has-search form-inline ml-3 mt-3">
       <span class="fa fa-search form-control-feedback"></span>
-      <input id="diseaseSearch" flex="90" type="text" class="form-control" [(ngModel)]="disease"
+      <input id="diseaseSearch" type="text" class="form-control col-9" [(ngModel)]="disease"
         [inputFormatter]="formatter" [ngbTypeahead]="search" placeholder="Search" [resultTemplate]="rt"
         (selectItem)="onDiseaseSelect($event)"/>
+      <select class="form-control col-2 pl-1 ml-3" (change)="onSearchModeSelect($event)" [value]=''>
+        <option value="">All Resources</option>
+        <option value="http://ddiem.phenomebrowser.net/Disease">Disease</option>
+        <option value="http://ddiem.phenomebrowser.net/Drug">Drug</option>
+        <option value="http://www.w3.org/2002/07/owl#Class">Mode of action</option>
+    </select>
     </div>
   </div>
 </div>
 <ng-template #rt let-r="result" let-t="term">
-  <span class="font-weight-bold">{{r.type.value.substring(r.type.value.lastIndexOf("/") + 1)}}: </span>
+  <span class="font-weight-bold">{{['Drug', 'Disease'].indexOf(r.type.value.substring(r.type.value.lastIndexOf("/") + 1)) > -1 ?  r.type.value.substring(r.type.value.lastIndexOf("/") + 1) : 'Mode'}}: </span>
   <ngb-highlight [result]="toTitleCase(r.label.value)" [term]="t"></ngb-highlight>
 </ng-template> 

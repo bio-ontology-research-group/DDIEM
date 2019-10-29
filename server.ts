@@ -27,16 +27,17 @@ export class DiseaseDao {
       this.fetcher = new SparqlEndpointFetcher();
   }
 
-  async listDiseasesAndDrugs() {
+  async listLookupResources() {
       const diseaseListQuery = `
       PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
       PREFIX ddiem: <http://ddiem.phenomebrowser.net/>
       PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX owl: <http://www.w3.org/2002/07/owl#>
       
       SELECT ?resource ?label ?type 
       FROM <http://www.cbrc.kaust.edu.sa/DDIEM>
       WHERE {
-        VALUES ?type { ddiem:Disease ddiem:Drug } 
+        VALUES ?type { ddiem:Disease ddiem:Drug owl:Class} 
         ?resource rdf:type ?type . 
         ?resource rdfs:label ?label
       } ORDER BY ASC(?label) `;
@@ -62,6 +63,28 @@ export class DiseaseDao {
           rdfs:label ?label .
     } ORDER BY ASC(?label) `;
       return await this.fetcher.fetchBindings(this.serverUrl, diseaseListQuery);
+    
+  }
+
+  async listDiseasesByMode(iri: any) {
+    console.log("modeId:" + iri);
+    const diseaseListQuery = `PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX ddiem: <http://ddiem.phenomebrowser.net/>
+    PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+    PREFIX obo: <http://purl.obolibrary.org/obo/>
+    PREFIX owl: <http://www.w3.org/2002/07/owl#>
+    
+    SELECT ?resource ?label ?modelLabel
+    FROM <http://www.cbrc.kaust.edu.sa/DDIEM>
+    WHERE {
+      <${iri}> rdf:type owl:Class;
+          rdfs:label ?modelLabel .
+      ?procedure rdfs:subClassOf <${iri}>;
+                 obo:RO_0002606 ?resource .
+      ?resource rdf:type ddiem:Disease; 
+          rdfs:label ?label .
+    } ORDER BY ASC(?label) `;
+    return await this.fetcher.fetchBindings(this.serverUrl, diseaseListQuery);
     
   }
 
@@ -223,8 +246,8 @@ app.get('/sparql', async (req: Request, res:Response) => {
   apiProxy.web(req, res, {target: sparqlEndpoint});
 });
 
-app.get('/api/diseaseordrug', async (req: Request, res:Response) => {
-  const bindingsStream = await diseaseDao.listDiseasesAndDrugs();
+app.get('/api/_list_lookup_resources', async (req: Request, res:Response) => {
+  const bindingsStream = await diseaseDao.listLookupResources();
   let obs = [];
   bindingsStream.on('data', function(bindings) {
     obs.push(bindings);
@@ -235,8 +258,14 @@ app.get('/api/diseaseordrug', async (req: Request, res:Response) => {
 });
 
 app.get('/api/disease', async (req: Request, res:Response) => {
-  var drugId = req.query.drug_id
-  const bindingsStream = await diseaseDao.listDiseasesByDrug(drugId);
+  var drugId = req.query.drug_id;
+  var modeId = req.query.mode_id;
+  var bindingsStream;
+  if (drugId) {
+    bindingsStream = await diseaseDao.listDiseasesByDrug(drugId);
+  } else {
+    bindingsStream = await diseaseDao.listDiseasesByMode(modeId);
+  }
   let obs = [];
   bindingsStream.on('data', function(bindings) {
     obs.push(bindings);

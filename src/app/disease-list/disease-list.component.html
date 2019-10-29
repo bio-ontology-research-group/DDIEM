@@ -11,10 +11,21 @@
           <span *ngIf="!diseaseLinksList[0].drugUrl">{{diseaseLinksList[0].drugLabel.value}}</span>
     </div>
   </div>
+  <div class="row" *ngIf="modeIri">
+    <div class="col-md-">
+      <strong>Mode of action name:</strong>
+    </div>
+    <div class="col-md-9">
+          <button type="button" class="btn btn-link p-0" (click)="openInNewTab(modeIri)">
+              {{diseaseLinksList[0]?.modeLabel.value}}
+          </button>
+    </div>
+  </div>
   <div class="row mt-3">
     <div class="col-sm">
-      <p *ngIf="!drugIri" >Available Diseases:</p>
+      <p *ngIf="!drugIri && !modeIri" >Available Diseases:</p>
       <p *ngIf="drugIri"> List of diseases treated by procedures that included this drug: </p>
+      <p *ngIf="modeIri"> List of diseases treated by procedures that have this mode of action: </p>
       <ul>
         <li *ngFor="let disease of diseaseLinksList; let index = index">
             <button type="button" class="btn btn-link" (click)="onDiseaseSelectNewTab(disease)"><ins>{{toTitleCase(disease.label.value)}}</ins></button>
