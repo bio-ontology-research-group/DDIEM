@@ -33,6 +33,7 @@ working_dir_file_name="/local/data/tmp/BORG_DDIEM/BORG_DDIEM__prepare_clinical_l
  --ChEBI_drug_names_dataset_tsv_file_name="../raw_data/2019-08-04/ChEBI/names.tsv" \
  --gene_info_tsv_file_name="../raw_data/2019-08-05/ncbi_gene/gene_info" \
  --iembase_mapping_csv_file_name="../raw_data/2019-10-17/disorderID_omimID.csv" \
+ --gene_id__2__uniprotkb_id_tsv_file_name="../raw_data/2019-10-29/gene_id__2__uniprotkb_id.tab" \
  -d"${dest_dir_file_name}" \
  --count_of_workers=${count_of_workers} \
  2>&1|tee "${log_file_name}" \
@@ -111,6 +112,7 @@ class BORG_DDIEM__prepare_clinical_logs_for_rdf_part1():
         ,_ChEBI_drug_names_dataset_tsv_file_name
         ,_gene_info_tsv_file_name
         ,_iembase_mapping_csv_file_name
+        ,_gene_id__2__uniprotkb_id_tsv_file_name
     ):
         doc="""
         an object if this class performs the tranformation of XML to JSON.
@@ -136,6 +138,7 @@ class BORG_DDIEM__prepare_clinical_logs_for_rdf_part1():
         self._ChEBI_drug_names_dataset_tsv_file_name=_ChEBI_drug_names_dataset_tsv_file_name;
         self._gene_info_tsv_file_name=_gene_info_tsv_file_name;
         self._iembase_mapping_csv_file_name=_iembase_mapping_csv_file_name;
+        self._gene_id__2__uniprotkb_id_tsv_file_name=_gene_id__2__uniprotkb_id_tsv_file_name;
         self._processing_outcome__dict=None;
         
         try:
@@ -160,6 +163,11 @@ class BORG_DDIEM__prepare_clinical_logs_for_rdf_part1():
             if(_iembase_mapping_csv_file_name==None or len(_iembase_mapping_csv_file_name.strip())<0):
                 pass;
                 raise ValueError("_iembase_mapping_csv_file_name is empty the supplied value is '%s'"%(_iembase_mapping_csv_file_name));
+            if(_gene_id__2__uniprotkb_id_tsv_file_name==None or len(_gene_id__2__uniprotkb_id_tsv_file_name.strip())<0):
+                pass;
+                raise ValueError("_gene_id__2__uniprotkb_id_tsv_file_name is empty the supplied value is '%s'"%(_gene_id__2__uniprotkb_id_tsv_file_name));
+                
+                
         except ValueError as error:
             #see "/local/data/BCL_FE_ABI3730_sequencer_plate_data_generator_jobs_data/2018/2018-09/2018-09-20/2018-09-20_171025_103.processing_outcome.json"
             #LOGGER.info(" '%s', -------------- cmd is:'%s', row_cnt is:%d"%(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f'),cmd,row_cnt));
@@ -202,6 +210,14 @@ class BORG_DDIEM__prepare_clinical_logs_for_rdf_part1():
         self._distinct_ids__list__dict["gene_id__list"]=self._gene_id__list;
         #LOGGER.info("self._distinct_ids__list__dict[\"gene_symbol__list\"] is:'%s'"%(json.dumps(self._distinct_ids__list__dict["gene_symbol__list"],indent=4)));
         #LOGGER.info("self._gene_info__dict is:'%s'"%(json.dumps(self._gene_info__dict,indent=4)));
+        
+        self._gene_id__2__uniprotkb_id__dict, self._uniprotkb_id__list=package_gene_id__2__uniprotkb_id(
+            self._gene_id__2__uniprotkb_id_tsv_file_name
+            ,self._distinct_ids__list__dict["gene_id__list"]
+        );
+        self._distinct_ids__list__dict["uniprotkb_id__list"]=self._uniprotkb_id__list;
+        #LOGGER.info("self._distinct_ids__list__dict[\"uniprotkb_id__list\"] is:'%s'"%(json.dumps(self._distinct_ids__list__dict["uniprotkb_id__list"],indent=4)));
+        #LOGGER.info("self._gene_id__2__uniprotkb_id__dict is:'%s'"%(json.dumps(self._gene_id__2__uniprotkb_id__dict,indent=4)));
         
         self._DDIEM_drugbank_drug_name__dict=package_drugbank_drug_names(
             self._drugbank_drug_names_dataset_tsv_file_name
@@ -271,6 +287,7 @@ class BORG_DDIEM__prepare_clinical_logs_for_rdf_part1():
                 ,self._OMIM_mimTitles_dataset_tsv_file_name
                 ,self._gene_info__dict
                 ,self._omim_id__dict
+                ,self._gene_id__2__uniprotkb_id__dict
             );
             LOGGER.info("self._processing_outcome__dict is:'%s'"%(json.dumps(self._processing_outcome__dict,indent=4)));
     def get_processing_outcome(self):
@@ -401,10 +418,11 @@ def package_gene_info(
                     ,"taxon_id":taxon_id
                     ,"gene_id":gene_id
                     ,"gene_symbol":gene_symbol
+                    ,"gene_symbol_ordinal_position":gene_symbol_ordinal_position
                     ,"locus_tag":locus_tag
                 };
-                #_gene_id__list.append(gene_id);
-                _gene_id__list.append("%s,%s,%d"%(gene_id,gene_symbol,gene_symbol_ordinal_position));
+                _gene_id__list.append(gene_id);
+                #_gene_id__list.append("%s,%s,%d"%(gene_id,gene_symbol,gene_symbol_ordinal_position));
     src_dataset_csv_fh.close();
     src_dataset_csv_fh=None;
     _gene_id__list=list(set(_gene_id__list));
@@ -412,6 +430,65 @@ def package_gene_info(
     LOGGER.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>_gene_id__list is:'%s'"%(json.dumps(_gene_id__list,indent=4)));
     LOGGER.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>_gene_info__dict is:'%s'"%(json.dumps(_gene_info__dict,indent=4)));
     return (_gene_info__dict, _gene_id__list);
+
+def package_gene_id__2__uniprotkb_id(
+    _gene_id__2__uniprotkb_id_tsv_file_name
+    ,_gene_id__list
+):
+    pass;
+    _gene_id__2__uniprotkb_id__dict={};
+    _uniprotkb_id__list=[];
+    
+    src_dataset_csv_fh=None;
+    src_dataset_csv_reader=None;
+    src_dataset_csv_fh=open(_gene_id__2__uniprotkb_id_tsv_file_name,"r");
+    src_dataset_csv_reader=csv.reader(
+        src_dataset_csv_fh
+        ,delimiter="\t"
+        ,quotechar='"'
+        ,quoting=csv.QUOTE_MINIMAL
+    );
+    cnt_of_fields__max=0;
+    row2=[];
+    cnt_of_fields=0;
+    row_cnt=0;
+    src_dataset_csv_fh.seek(0);
+    for row in src_dataset_csv_reader:
+        row_cnt+=1;
+        #del row2[:];
+        for i, val in enumerate(row):
+            if(row[i]==None):
+                row[i]="";
+            else:
+                row[i]=row[i].strip();
+            if(row[i]=='""' or row[i]=="''"):
+                row[i]="";
+        if(row_cnt>1):
+            row_id=None;
+            record_ordinal_position=None;
+            taxon_id=None;
+            gene_id=None;
+            gene_symbol=None;
+            locus_tag=None;
+            record_ordinal_position=row_cnt;
+            gene_id=row[0];
+            uniprotkb_id=row[1];
+            
+            if(gene_id in _gene_id__list):
+                gene_id_ordinal_position=_gene_id__list.index(gene_id);
+                _gene_id__2__uniprotkb_id__dict[gene_id]={
+                    "record_ordinal_position":record_ordinal_position
+                    ,"gene_id":gene_id
+                    ,"uniprotkb_id":uniprotkb_id
+                };
+                _uniprotkb_id__list.append(uniprotkb_id);
+    src_dataset_csv_fh.close();
+    src_dataset_csv_fh=None;
+    _gene_id__list=list(set(_gene_id__list));
+    _gene_id__list.sort(reverse=False)
+    LOGGER.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>_uniprotkb_id__list is:'%s'"%(json.dumps(_uniprotkb_id__list,indent=4)));
+    LOGGER.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>_gene_id__2__uniprotkb_id__dict is:'%s'"%(json.dumps(_gene_id__2__uniprotkb_id__dict,indent=4)));
+    return (_gene_id__2__uniprotkb_id__dict, _uniprotkb_id__list);
 
 def package_drugbank_drug_names(
     _drugbank_drug_names_dataset_tsv_file_name
@@ -1084,6 +1161,7 @@ def cascade_fields_values(
     ,_OMIM_mimTitles_dataset_tsv_file_name
     ,_gene_info__dict
     ,_omim_id__dict
+    ,_gene_id__2__uniprotkb_id__dict
 ):
     pass;
     processing_outcome__dict={};
@@ -1281,6 +1359,7 @@ date;time less "${log_file_name}";date;
         ,"gene_id__csv"
         ,"gene_symbol__csv"
         ,"iembase_id__csv"
+        ,"uniprotkb_id__csv"
         ,"XML/RDF"
     ];
     dest_dataset_csv_writer.writerow(list(range(1,len(clinical_log_rdf_base_fields_dataset_header__list)+1)));
@@ -1494,6 +1573,15 @@ id,entity class,entity instance field,subject represented by,example value,entit
                     gene_symbol__csv=list_to_csv(gene_symbol__list);
                     #############
                     
+                    ####here we include the list of uniprotkb_ids, we pair each gene_id to zero or one uniprotkb_id (start) 2019-10-29 1510hrs###############
+                    uniprotkb_id__csv=None;
+                    uniprotkb_id__list=[];
+                    for gene_id in gene_id__list:
+                        if(gene_id in _gene_id__2__uniprotkb_id__dict):
+                            uniprotkb_id=_gene_id__2__uniprotkb_id__dict[gene_id]["uniprotkb_id"];
+                            uniprotkb_id__list.append(uniprotkb_id);
+                    uniprotkb_id__csv=list_to_csv(uniprotkb_id__list);
+                    ####here we include the list of uniprotkb_ids, we pair each gene_id to zero or one uniprotkb_id (end) 2019-10-29 1517hrs###############
                     
                     
                     
@@ -1689,6 +1777,7 @@ id,entity class,entity instance field,subject represented by,example value,entit
                         ,"gene_id__csv":gene_id__csv
                         ,"gene_symbol__csv":gene_symbol__csv
                         ,"iembase_id__csv":iembase_id__csv
+                        ,"uniprotkb_id__csv":uniprotkb_id__csv
                     };
                     xml_data=None;
                     if(1==2):
@@ -1765,6 +1854,7 @@ id,entity class,entity instance field,subject represented by,example value,entit
                         ,gene_id__csv
                         ,gene_symbol__csv
                         ,iembase_id__csv
+                        ,uniprotkb_id__csv
                         ,xml_data
                     ];
                     dest_dataset_csv_writer.writerow(clinical_log_rdf_base_fields_dataset_row);
@@ -2699,6 +2789,8 @@ if __name__ == '__main__':
     drugbank_drug_names_dataset_tsv_file_name=None;
     ChEBI_drug_names_dataset_tsv_file_name=None;
     gene_info_tsv_file_name=None;
+    iembase_mapping_csv_file_name=None;
+    gene_id__2__uniprotkb_id_tsv_file_name=None;
     
     count_of_workers=1;
     usage="usage: %prog [options] arg1 [[arg2]..]"
@@ -2721,6 +2813,7 @@ if __name__ == '__main__':
         parser.add_argument("-c","--ChEBI_drug_names_dataset_tsv_file_name",action="append",type=str,dest="op__ChEBI_drug_names_dataset_tsv_file_name",help="The full path to the TSV (ordinarily named 'names.tsv') provided by ChEBI which contains the names of the drugs.")
         parser.add_argument("-e","--gene_info_tsv_file_name",action="append",type=str,dest="op__gene_info_tsv_file_name",help="The full path to the ncbi gene_info dataset encoded as a TSV text file.")
         parser.add_argument("-i","--iembase_mapping_csv_file_name",action="append",type=str,dest="op__iembase_mapping_csv_file_name",help="The full path to the IEMbase dataset encoded as a CSV text file.")
+        parser.add_argument("-u","--gene_id__2__uniprotkb_id_tsv_file_name",action="append",type=str,dest="op__gene_id__2__uniprotkb_id_tsv_file_name",help="The full path to the Gene_id to UniProtKB_id mapping TSV text file.")
         
         parser.add_argument("-w","--count_of_workers",action="append",type=int,dest="op__count_of_workers",help="""
             The count of workers to launch (via multiprocessing).
@@ -2750,6 +2843,8 @@ if __name__ == '__main__':
                     The full path to the ncbi gene_info dataset encoded as a TSV text file.
                 -i, --iembase_mapping_csv_file_name
                     The full path to the IEMbase mapping dataset encoded as a CSV text file.
+                -u, --gene_id__2__uniprotkb_id_tsv_file_name
+                    The full path to the Gene_id to UniProtKB_id mapping TSV text file.
                 -w, --count_of_workers
                     The count of workers to launch (via multiprocessing).
             """);
@@ -2776,6 +2871,8 @@ if __name__ == '__main__':
             gene_info_tsv_file_name=options.op__gene_info_tsv_file_name[0];
         if(options.op__iembase_mapping_csv_file_name):
             iembase_mapping_csv_file_name=options.op__iembase_mapping_csv_file_name[0];
+        if(options.op__gene_id__2__uniprotkb_id_tsv_file_name):
+            gene_id__2__uniprotkb_id_tsv_file_name=options.op__gene_id__2__uniprotkb_id_tsv_file_name[0];
             
         if(options.op__count_of_workers):
             count_of_workers=int(options.op__count_of_workers[0]);
@@ -2809,6 +2906,7 @@ if __name__ == '__main__':
     LOGGER.info(" '%s', -------------- ChEBI_drug_names_dataset_tsv_file_name is:'%s'"%(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f'),ChEBI_drug_names_dataset_tsv_file_name));
     LOGGER.info(" '%s', -------------- gene_info_tsv_file_name is:'%s'"%(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f'),gene_info_tsv_file_name));
     LOGGER.info(" '%s', -------------- iembase_mapping_csv_file_name is:'%s'"%(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f'),iembase_mapping_csv_file_name));
+    LOGGER.info(" '%s', -------------- gene_id__2__uniprotkb_id_tsv_file_name is:'%s'"%(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f'),gene_id__2__uniprotkb_id_tsv_file_name));
     LOGGER.info(" '%s', -------------- count_of_workers is:'%s'"%(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f'),count_of_workers));
     process_list=[];
     queue_list=[];#this array will contain objects of multiprocessing.Queue (which is a near clone of queue.Queue)
@@ -2837,6 +2935,7 @@ if __name__ == '__main__':
                 ,ChEBI_drug_names_dataset_tsv_file_name
                 ,gene_info_tsv_file_name
                 ,iembase_mapping_csv_file_name
+                ,gene_id__2__uniprotkb_id_tsv_file_name
             );
             """
             t=threading.Thread(
