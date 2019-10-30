@@ -35,6 +35,7 @@ working_dir_file_name="/local/data/tmp/BORG_DDIEM/BORG_DDIEM__prepare_clinical_l
  --iembase_mapping_csv_file_name="../raw_data/2019-10-17/disorderID_omimID.csv" \
  --gene_id__2__uniprotkb_id_tsv_file_name="../raw_data/2019-10-29/gene_id__2__uniprotkb_id.tab" \
  --uniprotkb_id__2__ko_id_tsv_file_name="../raw_data/2019-10-29/uniprotkb_id__to__ko_id.tab" \
+ --uniprotkb_id__2__ec_number_tsv_file_name="../raw_data/2019-10-29/uniprotkb_id__to__ec_number.tab" \
  -d"${dest_dir_file_name}" \
  --count_of_workers=${count_of_workers} \
  2>&1|tee "${log_file_name}" \
@@ -115,6 +116,7 @@ class BORG_DDIEM__prepare_clinical_logs_for_rdf_part1():
         ,_iembase_mapping_csv_file_name
         ,_gene_id__2__uniprotkb_id_tsv_file_name
         ,_uniprotkb_id__2__ko_id_tsv_file_name
+        ,_uniprotkb_id__2__ec_number_tsv_file_name
     ):
         doc="""
         an object if this class performs the tranformation of XML to JSON.
@@ -142,6 +144,7 @@ class BORG_DDIEM__prepare_clinical_logs_for_rdf_part1():
         self._iembase_mapping_csv_file_name=_iembase_mapping_csv_file_name;
         self._gene_id__2__uniprotkb_id_tsv_file_name=_gene_id__2__uniprotkb_id_tsv_file_name;
         self._uniprotkb_id__2__ko_id_tsv_file_name=_uniprotkb_id__2__ko_id_tsv_file_name;
+        self._uniprotkb_id__2__ec_number_tsv_file_name=_uniprotkb_id__2__ec_number_tsv_file_name;
         self._processing_outcome__dict=None;
         
         try:
@@ -172,6 +175,9 @@ class BORG_DDIEM__prepare_clinical_logs_for_rdf_part1():
             if(_uniprotkb_id__2__ko_id_tsv_file_name==None or len(_uniprotkb_id__2__ko_id_tsv_file_name.strip())<0):
                 pass;
                 raise ValueError("_uniprotkb_id__2__ko_id_tsv_file_name is empty the supplied value is '%s'"%(_uniprotkb_id__2__ko_id_tsv_file_name));
+            if(_uniprotkb_id__2__ec_number_tsv_file_name==None or len(_uniprotkb_id__2__ec_number_tsv_file_name.strip())<0):
+                pass;
+                raise ValueError("_uniprotkb_id__2__ec_number_tsv_file_name is empty the supplied value is '%s'"%(_uniprotkb_id__2__ec_number_tsv_file_name));
                 
                 
         except ValueError as error:
@@ -232,6 +238,14 @@ class BORG_DDIEM__prepare_clinical_logs_for_rdf_part1():
         self._distinct_ids__list__dict["ko_id__list"]=self._ko_id__list;
         #LOGGER.info("self._distinct_ids__list__dict[\"uniprotkb_id__list\"] is:'%s'"%(json.dumps(self._distinct_ids__list__dict["uniprotkb_id__list"],indent=4)));
         #LOGGER.info("self._uniprotkb_id__2__ko_id__dict is:'%s'"%(json.dumps(self._uniprotkb_id__2__ko_id__dict,indent=4)));
+        
+        self._uniprotkb_id__2__ec_number__dict, self._ec_number__list=package_uniprotkb_id__2__ec_number(
+            self._uniprotkb_id__2__ec_number_tsv_file_name
+            ,self._distinct_ids__list__dict["uniprotkb_id__list"]
+        );
+        self._distinct_ids__list__dict["ec_number__list"]=self._ec_number__list;
+        #LOGGER.info("self._distinct_ids__list__dict[\"uniprotkb_id__list\"] is:'%s'"%(json.dumps(self._distinct_ids__list__dict["uniprotkb_id__list"],indent=4)));
+        #LOGGER.info("self._uniprotkb_id__2__ec_number__dict is:'%s'"%(json.dumps(self._uniprotkb_id__2__ec_number__dict,indent=4)));
         
         self._DDIEM_drugbank_drug_name__dict=package_drugbank_drug_names(
             self._drugbank_drug_names_dataset_tsv_file_name
@@ -303,6 +317,7 @@ class BORG_DDIEM__prepare_clinical_logs_for_rdf_part1():
                 ,self._omim_id__dict
                 ,self._gene_id__2__uniprotkb_id__dict
                 ,self._uniprotkb_id__2__ko_id__dict
+                ,self._uniprotkb_id__2__ec_number__dict
             );
             LOGGER.info("self._processing_outcome__dict is:'%s'"%(json.dumps(self._processing_outcome__dict,indent=4)));
     def get_processing_outcome(self):
@@ -561,6 +576,63 @@ def package_uniprotkb_id__2__ko_id(
     LOGGER.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>_ko_id__list is:'%s'"%(json.dumps(_ko_id__list,indent=4)));
     LOGGER.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>_uniprotkb_id__2__ko_id__dict is:'%s'"%(json.dumps(_uniprotkb_id__2__ko_id__dict,indent=4)));
     return (_uniprotkb_id__2__ko_id__dict, _ko_id__list);
+
+def package_uniprotkb_id__2__ec_number(
+    _uniprotkb_id__2__ec_number_tsv_file_name
+    ,_uniprotkb_id__list
+):
+    pass;
+    _uniprotkb_id__2__ec_number__dict={};
+    _ec_number__list=[];
+    
+    src_dataset_csv_fh=None;
+    src_dataset_csv_reader=None;
+    src_dataset_csv_fh=open(_uniprotkb_id__2__ec_number_tsv_file_name,"r");
+    src_dataset_csv_reader=csv.reader(
+        src_dataset_csv_fh
+        ,delimiter="\t"
+        ,quotechar='"'
+        ,quoting=csv.QUOTE_MINIMAL
+    );
+    cnt_of_fields__max=0;
+    row2=[];
+    cnt_of_fields=0;
+    row_cnt=0;
+    src_dataset_csv_fh.seek(0);
+    for row in src_dataset_csv_reader:
+        row_cnt+=1;
+        #del row2[:];
+        for i, val in enumerate(row):
+            if(row[i]==None):
+                row[i]="";
+            else:
+                row[i]=row[i].strip();
+            if(row[i]=='""' or row[i]=="''"):
+                row[i]="";
+        if(row_cnt>1):
+            row_id=None;
+            record_ordinal_position=None;
+            uniprotkb_id=None;
+            ec_number=None;
+            record_ordinal_position=row_cnt;
+            uniprotkb_id=row[0];
+            ec_number=row[1];
+            
+            if(uniprotkb_id in _uniprotkb_id__list):
+                gene_id_ordinal_position=_uniprotkb_id__list.index(uniprotkb_id);
+                _uniprotkb_id__2__ec_number__dict[uniprotkb_id]={
+                    "record_ordinal_position":record_ordinal_position
+                    ,"uniprotkb_id":uniprotkb_id
+                    ,"ec_number":ec_number
+                };
+                _ec_number__list.append(ec_number);
+    src_dataset_csv_fh.close();
+    src_dataset_csv_fh=None;
+    _ec_number__list=list(set(_ec_number__list));
+    _ec_number__list.sort(reverse=False)
+    LOGGER.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>_ec_number__list is:'%s'"%(json.dumps(_ec_number__list,indent=4)));
+    LOGGER.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>_uniprotkb_id__2__ec_number__dict is:'%s'"%(json.dumps(_uniprotkb_id__2__ec_number__dict,indent=4)));
+    return (_uniprotkb_id__2__ec_number__dict, _ec_number__list);
 
 def package_drugbank_drug_names(
     _drugbank_drug_names_dataset_tsv_file_name
@@ -1235,6 +1307,7 @@ def cascade_fields_values(
     ,_omim_id__dict
     ,_gene_id__2__uniprotkb_id__dict
     ,_uniprotkb_id__2__ko_id__dict
+    ,_uniprotkb_id__2__ec_number__dict
 ):
     pass;
     processing_outcome__dict={};
@@ -1423,7 +1496,7 @@ date;time less "${log_file_name}";date;
         ,"study_type_evidence_code__csv"
         ,"mutation_improved_by_treatment__csv"
         ,"mutation_not_improved_by_treatment__csv"
-        ,"regimen_mechanism_of_action__csv"
+        ,"regimen_mechanism_of_action_ontology_category__csv"#"regimen_mechanism_of_action__csv"
         ,"regimen_mechanism_of_action_abbreviation__csv"
         ,"phenotype_improved_by_treatment__csv"
         ,"phenotype_ID__csv"
@@ -1434,6 +1507,7 @@ date;time less "${log_file_name}";date;
         ,"iembase_id__csv"
         ,"uniprotkb_id__csv"
         ,"ko_id__csv"
+        ,"ec_number__csv"
         ,"XML/RDF"
     ];
     dest_dataset_csv_writer.writerow(list(range(1,len(clinical_log_rdf_base_fields_dataset_header__list)+1)));
@@ -1503,6 +1577,7 @@ id,entity class,entity instance field,subject represented by,example value,entit
             mutation_not_improved_by_treatment__list=None;
             regimen_mechanism_of_action__list=None;
             regimen_mechanism_of_action_abbreviation__list=None;
+            regimen_mechanism_of_action_ontology_category__list=None;
             phenotype_improved_by_treatment__list=None;
             phenotype_ID__list=None;
             treatment_manuscript_reference__list=None;
@@ -1671,6 +1746,20 @@ id,entity class,entity instance field,subject represented by,example value,entit
                     ko_id__csv=list_to_csv(ko_id__list);
                     ####here we include the list of uniprotkb_ids, we pair each gene_id to zero or one uniprotkb_id (end) 2019-10-29 1652hrs###############
                     
+                    ####here we include the list of uniprotkb_ids, we pair each uniprotkb_id to zero or one ec_number (start) 2019-10-30 1104hrs###############
+                    ec_number__csv2=None;
+                    ec_number__list2=[];
+                    for uniprotkb_id in uniprotkb_id__list:
+                        if(uniprotkb_id in _uniprotkb_id__2__ec_number__dict):
+                            ec_number=_uniprotkb_id__2__ec_number__dict[uniprotkb_id]["ec_number"];
+                            ec_number__list2.append(ec_number);
+                        else:
+                            ec_number__list2.append("");
+                    ec_number__csv2=list_to_csv(ec_number__list2);
+                    ####here we include the list of uniprotkb_ids, we pair each gene_id to zero or one uniprotkb_id (end) 2019-10-30 1104hrs###############
+                    
+                    
+                    
                     
                     
                     enzyme_or_protein_detected=row[6];#Enzyme or protein short name
@@ -1785,6 +1874,7 @@ id,entity class,entity instance field,subject represented by,example value,entit
                     mutation_not_improved_by_treatment__list=row[14].split("\n");
                     regimen_mechanism_of_action__list=row[16].split("/");
                     regimen_mechanism_of_action_abbreviation__list=row[17].split("/");
+                    regimen_mechanism_of_action_ontology_category__list=row[18].split("/");
                     phenotype_improved_by_treatment__list=row[21].split("/");
                     if(len(phenotype_improved_by_treatment__list)>1):
                         #Found multiple phenotype_improved_by_treatments
@@ -1810,6 +1900,7 @@ id,entity class,entity instance field,subject represented by,example value,entit
                     mutation_not_improved_by_treatment__csv=list_to_csv(remove_empty_values_from_list(mutation_not_improved_by_treatment__list));
                     regimen_mechanism_of_action__csv=list_to_csv(remove_empty_values_from_list(regimen_mechanism_of_action__list));
                     regimen_mechanism_of_action_abbreviation__csv=list_to_csv(remove_empty_values_from_list(regimen_mechanism_of_action_abbreviation__list));
+                    regimen_mechanism_of_action_ontology_category__csv=list_to_csv(remove_empty_values_from_list(regimen_mechanism_of_action_ontology_category__list));
                     phenotype_improved_by_treatment__csv=list_to_csv(remove_empty_values_from_list(phenotype_improved_by_treatment__list));
                     phenotype_ID__csv=list_to_csv(remove_empty_values_from_list(phenotype_ID__list));
                     treatment_manuscript_reference__csv=list_to_csv(remove_empty_values_from_list(treatment_manuscript_reference__list));
@@ -1856,7 +1947,7 @@ id,entity class,entity instance field,subject represented by,example value,entit
                         ,"study_type_evidence_code__csv":study_type_evidence_code__csv
                         ,"mutation_improved_by_treatment__csv":mutation_improved_by_treatment__csv
                         ,"mutation_not_improved_by_treatment__csv":mutation_not_improved_by_treatment__csv
-                        ,"regimen_mechanism_of_action__csv":regimen_mechanism_of_action__csv
+                        ,"regimen_mechanism_of_action_ontology_category__csv":regimen_mechanism_of_action_ontology_category__csv#,"regimen_mechanism_of_action__csv":regimen_mechanism_of_action__csv
                         ,"regimen_mechanism_of_action_abbreviation__csv":regimen_mechanism_of_action_abbreviation__csv
                         ,"phenotype_improved_by_treatment__csv":phenotype_improved_by_treatment__csv
                         ,"phenotype_ID__csv":phenotype_ID__csv
@@ -1867,6 +1958,7 @@ id,entity class,entity instance field,subject represented by,example value,entit
                         ,"iembase_id__csv":iembase_id__csv
                         ,"uniprotkb_id__csv":uniprotkb_id__csv
                         ,"ko_id__csv":ko_id__csv
+                        ,"ec_number__csv":ec_number__csv2
                     };
                     xml_data=None;
                     if(1==2):
@@ -1934,7 +2026,7 @@ id,entity class,entity instance field,subject represented by,example value,entit
                         ,study_type_evidence_code__csv
                         ,mutation_improved_by_treatment__csv
                         ,mutation_not_improved_by_treatment__csv
-                        ,regimen_mechanism_of_action__csv
+                        ,regimen_mechanism_of_action_ontology_category__csv#,regimen_mechanism_of_action__csv
                         ,regimen_mechanism_of_action_abbreviation__csv
                         ,phenotype_improved_by_treatment__csv
                         ,phenotype_ID__csv
@@ -1945,6 +2037,7 @@ id,entity class,entity instance field,subject represented by,example value,entit
                         ,iembase_id__csv
                         ,uniprotkb_id__csv
                         ,ko_id__csv
+                        ,ec_number__csv2
                         ,xml_data
                     ];
                     dest_dataset_csv_writer.writerow(clinical_log_rdf_base_fields_dataset_row);
@@ -2882,6 +2975,7 @@ if __name__ == '__main__':
     iembase_mapping_csv_file_name=None;
     gene_id__2__uniprotkb_id_tsv_file_name=None;
     uniprotkb_id__2__ko_id_tsv_file_name=None;
+    uniprotkb_id__2__ec_number_tsv_file_name=None;
     
     count_of_workers=1;
     usage="usage: %prog [options] arg1 [[arg2]..]"
@@ -2906,6 +3000,7 @@ if __name__ == '__main__':
         parser.add_argument("-i","--iembase_mapping_csv_file_name",action="append",type=str,dest="op__iembase_mapping_csv_file_name",help="The full path to the IEMbase dataset encoded as a CSV text file.")
         parser.add_argument("-u","--gene_id__2__uniprotkb_id_tsv_file_name",action="append",type=str,dest="op__gene_id__2__uniprotkb_id_tsv_file_name",help="The full path to the Gene_id to UniProtKB_id mapping TSV text file.")
         parser.add_argument("-k","--uniprotkb_id__2__ko_id_tsv_file_name",action="append",type=str,dest="op__uniprotkb_id__2__ko_id_tsv_file_name",help="The full path to the UniProtKB_id to KO_id mapping TSV text file.")
+        parser.add_argument("-n","--uniprotkb_id__2__ec_number_tsv_file_name",action="append",type=str,dest="op__uniprotkb_id__2__ec_number_tsv_file_name",help="The full path to the UniProtKB_id to EC number mapping TSV text file.")
         
         parser.add_argument("-w","--count_of_workers",action="append",type=int,dest="op__count_of_workers",help="""
             The count of workers to launch (via multiprocessing).
@@ -2937,8 +3032,10 @@ if __name__ == '__main__':
                     The full path to the IEMbase mapping dataset encoded as a CSV text file.
                 -u, --gene_id__2__uniprotkb_id_tsv_file_name
                     The full path to the Gene_id to UniProtKB_id mapping TSV text file.
-                -u, --uniprotkb_id__2__ko_id_tsv_file_name
+                -k, --uniprotkb_id__2__ko_id_tsv_file_name
                     The full path to the UniProtKB_id to KO_id mapping TSV text file.
+                -n, --uniprotkb_id__2__ec_number_tsv_file_name
+                    The full path to the UniProtKB_id to EC number mapping TSV text file.
                 -w, --count_of_workers
                     The count of workers to launch (via multiprocessing).
             """);
@@ -2969,6 +3066,8 @@ if __name__ == '__main__':
             gene_id__2__uniprotkb_id_tsv_file_name=options.op__gene_id__2__uniprotkb_id_tsv_file_name[0];
         if(options.op__uniprotkb_id__2__ko_id_tsv_file_name):
             uniprotkb_id__2__ko_id_tsv_file_name=options.op__uniprotkb_id__2__ko_id_tsv_file_name[0];
+        if(options.op__uniprotkb_id__2__ec_number_tsv_file_name):
+            uniprotkb_id__2__ec_number_tsv_file_name=options.op__uniprotkb_id__2__ec_number_tsv_file_name[0];
             
         if(options.op__count_of_workers):
             count_of_workers=int(options.op__count_of_workers[0]);
@@ -3004,6 +3103,7 @@ if __name__ == '__main__':
     LOGGER.info(" '%s', -------------- iembase_mapping_csv_file_name is:'%s'"%(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f'),iembase_mapping_csv_file_name));
     LOGGER.info(" '%s', -------------- gene_id__2__uniprotkb_id_tsv_file_name is:'%s'"%(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f'),gene_id__2__uniprotkb_id_tsv_file_name));
     LOGGER.info(" '%s', -------------- uniprotkb_id__2__ko_id_tsv_file_name is:'%s'"%(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f'),uniprotkb_id__2__ko_id_tsv_file_name));
+    LOGGER.info(" '%s', -------------- uniprotkb_id__2__ec_number_tsv_file_name is:'%s'"%(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f'),uniprotkb_id__2__ec_number_tsv_file_name));
     LOGGER.info(" '%s', -------------- count_of_workers is:'%s'"%(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f'),count_of_workers));
     process_list=[];
     queue_list=[];#this array will contain objects of multiprocessing.Queue (which is a near clone of queue.Queue)
@@ -3034,6 +3134,7 @@ if __name__ == '__main__':
                 ,iembase_mapping_csv_file_name
                 ,gene_id__2__uniprotkb_id_tsv_file_name
                 ,uniprotkb_id__2__ko_id_tsv_file_name
+                ,uniprotkb_id__2__ec_number_tsv_file_name
             );
             """
             t=threading.Thread(
