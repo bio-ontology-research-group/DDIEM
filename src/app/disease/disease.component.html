@@ -41,14 +41,39 @@
     <div class="col-md-9">
       <span *ngIf="protienEffected">
         <span *ngFor="let ecNum of protienEffected['ddiem:ecNumber']; let ecNumIndex = index">
-          <button *ngIf="ecNum['@value'] !== ''" type="button" class="btn btn-link p-0"  (click)="openInNewTab(ecNumberUri(ecNum['@value']))">
-              {{ecNum['@value']}}</button><span *ngIf="ecNumIndex !== protienEffected['ddiem:ecNumber'].length - 1">, </span> 
+          <span *ngFor="let ecNumPart of ecNum['@value'].split(';'); let ecNumPartIndex = index">
+            <button type="button" class="btn btn-link p-0" *ngIf="ecNumPart !== ''" (click)="openInNewTab(ecNumberUri(ecNumPart))">
+                {{ecNumPart}}</button><span *ngIf="ecNumPartIndex !== ecNum['@value'].split(';').length - 1">; </span>
+          </span>
+          <span *ngIf="ecNumIndex !== protienEffected['ddiem:ecNumber'].length - 1">, </span> 
         </span>
-        <span *ngIf="protienEffected['ddiem:ecNumber'] && protienEffected['ddiem:ecNumber'][0]['@value'] !== '' && protienEffected['ddiem:uniprotId'] && protienEffected['ddiem:uniprotId'][0]['@value'] !== ''"> / </span>
+      </span>
+    </div>
+  </div>
+   <div class="row">
+    <div class="col-md-3">
+      <strong>Uniprot ID:</strong>
+    </div>
+    <div class="col-md-9">
+      <span *ngIf="protienEffected">
         <span *ngFor="let uniprotId of protienEffected['ddiem:uniprotId']; let uniprotIdIndex = index">
           <button *ngIf="uniprotId['@value'] !== ''" type="button" class="btn btn-link p-0"  (click)="openInNewTab(uniprotUri(uniprotId['@value']))">
               {{uniprotId['@value']}}
           </button><span *ngIf="uniprotIdIndex !== protienEffected['ddiem:uniprotId'].length - 1">, </span> 
+        </span>
+      </span>
+    </div>
+  </div>
+   <div class="row">
+    <div class="col-md-3">
+      <strong>Kegg Entry ID:</strong>
+    </div>
+    <div class="col-md-9">
+      <span *ngIf="protienEffected">
+        <span *ngFor="let keggEntryId of protienEffected['ddiem:keggEntryId']; let keggEntryIdIndex = index">
+          <button *ngIf="keggEntryId['@value'] !== ''" type="button" class="btn btn-link p-0"  (click)="openInNewTab(keggUri(keggEntryId['@value']))">
+              {{keggEntryId['@value']}}
+          </button><span *ngIf="keggEntryIdIndex !== protienEffected['ddiem:keggEntryId'].length - 1">, </span> 
         </span>
       </span>
     </div>
@@ -94,7 +119,13 @@
                    <strong>{{procedure['dc:provenance'] ?  procedure['dc:provenance'].length : '0'}}</strong></button>)
                 </td>
                 <td [ngClass]="{'w-20': isMutationExists, 'w-30': !isMutationExists}" [attr.rowspan] = "procedure['obo:RO_0002212'] ? procedure['obo:RO_0002212'].length : 1"  *ngIf="phenotypeIndex === 0">
-                  {{procedure['rdfs:subClassOf'] ? findProcedureData(procedure['rdfs:subClassOf'][0]['@id'])['rdfs:label']['0']['@value'] : ''}}
+                  <span *ngFor="let procedureType of procedure['rdfs:subClassOf']; let typeIndex = index">
+                    <button type="button" class="btn btn-link p-0" (click)="openInNewTab(procedureTypeUrl(procedureType['@id']))" 
+                        [ngbTooltip]="findProcedureData(procedureType['@id'])['rdfs:label'][0]['@value']">
+                      {{findProcedureData(procedureType['@id'])['rdfs:label'][0]['@value'] | ellipsis:50}}
+                    </button>
+                    <span *ngIf="typeIndex !== procedure['rdfs:subClassOf'].length - 1"><br /></span>
+                  </span>
                 </td>
                 <td [attr.rowspan] = "procedure['obo:RO_0002212'] ? procedure['obo:RO_0002212'].length : 1" *ngIf="phenotypeIndex === 0" > 
                   <span *ngIf="procedure['obo:RO_0002558']">

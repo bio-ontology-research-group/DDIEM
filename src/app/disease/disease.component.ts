@@ -25,6 +25,7 @@ export class DiseaseComponent implements OnInit {
   iri: any;
   expasyUrl = "https://enzyme.expasy.org/EC/";
   uniprotUrl = "https://www.uniprot.org/uniprot/";
+  keggUrl = "https://www.genome.jp/dbget-bin/www_bget?";
 
   constructor(private router: Router,
               private route: ActivatedRoute,
@@ -97,11 +98,15 @@ export class DiseaseComponent implements OnInit {
   }
 
   ecNumberUri(number){ 
-    return this.expasyUrl + number;
+    return this.expasyUrl + number.trim();
   }
 
-  uniprotUri(number){ 
-    return this.uniprotUrl + number;
+  uniprotUri(id){ 
+    return this.uniprotUrl + id.trim();
+  }
+
+  keggUri(id){ 
+    return this.keggUrl + id.trim();
   }
 
   findAltList(drugAltIri){
@@ -125,6 +130,14 @@ export class DiseaseComponent implements OnInit {
       return "http://aber-owl.net/ontology/HP/#/Browse/" + encodeURIComponent("<" + this.phenotypeRes(iri)['ddiem:url'][0]['@value'] + ">");
     } 
     return '';
+  }
+
+  procedureTypeUrl(iri) {
+      if (iri.startsWith('obo:')) { 
+        iri = iri.replace('obo:', this.context.obo)
+        return "http://aber-owl.net/ontology/DDIEM/#/Browse/" + encodeURIComponent("<" + iri + ">");
+      }
+      return "http://aber-owl.net/ontology/DDIEM/#/Browse/" + encodeURIComponent("<" + iri + ">");
   }
 
   referenceDisplay(url) {
