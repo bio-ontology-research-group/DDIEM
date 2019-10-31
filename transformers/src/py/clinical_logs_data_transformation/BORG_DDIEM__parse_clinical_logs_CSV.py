@@ -10,7 +10,8 @@ pushd .;cd /local/data/development.minor/KAUST/BORG/try1;
 #export src_csv_dataset_file_name="../raw_data/2019-10-01/BORG_DDIEM__clinical_logs.2019-10-01.1418hrs.csv";
 #export src_csv_dataset_file_name="../raw_data/2019-10-10/BORG_DDIEM__clinical_logs.2019-10-10.0958hrs.csv";
 #export src_csv_dataset_file_name="../raw_data/2019-10-16/BORG_DDIEM__clinical_logs.2019-10-16.0900hrs.csv";
-export src_csv_dataset_file_name="../raw_data/2019-10-27/BORG_DDIEM__clinical_logs.2019-10-27.1048hrs.csv";
+#export src_csv_dataset_file_name="../raw_data/2019-10-27/BORG_DDIEM__clinical_logs.2019-10-27.1048hrs.csv";
+export src_csv_dataset_file_name="../raw_data/2019-10-31/BORG_DDIEM__clinical_logs.2019-10-31.1014hrs.csv";
 working_dir_file_name="/local/data/tmp/BORG_DDIEM/BORG_DDIEM__parse_clinical_logs_CSV.working_dir" \
  && count_of_workers=1 \
  && log_file_name="/local/data/tmp/BORG_DDIEM/logs/BORG_DDIEM__dataset.csv.log.`date +%Y-%m-%d.%H%M.%S.%N.%Z`" \
@@ -159,7 +160,8 @@ This information will help me know how to
 
 
 	""";
-	trickle_down_eligible_field__list=[2,3,5,6,7,8,9,10,22,23,24,25,26,27,28,29,30,31,32];
+	trickle_down_eligible_field__list=[2,3,5,6,7,8,9,10,23,24,25,26,27,28,29,30,31];
+	#trickle_down_eligible_field__list=[2,3,5,6,7,8,9,10,22,23,24,25,26,27,28,29,30,31,32];
 	#trickle_down_eligible_field__list=[2,3,5,6,7];
 	
 	src_dataset_csv_file_name=_srcCSVFileName;

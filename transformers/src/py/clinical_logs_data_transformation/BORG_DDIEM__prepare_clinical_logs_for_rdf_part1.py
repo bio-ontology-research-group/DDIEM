@@ -1795,7 +1795,6 @@ id,entity class,entity instance field,subject represented by,example value,entit
                         ec_number__csv=list_to_csv(remove_empty_values_from_list(ec_number__list));
                     regimen_name=row[8];#this should be ignored and the regimen_name obtained from ontology resource via drug_ID should be used instead.
                     regimen_comments=row[9];
-                    phenotype_improved_by_treatment_comments=row[22];
                     
                     drug_IDs__str__orig=row[10];
                     
@@ -1876,17 +1875,18 @@ id,entity class,entity instance field,subject represented by,example value,entit
                     regimen_mechanism_of_action__list=row[16].split("/");
                     regimen_mechanism_of_action_abbreviation__list=row[17].split("/");
                     regimen_mechanism_of_action_ontology_category__list=row[18].split("/");
-                    phenotype_improved_by_treatment__list=row[21].split("/");
+                    phenotype_improved_by_treatment__list=row[20].split("/");
                     if(len(phenotype_improved_by_treatment__list)>1):
                         #Found multiple phenotype_improved_by_treatments
                         #print the ommim_id and row_id
                         pass;
-                    phenotype_ID__list=row[23].split("/");
+                    phenotype_improved_by_treatment_comments=row[21];
+                    phenotype_ID__list=row[22].split("/");
                     if(treatment_manuscript_reference__list!=None):
                         del treatment_manuscript_reference__list[0:len(treatment_manuscript_reference__list)-1];
                     else:
                         treatment_manuscript_reference__list=[];
-                    for i in range(24,32):
+                    for i in range(23,31):
                         if(len(row[i])>0):
                             if(row[i]=='""' or row[i]=="''" or row[i]==""):
                                 pass;
