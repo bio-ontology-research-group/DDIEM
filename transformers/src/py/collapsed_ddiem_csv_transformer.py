@@ -24,7 +24,7 @@ if __name__ == '__main__':
             "Gene", "ProtienOrEnzyme", "Provenance", "TheraputicProcedureType",
 
             #Properties
-            "ecNumber", "uniprotId", "url", "failedToContributeToCondition", "iembaseAccessionNumber", "iembaseUrl"
+            "ecNumber", "uniprotId", "keggEntryId", "url", "failedToContributeToCondition", "iembaseAccessionNumber", "iembaseUrl"
         ]
     )
 
@@ -133,7 +133,6 @@ if __name__ == '__main__':
         else :
             return drug_dict[encrypt_string(drug_name)]
 
-
     with open(DDIEM_SOURCE_FILE, "r", encoding="utf-8") as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
         line_count = 0
@@ -183,11 +182,14 @@ if __name__ == '__main__':
                     protein_enzyme.set(RDF.type, DDIEM.ProtienOrEnzyme)
                     protein_enzyme.set(RDFS.label, Literal(row[protein_enzyme_col]))
 
-                    for ecNumber in row[15].split(","):
-                        protein_enzyme.add(DDIEM.ecNumber, Literal(ecNumber.strip())) if ecNumber.strip() else None
+                    for ecNumber in row[45].split(","):
+                        protein_enzyme.add(DDIEM.ecNumber, Literal(ecNumber.strip())) if ecNumber.strip() and not ('""' in ecNumber.strip()) else None
 
-                    for uniprotId in row[16].split(","):
+                    for uniprotId in row[43].split(","):
                         protein_enzyme.add(DDIEM.uniprotId, Literal(uniprotId.strip())) if uniprotId.strip() else None
+
+                    for keggEntryId in row[44].split(","):
+                        protein_enzyme.add(DDIEM.keggEntryId, Literal(keggEntryId.strip())) if keggEntryId.strip() else None
 
                     protien_dict[encrypt_string(row[protein_enzyme_col])] = protein_enzyme
                 else :
@@ -219,7 +221,7 @@ if __name__ == '__main__':
 
                 
                 if not drug_comb_col.strip() or drug_comb_col.strip().lower() == "No treatment is available in DDIEM".lower():
-                    print("disease dont have treatment :" + disease_id_col)
+                    #print("disease dont have treatment :" + disease_id_col)
                     line_count += 1
                     continue
 
@@ -252,7 +254,7 @@ if __name__ == '__main__':
                         evidence.set(DDIEM.url, Literal("http://purl.obolibrary.org/obo/" + evidenceStr.replace(":", "_")))
                         if evidence and evidence not in store.objects(procedure_dict[encrypt_string(procedure_id)], OBO.RO_0002558) :
                             procedure_dict[encrypt_string(procedure_id)].add(OBO.RO_0002558, evidence)
-
+        
                 for referenceStr in row[39].split(","):
                     referenceStr = referenceStr[0:referenceStr.index('?')] if referenceStr.find('?') > -1 else referenceStr
                     referenceStr = referenceStr[0:referenceStr.rindex('/')] if referenceStr.rfind('/') > -1 and referenceStr.rfind('/') == len(referenceStr) - 1 else referenceStr
@@ -337,6 +339,7 @@ if __name__ == '__main__':
                     procedure_dict[encrypt_string(procedure_id)].add(DDIEM.failedToContributeToCondition, Literal(row[33].strip()))
         
             line_count += 1
+
         print("Processed " + str(line_count) + " lines.")
 
     # Serialize the file to rdf/xml representation
