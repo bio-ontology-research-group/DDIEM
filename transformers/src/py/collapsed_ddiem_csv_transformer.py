@@ -226,14 +226,11 @@ if __name__ == '__main__':
                     continue
 
                 procedure_type_col=34
-                procedure_type = None
-                if row[procedure_type_col] and encrypt_string(row[procedure_type_col]) not in procedure_type_dict :
-                    procedure_type = store.resource(str(DDIEM.uri) + str(uuid.uuid4()))
-                    procedure_type.set(RDF.type, DDIEM.TheraputicProcedureType)
-                    procedure_type.set(RDFS.label, Literal(row[procedure_type_col]))
-                    procedure_type_dict[encrypt_string(row[procedure_type_col])] = procedure_type
-                elif row[procedure_type_col]:
-                    procedure_type = procedure_type_dict[encrypt_string(row[procedure_type_col])]
+                procedure_type_list = []
+                if row[procedure_type_col].strip():
+                    for procedure_type in row[procedure_type_col].split("+"):
+                        for procedure_type_class in store.subjects(RDFS.label, Literal(procedure_type.strip(), lang='en')):
+                            procedure_type_list.append(procedure_type_class)
 
                 procedure_id = disease_id_col + ":" + drug_comb_col
                 if encrypt_string(procedure_id) not in procedure_dict :
@@ -241,8 +238,8 @@ if __name__ == '__main__':
                     procedure.set(RDF.type, DDIEM.TheraputicProcedure)
                     procedure.set(RDFS.comment, Literal(row[17]))
                     procedure.set(OBO.RO_0002606, disease)
-                    if procedure_type:
-                        procedure.set(RDFS.subClassOf, procedure_type) 
+                    for procedure_type in procedure_type_list:
+                        procedure.add(RDFS.subClassOf, procedure_type) 
                     procedure_dict[encrypt_string(procedure_id)] = procedure
                 
                 for evidenceStr in row[31].split(','):
