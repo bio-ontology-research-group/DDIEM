@@ -15,8 +15,9 @@ Incooperate WHOCC drug names from "/local/data/development.minor/KAUST/BORG/raw_
 #export src_clinical_log_dataset_csv_file_name="../raw_data/2019-10-01/BORG_DDIEM__clinical_logs.2019-10-01.1418hrs.collapsed.csv";
 #export src_clinical_log_dataset_csv_file_name="../raw_data/2019-10-10/BORG_DDIEM__clinical_logs.2019-10-10.0958hrs.collapsed.csv";
 #export src_clinical_log_dataset_csv_file_name="../raw_data/2019-10-16/BORG_DDIEM__clinical_logs.2019-10-16.0900hrs.collapsed.csv";
-export src_clinical_log_dataset_csv_file_name="../raw_data/2019-10-27/BORG_DDIEM__clinical_logs.2019-10-27.1048hrs.collapsed.csv";
-export dest_dir_file_name="../raw_data/2019-10-27";
+#export src_clinical_log_dataset_csv_file_name="../raw_data/2019-10-27/BORG_DDIEM__clinical_logs.2019-10-27.1048hrs.collapsed.csv";
+export src_clinical_log_dataset_csv_file_name="../raw_data/2019-10-31/BORG_DDIEM__clinical_logs.2019-10-31.1014hrs.collapsed.csv";
+export dest_dir_file_name="$(dirname ${src_clinical_log_dataset_csv_file_name})";
 
 working_dir_file_name="/local/data/tmp/BORG_DDIEM/BORG_DDIEM__prepare_clinical_logs_for_rdf_part1.working_dir" \
  && count_of_workers=1 \
@@ -33,9 +34,9 @@ working_dir_file_name="/local/data/tmp/BORG_DDIEM/BORG_DDIEM__prepare_clinical_l
  --ChEBI_drug_names_dataset_tsv_file_name="../raw_data/2019-08-04/ChEBI/names.tsv" \
  --gene_info_tsv_file_name="../raw_data/2019-08-05/ncbi_gene/gene_info" \
  --iembase_mapping_csv_file_name="../raw_data/2019-10-17/disorderID_omimID.csv" \
- --gene_id__2__uniprotkb_id_tsv_file_name="../raw_data/2019-10-29/gene_id__2__uniprotkb_id.tab" \
- --uniprotkb_id__2__ko_id_tsv_file_name="../raw_data/2019-10-29/uniprotkb_id__to__ko_id.tab" \
- --uniprotkb_id__2__ec_number_tsv_file_name="../raw_data/2019-10-29/uniprotkb_id__to__ec_number.tab" \
+ --gene_id__2__uniprotkb_id_tsv_file_name="../raw_data/2019-10-31/gene_id__to__uniprotkb_id.tab" \
+ --uniprotkb_id__2__ko_id_tsv_file_name="../raw_data/2019-10-31/uniprotkb_id__to__ko_id.tab" \
+ --uniprotkb_id__2__ec_number_tsv_file_name="../raw_data/2019-10-31/uniprotkb_id__to__ec_number.tab" \
  -d"${dest_dir_file_name}" \
  --count_of_workers=${count_of_workers} \
  2>&1|tee "${log_file_name}" \
