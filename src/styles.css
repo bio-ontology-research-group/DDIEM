@@ -91,3 +91,7 @@ body {
     color: #0000FF !important;
     font-weight: 500;
 }
+
+.btn-link:disabled {
+    color:#212529 !important;
+}

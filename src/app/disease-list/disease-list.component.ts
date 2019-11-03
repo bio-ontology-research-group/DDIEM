@@ -68,6 +68,10 @@ export class DiseaseListComponent implements OnInit {
     return this.titlecasePipe.transform(text);
   }
 
+  modeUrl(iri) {
+    return "http://aber-owl.net/ontology/DDIEM/#/Browse/" + encodeURIComponent("<" + iri + ">");
+  }
+
   openInNewTab(url: string){
     console.log(url);
     window.open(url, "_blank");

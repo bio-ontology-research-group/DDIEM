@@ -107,7 +107,7 @@ WHERE {
     SELECT ?drugName ?drugId
     FROM <http://www.cbrc.kaust.edu.sa/DDIEM>
     WHERE {
-      ddiem:fe3208b6-765f-4ed9-9c2c-a287197d39c0 rdf:type ddiem:TheraputicProcedure;
+      ddiem:1e098e85-25de-43c3-ab5b-6d5bb6dcd9cf rdf:type ddiem:TheraputicProcedure;
       obo:RO_0000057 ?drugContainer .
       ?drugContainer (rdf:_1|rdf:_2|rdf:_3) ?drug .
       ?drug rdfs:label ?drugName;

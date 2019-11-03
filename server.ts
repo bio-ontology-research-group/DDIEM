@@ -51,10 +51,11 @@ export class DiseaseDao {
     PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
     PREFIX obo: <http://purl.obolibrary.org/obo/>
     
-    SELECT ?resource ?label ?drugLabel ?drugUrl
+    SELECT ?resource ?label ?type ?drugLabel ?drugUrl 
     FROM <http://www.cbrc.kaust.edu.sa/DDIEM>
     WHERE {
-      <${iri}> rdf:type ddiem:Drug;
+      VALUES ?type { ddiem:Drug }
+      <${iri}> rdf:type ?type;
           rdfs:label ?drugLabel;
           obo:RO_0000056 ?procedure .
       optional {<${iri}>   ddiem:url ?drugUrl . } .
@@ -74,15 +75,19 @@ export class DiseaseDao {
     PREFIX obo: <http://purl.obolibrary.org/obo/>
     PREFIX owl: <http://www.w3.org/2002/07/owl#>
     
-    SELECT ?resource ?label ?modelLabel
+    SELECT ?resource ?label ?type ?modeLabel
     FROM <http://www.cbrc.kaust.edu.sa/DDIEM>
     WHERE {
-      <${iri}> rdf:type owl:Class;
-          rdfs:label ?modelLabel .
+      VALUES ?type { owl:Class }
+      <${iri}> rdf:type ?type;
+          rdfs:label ?modeLabel .
+     
+      OPTIONAL {
       ?procedure rdfs:subClassOf <${iri}>;
                  obo:RO_0002606 ?resource .
       ?resource rdf:type ddiem:Disease; 
           rdfs:label ?label .
+      }
     } ORDER BY ASC(?label) `;
     return await this.fetcher.fetchBindings(this.serverUrl, diseaseListQuery);
     

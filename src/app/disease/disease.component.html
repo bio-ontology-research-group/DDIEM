@@ -17,6 +17,17 @@
   </div>
   <div class="row">
     <div class="col-md-3">
+      <strong>OMIM:</strong>
+    </div>
+    <div class="col-md-9">
+        <button type="button" class="btn btn-link p-0" 
+        (click)="openInNewTab(d()['dc:identifier'][0]['@value'])">
+          {{d()['dc:identifier'][0]['@value'].substr(d()['dc:identifier'][0]['@value'].lastIndexOf('/') + 1)}}
+        </button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
       <strong>Gene affected:</strong>
     </div>
     <div class="col-md-9">
@@ -52,7 +63,7 @@
   </div>
    <div class="row">
     <div class="col-md-3">
-      <strong>Uniprot ID:</strong>
+      <strong>Uniprot:</strong>
     </div>
     <div class="col-md-9">
       <span *ngIf="protienEffected">
@@ -66,7 +77,7 @@
   </div>
    <div class="row">
     <div class="col-md-3">
-      <strong>Kegg Entry ID:</strong>
+      <strong>Kegg:</strong>
     </div>
     <div class="col-md-9">
       <span *ngIf="protienEffected">
@@ -122,9 +133,9 @@
                   <span *ngFor="let procedureType of procedure['rdfs:subClassOf']; let typeIndex = index">
                     <button type="button" class="btn btn-link p-0" (click)="openInNewTab(procedureTypeUrl(procedureType['@id']))" 
                         [ngbTooltip]="findProcedureData(procedureType['@id'])['rdfs:label'][0]['@value']">
-                      {{findProcedureData(procedureType['@id'])['rdfs:label'][0]['@value'] | ellipsis:50}}
+                      {{findProcedureData(procedureType['@id'])['rdfs:label'][0]['@value']}}
                     </button>
-                    <span *ngIf="typeIndex !== procedure['rdfs:subClassOf'].length - 1"><br /></span>
+                    <span *ngIf="typeIndex !== procedure['rdfs:subClassOf'].length - 1">,<br /></span>
                   </span>
                 </td>
                 <td [attr.rowspan] = "procedure['obo:RO_0002212'] ? procedure['obo:RO_0002212'].length : 1" *ngIf="phenotypeIndex === 0" > 
