@@ -120,7 +120,7 @@
               
                       <button type="button" class="btn btn-link p-0" [ngbTooltip]="procedure['rdfs:comment'] ? procedure['rdfs:comment'][0]['@value'] : ''"
                         (click)="openInNewTab(drugOr['ddiem:url'] ? drugOr['ddiem:url']['0']['@value']: '')" [disabled]="drugOr['ddiem:url'] ? false : true" >
-                          {{drugOr['rdfs:label']['0']['@value']}}
+                          {{toTitleCase(drugOr['rdfs:label']['0']['@value'])}}
                       </button>
                       <span *ngIf="orIndex !== findAltList(drugAnd['@id']).length - 1" class="font-weight-bold"> or </span> 
                     </span>
@@ -131,8 +131,7 @@
                 </td>
                 <td [ngClass]="{'w-20': isMutationExists, 'w-30': !isMutationExists}" [attr.rowspan] = "procedure['obo:RO_0002212'] ? procedure['obo:RO_0002212'].length : 1"  *ngIf="phenotypeIndex === 0">
                   <span *ngFor="let procedureType of procedure['rdfs:subClassOf']; let typeIndex = index">
-                    <button type="button" class="btn btn-link p-0" (click)="openInNewTab(procedureTypeUrl(procedureType['@id']))" 
-                        [ngbTooltip]="findProcedureData(procedureType['@id'])['rdfs:label'][0]['@value']">
+                    <button type="button" class="btn btn-link p-0" (click)="openInNewTab(procedureTypeUrl(procedureType['@id']))">
                       {{findProcedureData(procedureType['@id'])['rdfs:label'][0]['@value']}}
                     </button>
                     <span *ngIf="typeIndex !== procedure['rdfs:subClassOf'].length - 1">,<br /></span>
