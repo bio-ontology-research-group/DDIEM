@@ -94,7 +94,7 @@ if __name__ == '__main__':
     store.bind("foaf", FOAF)
     store.bind("ddiem", DDIEM)
     store.bind("obo", OBO)
-    store.load("../../ontology/ddiem.owl")
+    store.load("../../../../data/ddiem.owl")
 
     disease_dict = {}
     gene_dict = {}
@@ -340,4 +340,4 @@ if __name__ == '__main__':
         print("Processed " + str(line_count) + " lines.")
 
     # Serialize the file to rdf/xml representation
-    store.serialize("../../raw_data/2019-10-31/ddiem.rdf", format="pretty-xml", max_depth=3)
+    store.serialize("../../../../data/ddiem-data.rdf", format="pretty-xml", max_depth=3)
