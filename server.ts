@@ -35,7 +35,7 @@ export class DiseaseDao {
       PREFIX owl: <http://www.w3.org/2002/07/owl#>
       
       SELECT ?resource ?label ?type 
-      FROM <http://www.cbrc.kaust.edu.sa/DDIEM>
+      FROM <http://ddiem.phenomebrowser.net>
       WHERE {
         VALUES ?type { ddiem:Disease ddiem:Drug owl:Class} 
         ?resource rdf:type ?type . 
@@ -51,8 +51,8 @@ export class DiseaseDao {
     PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
     PREFIX obo: <http://purl.obolibrary.org/obo/>
     
-    SELECT ?resource ?label ?type ?drugLabel ?drugUrl 
-    FROM <http://www.cbrc.kaust.edu.sa/DDIEM>
+    SELECT distinct ?resource ?label ?type ?drugLabel ?drugUrl 
+    FROM <http://ddiem.phenomebrowser.net>
     WHERE {
       VALUES ?type { ddiem:Drug }
       <${iri}> rdf:type ?type;
@@ -75,15 +75,15 @@ export class DiseaseDao {
     PREFIX obo: <http://purl.obolibrary.org/obo/>
     PREFIX owl: <http://www.w3.org/2002/07/owl#>
     
-    SELECT ?resource ?label ?type ?modeLabel
-    FROM <http://www.cbrc.kaust.edu.sa/DDIEM>
+    SELECT distinct ?resource ?label ?type ?modeLabel
+    FROM <http://ddiem.phenomebrowser.net>
     WHERE {
       VALUES ?type { owl:Class }
       <${iri}> rdf:type ?type;
           rdfs:label ?modeLabel .
      
       OPTIONAL {
-      ?procedure rdfs:subClassOf <${iri}>;
+      ?procedure rdfs:subClassOf+ <${iri}>;
                  obo:RO_0002606 ?resource .
       ?resource rdf:type ddiem:Disease; 
           rdfs:label ?label .
@@ -106,7 +106,7 @@ export class DiseaseDao {
         ?gene ?geneProp ?geneObj.
         ?protien ?protienProp ?protienObj .
       }
-      FROM <http://www.cbrc.kaust.edu.sa/DDIEM>
+      FROM <http://ddiem.phenomebrowser.net>
       WHERE {
         <${iri}> rdf:type ddiem:Disease .
         <${iri}> ?prop ?obj .
@@ -129,7 +129,7 @@ export class DiseaseDao {
       CONSTRUCT {
         ?phenotype ?phenotypeProp ?phenotypeObj .
       }
-      FROM <http://www.cbrc.kaust.edu.sa/DDIEM>
+      FROM <http://ddiem.phenomebrowser.net>
       WHERE {
         ?procedure obo:RO_0002606 <${iri}>  .
         ?procedure obo:RO_0002212 ?phenotype .
@@ -153,7 +153,7 @@ export class DiseaseDao {
             dc:identifier ?identifier;
             ddiem:url ?url .
     }
-    FROM <http://www.cbrc.kaust.edu.sa/DDIEM>
+    FROM <http://ddiem.phenomebrowser.net>
     WHERE {
       ?procedure obo:RO_0002606 <${iri}>  .
       ?procedure obo:RO_0000057 ?drugAlt .
@@ -179,7 +179,7 @@ async getDiseaseProcedures(iri: any) {
     ?type ?typeProp ?typeObj .
     ?evidence ?evidenceProp ?evidenceObj .
   }
-  FROM <http://www.cbrc.kaust.edu.sa/DDIEM>
+  FROM <http://ddiem.phenomebrowser.net>
   WHERE {
     ?procedure obo:RO_0002606 <${iri}>.
     ?procedure ?procedureProp ?procedureObj .
@@ -237,7 +237,7 @@ app.use(function (err, req, res, next) {
 
 // For resolving Resource URI to sparql endpoint
 app.get('/(\\d+)|([a-f0-9]{8}-?[a-f0-9]{4}-?4[a-f0-9]{3}-?[89ab][a-f0-9]{3}-?[a-f0-9]{12})', async (req: Request, res:Response) => {
-  var defaultGraphUri = "http://www.cbrc.kaust.edu.sa/DDIEM";
+  var defaultGraphUri = "http://ddiem.phenomebrowser.net";
   var query = `describe <${req.protocol}://${req.get('host')}${req.originalUrl}> from <${defaultGraphUri}>`;
   var format = 'text/html';
   var queryString = `query=${encodeURIComponent(query)}&format=${encodeURIComponent(format)}&timeout=0&debug=on&run=${encodeURIComponent('Run Query')}`;

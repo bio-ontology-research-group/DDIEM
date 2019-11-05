@@ -45,7 +45,7 @@ PREFIX ddiem: <http://ddiem.phenomebrowser.net/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
     
 SELECT ?disease ?label
-FROM <http://www.cbrc.kaust.edu.sa/DDIEM>
+FROM <http://ddiem.phenomebrowser.net>
 WHERE {
   ?disease rdf:type ddiem:Disease . 
   ?disease rdfs:label ?label
@@ -60,7 +60,7 @@ WHERE {
   PREFIX obo: <http://purl.obolibrary.org/obo/>
 
   SELECT ?identifier ?label ?gene ?comment
-  FROM <http://www.cbrc.kaust.edu.sa/DDIEM>
+  FROM <http://ddiem.phenomebrowser.net>
   WHERE {
     ?disease rdf:type ddiem:Disease;
               rdfs:label ?label;
@@ -79,7 +79,7 @@ WHERE {
     PREFIX obo: <http://purl.obolibrary.org/obo/>
     
     SELECT ?procedure ?comment ?evidenceCode ?typeName ?phenotypeCorrected ?provenance
-    FROM <http://www.cbrc.kaust.edu.sa/DDIEM>
+    FROM <http://ddiem.phenomebrowser.net>
     WHERE {
     <http://ddiem.phenomebrowser.net/210200> rdf:type ddiem:Disease .
     ?procedure obo:RO_0002606 <http://ddiem.phenomebrowser.net/210200>;
@@ -105,9 +105,9 @@ WHERE {
     PREFIX obo: <http://purl.obolibrary.org/obo/>
     
     SELECT ?drugName ?drugId
-    FROM <http://www.cbrc.kaust.edu.sa/DDIEM>
+    FROM <http://ddiem.phenomebrowser.net>
     WHERE {
-      ddiem:1e098e85-25de-43c3-ab5b-6d5bb6dcd9cf rdf:type ddiem:TheraputicProcedure;
+      ddiem:3204771e-9e7e-49dd-9c30-15c2c6c95f11 rdf:type ddiem:TheraputicProcedure;
       obo:RO_0000057 ?drugContainer .
       ?drugContainer (rdf:_1|rdf:_2|rdf:_3) ?drug .
       ?drug rdfs:label ?drugName;

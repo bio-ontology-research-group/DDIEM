@@ -32,4 +32,9 @@ export class HomeComponent implements OnInit {
     }
   }
 
+
+  openInNewTab(url: string){
+    window.open(url, "_blank");
+  }
+
 }

@@ -26,9 +26,54 @@
   </div>
   <router-outlet></router-outlet>
 </div>
-<footer class="footer font-small blue pt-2  mt-4 bg-teal-gradient pl-5">
-    <div class="font-13">Report and issues at 
-      <button type="button" class="btn btn-link font-13 p-0 mb-0" (click)="openInNewTab('https://github.com/bio-ontology-research-group/DDIEM/issues')"><u>the issue tracker</u></button>
-      <br /> <b>© 2019  BORG, CBRC, KAUST</b> 
+<footer class="footer font-small blue pt-2 mt-4 bg-teal-gradient pl-5">
+    <div class="mt-2">
+      <p>
+      DDIEM is jointly developed by researchers from <b>KAUST BORG</b> and the <b>University of Cambridge</b>. 
+      <br /> 
+      This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/" style="color:#004286">Creative Commons Attribution 4.0 International License</a>.
+        <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a>
+      </p>
+      <ul class="list-inline">
+        <li class="list-inline-item"><button type="button" class="btn btn-link pl-0" (click)="openDisclaimer(content)" style="color:#004286; line-height: 1.5rem; !important;">Disclaimer</button></li>
+        <li class="list-inline-item">
+          <i aria-hidden="true" class="fa fa-ellipsis-v"></i>
+        </li>
+        <li class="list-inline-item"><button type="button" class="btn btn-link" (click)="openInNewTab('https://github.com/bio-ontology-research-group/DDIEM/issues')" style="color:#004286; line-height: 1.5rem; !important;">Report Issue</button></li>
+      </ul>
     </div>     
 </footer>
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" >Disclaimer and License</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row p-3">
+    <h5>Disclaimer</h5>
+    <p>The creators and editors of DDIEM  have made every effort to ensure that all information in this database is correct at  at the time of production and are not 
+    responsible for errors or omissions. DDIEM makes no representation about the suitability, completeness or accuracy of the data provided for any purpose and makes 
+    no warranties either expressed or implied about the fitness for a particular purpose or that the use of this data will not infringe any third party patents, 
+    copyrights trademarks or other rights. the data are provided ‘as is”. DDIEM is a tool designed to gather, integrate and present data on inborn errors of metabolism 
+    for research, teaching  and scholarly purposes.</p>
+    </div>
+
+    <div class="row p-3">
+    <h5>Medical Disclaimer</h5>
+    <p>The content of this website is provided as an information source for clinicians and scientists only, and is not intended as, nor should it be considered a 
+    substitute for, professional medical advice, diagnosis or treatment.</p>
+    </div>
+
+    <div class="row p-3">
+    <h5>Usage of Content</h5>
+    <p>Unless noted otherwise, all information contained on this website, such as text, graphics, logos, icons and images is copyrighted by and property of 
+    King Abdullah University of Science andTtechnology, and may not be copied, altered, stored or otherwise used in whole or part without the express consent of DDIEM. 
+    Any reproduction or use for commercial purpose is prohibited without the prior express written permission of DDIEM. 'copyright' KAUST</p>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+  </div>
+</ng-template>
