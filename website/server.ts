@@ -18,6 +18,8 @@ import {SparqlEndpointFetcher} from "fetch-sparql-endpoint";
 // tslint:disable-next-line:no-var-requires
 const n3 = require('n3');
 const httpProxy = require('http-proxy');
+const https = require('https')
+const fs = require('fs')
 
 export class DiseaseDao {
   private fetcher:SparqlEndpointFetcher;
@@ -212,6 +214,9 @@ const sparqlEndpoint = 'http://ontolinator.kaust.edu.sa:8891';
 
 const diseaseDao = new DiseaseDao();
 const PORT = process.env.PORT || 4000;
+const HTTPS_PORT = process.env.HTTPS_PORT;
+const CERT_PATH = process.env.CERT_PATH;
+const KEY_PATH = process.env.KEY_PATH;
 const DIST_FOLDER = join(process.cwd(), 'dist/browser');
 
 // * NOTE :: leave this as require() since this file is built Dynamically from webpack
@@ -319,6 +324,16 @@ app.get('*', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Node Express server listening on http://localhost:${PORT}`);
 });
+
+// Start server on HTTPS
+if (HTTPS_PORT && KEY_PATH && CERT_PATH) {
+  https.createServer({
+    key: fs.readFileSync(KEY_PATH),
+    cert: fs.readFileSync(CERT_PATH)
+  }, app).listen(HTTPS_PORT, function () {
+    console.log(`Node Express server listening on https://localhost:${HTTPS_PORT}`);
+  })
+}
 
 const jsonLdSerializer = new JsonLdSerializer({
   context : {
