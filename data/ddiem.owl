@@ -73,7 +73,7 @@
 
 
     <!-- http://purl.obolibrary.org/obo/DDIEM_0000004 -->
-
+ <!-- Pegylated recombinant phenylalanine ammonia lyase in treating OMIM disease # 261600, Enzyme replacement therapy https://www.ncbi.nlm.nih.gov/pubmed/28282402 -->
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/DDIEM_0000004">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DDIEM_0000002"/>
         <IAO_0000115 xml:lang="en">A therapeutic procedure in which a genetically defective protein is replaced by a canonical source of the same protein, genetically as in gene therapy, or by some other means of delivery, whose completion is hypothesized by a health care provider to eliminate a disorder or to alleviate the signs and symptoms of a disorder or pathological process. [PNS]</IAO_0000115>
@@ -109,7 +109,7 @@
 
 
     <!-- http://purl.obolibrary.org/obo/DDIEM_0000007 -->
-
+ <!-- Prednisolone in treating OMIM disease # 105650  demonstrate that glucocorticoid treatment reduces apoptosis, rescues erythroid progenitor depletion and premature differentiation of erythroid cells. Furthermore, glucocorticoids prevent Trp53 activation in Rps19‐deficient cells‐ in a disease‐specific manner. Dissecting the therapeutic mechanisms behind glucocorticoid treatment of DBA provides indispensible insight into DBA pathogenesishttp://www.ncbi.nlm.nih.gov/pubmed/26305041?dopt=Abstract -->
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/DDIEM_0000007">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DDIEM_0000002"/>
         <IAO_0000115 xml:lang="en">A therapeutic procedure in which the composition or metabolic activity of the pathway or network in which the defective protein is found is modified, compensating for alteration of activity of that protein. [PNS]</IAO_0000115>
@@ -121,7 +121,7 @@
 
 
     <!-- http://purl.obolibrary.org/obo/DDIEM_0000008 -->
-
+ <!-- Fat-limited diet+ High carbohydrate diet in treating OMIM disease #248360 low-fat/high-carbohydrate diet treatment is highly effective https://www.ncbi.nlm.nih.gov/pubmed/28781843 --> 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/DDIEM_0000008">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DDIEM_0000005"/>
         <IAO_0000115 xml:lang="en">A therapeutic procedure in which the diet is supplemented with or depleted in molecules  closely related to the products or end processes of a genetically defective protein which occur as natural products in the diet. [PNS]</IAO_0000115>
@@ -133,7 +133,7 @@
 
 
     <!-- http://purl.obolibrary.org/obo/DDIEM_0000009 -->
-
+<!-- valine-restricted diet in treating OMIM disease #611283 in which the defected enzyme" isobutyryl-CoA dehydrogenase (IBD)" is involved in the degradation of valine. https://www.ncbi.nlm.nih.gov/pubmed/16857760?dopt=Abstract&holding=npg --> 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/DDIEM_0000009">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DDIEM_0000008"/>
         <IAO_0000115 xml:lang="en">A therapeutic procedure in which the diet is depleted in molecules closely related to the products or end processes of a genetically defective protein which occur naturally in the diet. [PNS]</IAO_0000115>
@@ -145,7 +145,7 @@
 
 
     <!-- http://purl.obolibrary.org/obo/DDIEM_0000010 -->
-
+<!-- Uncooked Cornstarch in treating OMIM disease # 227810 Uncooked cornstarch provides a substrate for slow enteric absorption of carbohydrate, thereby prolonging the duration of euglycemia between meals.https://www.ncbi.nlm.nih.gov/pubmed/24912437 -->
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/DDIEM_0000010">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DDIEM_0000008"/>
         <IAO_0000115 xml:lang="en">A therapeutic procedure in which the diet is supplemented with foodstuffs containing molecules closely related to the products or end processes of a genetically defective protein, which occur naturally in the diet. [PNS]</IAO_0000115>
@@ -157,7 +157,7 @@
 
 
     <!-- http://purl.obolibrary.org/obo/DDIEM_0000011 -->
-
+<!-- Niacin in treating OMIM disaese # 234500 that affects the absorption of nonpolar amino acids (particularly tryptophan that can be, in turn, converted into serotonin, melatonin, and niacin.https://www.ncbi.nlm.nih.gov/pubmed/6236384 -->
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/DDIEM_0000011">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DDIEM_0000006"/>
         <IAO_0000115 xml:lang="en">A therapeutic procedure involving enteral, parenteral or transdermal provision of small molecules closely related to the products or end processes of a genetically defective protein. [PNS]</IAO_0000115>
@@ -169,7 +169,7 @@
 
 
     <!-- http://purl.obolibrary.org/obo/DDIEM_0000012 -->
-
+<!-- Tanespimycin  in treating OMIM disease # 602522 17-allylamino-17-demethoxygeldanamycin (17-AAG), an Hsp90 inhibitor, enhanced the plasma membrane expression of mutant barttins (R8L and G47R) in Madin–Darby canine kidney cells. https://www.ncbi.nlm.nih.gov/pubmed/24189473 -->
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/DDIEM_0000012">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DDIEM_0000006"/>
         <IAO_0000115 xml:lang="en">A therapeutic procedure in which  generally small molecules are delivered to the organism in order to to directly increase, decrease or alter the activity or stability of a genetically defective protein.[PNS]</IAO_0000115>
@@ -205,7 +205,7 @@
 
 
     <!-- http://purl.obolibrary.org/obo/DDIEM_0000015 -->
-
+<!--  Rapamycin in treating OMIM # 232400 rapamycin significantly reduced glycogen content in primary muscle cells from human patients with GSD IIIa by suppressing the expression of glycogen synthase and glucose transporter 1. https://www.ncbi.nlm.nih.gov/pubmed/24509886 -->
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/DDIEM_0000015">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DDIEM_0000007"/>
         <IAO_0000115 xml:lang="en">A therapeutic procedure that inhibits  a component of the pathway or network in which a genetically defective protein is found, compensating for alteration of activity of that protein.[PNS]</IAO_0000115>
@@ -217,7 +217,7 @@
 
 
     <!-- http://purl.obolibrary.org/obo/DDIEM_0000016 -->
-
+<!-- no example --> 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/DDIEM_0000016">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DDIEM_0000007"/>
         <IAO_0000115 xml:lang="en">A therapeutic procedure that stimulates a component of the pathway or network in which a genetically defective defective protein is found, compensating for alteration of activity of that protein. [PNS]</IAO_0000115>
@@ -235,7 +235,7 @@
 
 
     <!-- http://purl.obolibrary.org/obo/activity_modification_of_a_genetically_defective_protein_by_epigenetic_manipulation -->
-
+<!-- no example --> 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/activity_modification_of_a_genetically_defective_protein_by_epigenetic_manipulation">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DDIEM_0000012"/>
         <IAO_0000115 xml:lang="en">Modulation of the level or specificity of expression of a genetically defective gene through modification of an epigenetic mark or process using chemical, biological or genetic means.</IAO_0000115>
@@ -246,7 +246,7 @@
 
 
     <!-- http://purl.obolibrary.org/obo/activity_modification_of_a_genetically_defective_protein_by_genome_editing -->
-
+<!-- no example --> 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/activity_modification_of_a_genetically_defective_protein_by_genome_editing">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DDIEM_0000012"/>
         <IAO_0000115 xml:lang="en">Modulation of the activity or stability of a genetically defective gene through direct modification of one or both endogenous alleles of the gene, using genome editing techniques such as CRISPR/Cas</IAO_0000115>
@@ -257,7 +257,7 @@
 
 
     <!-- http://purl.obolibrary.org/obo/activity_modification_of_a_genetically_defective_protein_by_transcriptional_or_translational_modification -->
-
+<!-- phenobarbital in treating OMIM disease# 606785
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/activity_modification_of_a_genetically_defective_protein_by_transcriptional_or_translational_modification">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DDIEM_0000012"/>
         <IAO_0000115>any procedure designed to suppress or mitigate the effects of a recessive genetic change in an abnormal protein by modification of its transcription or translation, excluding those strategies which involve epigenetic modification or modification of the germline or somatic genome sequence. For example an abnormal Vmax of reaction, alteration of KM, failure to respond to positive  feedback, acquisition of neofunction.</IAO_0000115>
