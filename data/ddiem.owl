@@ -257,7 +257,7 @@
 
 
     <!-- http://purl.obolibrary.org/obo/activity_modification_of_a_genetically_defective_protein_by_transcriptional_or_translational_modification -->
-<!-- phenobarbital in treating OMIM disease# 606785
+<!-- phenobarbital in treating OMIM disease# 606785 the drug induces production of UGT1A1 https://www.ncbi.nlm.nih.gov/pubmed/6872808 -->
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/activity_modification_of_a_genetically_defective_protein_by_transcriptional_or_translational_modification">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DDIEM_0000012"/>
         <IAO_0000115>any procedure designed to suppress or mitigate the effects of a recessive genetic change in an abnormal protein by modification of its transcription or translation, excluding those strategies which involve epigenetic modification or modification of the germline or somatic genome sequence. For example an abnormal Vmax of reaction, alteration of KM, failure to respond to positive  feedback, acquisition of neofunction.</IAO_0000115>
@@ -270,7 +270,7 @@
 
 
     <!-- http://purl.obolibrary.org/obo/direct_complementation_of_a_genetically_defective_protein_by_gene_therapy -->
-
+<!-- AAV2-hAADC in treating OMIM disease # 608643 https://clinicaltrials.gov/ct2/show/NCT02926066?cond=Aromatic+L-amino+acid+decarboxylase+deficiency&rank=2 -->
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/direct_complementation_of_a_genetically_defective_protein_by_gene_therapy">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DDIEM_0000004"/>
         <IAO_0000115 xml:lang="en">Insertion of one or more normal copies of a genetically defective gene into the genome of affected cells.</IAO_0000115>
@@ -292,7 +292,7 @@
 
 
     <!-- http://purl.obolibrary.org/obo/procedure_to_mitigate_dominant_effects_of_a_genetically_abnormal_protein -->
-
+<!--Dexamethasone in treating OMIM disease # 162300 Glucocorticoids differentially inhibit expression of the RET proto-oncogene.https://www.ncbi.nlm.nih.gov/pubmed/10947080 -->
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/procedure_to_mitigate_dominant_effects_of_a_genetically_abnormal_protein">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DDIEM_0000005"/>
         <IAO_0000115>a procedure to suppress or mitigate the effects of a dominant alteration in a genetically abnormal protein by reducing or suppressing  transcription or translation of the abnormal protein gene or rna, or destabilising or otherwise inhibiting an abnormally increased activity or neoactivity of the abnormal protein.</IAO_0000115>
