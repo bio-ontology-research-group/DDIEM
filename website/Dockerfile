@@ -18,4 +18,4 @@ COPY . .
 EXPOSE 80   
 EXPOSE 443
 EXPOSE 8891 
-CMD npm run build:ssr && PORT=80 HTTPS_PORT=443 KEY_PATH="serv.key" CERT_PATH="serv.cert" npm run serve:ssr
+CMD npm run build:ssr && PORT=80 HTTPS_PORT=443 npm run serve:ssr
