@@ -60,7 +60,7 @@ export class DiseaseComponent implements OnInit {
     
       this.service.getDiseaseProcedures(iri).subscribe(proceduressData => {
         this.proceduressData = proceduressData ? proceduressData["@graph"] : null;     
-        this.procedures = _.filter(this.proceduressData, (obj) => obj['@type'].includes("ddiem:TheraputicProcedure"));
+        this.procedures = _.filter(this.proceduressData, (obj) => obj['@type'].includes("obo:OGMS_0000112"));
         console.log(this.procedures);
       });
 

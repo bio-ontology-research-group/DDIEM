@@ -61,7 +61,7 @@ export class DiseaseDao {
           rdfs:label ?drugLabel;
           obo:RO_0000056 ?procedure .
       optional {<${iri}>   ddiem:url ?drugUrl . } .
-      ?procedure obo:RO_0002606 ?resource .
+      ?procedure obo:RO_0002599 ?resource .
       ?resource rdf:type ddiem:Disease; 
           rdfs:label ?label .
     } ORDER BY ASC(?label) `;
@@ -81,12 +81,17 @@ export class DiseaseDao {
     FROM <http://ddiem.phenomebrowser.net>
     WHERE {
       VALUES ?type { owl:Class }
-      <${iri}> rdf:type ?type;
-          rdfs:label ?modeLabel .
+      <${iri}> rdf:type ?type .
+      OPTIONAL { <${iri}> rdfs:label ?modeLabel . } .
      
       OPTIONAL {
-      ?procedure rdfs:subClassOf+ <${iri}>;
-                 obo:RO_0002606 ?resource .
+      { 
+        ?transitiveTypes rdfs:subClassOf+  <${iri}>.
+        ?procedure rdf:type ?transitiveTypes .
+      } UNION { 
+        ?procedure rdf:type <${iri}> .
+      }
+      ?procedure obo:RO_0002599 ?resource .
       ?resource rdf:type ddiem:Disease; 
           rdfs:label ?label .
       }
@@ -133,7 +138,7 @@ export class DiseaseDao {
       }
       FROM <http://ddiem.phenomebrowser.net>
       WHERE {
-        ?procedure obo:RO_0002606 <${iri}>  .
+        ?procedure obo:RO_0002599 <${iri}>  .
         ?procedure obo:RO_0002212 ?phenotype .
         ?phenotype ?phenotypeProp ?phenotypeObj .
       }`;
@@ -157,7 +162,7 @@ export class DiseaseDao {
     }
     FROM <http://ddiem.phenomebrowser.net>
     WHERE {
-      ?procedure obo:RO_0002606 <${iri}>  .
+      ?procedure obo:RO_0002599 <${iri}>  .
       ?procedure obo:RO_0000057 ?drugAlt .
       ?drugAlt ?drugAltProp ?drug .
       ?drug rdfs:label ?label .
@@ -183,11 +188,11 @@ async getDiseaseProcedures(iri: any) {
   }
   FROM <http://ddiem.phenomebrowser.net>
   WHERE {
-    ?procedure obo:RO_0002606 <${iri}>.
+    ?procedure obo:RO_0002599 <${iri}>.
     ?procedure ?procedureProp ?procedureObj .
-
+    ?procedure rdf:type ?type .
+    
     OPTIONAL { 
-      ?procedure rdfs:subClassOf ?type .
       ?type ?typeProp ?typeObj .
     }
 

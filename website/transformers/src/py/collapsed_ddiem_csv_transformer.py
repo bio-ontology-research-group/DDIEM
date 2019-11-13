@@ -20,8 +20,8 @@ if __name__ == '__main__':
         uri=URIRef("http://ddiem.phenomebrowser.net/"),
         terms=[
             #Classes
-            "Disease", "Drug", "TheraputicProcedure", "Phenotype", "Evidence",
-            "Gene", "ProtienOrEnzyme", "Provenance", "TheraputicProcedureType",
+            "Disease", "Drug", "Phenotype", "Evidence",
+            "Gene", "ProtienOrEnzyme", "Provenance",
 
             #Properties
             "ecNumber", "uniprotId", "keggEntryId", "url", "failedToContributeToCondition", "iembaseAccessionNumber", "iembaseUrl"
@@ -34,7 +34,7 @@ if __name__ == '__main__':
             #participates-in
             "RO_0000056",
             #treats
-            "RO_0002606",
+            "RO_0002599",
             #negatively regulates
             "RO_0002212",
             #has evidence
@@ -48,7 +48,9 @@ if __name__ == '__main__':
             #contributes to condition
             "RO_0003304",
             #has participant
-            "RO_0000057"
+            "RO_0000057",
+            #therapeutic procedure
+            "OGMS_0000112"
         ]
     )
 
@@ -235,11 +237,11 @@ if __name__ == '__main__':
                 procedure_id = disease_id_col + ":" + drug_comb_col
                 if encrypt_string(procedure_id) not in procedure_dict :
                     procedure = store.resource(str(DDIEM.uri) + str(uuid.uuid4()))
-                    procedure.set(RDF.type, DDIEM.TheraputicProcedure)
+                    procedure.add(RDF.type, OBO.OGMS_0000112)
                     procedure.set(RDFS.comment, Literal(row[17]))
-                    procedure.set(OBO.RO_0002606, disease)
+                    procedure.set(OBO.RO_0002599, disease)
                     for procedure_type in procedure_type_list:
-                        procedure.add(RDFS.subClassOf, procedure_type) 
+                        procedure.add(RDF.type, procedure_type) 
                     procedure_dict[encrypt_string(procedure_id)] = procedure
                 
                 for evidenceStr in row[31].split(','):

@@ -82,8 +82,8 @@ WHERE {
     FROM <http://ddiem.phenomebrowser.net>
     WHERE {
     <http://ddiem.phenomebrowser.net/210200> rdf:type ddiem:Disease .
-    ?procedure obo:RO_0002606 <http://ddiem.phenomebrowser.net/210200>;
-                rdf:type ddiem:TheraputicProcedure;
+    ?procedure obo:RO_0002599 <http://ddiem.phenomebrowser.net/210200>;
+                rdf:type obo:OGMS_0000112;
                 obo:RO_0002558 ?evidenceCode;
                 obo:RO_0002212 ?phenotype;
                 dc:provenance ?provenance;
@@ -107,7 +107,7 @@ WHERE {
     SELECT ?drugName ?drugId
     FROM <http://ddiem.phenomebrowser.net>
     WHERE {
-      ddiem:3204771e-9e7e-49dd-9c30-15c2c6c95f11 rdf:type ddiem:TheraputicProcedure;
+      ddiem:413308fd-e296-4469-8e52-3c03e8256255 rdf:type obo:OGMS_0000112;
       obo:RO_0000057 ?drugContainer .
       ?drugContainer (rdf:_1|rdf:_2|rdf:_3) ?drug .
       ?drug rdfs:label ?drugName;
