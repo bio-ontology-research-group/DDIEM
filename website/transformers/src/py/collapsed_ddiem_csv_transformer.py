@@ -1,6 +1,6 @@
 # Transforms ddiem collapased csv to rdf 
 from rdflib import Graph, Literal, BNode, RDF
-from rdflib.namespace import FOAF, DC, ClosedNamespace, RDFS
+from rdflib.namespace import FOAF, DC, ClosedNamespace, RDFS, DCTERMS
 from rdflib.term import URIRef
 
 import csv
@@ -8,6 +8,7 @@ import json
 import hashlib
 import uuid
 import re
+import datetime
 
 def encrypt_string(hash_string):
     sha_signature = \
@@ -20,7 +21,7 @@ if __name__ == '__main__':
         uri=URIRef("http://ddiem.phenomebrowser.net/"),
         terms=[
             #Classes
-            "Disease", "Drug", "Phenotype", "Evidence",
+            "Disease", "Drug", "Phenotype", "Evidence", "DDIEM",
             "Gene", "ProtienOrEnzyme", "Provenance",
 
             #Properties
@@ -53,6 +54,9 @@ if __name__ == '__main__':
             "OGMS_0000112"
         ]
     )
+
+    VOID = ClosedNamespace(uri=URIRef("http://rdfs.org/ns/void#"), terms=['Dataset','sparqlEndpoint','feature'])
+     
 
     DDIEM_SOURCE_FILE = "../../raw_data/2019-10-31/BORG_DDIEM__clinical_logs.2019-10-31.1014hrs.collapsed.clinical_logs_for_rdf_part1.csv"
     DRUG_BANK_FILE = "../../raw_data/2019-10-31/BORG_DDIEM__clinical_logs.2019-10-31.1014hrs.collapsed.clinical_logs_for_rdf_part1.drugbank_drug_names.json"
@@ -96,7 +100,79 @@ if __name__ == '__main__':
     store.bind("foaf", FOAF)
     store.bind("ddiem", DDIEM)
     store.bind("obo", OBO)
+    store.bind("dcterms", DCTERMS)
+    store.bind("void", VOID)
     store.load("../../../../data/ddiem.owl")
+
+    description = '''DDIEM - Drug database for inborn errors of metabolism is a database on therapeutic strategies
+     for inborn errors of metabolism. These strategies are classified by mechanism and outcome in DDIEM Ontology. 
+     DDIEM uses this ontology to categprise the experimental treatments that have been proposed or applied. It 
+     includes descriptions of the phenotypes addressed by the treatment and drugs participating in treatment and procedures.'''
+
+    dataset = store.resource(str(DDIEM.DDIEM))
+    dataset.add(RDF.type, VOID.Dataset)
+    dataset.add(FOAF.homepage, store.resource('http://ddiem.phenomebrowser.net/'))
+    dataset.add(FOAF.page,  store.resource('https://github.com/bio-ontology-research-group/DDIEM'))
+    dataset.add(DCTERMS.title, Literal('DDIEM - Drug Database for Inborn Error of Metabolism'))
+    dataset.add(DCTERMS.description, Literal(description))
+
+    kaust = store.resource('https://www.kaust.edu.sa')
+    kaust.add(RDF.type, FOAF.Organization)
+    kaust.add(RDFS.label, Literal('King Abdullah University of Science and Technology'))
+
+    uoc = store.resource('https://www.pdn.cam.ac.uk')
+    uoc.add(RDF.type, FOAF.Organization)
+    uoc.add(RDFS.label, Literal('University of Cambridge'))
+
+    dataset.add(DCTERMS.contributor, kaust)
+    dataset.add(DCTERMS.contributor, uoc)
+
+
+    robert = store.resource(str(kaust) + "/RobertHoehndorf")
+    robert.add(RDF.type, FOAF.Person)
+    robert.add(RDFS.label, Literal('Robert Hoehndorf'))
+    robert.add(FOAF.mbox, store.resource('mailto:robert.hoehndorf@kaust.edu.sa'))
+    dataset.add(DCTERMS.creator, robert)
+
+    marwa = store.resource(str(kaust) + "/MarwaAbdelhakim")
+    marwa.add(RDF.type, FOAF.Person)
+    marwa.add(RDFS.label, Literal('Marwa Abdelhakim'))
+    marwa.add(FOAF.mbox, store.resource('mailto:marwa.abdelhakim@kaust.edu.sa'))
+    dataset.add(DCTERMS.creator, marwa)
+
+    allan = store.resource(str(kaust) + "/AllanKamau")
+    allan.add(RDF.type, FOAF.Person)
+    allan.add(RDFS.label, Literal('Allan Kamau'))
+    allan.add(FOAF.mbox, store.resource('mailto:allan.kamau@kaust.edu.sa'))
+    dataset.add(DCTERMS.creator, allan)
+
+    ali = store.resource(str(kaust) + "/AliRazaSyed")
+    ali.add(RDF.type, FOAF.Person)
+    ali.add(RDFS.label, Literal('Ali Raza Syed'))
+    ali.add(FOAF.mbox, store.resource('mailto:ali.syed@kaust.edu.sa'))
+    dataset.add(DCTERMS.creator, ali)
+
+    senay = store.resource(str(kaust) + "/SenayKafkas")
+    senay.add(RDF.type, FOAF.Person)
+    senay.add(RDFS.label, Literal('Senay Kafkas'))
+    senay.add(FOAF.mbox, store.resource('mailto:senay.kafkas@kaust.edu.sa'))
+    dataset.add(DCTERMS.creator, senay)
+
+    paul = store.resource(str(uoc) + "/PaulSchofield")
+    paul.add(RDF.type, FOAF.Person)
+    paul.add(RDFS.label, Literal('Dr Paul Schofield'))
+    paul.add(FOAF.mbox, store.resource('mailto:pns12@cam.ac.uk'))
+    dataset.add(DCTERMS.creator, paul)
+
+    eunice = store.resource(str(uoc) + "/EuniceMcMurray")
+    eunice.add(RDF.type, FOAF.Person)
+    eunice.add(RDFS.label, Literal('Eunice McMurray'))
+    eunice.add(FOAF.mbox, store.resource('mailto:emm1@cam.ac.uk'))
+
+    dataset.add(DCTERMS.modified, Literal(str(datetime.date.today())))
+    dataset.add(VOID.sparqlEndpoint, store.resource('http://ddiem.phenomebrowser.net/sparql'))
+    dataset.add(DCTERMS.license, store.resource('https://creativecommons.org/licenses/by/4.0/'))
+    dataset.add(VOID.feature, store.resource('http://www.w3.org/ns/formats/RDF_XML'))
 
     disease_dict = {}
     gene_dict = {}
@@ -106,6 +182,8 @@ if __name__ == '__main__':
     drug_container_dict = {}
     pheno_dict = {}
     procedure_type_dict = {}
+
+
 
     def drug(drug_id):
         global drug_dict
@@ -342,4 +420,4 @@ if __name__ == '__main__':
         print("Processed " + str(line_count) + " lines.")
 
     # Serialize the file to rdf/xml representation
-    store.serialize("../../../../data/ddiem-data.rdf", format="pretty-xml", max_depth=3)
+    store.serialize("../../../../data/ddiem-data.{data}.rdf".format(data=str(datetime.date.today())), format="pretty-xml", max_depth=3)
