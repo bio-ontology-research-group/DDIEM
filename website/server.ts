@@ -222,6 +222,7 @@ const PORT = process.env.PORT || 4000;
 const HTTPS_PORT = process.env.HTTPS_PORT;
 const CERT_PATH = process.env.CERT_PATH;
 const KEY_PATH = process.env.KEY_PATH;
+const DATA_FOLDER = process.env.DATA_FOLDER || '';
 const DIST_FOLDER = join(process.cwd(), 'dist/browser');
 
 // * NOTE :: leave this as require() since this file is built Dynamically from webpack
@@ -310,9 +311,40 @@ app.get('/api/disease/:id/drug', async (req: Request, res:Response) => {
 
 app.get('/api/disease/:id/procedure', async (req: Request, res:Response) => {
   var id = req.params.id;
-    var responseStr='';
-    var rdfStream = await diseaseDao.getDiseaseProcedures(id);
-    jsonLd(res, rdfStream[1])
+  var responseStr='';
+  var rdfStream = await diseaseDao.getDiseaseProcedures(id);
+  jsonLd(res, rdfStream[1])
+});
+
+app.get('/api/download', async function(req, res){
+  var bindingsStream = await lastModifiedDate();
+  var data = []
+  bindingsStream.on('data', function(bindings) {
+    data.push(bindings);
+  });
+  bindingsStream.on('end', function() {
+    var file 
+    if (data.length > 0) {
+      file = `${DATA_FOLDER ? DATA_FOLDER + '/' : ''}data/ddiem-data${'.' + data[0]['date']['value']}.rdf`;
+    } else {
+      file = `${DATA_FOLDER ? DATA_FOLDER + '/' : ''}data/ddiem-data.rdf`;
+    }
+    console.log('Dowloading file:', file);
+    res.setHeader('Content-disposition', 'attachment; filename=ddiem-data.rdf');
+    res.setHeader('Content-type', 'application/rdf+xml');
+    res.download(file); 
+  });
+});
+
+app.get('/api/ddiem/modified', async function(req, res){
+  var bindingsStream = await lastModifiedDate();
+  var data = []
+  bindingsStream.on('data', function(bindings) {
+    data.push(bindings);
+  });
+  bindingsStream.on('end', function() {
+    res.json(data);
+  });
 });
 
 // Server static files from /browser
@@ -375,4 +407,20 @@ function jsonLd(res: Response, rdfStream: NodeJS.ReadableStream) {
     res.status(500).send('Something broke!')
   })
   .on('end', () => res.json(JSON.parse(responseStr)));
+}
+
+
+async function lastModifiedDate() {
+  var fetcher = new SparqlEndpointFetcher();
+  var modifiedDateQuery = `PREFIX void: <http://rdfs.org/ns/void#>
+      PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX dcterms: <http://purl.org/dc/terms/>
+      
+      SELECT ?date 
+      FROM <http://ddiem.phenomebrowser.net>
+      WHERE {
+        ?resource rdf:type void:Dataset . 
+        ?resource dcterms:modified ?date
+      }`;
+  return await fetcher.fetchBindings("http://ontolinator.kaust.edu.sa:8891/sparql", modifiedDateQuery);
 }

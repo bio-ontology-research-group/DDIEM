@@ -1,4 +1,5 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-sparql',
@@ -25,7 +26,7 @@ export class SparqlComponent implements OnInit {
   @ViewChild("sparqlEle")
   sparqlEle: ElementRef;
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
     this.diseaseList();
@@ -114,6 +115,14 @@ WHERE {
             dc:identifier ?drugId .
     }`;
     this.sparqlEle.nativeElement.value = query;
+  }
+
+  downloadDdiemData() {
+    this.http.get('/api/download', { observe: 'response', responseType: 'blob' })
+      .subscribe(response => {
+        window.location.href = response.url;
+      }), error => console.log('Error downloading the file'),
+        () => console.info('File downloaded successfully');
   }
 
 }
