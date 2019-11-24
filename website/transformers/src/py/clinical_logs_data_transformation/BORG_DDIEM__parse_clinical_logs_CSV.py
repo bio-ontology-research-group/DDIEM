@@ -11,7 +11,8 @@ pushd .;cd /local/data/development.minor/KAUST/BORG/try1;
 #export src_csv_dataset_file_name="../raw_data/2019-10-10/BORG_DDIEM__clinical_logs.2019-10-10.0958hrs.csv";
 #export src_csv_dataset_file_name="../raw_data/2019-10-16/BORG_DDIEM__clinical_logs.2019-10-16.0900hrs.csv";
 #export src_csv_dataset_file_name="../raw_data/2019-10-27/BORG_DDIEM__clinical_logs.2019-10-27.1048hrs.csv";
-export src_csv_dataset_file_name="../raw_data/2019-10-31/BORG_DDIEM__clinical_logs.2019-10-31.1014hrs.csv";
+#export src_csv_dataset_file_name="../raw_data/2019-10-31/BORG_DDIEM__clinical_logs.2019-10-31.1014hrs.csv";
+export src_csv_dataset_file_name="../raw_data/2019-11-22/BORG_DDIEM__clinical_logs.2019-11-22.0032hrs.csv";
 working_dir_file_name="/local/data/tmp/BORG_DDIEM/BORG_DDIEM__parse_clinical_logs_CSV.working_dir" \
  && count_of_workers=1 \
  && log_file_name="/local/data/tmp/BORG_DDIEM/logs/BORG_DDIEM__dataset.csv.log.`date +%Y-%m-%d.%H%M.%S.%N.%Z`" \
@@ -160,7 +161,8 @@ This information will help me know how to
 
 
 	""";
-	trickle_down_eligible_field__list=[2,3,5,6,7,8,9,10,23,24,25,26,27,28,29,30,31];
+	trickle_down_eligible_field__list=[2,3,5,6,7,10,11,24,25,26,27,28,29,30,31,32];
+	#trickle_down_eligible_field__list=[2,3,5,6,7,8,9,10,23,24,25,26,27,28,29,30,31];
 	#trickle_down_eligible_field__list=[2,3,5,6,7,8,9,10,22,23,24,25,26,27,28,29,30,31,32];
 	#trickle_down_eligible_field__list=[2,3,5,6,7];
 	
@@ -204,11 +206,11 @@ This information will help me know how to
 			Here we test to see if the drug value in the new row matches that of the preceeding row.
 			If it does not match we reset the stored values of the fields right of it. 
 			"""
-			drug_ID=row[10].strip();
+			drug_ID=row[11].strip();
 			#LOGGER.info("--------------------------------------------------------------------------drug_ID is '%s'"%(drug_ID));
 			if(drug_ID==drug_ID__previous):
 				pass;
-				for i in range(10,33+1):
+				for i in range(11,34+1):
 					pass;
 					#populated_fields__dict[i]=None;#
 				
@@ -216,15 +218,15 @@ This information will help me know how to
 			Here we test if the drug name field is non empty.
 			If it is empty we reset the stored values of the fields to the right of it.
 			"""
-			drug_name=row[9].strip();
+			drug_name=row[10].strip();
 			if(drug_name.upper()=="No treatment is available in DDIEM".upper()):
 				pass;
 				#drug_name="";
-				for i in range(10,33+1):
+				for i in range(11,34+1):
 					pass;
 					populated_fields__dict[i]=None;
 			elif(drug_name==""):
-				for i in range(9,33+1):
+				for i in range(10,34+1):
 					pass;
 					#populated_fields__dict[i]=None;
 					

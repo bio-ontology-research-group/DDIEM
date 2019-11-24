@@ -16,7 +16,8 @@ Incooperate WHOCC drug names from "/local/data/development.minor/KAUST/BORG/raw_
 #export src_clinical_log_dataset_csv_file_name="../raw_data/2019-10-10/BORG_DDIEM__clinical_logs.2019-10-10.0958hrs.collapsed.csv";
 #export src_clinical_log_dataset_csv_file_name="../raw_data/2019-10-16/BORG_DDIEM__clinical_logs.2019-10-16.0900hrs.collapsed.csv";
 #export src_clinical_log_dataset_csv_file_name="../raw_data/2019-10-27/BORG_DDIEM__clinical_logs.2019-10-27.1048hrs.collapsed.csv";
-export src_clinical_log_dataset_csv_file_name="../raw_data/2019-10-31/BORG_DDIEM__clinical_logs.2019-10-31.1014hrs.collapsed.csv";
+#export src_clinical_log_dataset_csv_file_name="../raw_data/2019-10-31/BORG_DDIEM__clinical_logs.2019-10-31.1014hrs.collapsed.csv";
+export src_clinical_log_dataset_csv_file_name="../raw_data/2019-11-22/BORG_DDIEM__clinical_logs.2019-11-22.0032hrs.collapsed.csv";
 export dest_dir_file_name="$(dirname ${src_clinical_log_dataset_csv_file_name})";
 
 working_dir_file_name="/local/data/tmp/BORG_DDIEM/BORG_DDIEM__prepare_clinical_logs_for_rdf_part1.working_dir" \
@@ -45,7 +46,7 @@ working_dir_file_name="/local/data/tmp/BORG_DDIEM/BORG_DDIEM__prepare_clinical_l
 ;
 
 
-date;time ls -tr /local/data/development.minor/KAUST/BORG/try1/../raw_data/2019-10-27/;date;
+date;time ls -tr /local/data/development.minor/KAUST/BORG/try1/../raw_data/2019-11-22/;date;
 
 
 date;time tail -n+2 /local/data/development.minor/KAUST/BORG/try1/../raw_data/2019-10-16/BORG_DDIEM__clinical_logs.2019-10-16.0900hrs.collapsed.gene_id__list.csv|head -n3|sed -r "s:^([^,]+),(.+)$:\2:g"|head -n3;date;
@@ -908,6 +909,7 @@ date;time less "${log_file_name}";date;
             ec_number=None;
             uniprot_ID=None;
             enzyme_or_protein_detected_unresolved=None;
+            drug_formulation_dosage=None;
             drug_ID=None;
             drug_ID_normalized=None;
             drug_ID_logical_operator__dict=None;
@@ -925,6 +927,7 @@ date;time less "${log_file_name}";date;
                 if(len(row_id)>0 and (1==2 or row_id__selection__list==None or len(row_id__selection__list)==0 or int(row_id)in row_id__selection__list)):
                     pass;
                     LOGGER.info("Processing row with row_id %s, row_id__selection__list is:'%s', row is:'%s'"%(row_id,row_id__selection__list,row));
+                    drug_formulation_dosage=None;
                     drug_ID2=None;
                     drug_ID__list=None;
                     drug_ID2__sha256=None;
@@ -1035,8 +1038,9 @@ date;time less "${log_file_name}";date;
                                 else:
                                     enzyme_or_protein_detected_unresolved=tmp_str;
                                     enzyme_or_protein_detected_unresolved__list.append(enzyme_or_protein_detected_unresolved);
-                    regimen_name=row[8];#this should be ignored and the regimen_name obtained from ontology resource via drug_ID should be used instead.
-                    drug_ID=row[10];
+                    drug_formulation_dosage=row[8];#this column was introduced in the 2019-11-22.0032hrs version of the DDIEM dataset. 
+                    regimen_name=row[9];#this should be ignored and the regimen_name obtained from ontology resource via drug_ID should be used instead.
+                    drug_ID=row[11];
                     
                     """
     5,drug,Field 10 (J),drugbank_ID,DB00741,https://www.drugbank.ca/drugs/DB00741
@@ -1430,6 +1434,7 @@ date;time less "${log_file_name}";date;
     enzyme_or_protein_detected=None;#Enzyme or protein short name
     enzyme_or_protein_detected__sha256=None;
     uniprotids_and_or_ecnumbers_gene_product=None;uniprotids_and_or_ecnumbers_gene_product__transformed=None;ec_number=None;uniprot_ID=None;ec_number=None;ec_number__list=[];uniprot_ID=None;uniprot_ID__list=[];
+    drug_formulation_dosage=None;
     regimen_name=None;#this should be ignored and the regimen_name obtained from ontology resource via drug_ID should be used instead.
     drug_IDs__str__orig=None;drug_ID=None;
     drug_ID_normalized=None;
@@ -1476,6 +1481,7 @@ date;time less "${log_file_name}";date;
         ,"uniprotids_and_or_ecnumbers_gene_product__orig"
         ,"ec_number__csv"
         ,"uniprot_ID__csv"
+        ,"drug_formulation_dosage"
         ,"regimen_name"
         ,"regimen_comments"
         ,"drug_IDs__orig"
@@ -1561,6 +1567,7 @@ id,entity class,entity instance field,subject represented by,example value,entit
             enzyme_or_protein_detected__sha256=None;
             uniprotids_and_or_ecnumbers_gene_product=None;uniprotids_and_or_ecnumbers_gene_product__transformed=None;ec_number=None;uniprot_ID=None;ec_number=None;ec_number__list=[];uniprot_ID=None;uniprot_ID__list=[];
             
+            drug_formulation_dosage=None;
             regimen_name=None;#this should be ignored and the regimen_name obtained from ontology resource via drug_ID should be used instead.
             regimen_comments=None;
             phenotype_improved_by_treatment_comments=None;
@@ -1624,6 +1631,7 @@ id,entity class,entity instance field,subject represented by,example value,entit
                     wHOCC_ID__list=None;
                     wHOCC_ID__csv=None;
                     """;
+                    drug_formulation_dosage=None;
                     drug_ID2__sha256=None;
                     drug_ID__ORed__list=None;
                     drug_ID__ORed__csv=None;
@@ -1793,10 +1801,11 @@ id,entity class,entity instance field,subject represented by,example value,entit
                                 uniprot_ID__list.append(uniprot_ID);
                         uniprot_ID__csv=list_to_csv(remove_empty_values_from_list(uniprot_ID__list));
                         ec_number__csv=list_to_csv(remove_empty_values_from_list(ec_number__list));
-                    regimen_name=row[8];#this should be ignored and the regimen_name obtained from ontology resource via drug_ID should be used instead.
-                    regimen_comments=row[9];
+                    drug_formulation_dosage=row[8];#this column was introduced in the 2019-11-22.0032hrs version of the DDIEM dataset.
+                    regimen_name=row[9];#this should be ignored and the regimen_name obtained from ontology resource via drug_ID should be used instead.
+                    regimen_comments=row[10];
                     
-                    drug_IDs__str__orig=row[10];
+                    drug_IDs__str__orig=row[11];
                     
                     """
     5,drug,Field 10 (J),drugbank_ID,DB00741,https://www.drugbank.ca/drugs/DB00741
@@ -1853,7 +1862,7 @@ id,entity class,entity instance field,subject represented by,example value,entit
                     chEBI_ID__ANDed__csv=grouped_drug_ids_by_database["chEBI_ID__csv"];
                     wHOCC_ID__ANDed__csv=grouped_drug_ids_by_database["wHOCC_ID__csv"];
                     
-                    study_type_evidence_codes__str__orig=row[11];
+                    study_type_evidence_codes__str__orig=row[12];
                     study_type_evidence_codes__transformed=study_type_evidence_codes__str__orig.replace(" and ",",");
                     study_type_evidence_codes__transformed=study_type_evidence_codes__transformed.replace(" or ",",");
                     study_type_evidence_codes__transformed=study_type_evidence_codes__transformed.replace("+",",");
@@ -1870,23 +1879,23 @@ id,entity class,entity instance field,subject represented by,example value,entit
                     
                     
                     
-                    mutation_improved_by_treatment__list=row[12].split("\n");
-                    mutation_not_improved_by_treatment__list=row[14].split("\n");
-                    regimen_mechanism_of_action__list=row[16].split("/");
-                    regimen_mechanism_of_action_abbreviation__list=row[17].split("/");
-                    regimen_mechanism_of_action_ontology_category__list=row[18].split("/");
-                    phenotype_improved_by_treatment__list=row[20].split("/");
+                    mutation_improved_by_treatment__list=row[13].split("\n");
+                    mutation_not_improved_by_treatment__list=row[15].split("\n");
+                    regimen_mechanism_of_action__list=row[17].split("/");
+                    regimen_mechanism_of_action_abbreviation__list=row[18].split("/");
+                    regimen_mechanism_of_action_ontology_category__list=row[19].split("/");
+                    phenotype_improved_by_treatment__list=row[21].split("/");
                     if(len(phenotype_improved_by_treatment__list)>1):
                         #Found multiple phenotype_improved_by_treatments
                         #print the ommim_id and row_id
                         pass;
-                    phenotype_improved_by_treatment_comments=row[21];
-                    phenotype_ID__list=row[22].split("/");
+                    phenotype_improved_by_treatment_comments=row[22];
+                    phenotype_ID__list=row[23].split("/");
                     if(treatment_manuscript_reference__list!=None):
                         del treatment_manuscript_reference__list[0:len(treatment_manuscript_reference__list)-1];
                     else:
                         treatment_manuscript_reference__list=[];
-                    for i in range(23,31):
+                    for i in range(24,32):
                         if(len(row[i])>0):
                             if(row[i]=='""' or row[i]=="''" or row[i]==""):
                                 pass;
@@ -1927,6 +1936,7 @@ id,entity class,entity instance field,subject represented by,example value,entit
                         ,"uniprotids_and_or_ecnumbers_gene_product__orig":uniprotids_and_or_ecnumbers_gene_product
                         ,"ec_number__csv":ec_number__csv
                         ,"uniprot_ID__csv":uniprot_ID__csv
+                        ,"drug_formulation_dosage":drug_formulation_dosage#this column was introduced in the 2019-11-22.0032hrs version of the DDIEM dataset.
                         ,"regimen_name":regimen_name
                         ,"regimen_comments":regimen_comments
                         ,"drug_IDs__orig":drug_IDs__str__orig
@@ -2006,6 +2016,7 @@ id,entity class,entity instance field,subject represented by,example value,entit
                         ,uniprotids_and_or_ecnumbers_gene_product
                         ,ec_number__csv
                         ,uniprot_ID__csv
+                        ,drug_formulation_dosage#this column was introduced in the 2019-11-22.0032hrs version of the DDIEM dataset."
                         ,regimen_name
                         ,regimen_comments
                         ,drug_IDs__str__orig
@@ -2060,6 +2071,7 @@ id,entity class,entity instance field,subject represented by,example value,entit
                     wHOCC_ID__list=None;
                     wHOCC_ID__csv=None;
                     """;
+                    drug_formulation_dosage=None;
                     drug_ID2__sha256=None;
                     drug_ID__ORed__list=None;
                     drug_ID__ORed__csv=None;
