@@ -58,9 +58,9 @@ if __name__ == '__main__':
     VOID = ClosedNamespace(uri=URIRef("http://rdfs.org/ns/void#"), terms=['Dataset','sparqlEndpoint','feature'])
      
 
-    DDIEM_SOURCE_FILE = "../../raw_data/2019-10-31/BORG_DDIEM__clinical_logs.2019-10-31.1014hrs.collapsed.clinical_logs_for_rdf_part1.csv"
-    DRUG_BANK_FILE = "../../raw_data/2019-10-31/BORG_DDIEM__clinical_logs.2019-10-31.1014hrs.collapsed.clinical_logs_for_rdf_part1.drugbank_drug_names.json"
-    CHEBI_FILE = "../../raw_data/2019-10-31/BORG_DDIEM__clinical_logs.2019-10-31.1014hrs.collapsed.clinical_logs_for_rdf_part1.ChEBI_drug_names.json"
+    DDIEM_SOURCE_FILE = "../../raw_data/2019-11-22/BORG_DDIEM__clinical_logs.2019-11-22.0032hrs.collapsed.clinical_logs_for_rdf_part1.csv"
+    DRUG_BANK_FILE = "../../raw_data/2019-11-22/BORG_DDIEM__clinical_logs.2019-11-22.0032hrs.collapsed.clinical_logs_for_rdf_part1.drugbank_drug_names.json"
+    CHEBI_FILE = "../../raw_data/2019-11-22/BORG_DDIEM__clinical_logs.2019-11-22.0032hrs.collapsed.clinical_logs_for_rdf_part1.ChEBI_drug_names.json"
     WHOCC_FILE = "../../raw_data/2019-09-01/WHOCC/BORG_DDIEM__clinical_logs.2019-09-01.1348hrs.collapsed.clinical_logs_for_rdf_part1.WHOCC_drug_names.json"
 
     drug_bank = {}
@@ -227,13 +227,13 @@ if __name__ == '__main__':
                     line_count += 1
                     continue
 
-                drug_comb_col = (row[23].strip() if row[23] else '') + (row[24].strip() if row[24] else '') + (row[25].strip() if row[25] else '') + (row[27].strip() if row[27] else '') + (row[28].strip() if row[28] else '') + (row[29].strip() if row[29] else '')
+                drug_comb_col = (row[24].strip() if row[24] else '') + (row[25].strip() if row[25] else '') + (row[26].strip() if row[26] else '') + (row[28].strip() if row[28] else '') + (row[29].strip() if row[29] else '') + (row[30].strip() if row[30] else '')
                 print("iembase number:" + row[42]) if ',' in row[42] else None
                 # print("drug_comb_col:" + drug_comb_col)
                 if drug_comb_col.strip():
                     use_drug_name = False
                 
-                drug_name = row[18]
+                drug_name = row[19]
                 if (not drug_comb_col.strip() or drug_comb_col.strip() == 'NA') and drug_name.strip():
                     drug_comb_col = drug_name
                     use_drug_name = True
@@ -245,7 +245,7 @@ if __name__ == '__main__':
                     disease.set(RDFS.label, Literal(row[5]))
                     disease.set(RDFS.comment, Literal(row[9]))
 
-                    iembase_id_col = row[42]
+                    iembase_id_col = row[43]
                     if iembase_id_col.strip():
                         disease.set(DDIEM.iembaseAccessionNumber, Literal(iembase_id_col))
                         disease.set(DDIEM.iembaseUrl, Literal('http://iembase.org/app/#!/disorder/' + iembase_id_col))
@@ -262,13 +262,13 @@ if __name__ == '__main__':
                     protein_enzyme.set(RDF.type, DDIEM.ProtienOrEnzyme)
                     protein_enzyme.set(RDFS.label, Literal(row[protein_enzyme_col]))
 
-                    for ecNumber in row[45].split(","):
+                    for ecNumber in row[46].split(","):
                         protein_enzyme.add(DDIEM.ecNumber, Literal(ecNumber.strip())) if ecNumber.strip() and not ('""' in ecNumber.strip()) else None
 
-                    for uniprotId in row[43].split(","):
+                    for uniprotId in row[44].split(","):
                         protein_enzyme.add(DDIEM.uniprotId, Literal(uniprotId.strip())) if uniprotId.strip() else None
 
-                    for keggEntryId in row[44].split(","):
+                    for keggEntryId in row[45].split(","):
                         protein_enzyme.add(DDIEM.keggEntryId, Literal(keggEntryId.strip())) if keggEntryId.strip() else None
 
                     protien_dict[encrypt_string(row[protein_enzyme_col])] = protein_enzyme
@@ -276,7 +276,7 @@ if __name__ == '__main__':
                     protein_enzyme = protien_dict[encrypt_string(row[protein_enzyme_col])]
 
                 gene_col=11
-                gene_id_col=40
+                gene_id_col=41
                 gene_split_count=0
                 gene_ids=row[gene_id_col].split(",")
                 # print(row[gene_col], row[gene_id_col], row[41])
@@ -305,7 +305,7 @@ if __name__ == '__main__':
                     line_count += 1
                     continue
 
-                procedure_type_col=34
+                procedure_type_col=35
                 procedure_type_list = []
                 if row[procedure_type_col].strip():
                     for procedure_type in row[procedure_type_col].split("+"):
@@ -316,13 +316,13 @@ if __name__ == '__main__':
                 if encrypt_string(procedure_id) not in procedure_dict :
                     procedure = store.resource(str(DDIEM.uri) + str(uuid.uuid4()))
                     procedure.add(RDF.type, OBO.OGMS_0000112)
-                    procedure.set(RDFS.comment, Literal(row[17]))
+                    procedure.set(RDFS.comment, Literal(row[18]))
                     procedure.set(OBO.RO_0002599, disease)
                     for procedure_type in procedure_type_list:
                         procedure.add(RDF.type, procedure_type) 
                     procedure_dict[encrypt_string(procedure_id)] = procedure
                 
-                for evidenceStr in row[31].split(','):
+                for evidenceStr in row[32].split(','):
                     evidenceStr = evidenceStr.strip().replace(" ", "")
                     if evidenceStr:
                         evidence = store.resource(str(DDIEM.uri) + evidenceStr)
@@ -332,7 +332,7 @@ if __name__ == '__main__':
                         if evidence and evidence not in store.objects(procedure_dict[encrypt_string(procedure_id)], OBO.RO_0002558) :
                             procedure_dict[encrypt_string(procedure_id)].add(OBO.RO_0002558, evidence)
         
-                for referenceStr in row[39].split(","):
+                for referenceStr in row[40].split(","):
                     referenceStr = referenceStr[0:referenceStr.index('?')] if referenceStr.find('?') > -1 else referenceStr
                     referenceStr = referenceStr[0:referenceStr.rindex('/')] if referenceStr.rfind('/') > -1 and referenceStr.rfind('/') == len(referenceStr) - 1 else referenceStr
                     referenceLiteral = Literal(referenceStr.strip()) if referenceStr.strip() else None
@@ -341,7 +341,7 @@ if __name__ == '__main__':
                 
                 #drug ored columns
                 drug_container = None
-                ored_drug_comb_col =(row[23].strip() if row[23] else '') + (row[24].strip() if row[24] else '') + (row[25].strip() if row[25] else '')
+                ored_drug_comb_col =(row[24].strip() if row[24] else '') + (row[25].strip() if row[25] else '') + (row[26].strip() if row[26] else '')
                 if ored_drug_comb_col.strip():
                     if encrypt_string(ored_drug_comb_col.strip()) in drug_container_dict :
                         drug_container =  drug_container_dict[ encrypt_string(ored_drug_comb_col.strip())]
@@ -352,7 +352,7 @@ if __name__ == '__main__':
                         drug_container_dict[ encrypt_string(ored_drug_comb_col.strip())] = drug_container
                         procedure_dict[encrypt_string(procedure_id)].add(OBO.RO_0000057, drug_container)
 
-                    for drug_col in row[23:26]:
+                    for drug_col in row[24:27]:
                         if not drug_col.strip() : 
                             continue
                         
@@ -362,7 +362,7 @@ if __name__ == '__main__':
                             drug_container.add(RDF.li, drug_res) 
                 
                 #drug and columns
-                for drug_col in row[27:30]:
+                for drug_col in row[28:31]:
                     if not drug_col.strip():
                         continue
 
@@ -392,17 +392,17 @@ if __name__ == '__main__':
                         drug_container_dict[encrypt_string(drug_name.strip())] = drug_container
                         procedure_dict[encrypt_string(procedure_id)].add(OBO.RO_0000057, drug_container)
 
-                phenotype_col_id=36
+                phenotype_col_id=37
                 phenotype = None
                 if row[phenotype_col_id].strip():
                     if encrypt_string(row[phenotype_col_id]) not in pheno_dict :
                         phenotype = store.resource(str(DDIEM.uri) + str(uuid.uuid4()))
                         phenotype.set(RDF.type, DDIEM.Phenotype)
                         phenotype.set(RDFS.label, Literal(row[phenotype_col_id]))
-                        phenotype.set(RDFS.comment, Literal(row[38]))
-                        if row[37].strip() and row[37].strip() != 'NA':
-                            phenotype.add(DC.identifier, Literal(row[37]))
-                            phenotype.add(DDIEM.url, Literal("http://purl.obolibrary.org/obo/" + row[37].replace(":", "_").replace("*", "")))
+                        phenotype.set(RDFS.comment, Literal(row[39]))
+                        if row[38].strip() and row[37].strip() != 'NA':
+                            phenotype.add(DC.identifier, Literal(row[38]))
+                            phenotype.add(DDIEM.url, Literal("http://purl.obolibrary.org/obo/" + row[38].replace(":", "_").replace("*", "")))
                         pheno_dict[encrypt_string(row[phenotype_col_id])] = phenotype
                     else :
                         phenotype = pheno_dict[encrypt_string(row[phenotype_col_id])]
@@ -410,10 +410,10 @@ if __name__ == '__main__':
                     procedure_dict[encrypt_string(procedure_id)].add(OBO.RO_0002212, phenotype)
 
                 #mutation or genetype elements
-                if row[32].strip():
-                    procedure_dict[encrypt_string(procedure_id)].add(OBO.RO_0003304, Literal(row[32].strip()))
                 if row[33].strip():
-                    procedure_dict[encrypt_string(procedure_id)].add(DDIEM.failedToContributeToCondition, Literal(row[33].strip()))
+                    procedure_dict[encrypt_string(procedure_id)].add(OBO.RO_0003304, Literal(row[33].strip()))
+                if row[34].strip():
+                    procedure_dict[encrypt_string(procedure_id)].add(DDIEM.failedToContributeToCondition, Literal(row[34].strip()))
         
             line_count += 1
 
