@@ -153,8 +153,10 @@ export class DiseaseComponent implements OnInit {
       return "semanticscholar"
     } else if (url.startsWith(this.context.sciencedirect)) {
       return "sciencedirect"
-    } else if (url.startsWith(this.context.PMCID)) {
+    } else if (url.startsWith(this.context.researchgate)) {
       return "researchgate"
+    } else if (url.startsWith(this.context.googlescholar)) {
+      return "googlescholar"
     } else {
       return 'Clinical trial';
     }

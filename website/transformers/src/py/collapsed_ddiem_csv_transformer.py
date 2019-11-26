@@ -167,7 +167,7 @@ if __name__ == '__main__':
     eunice = store.resource("https://www.pdn.cam.ac.uk/EuniceMcMurray")
     eunice.add(RDF.type, FOAF.Person)
     eunice.add(RDFS.label, Literal('Eunice McMurray'))
-    eunice.add(FOAF.mbox, store.resource('mailto:emm1@cam.ac.uk'))
+    eunice.add(FOAF.mbox, store.resource('mailto:eym24@cam.ac.uk'))
 
     dataset.add(DCTERMS.modified, Literal(str(datetime.date.today())))
     dataset.add(VOID.sparqlEndpoint, store.resource('http://ddiem.phenomebrowser.net/sparql'))

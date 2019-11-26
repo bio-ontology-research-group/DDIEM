@@ -134,7 +134,7 @@
                     <button type="button" class="btn btn-link p-0" (click)="openInNewTab(procedureTypeUrl(procedureType))" *ngIf="procedureType != 'obo:OGMS_0000112'">
                       {{findProcedureData(procedureType)['rdfs:label'][0]['@value']}}
                     </button>
-                    <span *ngIf="typeIndex !== procedure['@type'].length - 1 || procedureType == 'obo:OGMS_0000112'">,<br /></span>
+                    <span *ngIf="typeIndex !== procedure['@type'].length - 1 && procedureType != 'obo:OGMS_0000112'">,<br /></span>
                   </span>
                 </td>
                 <td [attr.rowspan] = "procedure['obo:RO_0002212'] ? procedure['obo:RO_0002212'].length : 1" *ngIf="phenotypeIndex === 0" > 

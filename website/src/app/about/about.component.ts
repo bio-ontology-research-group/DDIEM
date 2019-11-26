@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DiseaseService } from '../disease.service';
 
 @Component({
   selector: 'app-about',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./about.component.css']
 })
 export class AboutComponent implements OnInit {
+  stats: any = [];
 
-  constructor() { }
+  constructor(private service: DiseaseService) { }
 
   ngOnInit() {
+    this.service.getDiseaseStats().subscribe(data => {
+      this.stats = data;
+    })
   }
 
   openInNewTab(url: string){

@@ -17,6 +17,67 @@
     </div>
   </div>
 </div>
+<div class="container-fluid mt-3" style="background-color: #f4f5fb;padding-right: 0px;padding-left: 0px;">
+ <div class="row">
+  <div class="col-3">
+    <div class="card card-sm">
+      <div class="card-body">
+        <div class="d-flex justify-content-between ddiem-mb-5">
+          <div>
+            <span class="d-block font-15 text-dark font-weight-500">Diseases</span>
+          </div>
+        </div>
+        <div class="text-center">
+          <span class="d-block display-4 text-dark ddiem-mb-5">{{stats[0]?.disease_count.value}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-3">
+    <div class="card card-sm">
+      <div class="card-body">
+        <div class="d-flex justify-content-between ddiem-mb-5">
+          <div>
+            <span class="d-block font-15 text-dark font-weight-500">Drugs</span>
+          </div>
+        </div>
+        <div class="text-center">
+          <span class="d-block display-4 text-dark ddiem-mb-5">{{stats[0]?.drug_count.value}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-3">
+    <div class="card card-sm">
+      <div class="card-body">
+        <div class="d-flex justify-content-between ddiem-mb-5">
+          <div>
+            <span class="d-block font-15 text-dark font-weight-500">Phenotypes</span>
+          </div>
+        </div>
+        <div class="text-center">
+          <span class="d-block display-4 text-dark ddiem-mb-5">{{stats[0]?.phenotype_count.value}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-3">
+    <div class="card card-sm">
+      <div class="card-body">
+        <div class="d-flex justify-content-between ddiem-mb-5">
+          <div>
+            <span class="d-block font-15 text-dark font-weight-500">References</span>
+          </div>
+        </div>
+        <div class="text-center">
+          <span class="d-block display-4 text-dark ddiem-mb-5">{{stats[0]?.reference_count.value}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+
 <div class="container-fluid p-1 shadow-base mt-3 ">
   <div class="col-12 py-md-3 pl-md-5 bd-content">
   <h3>Contributors</h3>
@@ -53,7 +114,7 @@
       <div class="card-body col-4">
         <h5 class="card-title mb-0">Eunice McMurray</h5>
         <div class="card-text text-black-50">Biocurator, University of Cambridge</div>
-       <div class="card-text"><button type="button" class="btn btn-link font-14 p-0" (click)="openInNewTab('mailto:emm1@cam.ac.uk')">emm1@cam.ac.uk</button></div>
+       <div class="card-text"><button type="button" class="btn btn-link font-14 p-0" (click)="openInNewTab('mailto:eym24@cam.ac.uk')">eym24@cam.ac.uk</button></div>
       </div>
   </div>
   <div class="row border-0 shadow mb-4 mr-4">

@@ -39,4 +39,9 @@ export class DiseaseService {
   getDiseaseProcedures(diseaseIri: any) {
     return this.http.get('/api/disease/' + diseaseIri + '/procedure', this.options);
   }
+
+  getDiseaseStats() {
+    return this.http.get('/api/disease/_stats', this.options);
+  }
+  
 }

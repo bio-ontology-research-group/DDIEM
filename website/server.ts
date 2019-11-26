@@ -205,6 +205,25 @@ async getDiseaseProcedures(iri: any) {
   return await this.fetcher.fetchRawStream(this.serverUrl, query, SparqlEndpointFetcher.CONTENTTYPE_TURTLE);
 }
 
+async getDiseaseStats() {
+  const statsQuery = `PREFIX ddiem: <http://ddiem.phenomebrowser.net/>
+  PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+  PREFIX obo: <http://purl.obolibrary.org/obo/>
+  
+  SELECT (count(distinct ?disease) as ?disease_count) (count(distinct ?drug) as ?drug_count) (count(distinct ?phenotype) as ?phenotype_count) (count(distinct ?reference) as ?reference_count)
+  FROM <http://ddiem.phenomebrowser.net>
+  WHERE {
+    {?disease rdf:type ddiem:Disease .}
+    UNION { ?drug rdf:type ddiem:Drug . }
+    UNION { ?phenotype rdf:type ddiem:Phenotype . }
+    UNION {
+        ?procedure dc:provenance ?reference. 
+    }
+  }`;
+  return await this.fetcher.fetchBindings(this.serverUrl, statsQuery);
+  
+}
+
 }
 
 
@@ -282,6 +301,17 @@ app.get('/api/disease', async (req: Request, res:Response) => {
   } else {
     bindingsStream = await diseaseDao.listDiseasesByMode(modeId);
   }
+  let obs = [];
+  bindingsStream.on('data', function(bindings) {
+    obs.push(bindings);
+  });
+  bindingsStream.on('end', function() {
+    res.json(obs);
+  });
+});
+
+app.get('/api/disease/_stats', async (req: Request, res:Response) => {
+  var bindingsStream = await diseaseDao.getDiseaseStats();
   let obs = [];
   bindingsStream.on('data', function(bindings) {
     obs.push(bindings);
@@ -388,6 +418,7 @@ const jsonLdSerializer = new JsonLdSerializer({
     semanticscholar: 'https://pdfs.semanticscholar.org',
     sciencedirect: 'https://www.sciencedirect.com',
     researchgate: 'https://www.researchgate.net',
+    googlescholar: 'https://scholar.google.com/scholar',
     rdf:	'http://www.w3.org/1999/02/22-rdf-syntax-ns#'
   }
 });
@@ -424,3 +455,4 @@ async function lastModifiedDate() {
       }`;
   return await fetcher.fetchBindings("http://ontolinator.kaust.edu.sa:8891/sparql", modifiedDateQuery);
 }
+
