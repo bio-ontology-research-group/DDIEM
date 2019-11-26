@@ -49,7 +49,6 @@ export class DiseaseSearchComponent implements OnInit {
   }
 
   onSearchModeSelect(event) {
-    console.log("mode change:", event.target.value)
     this.selectedSearchMode = event.target.value;
   }
 

@@ -24,7 +24,6 @@ export class HomeComponent implements OnInit {
   }
 
   onDiseaseSelect(lookupResource){
-    console.log(lookupResource.resource)
     if (lookupResource.type.value === 'http://ddiem.phenomebrowser.net/Disease') {
       this.router.navigate(['/disease', encodeURIComponent(lookupResource.resource.value)]);
     }  else {

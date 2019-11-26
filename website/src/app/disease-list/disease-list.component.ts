@@ -51,7 +51,6 @@ export class DiseaseListComponent implements OnInit {
   }
 
   onDiseaseSelect(lookupResource){
-    console.log(lookupResource.resource)
     if (lookupResource.type.value === 'http://ddiem.phenomebrowser.net/Disease') {
       this.router.navigate(['/disease', encodeURIComponent(lookupResource.resource.value)]);
     } else {
@@ -60,7 +59,6 @@ export class DiseaseListComponent implements OnInit {
   }
 
   onDiseaseSelectNewTab(lookupResource) {
-    console.log(lookupResource.resource)
     this.router.navigate([]).then(result => {  window.open('/disease/' + encodeURIComponent(encodeURIComponent(lookupResource.resource.value)), '_blank'); });
   }
 
@@ -73,7 +71,6 @@ export class DiseaseListComponent implements OnInit {
   }
 
   openInNewTab(url: string){
-    console.log(url);
     window.open(url, "_blank");
   }
 

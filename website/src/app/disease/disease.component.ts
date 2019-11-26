@@ -33,7 +33,6 @@ export class DiseaseComponent implements OnInit {
               private service: DiseaseService) {
     this.route.params.subscribe( params => {
       this.initDisease(params.iri);
-      console.log(params.iri, decodeURIComponent(params.iri));
       this.iri = decodeURIComponent(params.iri);
     });
   }
@@ -61,23 +60,23 @@ export class DiseaseComponent implements OnInit {
       this.service.getDiseaseProcedures(iri).subscribe(proceduressData => {
         this.proceduressData = proceduressData ? proceduressData["@graph"] : null;     
         this.procedures = _.filter(this.proceduressData, (obj) => obj['@type'].includes("obo:OGMS_0000112"));
-        console.log(this.procedures);
+        //console.log(this.procedures);
       });
 
       this.service.getDiseasePhenotypes(iri).subscribe(phenotypesData => {
         this.phenotypes = phenotypesData ? phenotypesData["@graph"] : null;   
-        console.log(this.phenotypes);
+        //console.log(this.phenotypes);
       });
 
       this.service.getDiseaseDrugs(iri).subscribe(drugsData => {
         this.drugs = drugsData ? drugsData["@graph"] : null;    
-        console.log(this.drugs);
+        //console.log(this.drugs);
       });
       
       this.genes = _.map(this.d()['obo:RO_0004020'], (gene) => this.find(gene['@id']));
       this.protienEffected = _.find(this.disease, (obj) => obj['obo:RO_0002204'] && _.findWhere(obj['obo:RO_0002204'], (value) => value['@id'] === this.genes[0]['@id']));
       this.isMutationExists = _.filter(this.disease, (obj) => obj['obo:RO_0003304'] || obj['ddiem:failedToContributeToCondition']).length > 0
-      console.log(this.disease, this.genes, this.protienEffected);
+      //console.log(this.disease, this.genes, this.protienEffected);
     });
   }
 
@@ -174,7 +173,6 @@ export class DiseaseComponent implements OnInit {
   }
 
   openInNewTab(url: string){
-    console.log(url);
     window.open(url, "_blank");
   }
 
