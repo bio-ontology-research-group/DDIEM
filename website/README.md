@@ -10,9 +10,9 @@ Run `DATA_FOLDER='ddiem repository folder location on your system' npm run serve
 
 ## Running DDIEM Data Transformations
 
-DDIEM database is developed by curators in CSV format . Then It is transformed using scripts written in Python. The transformation at first step normalizes data and then maps data with entities in different databases including uniprot, expassy, kegg, omim and drugbank. At second step, it takes the normalized data, map it to DDIEM data model and transform it into RDF format.
+DDIEM database is developed by curators in CSV format . Then It is transformed using scripts written in Python. The transformation at first step normalizes data and then maps data with entities in different databases including uniprot, expassy, kegg, omim and drugbank. At second step, it takes the normalized data, maps it to DDIEM data model and transform it into RDF format.
 
-To run transformation from normalized DDIEM data, first install by running  the following command in transformers folder:
+To run transformation from normalized DDIEM data, first install dependencies by running  the following command in *transformers* folder:
 
 ```sh
 pip install -r .\requirements.txt
