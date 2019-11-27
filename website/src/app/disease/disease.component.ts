@@ -60,6 +60,7 @@ export class DiseaseComponent implements OnInit {
       this.service.getDiseaseProcedures(iri).subscribe(proceduressData => {
         this.proceduressData = proceduressData ? proceduressData["@graph"] : null;     
         this.procedures = _.filter(this.proceduressData, (obj) => obj['@type'].includes("obo:OGMS_0000112"));
+        this.isMutationExists = _.filter(this.procedures, (obj) => obj['obo:RO_0003304'] || obj['ddiem:failedToContributeToCondition']).length > 0
         //console.log(this.procedures);
       });
 
@@ -75,7 +76,6 @@ export class DiseaseComponent implements OnInit {
       
       this.genes = _.map(this.d()['obo:RO_0004020'], (gene) => this.find(gene['@id']));
       this.protienEffected = _.find(this.disease, (obj) => obj['obo:RO_0002204'] && _.findWhere(obj['obo:RO_0002204'], (value) => value['@id'] === this.genes[0]['@id']));
-      this.isMutationExists = _.filter(this.disease, (obj) => obj['obo:RO_0003304'] || obj['ddiem:failedToContributeToCondition']).length > 0
       //console.log(this.disease, this.genes, this.protienEffected);
     });
   }

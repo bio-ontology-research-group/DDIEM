@@ -155,8 +155,22 @@
                   </span>
                 </td>
 
-                <td scope="col" *ngIf="isMutationExists">{{procedure['obo:RO_0003304'] ? procedure['obo:RO_0003304'][0]['@value'] : ''}}</td>
-                <td scope="col" *ngIf="isMutationExists">{{procedure['dc:failedToContributeToCondition'] ? procedure['dc:failedToContributeToCondition'][0]['@value'] : ''}}</td>
+                <td scope="col" [attr.rowspan] = "procedure['obo:RO_0002212'] ? procedure['obo:RO_0002212'].length : 1" *ngIf="phenotypeIndex === 0 && isMutationExists">
+                  <span *ngIf="procedure['obo:RO_0003304']">
+                  <span *ngFor="let mutation of procedure['obo:RO_0003304']; let mutationIndex = index">
+                    {{mutation['@value']}}
+                    <span *ngIf="mutationIndex !== procedure['obo:RO_0003304'].length - 1">,<br /></span>
+                  </span>
+                  </span>
+                </td>
+                <td scope="col" [attr.rowspan] = "procedure['obo:RO_0002212'] ? procedure['obo:RO_0002212'].length : 1" *ngIf="phenotypeIndex === 0 && isMutationExists">
+                  <span *ngIf="procedure['ddiem:failedToContributeToCondition']">
+                  <span *ngFor="let mutation of procedure['ddiem:failedToContributeToCondition']; let failedMutationIndex = index">
+                    {{mutation['@value']}}
+                    <span *ngIf="failedMutationIndex !== procedure['ddiem:failedToContributeToCondition'].length - 1">,<br /></span>
+                  </span>
+                  </span>
+                </td>
                 <td >
                     <div ngbDropdown class="d-inline-block" *ngIf="procedure['dc:provenance'] && procedure['dc:provenance'].length > 0">
                       <button class="btn btn-link p-0 grid-link" id="references" ngbDropdownToggle>References</button>
