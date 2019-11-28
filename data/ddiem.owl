@@ -264,7 +264,7 @@
         <IAO_0000115>modification of the amount or stability of a transcript or the efficiency of translation of a transcript in order to reduce or increase the expression of a  genetically abnormal protein.</IAO_0000115>
         <dc:creator>ORCID: 0000-0002-5111-7263</dc:creator>
         <dc:date>3.10.19</dc:date>
-        <rdfs:label>activity modification of a genetically defective protein by transcriptional or translational modification</rdfs:label>
+        <rdfs:label xml:lang="en">activity modification of a genetically defective protein by transcriptional or translational modification</rdfs:label>
     </owl:Class>
     
 

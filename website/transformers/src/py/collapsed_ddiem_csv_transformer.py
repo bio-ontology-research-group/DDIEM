@@ -228,7 +228,7 @@ if __name__ == '__main__':
                     continue
 
                 drug_comb_col = (row[24].strip() if row[24] else '') + (row[25].strip() if row[25] else '') + (row[26].strip() if row[26] else '') + (row[28].strip() if row[28] else '') + (row[29].strip() if row[29] else '') + (row[30].strip() if row[30] else '')
-                print("iembase number:" + row[42]) if ',' in row[42] else None
+                # print("iembase number:" + row[42]) if ',' in row[42] else None
                 # print("drug_comb_col:" + drug_comb_col)
                 if drug_comb_col.strip():
                     use_drug_name = False
@@ -312,6 +312,7 @@ if __name__ == '__main__':
                         for procedure_type_class in store.subjects(RDFS.label, Literal(procedure_type.strip(), lang='en')):
                             procedure_type_list.append(procedure_type_class)
 
+                # print(procedure_type_list)
                 procedure_id = disease_id_col + ":" + drug_comb_col
                 if encrypt_string(procedure_id) not in procedure_dict :
                     procedure = store.resource(str(DDIEM.uri) + str(uuid.uuid4()))
