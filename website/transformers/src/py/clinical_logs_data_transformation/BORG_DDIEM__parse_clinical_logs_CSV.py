@@ -12,14 +12,18 @@ pushd .;cd /local/data/development.minor/KAUST/BORG/try1;
 #export src_csv_dataset_file_name="../raw_data/2019-10-16/BORG_DDIEM__clinical_logs.2019-10-16.0900hrs.csv";
 #export src_csv_dataset_file_name="../raw_data/2019-10-27/BORG_DDIEM__clinical_logs.2019-10-27.1048hrs.csv";
 #export src_csv_dataset_file_name="../raw_data/2019-10-31/BORG_DDIEM__clinical_logs.2019-10-31.1014hrs.csv";
-export src_csv_dataset_file_name="../raw_data/2019-11-22/BORG_DDIEM__clinical_logs.2019-11-22.0032hrs.csv";
+#export src_csv_dataset_file_name="../raw_data/2019-11-22/BORG_DDIEM__clinical_logs.2019-11-22.0032hrs.csv";
+#export src_csv_dataset_file_name="../raw_data/2019-12-03/BORG_DDIEM__clinical_logs.2019-12-03.1025hrs.csv";
+#export src_csv_dataset_file_name="../raw_data/2019-12-03/BORG_DDIEM__clinical_logs.2019-12-03.1140hrs.csv";
+export src_csv_dataset_file_name="../raw_data/2019-12-04/BORG_DDIEM__clinical_logs.2019-12-04.0804hrs.csv";
+
 working_dir_file_name="/local/data/tmp/BORG_DDIEM/BORG_DDIEM__parse_clinical_logs_CSV.working_dir" \
  && count_of_workers=1 \
  && log_file_name="/local/data/tmp/BORG_DDIEM/logs/BORG_DDIEM__dataset.csv.log.`date +%Y-%m-%d.%H%M.%S.%N.%Z`" \
  && echo `date +%Y-%m-%d.%H%M.%S.%N.%Z`", log_file_name is:'${log_file_name}'" \
  && mkdir -p "$(dirname ${log_file_name})" \
  && pushd . && cd /local/data/development.minor/KAUST/BORG/try1 \
- && PYTHON_HOME="/local/data/apps/python/3.7.0" \
+ && PYTHON_HOME="/local/data/apps/python/3.8.0" \
  && date && time "${PYTHON_HOME}"/bin/python3 src/py/clinical_logs_data_transformation/amqp/BORG_DDIEM__parse_clinical_logs_CSV.py \
  -f"${src_csv_dataset_file_name}" \
  -d"/local/data/development.minor/KAUST/BORG/raw_data" \
@@ -27,7 +31,7 @@ working_dir_file_name="/local/data/tmp/BORG_DDIEM/BORG_DDIEM__parse_clinical_log
  2>&1|tee "${log_file_name}" \
  && popd && date;
  
-rm -rf /local/data/development.minor/KAUST/BORG/raw_data/2019-10-10/.~lock.*
+rm -rf /local/data/development.minor/KAUST/BORG/raw_data/2019-*/.~lock.*
 
 """;
 

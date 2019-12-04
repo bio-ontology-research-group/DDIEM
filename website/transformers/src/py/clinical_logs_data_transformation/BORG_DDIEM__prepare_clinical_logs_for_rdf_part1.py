@@ -17,7 +17,13 @@ Incooperate WHOCC drug names from "/local/data/development.minor/KAUST/BORG/raw_
 #export src_clinical_log_dataset_csv_file_name="../raw_data/2019-10-16/BORG_DDIEM__clinical_logs.2019-10-16.0900hrs.collapsed.csv";
 #export src_clinical_log_dataset_csv_file_name="../raw_data/2019-10-27/BORG_DDIEM__clinical_logs.2019-10-27.1048hrs.collapsed.csv";
 #export src_clinical_log_dataset_csv_file_name="../raw_data/2019-10-31/BORG_DDIEM__clinical_logs.2019-10-31.1014hrs.collapsed.csv";
-export src_clinical_log_dataset_csv_file_name="../raw_data/2019-11-22/BORG_DDIEM__clinical_logs.2019-11-22.0032hrs.collapsed.csv";
+#export src_clinical_log_dataset_csv_file_name="../raw_data/2019-11-22/BORG_DDIEM__clinical_logs.2019-11-22.0032hrs.collapsed.csv";
+#export src_clinical_log_dataset_csv_file_name="../raw_data/2019-12-03/BORG_DDIEM__clinical_logs.2019-12-03.1025hrs.collapsed.csv";
+#export src_clinical_log_dataset_csv_file_name="../raw_data/2019-12-03/BORG_DDIEM__clinical_logs.2019-12-03.1140hrs.collapsed.csv";
+export src_clinical_log_dataset_csv_file_name="../raw_data/2019-12-04/BORG_DDIEM__clinical_logs.2019-12-04.0804hrs.collapsed.csv";
+
+
+
 export dest_dir_file_name="$(dirname ${src_clinical_log_dataset_csv_file_name})";
 
 working_dir_file_name="/local/data/tmp/BORG_DDIEM/BORG_DDIEM__prepare_clinical_logs_for_rdf_part1.working_dir" \
@@ -38,6 +44,7 @@ working_dir_file_name="/local/data/tmp/BORG_DDIEM/BORG_DDIEM__prepare_clinical_l
  --gene_id__2__uniprotkb_id_tsv_file_name="../raw_data/2019-10-31/gene_id__to__uniprotkb_id.tab" \
  --uniprotkb_id__2__ko_id_tsv_file_name="../raw_data/2019-10-31/uniprotkb_id__to__ko_id.tab" \
  --uniprotkb_id__2__ec_number_tsv_file_name="../raw_data/2019-10-31/uniprotkb_id__to__ec_number.tab" \
+ --PubChem_CID_csv_file_name="../raw_data/2019-12-03/PubChem_CID.csv" \
  -d"${dest_dir_file_name}" \
  --count_of_workers=${count_of_workers} \
  2>&1|tee "${log_file_name}" \
@@ -119,6 +126,7 @@ class BORG_DDIEM__prepare_clinical_logs_for_rdf_part1():
         ,_gene_id__2__uniprotkb_id_tsv_file_name
         ,_uniprotkb_id__2__ko_id_tsv_file_name
         ,_uniprotkb_id__2__ec_number_tsv_file_name
+        ,_PubChem_CID_csv_file_name
     ):
         doc="""
         an object if this class performs the tranformation of XML to JSON.
@@ -147,6 +155,7 @@ class BORG_DDIEM__prepare_clinical_logs_for_rdf_part1():
         self._gene_id__2__uniprotkb_id_tsv_file_name=_gene_id__2__uniprotkb_id_tsv_file_name;
         self._uniprotkb_id__2__ko_id_tsv_file_name=_uniprotkb_id__2__ko_id_tsv_file_name;
         self._uniprotkb_id__2__ec_number_tsv_file_name=_uniprotkb_id__2__ec_number_tsv_file_name;
+        self._PubChem_CID_csv_file_name=_PubChem_CID_csv_file_name;
         self._processing_outcome__dict=None;
         
         try:
@@ -180,6 +189,9 @@ class BORG_DDIEM__prepare_clinical_logs_for_rdf_part1():
             if(_uniprotkb_id__2__ec_number_tsv_file_name==None or len(_uniprotkb_id__2__ec_number_tsv_file_name.strip())<0):
                 pass;
                 raise ValueError("_uniprotkb_id__2__ec_number_tsv_file_name is empty the supplied value is '%s'"%(_uniprotkb_id__2__ec_number_tsv_file_name));
+            if(_PubChem_CID_csv_file_name==None or len(_PubChem_CID_csv_file_name.strip())<0):
+                pass;
+                raise ValueError("_PubChem_CID_csv_file_name is empty the supplied value is '%s'"%(_PubChem_CID_csv_file_name));
                 
                 
         except ValueError as error:
@@ -201,15 +213,32 @@ class BORG_DDIEM__prepare_clinical_logs_for_rdf_part1():
         );
         """
             return {
-                "gene_affected__list":gene_affected__list
+                "omim_id__list":omim_id__list
+                ,"gene_affected__list":gene_affected__list
+                ,"gene_affected_unresolved__list":gene_affected_unresolved__list
+                ,"gene_symbol__list":gene_symbol__list
                 ,"uniprot_ID__list":uniprot_ID__list
                 ,"ec_number__list":ec_number__list
+                ,"enzyme_or_protein_detected_unresolved__list":enzyme_or_protein_detected_unresolved__list
                 ,"drugbank_ID__list":drugbank_ID__list
                 ,"chEBI_ID__list":chEBI_ID__list
+                ,"pubChem_CID__list":pubChem_CID__list
+                ,"pubChem_SID__list":pubChem_SID__list
+                ,"pubChem_AID__list":pubChem_AID__list
                 ,"wHOCC_ID__list":wHOCC_ID__list
             };
         """;
         LOGGER.info("self._distinct_ids__list__dict is:'%s'"%(json.dumps(self._distinct_ids__list__dict,indent=4)));
+        
+        self._pubChem_CID_info__dict=None;
+        self._pubChem_SID_info__dict=None;
+        self._pubChem_AID_info__dict=None;
+        
+        self._pubChem_CID_info__dict, self._pubChem_CID__list2=package_pubChem_CID_info(
+            self._PubChem_CID_csv_file_name
+            ,self._distinct_ids__list__dict["pubChem_CID__list"]
+        );
+        self._distinct_ids__list__dict["pubChem_CID__list2"]=self._pubChem_CID__list2;
         
         self._omim_id__dict, self._iembase_id__list=package_omim_id(
             self._iembase_mapping_csv_file_name
@@ -320,6 +349,9 @@ class BORG_DDIEM__prepare_clinical_logs_for_rdf_part1():
                 ,self._gene_id__2__uniprotkb_id__dict
                 ,self._uniprotkb_id__2__ko_id__dict
                 ,self._uniprotkb_id__2__ec_number__dict
+                ,self._pubChem_CID_info__dict
+                ,self._pubChem_SID_info__dict
+                ,self._pubChem_AID_info__dict
             );
             LOGGER.info("self._processing_outcome__dict is:'%s'"%(json.dumps(self._processing_outcome__dict,indent=4)));
     def get_processing_outcome(self):
@@ -328,7 +360,9 @@ class BORG_DDIEM__prepare_clinical_logs_for_rdf_part1():
 oRegPattern_phenotype_ID=re.compile("^\s*(?P<phenotype_ID>[^\s\*]+)\s*(?P<phenotype_ID_is_superclass>\*?)\s*$",re.IGNORECASE);
 oRegPattern_drugbank_ID=re.compile("^(?P<drugbank_ID>DB[0-9]+)$",re.IGNORECASE);
 oRegPattern_chEBI_ID=re.compile("^CHEBI\:(?P<chEBI_ID>[0-9]+)$",re.IGNORECASE);
-oRegPattern_pubChem_CID=re.compile("^PubChem\:CID(?P<pubChem_CID>[0-9]+)$",re.IGNORECASE);
+oRegPattern_pubChem_CID=re.compile("^PubChem\s*CID\s*\:\s*(?P<pubChem_CID>[0-9]+)\s*$",re.IGNORECASE);#PubChemCID:14049689 PubChem SID: 384573165
+oRegPattern_pubChem_SID=re.compile("^PubChem\s*SID\s*\:\s*(?P<pubChem_SID>[0-9]+)\s*$",re.IGNORECASE);
+oRegPattern_pubChem_AID=re.compile("^PubChem\s*AID\s*\:\s*(?P<pubChem_AID>[0-9]+)\s*$",re.IGNORECASE);
 oRegPattern_whitespace=re.compile("\s+");
 oRegPattern_digits=re.compile("^.*?(?P<digits>[0-9]+).*$",re.IGNORECASE);
 oRegPattern_ec_number=re.compile("^\s*(EC\s*:?)?(?P<ec_number>([0-9]+|\-)\.([0-9]+|\-)\.([0-9]+|\-)\.([0-9]+|\-))\s*$",re.IGNORECASE);
@@ -397,6 +431,74 @@ def package_omim_id(
     LOGGER.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>_iembase_id__list is:'%s'"%(json.dumps(_iembase_id__list,indent=4)));
     LOGGER.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>_omim_id__dict is:'%s'"%(json.dumps(_omim_id__dict,indent=4)));
     return (_omim_id__dict, _iembase_id__list);
+
+def package_pubChem_CID_info(
+    _PubChem_CID_csv_file_name
+    ,_pubChem_CID__list
+):
+    pass;
+    _pubChem_CID_info__dict={};
+    _CID_id__list=[];
+    
+    src_dataset_csv_fh=None;
+    src_dataset_csv_reader=None;
+    src_dataset_csv_fh=open(_PubChem_CID_csv_file_name,"r");
+    src_dataset_csv_reader=csv.reader(
+        src_dataset_csv_fh
+        ,delimiter=","
+        ,quotechar='"'
+        ,quoting=csv.QUOTE_MINIMAL
+    );
+    cnt_of_fields__max=0;
+    row2=[];
+    cnt_of_fields=0;
+    row_cnt=0;
+    src_dataset_csv_fh.seek(0);
+    for row in src_dataset_csv_reader:
+        row_cnt+=1;
+        #del row2[:];
+        for i, val in enumerate(row):
+            if(row[i]==None):
+                row[i]="";
+            else:
+                row[i]=row[i].strip();
+            if(row[i]=='""' or row[i]=="''"):
+                row[i]="";
+        if(row_cnt>1):
+            #cid,cmpdname,cmpdsynonym,mw,mf,polararea,complexity,xlogp,heavycnt,hbonddonor,hbondacc,rotbonds,inchikey,iupacname,meshheadings,annothits,annothitcnt,aids,cidcdate,dois
+            row_id=None;
+            record_ordinal_position=None;
+            cid=None;
+            cmpdname=None;
+            cmpdsynonym=None;
+            mw=None;
+            mf=None;
+            polararea=None;
+            
+            record_ordinal_position=row_cnt;
+            CID_id=row[0];
+            cmpdname=row[1];
+            
+            for _pubChem_CID in _pubChem_CID__list:
+                _pubChem_CID_number=_pubChem_CID.split("CID:")[-1];
+                LOGGER.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>_pubChem_CID_number is:'{0}', CID_id is:'{1}'".format(json.dumps(_pubChem_CID_number,indent=4),CID_id));
+                if(_pubChem_CID_number==CID_id):
+                    _CID_id__list.append(CID_id);
+                    _pubChem_CID_info__dict[_pubChem_CID]={
+                        "record_ordinal_position":record_ordinal_position
+                        ,"pubChem_CID":_pubChem_CID
+                        ,"CID_id":CID_id
+                        ,"cmpdname":cmpdname
+                    };
+    src_dataset_csv_fh.close();
+    src_dataset_csv_fh=None;
+    _CID_id__list=list(set(_CID_id__list));
+    _CID_id__list.sort(reverse=False)
+    
+    LOGGER.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>_pubChem_CID__list is:'{0}'".format(json.dumps(_pubChem_CID__list,indent=4)));
+    LOGGER.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>_CID_id__list is:'%s'"%(json.dumps(_CID_id__list,indent=4)));
+    LOGGER.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>_pubChem_CID_info__dict is:'%s'"%(json.dumps(_pubChem_CID_info__dict,indent=4)));
+    return (_pubChem_CID_info__dict, _CID_id__list);
 
 def package_gene_info(
     _gene_info_tsv_file_name
@@ -880,6 +982,8 @@ date;time less "${log_file_name}";date;
     drugbank_ID__list=[];
     chEBI_ID__list=[];
     pubChem_CID__list=[];
+    pubChem_SID__list=[];
+    pubChem_AID__list=[];
     wHOCC_ID__list=[];
     
     
@@ -924,9 +1028,10 @@ date;time less "${log_file_name}";date;
                 #populated_fields__dict={};
             else:
                 row_id=row[0];
+                #if(row_cnt>1182 and row_cnt<1193):
                 if(len(row_id)>0 and (1==2 or row_id__selection__list==None or len(row_id__selection__list)==0 or int(row_id)in row_id__selection__list)):
                     pass;
-                    LOGGER.info("Processing row with row_id %s, row_id__selection__list is:'%s', row is:'%s'"%(row_id,row_id__selection__list,row));
+                    #LOGGER.info("Processing row with row_id %s, row_id__selection__list is:'%s', row is:'%s'"%(row_id,row_id__selection__list,row));
                     drug_formulation_dosage=None;
                     drug_ID2=None;
                     drug_ID__list=None;
@@ -936,6 +1041,8 @@ date;time less "${log_file_name}";date;
                     drugbank_ID__ORed__csv=None;
                     chEBI_ID__ORed__csv=None;
                     pubChem_CID__ORed__csv=None;
+                    pubChem_SID__ORed__csv=None;
+                    pubChem_AID__ORed__csv=None;
                     wHOCC_ID__ORed__csv=None;
                     
                     drug_ID__ANDed__list=None;
@@ -943,6 +1050,8 @@ date;time less "${log_file_name}";date;
                     drugbank_ID__ANDed__csv=None;
                     chEBI_ID__ANDed__csv=None;
                     pubChem_CID__ANDed__csv=None;
+                    pubChem_SID__ANDed__csv=None;
+                    pubChem_AID__ANDed__csv=None;
                     wHOCC_ID__ANDed__csv=None;
                     
                     disease_name=None;
@@ -1083,9 +1192,9 @@ date;time less "${log_file_name}";date;
                     drug_ID__ORed__list=regimen_decomposition__dict["drug_ID__ORed__list"];
                     drug_ID__ANDed__list=regimen_decomposition__dict["drug_ID__ANDed__list"];
                     drug_ID_operator_current=regimen_decomposition__dict["drug_ID_operator_current"];
-                    if(1==1 or row_id=="52"):
+                    if(row_cnt>1468 and row_cnt<1472):
                         pass;
-                        LOGGER.info("row_id:%s, c is:'%s', drug_ID2 is:'%s', drug_ID_tmp is:'%s', drug_ID__ORed__list:'%s', drug_ID__ANDed__list:'%s', drug_ID_operator_current:'%s'"%(row_id,c,drug_ID2,drug_ID_tmp,drug_ID__ORed__list,drug_ID__ANDed__list,drug_ID_operator_current));
+                        LOGGER.info("row_cnt:%s, row_id:%s, c is:'%s', drug_ID2 is:'%s', drug_ID_tmp is:'%s', drug_ID__ORed__list:'%s', drug_ID__ANDed__list:'%s', drug_ID_operator_current:'%s'"%(row_cnt,row_id,c,drug_ID2,drug_ID_tmp,drug_ID__ORed__list,drug_ID__ANDed__list,drug_ID_operator_current));
                         #LOGGER.info("row_id:%s, drug_ID_tmp is:'%s'"%(row_id,drug_ID_tmp));
                         
                     #generate the various drug database drug_id lists that are to be ORed
@@ -1097,6 +1206,8 @@ date;time less "${log_file_name}";date;
                     drugbank_ID__ORed__csv=grouped_drug_ids_by_database["drugbank_ID__csv"];
                     chEBI_ID__ORed__csv=grouped_drug_ids_by_database["chEBI_ID__csv"];
                     pubChem_CID__ORed__csv=grouped_drug_ids_by_database["pubChem_CID__csv"];
+                    pubChem_SID__ORed__csv=grouped_drug_ids_by_database["pubChem_SID__csv"];
+                    pubChem_AID__ORed__csv=grouped_drug_ids_by_database["pubChem_AID__csv"];
                     wHOCC_ID__ORed__csv=grouped_drug_ids_by_database["wHOCC_ID__csv"];
                     
                     if(drugbank_ID__ORed__csv!=None and len(drugbank_ID__ORed__csv.strip())>0):
@@ -1105,6 +1216,10 @@ date;time less "${log_file_name}";date;
                         chEBI_ID__list.extend(remove_empty_values_from_list(csv_to_list(chEBI_ID__ORed__csv)));
                     if(pubChem_CID__ORed__csv!=None and len(pubChem_CID__ORed__csv.strip())>0):
                         pubChem_CID__list.extend(remove_empty_values_from_list(csv_to_list(pubChem_CID__ORed__csv)));
+                    if(pubChem_SID__ORed__csv!=None and len(pubChem_SID__ORed__csv.strip())>0):
+                        pubChem_SID__list.extend(remove_empty_values_from_list(csv_to_list(pubChem_SID__ORed__csv)));
+                    if(pubChem_AID__ORed__csv!=None and len(pubChem_AID__ORed__csv.strip())>0):
+                        pubChem_AID__list.extend(remove_empty_values_from_list(csv_to_list(pubChem_AID__ORed__csv)));
                     if(wHOCC_ID__ORed__csv!=None and len(wHOCC_ID__ORed__csv.strip())>0):
                         wHOCC_ID__list.extend(remove_empty_values_from_list(csv_to_list(wHOCC_ID__ORed__csv)));
                     
@@ -1116,12 +1231,18 @@ date;time less "${log_file_name}";date;
                     );
                     drugbank_ID__ANDed__csv=grouped_drug_ids_by_database["drugbank_ID__csv"];
                     pubChem_CID__ANDed__csv=grouped_drug_ids_by_database["pubChem_CID__csv"];
+                    pubChem_SID__ANDed__csv=grouped_drug_ids_by_database["pubChem_SID__csv"];
+                    pubChem_AID__ANDed__csv=grouped_drug_ids_by_database["pubChem_AID__csv"];
                     chEBI_ID__ANDed__csv=grouped_drug_ids_by_database["chEBI_ID__csv"];
                     wHOCC_ID__ANDed__csv=grouped_drug_ids_by_database["wHOCC_ID__csv"];
                     if(drugbank_ID__ANDed__csv!=None and len(drugbank_ID__ANDed__csv.strip())>0):
                         drugbank_ID__list.extend(remove_empty_values_from_list(csv_to_list(drugbank_ID__ANDed__csv)));
                     if(pubChem_CID__ANDed__csv!=None and len(pubChem_CID__ANDed__csv.strip())>0):
                         pubChem_CID__list.extend(remove_empty_values_from_list(csv_to_list(pubChem_CID__ANDed__csv)));
+                    if(pubChem_SID__ANDed__csv!=None and len(pubChem_SID__ANDed__csv.strip())>0):
+                        pubChem_SID__list.extend(remove_empty_values_from_list(csv_to_list(pubChem_SID__ANDed__csv)));
+                    if(pubChem_AID__ANDed__csv!=None and len(pubChem_AID__ANDed__csv.strip())>0):
+                        pubChem_AID__list.extend(remove_empty_values_from_list(csv_to_list(pubChem_AID__ANDed__csv)));
                     if(chEBI_ID__ANDed__csv!=None and len(chEBI_ID__ANDed__csv.strip())>0):
                         chEBI_ID__list.extend(remove_empty_values_from_list(csv_to_list(chEBI_ID__ANDed__csv)));
                     if(wHOCC_ID__ANDed__csv!=None and len(wHOCC_ID__ANDed__csv.strip())>0):
@@ -1136,6 +1257,8 @@ date;time less "${log_file_name}";date;
     drugbank_ID__list=list(set(drugbank_ID__list));
     chEBI_ID__list=list(set(chEBI_ID__list));
     pubChem_CID__list=list(set(pubChem_CID__list));
+    pubChem_SID__list=list(set(pubChem_SID__list));
+    pubChem_AID__list=list(set(pubChem_AID__list));
     wHOCC_ID__list=list(set(wHOCC_ID__list));
     
     if(omim_id__list!=None):
@@ -1156,6 +1279,10 @@ date;time less "${log_file_name}";date;
         chEBI_ID__list.sort(reverse=False);
     if(pubChem_CID__list!=None):
         pubChem_CID__list.sort(reverse=False);
+    if(pubChem_SID__list!=None):
+        pubChem_SID__list.sort(reverse=False);
+    if(pubChem_AID__list!=None):
+        pubChem_AID__list.sort(reverse=False);
     if(wHOCC_ID__list!=None):
         wHOCC_ID__list.sort(reverse=False);
     
@@ -1196,6 +1323,8 @@ date;time less "${log_file_name}";date;
         ,"drugbank_ID__list":drugbank_ID__list
         ,"chEBI_ID__list":chEBI_ID__list
         ,"pubChem_CID__list":pubChem_CID__list
+        ,"pubChem_SID__list":pubChem_SID__list
+        ,"pubChem_AID__list":pubChem_AID__list
         ,"wHOCC_ID__list":wHOCC_ID__list
     };
     return distinct_ids__list__dict;
@@ -1313,6 +1442,9 @@ def cascade_fields_values(
     ,_gene_id__2__uniprotkb_id__dict
     ,_uniprotkb_id__2__ko_id__dict
     ,_uniprotkb_id__2__ec_number__dict
+    ,_pubChem_CID_info__dict
+    ,_pubChem_SID_info__dict
+    ,_pubChem_AID_info__dict
 ):
     pass;
     processing_outcome__dict={};
@@ -1515,6 +1647,18 @@ date;time less "${log_file_name}";date;
         ,"uniprotkb_id__csv"
         ,"ko_id__csv"
         ,"ec_number__csv"
+        ,"pubChem_CID__ORed__csv"
+        ,"pubChem_CID_name__ORed__csv"
+        ,"pubChem_SID__ORed__csv"
+        ,"pubChem_SID_name__ORed__csv"
+        ,"pubChem_AID__ORed__csv"
+        ,"pubChem_AID_name__ORed__csv"
+        ,"pubChem_CID__ANDed__csv"
+        ,"pubChem_CID_name__ANDed__csv"
+        ,"pubChem_SID__ANDed__csv"
+        ,"pubChem_SID_name__ANDed__csv"
+        ,"pubChem_AID__ANDed__csv"
+        ,"pubChem_AID_name__ANDed__csv"
         ,"XML/RDF"
     ];
     dest_dataset_csv_writer.writerow(list(range(1,len(clinical_log_rdf_base_fields_dataset_header__list)+1)));
@@ -1610,6 +1754,7 @@ id,entity class,entity instance field,subject represented by,example value,entit
                 #populated_fields__dict={};
             else:
                 row_id=row[0];
+                #if(row_cnt>1186 and row_cnt<1190):
                 if(len(row_id)>0 and (1==2 or row_id__selection__list==None or len(row_id__selection__list)==0 or int(row_id)in row_id__selection__list)):
                     pass;
                     oMIM_ID__via_disease_name=None;
@@ -1637,12 +1782,14 @@ id,entity class,entity instance field,subject represented by,example value,entit
                     drug_ID__ORed__csv=None;
                     drugbank_ID__ORed__csv=None;
                     chEBI_ID__ORed__csv=None;
+                    pubChem_CID__ORed__csv=None;
                     wHOCC_ID__ORed__csv=None;
                     
                     drug_ID__ANDed__list=None;
                     drug_ID__ANDed__csv=None;
                     drugbank_ID__ANDed__csv=None;
                     chEBI_ID__ANDed__csv=None;
+                    pubChem_CID__ANDed__csv=None;
                     wHOCC_ID__ANDed__csv=None;
                     
                     disease_name=None;
@@ -1830,6 +1977,8 @@ id,entity class,entity instance field,subject represented by,example value,entit
                     drug_ID_normalized="";
                     in_operator_section=False;
                     
+                    #a="PubChem SID: 384573165";import re;re.sub(r"PubChem\s*((C|S|A)ID)\s*:\s*",r"PubChem\1:",a);
+                    drug_ID2=re.sub(r"PubChem\s*((C|S|A)ID)\s*:\s*",r"PubChem\1:",drug_ID2);
                     regimen_decomposition__dict=compose_regimen(row_id, drug_ID2);
                     
                     c=regimen_decomposition__dict["c"];
@@ -1848,8 +1997,12 @@ id,entity class,entity instance field,subject represented by,example value,entit
                     grouped_drug_ids_by_database=group_drug_ids_by_database(
                         drug_ID__list
                     );
+                    LOGGER.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>row_id is:{0}, drug_ID2 is:'{1}', drug_ID__list is:'{2}', grouped_drug_ids_by_database is:'{3}'".format(row_id,drug_ID2,json.dumps(drug_ID__list),json.dumps(grouped_drug_ids_by_database,indent=4)));
                     drugbank_ID__ORed__csv=grouped_drug_ids_by_database["drugbank_ID__csv"];
                     chEBI_ID__ORed__csv=grouped_drug_ids_by_database["chEBI_ID__csv"];
+                    pubChem_CID__ORed__csv=grouped_drug_ids_by_database["pubChem_CID__csv"];
+                    pubChem_SID__ORed__csv=grouped_drug_ids_by_database["pubChem_SID__csv"];
+                    pubChem_AID__ORed__csv=grouped_drug_ids_by_database["pubChem_AID__csv"];
                     wHOCC_ID__ORed__csv=grouped_drug_ids_by_database["wHOCC_ID__csv"];
                     
                     #generate the various drug database drug_id lists that are to be ANDed
@@ -1858,9 +2011,94 @@ id,entity class,entity instance field,subject represented by,example value,entit
                     grouped_drug_ids_by_database=group_drug_ids_by_database(
                         drug_ID__list
                     );
+                    #LOGGER.info("===========================row_id is:{0}, drug_ID2 is:'{1}', drug_ID__list is:'{2}', grouped_drug_ids_by_database is:'{3}', _pubChem_CID_info__dict is:'{4}'".format(row_id,drug_ID2,json.dumps(drug_ID__list),json.dumps(grouped_drug_ids_by_database,indent=4),json.dumps(_pubChem_CID_info__dict,indent=4)));
                     drugbank_ID__ANDed__csv=grouped_drug_ids_by_database["drugbank_ID__csv"];
                     chEBI_ID__ANDed__csv=grouped_drug_ids_by_database["chEBI_ID__csv"];
+                    pubChem_CID__ANDed__csv=grouped_drug_ids_by_database["pubChem_CID__csv"];
+                    pubChem_SID__ANDed__csv=grouped_drug_ids_by_database["pubChem_SID__csv"];
+                    pubChem_AID__ANDed__csv=grouped_drug_ids_by_database["pubChem_AID__csv"];
                     wHOCC_ID__ANDed__csv=grouped_drug_ids_by_database["wHOCC_ID__csv"];
+                    
+                    
+                    pubChem_CID_name__ORed__csv=None;
+                    pubChem_CID_name__ORed__list=[];
+                    if(pubChem_CID__ORed__csv!=None):
+                        pubChem_CID__ORed__list=csv_to_list(pubChem_CID__ORed__csv);
+                        for pubChem_CID__ORed in pubChem_CID__ORed__list:
+                            pubChem_CID__ORed2=pubChem_CID__ORed.upper().replace("PUBCHEM","");
+                            #LOGGER.info("000000000000000000000row_id is:{0}, drug_ID2 is:'{1}', pubChem_CID__ORed is:'{2}', pubChem_CID__ORed2 is:'{3}', _pubChem_CID_info__dict is:'{4}'".format(row_id,drug_ID2,pubChem_CID__ORed,pubChem_CID__ORed2,json.dumps(_pubChem_CID_info__dict,indent=4)));
+                            if(_pubChem_CID_info__dict!=None and pubChem_CID__ORed in _pubChem_CID_info__dict):
+                                cmpdname=_pubChem_CID_info__dict[pubChem_CID__ORed]["cmpdname"];
+                                #LOGGER.info("111111111111111111111row_id is:{0}, drug_ID2 is:'{1}', pubChem_CID__ORed is:'{2}' has been found as key in _pubChem_CID_info__dict is:'{3}', cmpdname is:'{4}'".format(row_id,drug_ID2,pubChem_CID__ORed,json.dumps(_pubChem_CID_info__dict,indent=4),cmpdname));
+                                pubChem_CID_name__ORed__list.append(cmpdname);
+                            else:
+                                pubChem_CID_name__ORed__list.append(None);
+                    pubChem_CID_name__ORed__csv=list_to_csv(pubChem_CID_name__ORed__list);
+                    
+                    pubChem_SID_name__ORed__csv=None;
+                    pubChem_SID_name__ORed__list=[];
+                    if(pubChem_SID__ORed__csv!=None):
+                        pubChem_SID__ORed__list=csv_to_list(pubChem_SID__ORed__csv);
+                        for pubChem_SID__ORed in pubChem_SID__ORed__list:
+                            if(_pubChem_SID_info__dict!=None and pubChem_SID__ORed in _pubChem_SID_info__dict):
+                                pubChem_SID_name__ORed__list.append(_pubChem_SID_info__dict[pubChem_SID__ORed.upper().replace("PUBCHEM","")]["cmpdname"]);
+                            else:
+                                pubChem_SID_name__ORed__list.append(None);
+                    pubChem_SID_name__ORed__csv=list_to_csv(pubChem_SID_name__ORed__list);
+                    
+                    pubChem_AID_name__ORed__csv=None;
+                    pubChem_AID_name__ORed__list=[];
+                    if(pubChem_AID__ORed__csv!=None):
+                        pubChem_AID__ORed__list=csv_to_list(pubChem_AID__ORed__csv);
+                        for pubChem_AID__ORed in pubChem_AID__ORed__list:
+                            if(_pubChem_AID_info__dict!=None and pubChem_AID__ORed in _pubChem_AID_info__dict):
+                                pubChem_AID_name__ORed__list.append(_pubChem_AID_info__dict[pubChem_AID__ORed.upper().replace("PUBCHEM","")]["cmpdname"]);
+                            else:
+                                pubChem_AID_name__ORed__list.append(None);
+                    pubChem_AID_name__ORed__csv=list_to_csv(pubChem_AID_name__ORed__list);
+                    
+                    
+                    
+                    pubChem_CID_name__ANDed__csv=None;
+                    pubChem_CID_name__ANDed__list=[];
+                    if(pubChem_CID__ANDed__csv!=None):
+                        pubChem_CID__ANDed__list=csv_to_list(pubChem_CID__ANDed__csv);
+                        for pubChem_CID__ANDed in pubChem_CID__ANDed__list:
+                            #LOGGER.info("000000000000000000000row_id is:{0}, drug_ID2 is:'{1}', pubChem_CID__ANDed is:'{2}', _pubChem_CID_info__dict is:'{3}'".format(row_id,drug_ID2,pubChem_CID__ANDed,json.dumps(_pubChem_CID_info__dict,indent=4)));
+                            if(_pubChem_CID_info__dict!=None and pubChem_CID__ANDed in _pubChem_CID_info__dict):
+                                pubChem_CID_name__ANDed__list.append(_pubChem_CID_info__dict[pubChem_CID__ANDed.upper().replace("PUBCHEM","")]["cmpdname"]);
+                            else:
+                                pubChem_CID_name__ANDed__list.append(None);
+                    pubChem_CID_name__ANDed__csv=list_to_csv(pubChem_CID_name__ANDed__list);
+                    
+                    pubChem_SID_name__ANDed__csv=None;
+                    pubChem_SID_name__ANDed__list=[];
+                    if(pubChem_SID__ANDed__csv!=None):
+                        pubChem_SID__ANDed__list=csv_to_list(pubChem_SID__ANDed__csv);
+                        for pubChem_SID__ANDed in pubChem_SID__ANDed__list:
+                            if(_pubChem_SID_info__dict!=None and pubChem_SID__ANDed in _pubChem_SID_info__dict):
+                                pubChem_SID_name__ANDed__list.append(_pubChem_SID_info__dict[pubChem_SID__ANDed.upper().replace("PUBCHEM","")]["cmpdname"]);
+                            else:
+                                pubChem_SID_name__ANDed__list.append(None);
+                    pubChem_SID_name__ANDed__csv=list_to_csv(pubChem_SID_name__ANDed__list);
+                    
+                    pubChem_AID_name__ANDed__csv=None;
+                    pubChem_AID_name__ANDed__list=[];
+                    if(pubChem_AID__ANDed__csv!=None):
+                        pubChem_AID__ANDed__list=csv_to_list(pubChem_AID__ANDed__csv);
+                        for pubChem_AID__ANDed in pubChem_AID__ANDed__list:
+                            if(_pubChem_AID_info__dict!=None and pubChem_AID__ANDed in _pubChem_AID_info__dict):
+                                pubChem_AID_name__ANDed__list.append(_pubChem_AID_info__dict[pubChem_AID__ANDed.upper().replace("PUBCHEM","")]["cmpdname"]);
+                            else:
+                                pubChem_AID_name__ANDed__list.append(None);
+                    pubChem_AID_name__ANDed__csv=list_to_csv(pubChem_AID_name__ANDed__list);
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                     
                     study_type_evidence_codes__str__orig=row[12];
                     study_type_evidence_codes__transformed=study_type_evidence_codes__str__orig.replace(" and ",",");
@@ -1970,6 +2208,18 @@ id,entity class,entity instance field,subject represented by,example value,entit
                         ,"uniprotkb_id__csv":uniprotkb_id__csv
                         ,"ko_id__csv":ko_id__csv
                         ,"ec_number__csv":ec_number__csv2
+                        ,"pubChem_CID__ORed__csv":pubChem_CID__ORed__csv
+                        ,"pubChem_CID_name__ORed__csv":pubChem_CID_name__ORed__csv
+                        ,"pubChem_SID__ORed__csv":pubChem_SID__ORed__csv
+                        ,"pubChem_SID_name__ORed__csv":pubChem_SID_name__ORed__csv
+                        ,"pubChem_AID__ORed__csv":pubChem_AID__ORed__csv
+                        ,"pubChem_AID_name__ORed__csv":pubChem_AID_name__ORed__csv
+                        ,"pubChem_CID__ANDed__csv":pubChem_CID__ANDed__csv
+                        ,"pubChem_CID_name__ANDed__csv":pubChem_CID_name__ANDed__csv
+                        ,"pubChem_SID__ANDed__csv":pubChem_SID__ANDed__csv
+                        ,"pubChem_SID_name__ANDed__csv":pubChem_SID_name__ANDed__csv
+                        ,"pubChem_AID__ANDed__csv":pubChem_AID__ANDed__csv
+                        ,"pubChem_AID_name__ANDed__csv":pubChem_AID_name__ANDed__csv
                     };
                     xml_data=None;
                     if(1==2):
@@ -2050,6 +2300,18 @@ id,entity class,entity instance field,subject represented by,example value,entit
                         ,uniprotkb_id__csv
                         ,ko_id__csv
                         ,ec_number__csv2
+                        ,pubChem_CID__ORed__csv
+                        ,pubChem_CID_name__ORed__csv
+                        ,pubChem_SID__ORed__csv
+                        ,pubChem_SID_name__ORed__csv
+                        ,pubChem_AID__ORed__csv
+                        ,pubChem_AID_name__ORed__csv
+                        ,pubChem_CID__ANDed__csv
+                        ,pubChem_CID_name__ANDed__csv
+                        ,pubChem_SID__ANDed__csv
+                        ,pubChem_SID_name__ANDed__csv
+                        ,pubChem_AID__ANDed__csv
+                        ,pubChem_AID_name__ANDed__csv
                         ,xml_data
                     ];
                     dest_dataset_csv_writer.writerow(clinical_log_rdf_base_fields_dataset_row);
@@ -2787,12 +3049,16 @@ def group_drug_ids_by_database(
     grouped_drug_ids_by_database={};
     drugbank_ID__csv=None;
     chEBI_ID__csv=None;
-    pubChem_CID__csv=None;#PubChem:CID
     wHOCC_ID__csv=None;
     drugbank_ID__list=None;
     chEBI_ID__list=None;
-    pubChem_CID__list=None;#PubChem:CID
     wHOCC_ID__list=None;
+    pubChem_CID__csv=None;#PubChem:CID
+    pubChem_CID__list=None;#PubChem:CID
+    pubChem_SID__csv=None;#PubChem:SID
+    pubChem_SID__list=None;#PubChem:SID
+    pubChem_AID__csv=None;#PubChem:AID
+    pubChem_AID__list=None;#PubChem:AID
     
     if(drug_ID__list!=None):
         for drug_ID2 in drug_ID__list:
@@ -2817,23 +3083,45 @@ def group_drug_ids_by_database(
                         pubChem_CID=match.group("pubChem_CID");
                         if(pubChem_CID__list==None):
                             pubChem_CID__list=[];
-                        pubChem_CID__list.append("PubChem:CID %s"%(pubChem_CID));
+                        pubChem_CID__list.append("CID:{0}".format(pubChem_CID));
     
                         pass;
                     else:
-                        #Assume it is WHOCC_ID
-                        if(len(drug_ID2)>0):
-                            if(wHOCC_ID__list==None):
-                                wHOCC_ID__list=[];
-                            wHOCC_ID__list.append(drug_ID2);
+                        match=oRegPattern_pubChem_SID.search(drug_ID2);
+                        if(match!=None and match.group(0)!=None):
+                            pubChem_SID=match.group("pubChem_SID");
+                            if(pubChem_SID__list==None):
+                                pubChem_SID__list=[];
+                            pubChem_SID__list.append("SID:{0}".format(pubChem_SID));
+        
+                            pass;
+                        else:
+                            match=oRegPattern_pubChem_AID.search(drug_ID2);
+                            if(match!=None and match.group(0)!=None):
+                                pubChem_AID=match.group("pubChem_AID");
+                                if(pubChem_AID__list==None):
+                                    pubChem_AID__list=[];
+                                pubChem_AID__list.append("AID:{0}".format(pubChem_AID));
+            
+                                pass;
+                            else:
+                                #Assume it is WHOCC_ID
+                                if(len(drug_ID2)>0):
+                                    if(wHOCC_ID__list==None):
+                                        wHOCC_ID__list=[];
+                                    wHOCC_ID__list.append(drug_ID2);
     drugbank_ID__csv=list_to_csv(remove_empty_values_from_list(drugbank_ID__list));
     chEBI_ID__csv=list_to_csv(remove_empty_values_from_list(chEBI_ID__list));
     pubChem_CID__csv=list_to_csv(remove_empty_values_from_list(pubChem_CID__list));
+    pubChem_SID__csv=list_to_csv(remove_empty_values_from_list(pubChem_SID__list));
+    pubChem_AID__csv=list_to_csv(remove_empty_values_from_list(pubChem_AID__list));
     wHOCC_ID__csv=list_to_csv(remove_empty_values_from_list(wHOCC_ID__list));
     grouped_drug_ids_by_database={
         "drugbank_ID__csv":drugbank_ID__csv
         ,"chEBI_ID__csv":chEBI_ID__csv
         ,"pubChem_CID__csv":pubChem_CID__csv
+        ,"pubChem_SID__csv":pubChem_SID__csv
+        ,"pubChem_AID__csv":pubChem_AID__csv
         ,"wHOCC_ID__csv":wHOCC_ID__csv
     };
     #LOGGER.info("drug_ID__list is:'%s', grouped_drug_ids_by_database is:'%s'"%(drug_ID__list,grouped_drug_ids_by_database));
@@ -3014,6 +3302,8 @@ if __name__ == '__main__':
         parser.add_argument("-u","--gene_id__2__uniprotkb_id_tsv_file_name",action="append",type=str,dest="op__gene_id__2__uniprotkb_id_tsv_file_name",help="The full path to the Gene_id to UniProtKB_id mapping TSV text file.")
         parser.add_argument("-k","--uniprotkb_id__2__ko_id_tsv_file_name",action="append",type=str,dest="op__uniprotkb_id__2__ko_id_tsv_file_name",help="The full path to the UniProtKB_id to KO_id mapping TSV text file.")
         parser.add_argument("-n","--uniprotkb_id__2__ec_number_tsv_file_name",action="append",type=str,dest="op__uniprotkb_id__2__ec_number_tsv_file_name",help="The full path to the UniProtKB_id to EC number mapping TSV text file.")
+        parser.add_argument("-p","--PubChem_CID_csv_file_name",action="append",type=str,dest="op__PubChem_CID_csv_file_name",help="The full path to the PubChem CID to PubChem compound_name mapping CSV text file.")
+        
         
         parser.add_argument("-w","--count_of_workers",action="append",type=int,dest="op__count_of_workers",help="""
             The count of workers to launch (via multiprocessing).
@@ -3049,6 +3339,8 @@ if __name__ == '__main__':
                     The full path to the UniProtKB_id to KO_id mapping TSV text file.
                 -n, --uniprotkb_id__2__ec_number_tsv_file_name
                     The full path to the UniProtKB_id to EC number mapping TSV text file.
+                -p, --PubChem_CID_csv_file_name
+                    The full path to the PubChem CID to PubChem compound_name mapping CSV text file.
                 -w, --count_of_workers
                     The count of workers to launch (via multiprocessing).
             """);
@@ -3081,6 +3373,8 @@ if __name__ == '__main__':
             uniprotkb_id__2__ko_id_tsv_file_name=options.op__uniprotkb_id__2__ko_id_tsv_file_name[0];
         if(options.op__uniprotkb_id__2__ec_number_tsv_file_name):
             uniprotkb_id__2__ec_number_tsv_file_name=options.op__uniprotkb_id__2__ec_number_tsv_file_name[0];
+        if(options.op__PubChem_CID_csv_file_name):
+            PubChem_CID_csv_file_name=options.op__PubChem_CID_csv_file_name[0];
             
         if(options.op__count_of_workers):
             count_of_workers=int(options.op__count_of_workers[0]);
@@ -3088,8 +3382,8 @@ if __name__ == '__main__':
         #parser.destroy()
     except argparse.ArgumentError:
         #print help infor and exit
-        usage()
-        sys.exit(2)
+        usage();
+        sys.exit(2);
     
     print("dest_dir_file_name is:'%s'"%(dest_dir_file_name));
     #print("dest_ddl_file_name is:'%s'"%(dest_ddl_file_name));
@@ -3117,6 +3411,7 @@ if __name__ == '__main__':
     LOGGER.info(" '%s', -------------- gene_id__2__uniprotkb_id_tsv_file_name is:'%s'"%(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f'),gene_id__2__uniprotkb_id_tsv_file_name));
     LOGGER.info(" '%s', -------------- uniprotkb_id__2__ko_id_tsv_file_name is:'%s'"%(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f'),uniprotkb_id__2__ko_id_tsv_file_name));
     LOGGER.info(" '%s', -------------- uniprotkb_id__2__ec_number_tsv_file_name is:'%s'"%(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f'),uniprotkb_id__2__ec_number_tsv_file_name));
+    LOGGER.info(" '%s', -------------- PubChem_CID_csv_file_name is:'%s'"%(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f'),PubChem_CID_csv_file_name));
     LOGGER.info(" '%s', -------------- count_of_workers is:'%s'"%(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f'),count_of_workers));
     process_list=[];
     queue_list=[];#this array will contain objects of multiprocessing.Queue (which is a near clone of queue.Queue)
@@ -3148,6 +3443,7 @@ if __name__ == '__main__':
                 ,gene_id__2__uniprotkb_id_tsv_file_name
                 ,uniprotkb_id__2__ko_id_tsv_file_name
                 ,uniprotkb_id__2__ec_number_tsv_file_name
+                ,PubChem_CID_csv_file_name
             );
             """
             t=threading.Thread(
