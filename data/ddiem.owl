@@ -79,7 +79,7 @@
         <IAO_0000115 xml:lang="en">A therapeutic procedure in which a genetically defective protein is replaced by a canonical source of the same protein, genetically as in gene therapy, or by some other means of delivery, whose completion is hypothesized by a health care provider to eliminate a disorder or to alleviate the signs and symptoms of a disorder or pathological process. [PNS]</IAO_0000115>
         <dc:creator>leechuck</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-07-15T10:19:07Z</dc:date>
-        <rdfs:label xml:lang="en">direct complementation of genetically defective protein</rdfs:label>
+        <rdfs:label xml:lang="en">direct complementation of a genetically defective protein</rdfs:label>
     </owl:Class>
     
 
@@ -223,7 +223,7 @@
         <IAO_0000115 xml:lang="en">A therapeutic procedure that stimulates a component of the pathway or network in which a genetically defective defective protein is found, compensating for alteration of activity of that protein. [PNS]</IAO_0000115>
         <dc:creator>leechuck</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-07-15T18:09:20Z</dc:date>
-        <rdfs:label xml:lang="en">functional complementation or a defective protein by stimulation</rdfs:label>
+        <rdfs:label xml:lang="en">functional complementation of a defective protein by stimulation</rdfs:label>
     </owl:Class>
     
 
