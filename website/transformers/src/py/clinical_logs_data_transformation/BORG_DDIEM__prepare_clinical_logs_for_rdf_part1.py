@@ -1967,7 +1967,7 @@ id,entity class,entity instance field,subject represented by,example value,entit
                     drug_ID2=drug_ID2.replace("/"," / ");
                     drug_ID2=oRegPattern_whitespace.sub(" ",drug_ID2);
                     drug_ID2=drug_ID2.strip();
-                    if(drug_ID2=="NA"):
+                    if(1==3 and drug_ID2=="NA"):
                         drug_ID2="";
                     if(len(drug_ID2)>0):
                         drug_ID2__sha256=encrypt_string(drug_ID2);
