@@ -21,7 +21,8 @@ Incooperate WHOCC drug names from "/local/data/development.minor/KAUST/BORG/raw_
 #export src_clinical_log_dataset_csv_file_name="../raw_data/2019-12-03/BORG_DDIEM__clinical_logs.2019-12-03.1025hrs.collapsed.csv";
 #export src_clinical_log_dataset_csv_file_name="../raw_data/2019-12-03/BORG_DDIEM__clinical_logs.2019-12-03.1140hrs.collapsed.csv";
 #export src_clinical_log_dataset_csv_file_name="../raw_data/2019-12-04/BORG_DDIEM__clinical_logs.2019-12-04.0804hrs.collapsed.csv";
-export src_clinical_log_dataset_csv_file_name="../raw_data/2019-12-05/BORG_DDIEM__clinical_logs.2019-12-05.0910hrs.collapsed.csv";
+#export src_clinical_log_dataset_csv_file_name="../raw_data/2019-12-05/BORG_DDIEM__clinical_logs.2019-12-05.0910hrs.collapsed.csv";
+export src_clinical_log_dataset_csv_file_name="../raw_data/2019-12-05/BORG_DDIEM__clinical_logs.2019-12-05.0959hrs.collapsed.csv";
 
 
 
@@ -1998,7 +1999,7 @@ id,entity class,entity instance field,subject represented by,example value,entit
                     grouped_drug_ids_by_database=group_drug_ids_by_database(
                         drug_ID__list
                     );
-                    LOGGER.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>row_id is:{0}, drug_ID2 is:'{1}', drug_ID__list is:'{2}', grouped_drug_ids_by_database is:'{3}'".format(row_id,drug_ID2,json.dumps(drug_ID__list),json.dumps(grouped_drug_ids_by_database,indent=4)));
+                    #LOGGER.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>row_id is:{0}, drug_ID2 is:'{1}', drug_ID__list is:'{2}', grouped_drug_ids_by_database is:'{3}'".format(row_id,drug_ID2,json.dumps(drug_ID__list),json.dumps(grouped_drug_ids_by_database,indent=4)));
                     drugbank_ID__ORed__csv=grouped_drug_ids_by_database["drugbank_ID__csv"];
                     chEBI_ID__ORed__csv=grouped_drug_ids_by_database["chEBI_ID__csv"];
                     pubChem_CID__ORed__csv=grouped_drug_ids_by_database["pubChem_CID__csv"];
