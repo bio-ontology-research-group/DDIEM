@@ -28,11 +28,3 @@ for research, teaching and scholarly purposes.
 <p>The content of this website is provided as an information source for clinicians and scientists only, and is not intended as, nor should it be considered a
 
 substitute for, professional medical advice, diagnosis or treatment.
-
-## Usage of Content
-
-<p>Unless noted otherwise, all information contained on this website, such as text, graphics, logos, icons and images is copyrighted by and property of
-
-King Abdullah University of Science andTtechnology, and may not be copied, altered, stored or otherwise used in whole or part without the express consent of DDIEM.
-
-Any reproduction or use for commercial purpose is prohibited without the prior express written permission of DDIEM. 'copyright' KAUST
