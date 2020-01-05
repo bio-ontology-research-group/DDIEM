@@ -102,7 +102,6 @@ if __name__ == '__main__':
     store.bind("obo", OBO)
     store.bind("dcterms", DCTERMS)
     store.bind("void", VOID)
-    store.load("../../../../data/ddiem.owl")
 
     description = '''DDIEM - Drug database for inborn errors of metabolism is a database on therapeutic strategies
      for inborn errors of metabolism. These strategies are classified by mechanism and outcome in DDIEM Ontology. 
@@ -126,7 +125,6 @@ if __name__ == '__main__':
 
     dataset.add(DCTERMS.contributor, kaust)
     dataset.add(DCTERMS.contributor, uoc)
-
 
     robert = store.resource("https://www.kaust.edu.sa/RobertHoehndorf")
     robert.add(RDF.type, FOAF.Person)
@@ -173,6 +171,11 @@ if __name__ == '__main__':
     dataset.add(VOID.sparqlEndpoint, store.resource('http://ddiem.phenomebrowser.net/sparql'))
     dataset.add(DCTERMS.license, store.resource('https://creativecommons.org/licenses/by/4.0/'))
     dataset.add(VOID.feature, store.resource('http://www.w3.org/ns/formats/RDF_XML'))
+
+    # Serialize the file to rdf/xml representation
+    store.serialize("../../../../data/VOID.{date}.rdf".format(date=str(datetime.date.today())), format="pretty-xml", max_depth=3)
+
+    store.load("../../../../data/ddiem.owl")
 
     disease_dict = {}
     gene_dict = {}
