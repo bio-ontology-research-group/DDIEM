@@ -7,7 +7,8 @@ Incooperate drugbank drug metadata from "/local/data/development.minor/KAUST/BOR
 Incooperate ChEBI drug metadata from "/local/data/development.minor/KAUST/BORG/try1/../raw_data/2019-08-04/ChEBI/names.tsv"
 Incooperate IEMbase data from "/local/data/development.minor/KAUST/BORG/try1/../raw_data/2019-10-17/disorderID_omimID.csv"
 #https://www.whocc.no/atc_ddd_index/?code=M01AX
-Incooperate WHOCC drug names from "/local/data/development.minor/KAUST/BORG/raw_data/2019-09-01/WHOCC/BORG_DDIEM__clinical_logs.2019-09-01.1348hrs.collapsed.clinical_logs_for_rdf_part1.WHOCC_drug_names.json"
+#Incooperate WHOCC drug names from "/local/data/development.minor/KAUST/BORG/raw_data/2019-09-01/WHOCC/BORG_DDIEM__clinical_logs.2019-09-01.1348hrs.collapsed.clinical_logs_for_rdf_part1.WHOCC_drug_names.json"
+Incooperate WHOCC drug names from "/local/data/development.minor/KAUST/BORG/raw_data/2020-01-12/WHOCC/BORG_DDIEM__clinical_logs.2020-01-13.0859hrs.collapsed.clinical_logs_for_rdf_part1.WHOCC_drug_names.json"
 
 
 #export src_clinical_log_dataset_csv_file_name="../raw_data/2019-05-27/BORG_DDIEM__clinical_logs.2019-05-27.1340hrs.collapsed.csv";
@@ -22,7 +23,8 @@ Incooperate WHOCC drug names from "/local/data/development.minor/KAUST/BORG/raw_
 #export src_clinical_log_dataset_csv_file_name="../raw_data/2019-12-03/BORG_DDIEM__clinical_logs.2019-12-03.1140hrs.collapsed.csv";
 #export src_clinical_log_dataset_csv_file_name="../raw_data/2019-12-04/BORG_DDIEM__clinical_logs.2019-12-04.0804hrs.collapsed.csv";
 #export src_clinical_log_dataset_csv_file_name="../raw_data/2019-12-05/BORG_DDIEM__clinical_logs.2019-12-05.0910hrs.collapsed.csv";
-export src_clinical_log_dataset_csv_file_name="../raw_data/2019-12-05/BORG_DDIEM__clinical_logs.2019-12-05.0959hrs.collapsed.csv";
+#export src_clinical_log_dataset_csv_file_name="../raw_data/2019-12-05/BORG_DDIEM__clinical_logs.2019-12-05.0959hrs.collapsed.csv";
+export src_clinical_log_dataset_csv_file_name="../raw_data/2020-01-12/BORG_DDIEM__clinical_logs.2020-01-12.1611hrs.collapsed.csv";
 
 
 
@@ -1661,6 +1663,8 @@ date;time less "${log_file_name}";date;
         ,"pubChem_SID_name__ANDed__csv"
         ,"pubChem_AID__ANDed__csv"
         ,"pubChem_AID_name__ANDed__csv"
+        ,"drug_ID_NA_position__ORed__csv"
+        ,"drug_ID_NA_position__ANDed__csv"
         ,"XML/RDF"
     ];
     dest_dataset_csv_writer.writerow(list(range(1,len(clinical_log_rdf_base_fields_dataset_header__list)+1)));
@@ -1985,8 +1989,30 @@ id,entity class,entity instance field,subject represented by,example value,entit
                     
                     c=regimen_decomposition__dict["c"];
                     drug_ID_tmp=regimen_decomposition__dict["drug_ID_tmp"];
+                    
                     drug_ID__ORed__list=regimen_decomposition__dict["drug_ID__ORed__list"];
+                    drug_ID_NA_position__ORed__list=[];
+                    drug_ID_NA_position__ORed__csv=None;
+                    if(drug_ID__ORed__list!=None):
+                        drug_ID_ordinal_position=0;
+                        for drug_ID in drug_ID__ORed__list:
+                            if(drug_ID.upper()=="NA"):
+                                drug_ID_ordinal_position+=1;
+                                drug_ID_NA_position__ORed__list.append(drug_ID_ordinal_position);
+                        drug_ID_NA_position__ORed__csv=list_to_csv(remove_empty_values_from_list(drug_ID_NA_position__ORed__list));
+                    
                     drug_ID__ANDed__list=regimen_decomposition__dict["drug_ID__ANDed__list"];
+                    drug_ID_NA_position__ANDed__list=[];
+                    drug_ID_NA_position__ANDed__csv=None;
+                    if(drug_ID__ANDed__list!=None):
+                        drug_ID_ordinal_position=0;
+                        for drug_ID in drug_ID__ANDed__list:
+                            if(drug_ID.upper()=="NA"):
+                                drug_ID_ordinal_position+=1;
+                                drug_ID_NA_position__ANDed__list.append(drug_ID_ordinal_position);
+                        drug_ID_NA_position__ANDed__csv=list_to_csv(remove_empty_values_from_list(drug_ID_NA_position__ANDed__list));
+                    
+                    
                     drug_ID_operator_current=regimen_decomposition__dict["drug_ID_operator_current"];
                     if(row_id=="52"):
                         pass;
@@ -2222,6 +2248,8 @@ id,entity class,entity instance field,subject represented by,example value,entit
                         ,"pubChem_SID_name__ANDed__csv":pubChem_SID_name__ANDed__csv
                         ,"pubChem_AID__ANDed__csv":pubChem_AID__ANDed__csv
                         ,"pubChem_AID_name__ANDed__csv":pubChem_AID_name__ANDed__csv
+                        ,"drug_ID_NA_position__ORed__csv":drug_ID_NA_position__ORed__csv
+                        ,"drug_ID_NA_position__ANDed__csv":drug_ID_NA_position__ANDed__csv
                     };
                     xml_data=None;
                     if(1==2):
@@ -2314,6 +2342,8 @@ id,entity class,entity instance field,subject represented by,example value,entit
                         ,pubChem_SID_name__ANDed__csv
                         ,pubChem_AID__ANDed__csv
                         ,pubChem_AID_name__ANDed__csv
+                        ,drug_ID_NA_position__ORed__csv
+                        ,drug_ID_NA_position__ANDed__csv
                         ,xml_data
                     ];
                     dest_dataset_csv_writer.writerow(clinical_log_rdf_base_fields_dataset_row);
@@ -2339,12 +2369,16 @@ id,entity class,entity instance field,subject represented by,example value,entit
                     drug_ID2__sha256=None;
                     drug_ID__ORed__list=None;
                     drug_ID__ORed__csv=None;
+                    drug_ID_NA_position__ORed__list=None;
+                    drug_ID_NA_position__ORed__csv=None;
                     drugbank_ID__ORed__csv=None;
                     chEBI_ID__ORed__csv=None;
                     wHOCC_ID__ORed__csv=None;
                     
                     drug_ID__ANDed__list=None;
                     drug_ID__ANDed__csv=None;
+                    drug_ID_NA_position__ANDed__list=None;
+                    drug_ID_NA_position__ANDed__csv=None;
                     drugbank_ID__ANDed__csv=None;
                     chEBI_ID__ANDed__csv=None;
                     wHOCC_ID__ANDed__csv=None;
