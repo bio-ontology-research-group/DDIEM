@@ -61,7 +61,11 @@ export class DiseaseDao {
           rdfs:label ?drugLabel;
           obo:RO_0000056 ?procedure .
       optional {<${iri}>   ddiem:url ?drugUrl . } .
-      ?procedure obo:RO_0002599 ?resource .
+      { ?procedure obo:RO_0002599 ?resource . }
+      UNION { 
+        ?combProcedure obo:BFO_0000050 ?procedure .
+        ?combProcedure obo:RO_0002599 ?resource .
+      } .
       ?resource rdf:type ddiem:Disease; 
           rdfs:label ?label .
     } ORDER BY ASC(?label) `;
@@ -148,14 +152,12 @@ export class DiseaseDao {
 
   async getDiseaseDrugs(iri: any) {
     console.log("diseaseId:" + iri);
-    const diseaseQuery = `
-    PREFIX obo: <http://purl.obolibrary.org/obo/>
+    const diseaseQuery = `PREFIX obo: <http://purl.obolibrary.org/obo/>
     PREFIX ddiem: <http://ddiem.phenomebrowser.net/>
     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
     PREFIX dc: <http://purl.org/dc/elements/1.1/>
     
     CONSTRUCT {
-      ?drugAlt ?drugAltProp ?drug .
       ?drug rdfs:label ?label;
             dc:identifier ?identifier;
             ddiem:url ?url .
@@ -163,8 +165,11 @@ export class DiseaseDao {
     FROM <http://ddiem.phenomebrowser.net>
     WHERE {
       ?procedure obo:RO_0002599 <${iri}>  .
-      ?procedure obo:RO_0000057 ?drugAlt .
-      ?drugAlt ?drugAltProp ?drug .
+      { ?procedure obo:RO_0000057 ?drug .} 
+      UNION {
+         ?procedure obo:BFO_0000050 ?procedure_part .
+         ?procedure_part obo:RO_0000057 ?drug 
+      } .
       ?drug rdfs:label ?label .
       optional { 
         ?drug dc:identifier ?identifier;

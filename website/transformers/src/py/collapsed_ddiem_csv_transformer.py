@@ -51,17 +51,21 @@ if __name__ == '__main__':
             #has participant
             "RO_0000057",
             #therapeutic procedure
-            "OGMS_0000112"
+            "OGMS_0000112",
+            #combination therapeutic procedure
+            "DDIEM_0000023",
+            #part of
+            "BFO_0000050"
         ]
     )
 
     VOID = ClosedNamespace(uri=URIRef("http://rdfs.org/ns/void#"), terms=['Dataset','sparqlEndpoint','feature'])
      
 
-    DDIEM_SOURCE_FILE = "../../raw_data/2019-12-05/BORG_DDIEM__clinical_logs.2019-12-05.0959hrs.collapsed.clinical_logs_for_rdf_part1.csv"
-    DRUG_BANK_FILE = "../../raw_data/2019-12-05/BORG_DDIEM__clinical_logs.2019-12-05.0959hrs.collapsed.clinical_logs_for_rdf_part1.drugbank_drug_names.json"
-    CHEBI_FILE = "../../raw_data/2019-12-05/BORG_DDIEM__clinical_logs.2019-12-05.0959hrs.collapsed.clinical_logs_for_rdf_part1.ChEBI_drug_names.json"
-    WHOCC_FILE = "../../raw_data/2019-09-01/WHOCC/BORG_DDIEM__clinical_logs.2019-09-01.1348hrs.collapsed.clinical_logs_for_rdf_part1.WHOCC_drug_names.json"
+    DDIEM_SOURCE_FILE = "../../raw_data/2020-01-12/BORG_DDIEM__clinical_logs.2020-01-12.1611hrs.collapsed.clinical_logs_for_rdf_part1.csv"
+    DRUG_BANK_FILE = "../../raw_data/2020-01-12/BORG_DDIEM__clinical_logs.2020-01-12.1611hrs.collapsed.clinical_logs_for_rdf_part1.drugbank_drug_names.json"
+    CHEBI_FILE = "../../raw_data/2020-01-12/BORG_DDIEM__clinical_logs.2020-01-12.1611hrs.collapsed.clinical_logs_for_rdf_part1.ChEBI_drug_names.json"
+    WHOCC_FILE = "../../raw_data/2020-01-12/WHOCC/BORG_DDIEM__clinical_logs.2020-01-13.0859hrs.collapsed.clinical_logs_for_rdf_part1.WHOCC_drug_names.json"
 
     drug_bank = {}
     with open(DRUG_BANK_FILE, "r", encoding="utf-8") as json_file:
@@ -92,6 +96,26 @@ if __name__ == '__main__':
         else :
             drug = next(find_drug(who_drug_bank, drug_id), None)
             return drug['name'] if drug else ''
+
+    def add_ored_drugs(row, procedure, pubchem_cid_or, pubchem_cid_or_name):
+        for drug_col in row[24:27]:
+            if not drug_col.strip() : 
+                continue
+        
+            for item in drug_col.split(','):
+                drug_res = drug(drug_id=item.strip())
+                drug_res.add(OBO.RO_0000056, procedure)
+                procedure.add(OBO.RO_0000057, drug_res)
+
+        if pubchem_cid_or:
+            names = pubchem_cid_or_name.split(',')
+            count = 0
+            print("or:", pubchem_cid_or, "|", pubchem_cid_or_name)
+            for item in pubchem_cid_or.split(','):
+                drug_res = pubchem_drug(drug_id=item.strip(), drug_name=names[count])
+                drug_res.add(OBO.RO_0000056, procedure)
+                procedure.add(OBO.RO_0000057, drug_res)
+                count += 1
 
     store = Graph()
 
@@ -244,6 +268,7 @@ if __name__ == '__main__':
                     line_count += 1
                     continue
                 
+                na_drug_index_col = row[60].strip()
                 pubchem_cid_or = row[47].strip()
                 pubchem_cid_or_name = row[48].strip()
                 pubchem_sid_or = row[49].strip()
@@ -332,6 +357,11 @@ if __name__ == '__main__':
                     line_count += 1
                     continue
 
+                drug_id_org_col=20
+                procedure_instances=[]
+                for id in row[drug_id_org_col].split("+"):
+                    procedure_instances.append(id.strip())
+
                 procedure_type_col=35
                 procedure_type_list = []
                 if row[procedure_type_col].strip():
@@ -339,16 +369,78 @@ if __name__ == '__main__':
                         for procedure_type_class in store.subjects(RDFS.label, Literal(procedure_type.strip(), lang='en')):
                             procedure_type_list.append(procedure_type_class)
 
-                # print(procedure_type_list)
                 procedure_id = disease_id_col + ":" + drug_comb_col
                 if encrypt_string(procedure_id) not in procedure_dict :
                     procedure = store.resource(str(DDIEM.uri) + str(uuid.uuid4()))
                     procedure.add(RDF.type, OBO.OGMS_0000112)
                     procedure.set(RDFS.comment, Literal(row[18]))
                     procedure.set(OBO.RO_0002599, disease)
-                    for procedure_type in procedure_type_list:
-                        procedure.add(RDF.type, procedure_type) 
                     procedure_dict[encrypt_string(procedure_id)] = procedure
+
+
+                    # print(procedure_type_list, disease_id_col, row[procedure_type_col].split("+"))
+                    if len(procedure_instances) > 1:
+                        procedure.add(RDF.type, OBO.DDIEM_0000023)
+                        count=1
+                        for instance in procedure_instances:
+                            procedure_ins = store.resource(str(DDIEM.uri) + str(uuid.uuid4()))
+                            procedure_ins.add(RDF.type, OBO.OGMS_0000112)
+                            procedure.add(OBO.BFO_0000050, procedure_ins)
+                            procedure_ins.add(RDF.type, procedure_type_list[count]) if count < len(procedure_type_list) - 1 else None
+                            
+                            if count == 0 and ((row[24].strip() if row[24] else '') + (row[25].strip() if row[25] else '') 
+                            + (row[26].strip() if row[26] else '') + (pubchem_cid_or if pubchem_cid_or else '')): 
+                                add_ored_drugs(row, procedure_ins, pubchem_cid_or, pubchem_cid_or_name)
+                            else:
+                                #drug and columns
+                                for drug_col in row[28:31]:
+                                    if not drug_col.strip():
+                                        continue
+                                        
+                                    for item in drug_col.split(','):
+                                        if instance.find(item.strip()) == -1 or item.strip() == 'NA':
+                                            continue
+                                        
+                                        drug_res = drug(item.strip())  
+                                        drug_res.add(OBO.RO_0000056, procedure_ins)
+                                        procedure_ins.add(OBO.RO_0000057, drug_res)
+                                        
+                                if pubchem_cid_and:
+                                    names = pubchem_cid_and_name.split(',')
+                                    pubchem_count = 0
+                                    print("and:", pubchem_cid_and, "|", pubchem_cid_and_name)
+                                    for item in pubchem_cid_and.split(','):
+                                        if instance.find(item.strip()) == -1 or item.strip() == 'NA':
+                                            continue
+
+                                        drug_res = pubchem_drug(item.strip(), names[pubchem_count]) 
+                                        pubchem_count += 1
+                                        drug_res.add(OBO.RO_0000056, procedure_ins)
+                                        procedure_ins.add(OBO.RO_0000057, drug_res)
+                                        
+                                drug_names = drug_name.split('+')
+                                for na_drug_idx in na_drug_index_col.split(','):
+                                    if instance.find('NA') == -1:
+                                        continue
+                                    if not na_drug_idx or (na_drug_idx and int(na_drug_idx) > len(drug_names) ):
+                                        continue
+
+                                    print(instance, disease_id_col, drug_names, na_drug_index_col)
+                                    name = drug_names[int(na_drug_idx) - 1] 
+                                    drug_res = drug_by_name(name.strip()) 
+                                    drug_res.add(OBO.RO_0000056, procedure_ins)
+                                    procedure_ins.add(OBO.RO_0000057, drug_res)
+                                    
+                    else:
+                        if len(procedure_type_list) > 0:
+                            procedure.add(RDF.type, procedure_type_list[0])
+
+                        add_ored_drugs(row, procedure, pubchem_cid_or, pubchem_cid_or_name)
+                        if use_drug_name:
+                            drug_res = drug_by_name(drug_name.strip())
+                            drug_res.add(OBO.RO_0000056, procedure)
+                            procedure.add(OBO.RO_0000057, drug_res)
+                        
                 
                 for evidenceStr in row[32].split(','):
                     evidenceStr = evidenceStr.strip().replace(" ", "")
@@ -367,88 +459,122 @@ if __name__ == '__main__':
                     if referenceLiteral and referenceLiteral not in store.objects(procedure_dict[encrypt_string(procedure_id)], DC.provenance) :
                         procedure_dict[encrypt_string(procedure_id)].add(DC.provenance, referenceLiteral)
                 
+                # if len(procedure_instances) > 1:
+                #     count=0
+                #     for instance in procedure_instances:
+                #         procedure_ins = store.resource(str(DDIEM.uri) + str(uuid.uuid4()))
+                #         procedure_ins.add(RDF.type, OBO.OGMS_0000112)
+                #         procedure.add(RDF.type, procedure_type) 
+
+
+                #         procedure_dict[encrypt_string(procedure_id)].add(OBO.BFO_0000050, procedure_ins)
+                #         count += 1
+                # else:
+                #     for drug_col in row[24:27]:
+                #         if not drug_col.strip() : 
+                #             continue
+                    
+                #         for item in drug_col.split(','):
+                #             drug_res = drug(drug_id=item.strip())
+                #             drug_res.add(OBO.RO_0000056, procedure_dict[encrypt_string(procedure_id)])
+                #             procedure_dict[encrypt_string(procedure_id)].add(OBO.RO_0000057, drug_res)
+
+                #     if pubchem_cid_or:
+                #         names = pubchem_cid_or_name.split(',')
+                #         count = 0
+                #         print("or:", pubchem_cid_or, "|", pubchem_cid_or_name)
+                #         for item in pubchem_cid_or.split(','):
+                #             drug_res = pubchem_drug(drug_id=item.strip(), drug_name=names[count])
+                #             drug_res.add(OBO.RO_0000056, procedure_dict[encrypt_string(procedure_id)])
+                #             procedure_dict[encrypt_string(procedure_id)].add(OBO.RO_0000057, drug_res)
+                #             count += 1
+                #     if use_drug_name:
+                #         drug_res = drug_by_name(drug_name.strip())
+                #         drug_res.add(OBO.RO_0000056, procedure_dict[encrypt_string(procedure_id)])
+                #         procedure_dict[encrypt_string(procedure_id)].add(OBO.RO_0000057, drug_res)
+                
                 #drug ored columns
-                drug_container = None
-                ored_drug_comb_col =(row[24].strip() if row[24] else '') + (row[25].strip() if row[25] else '') + (row[26].strip() if row[26] else '') + (pubchem_cid_or if pubchem_cid_or else '') 
-                #+ (pubchem_sid_or if pubchem_sid_or else '')
-                if ored_drug_comb_col.strip():
-                    if encrypt_string(ored_drug_comb_col.strip()) in drug_container_dict :
-                        drug_container =  drug_container_dict[ encrypt_string(ored_drug_comb_col.strip())]
-                        procedure_dict[encrypt_string(procedure_id)].add(OBO.RO_0000057, drug_container)
-                    else :
-                        drug_container = store.resource(str(DDIEM.uri) + str(uuid.uuid4()))
-                        drug_container.add(RDF.type, RDF.Alt)
-                        drug_container_dict[ encrypt_string(ored_drug_comb_col.strip())] = drug_container
-                        procedure_dict[encrypt_string(procedure_id)].add(OBO.RO_0000057, drug_container)
+                # drug_container = None
+                # ored_drug_comb_col =(row[24].strip() if row[24] else '') + (row[25].strip() if row[25] else '') + (row[26].strip() if row[26] else '') + (pubchem_cid_or if pubchem_cid_or else '') 
+                # #+ (pubchem_sid_or if pubchem_sid_or else '')
+                # if ored_drug_comb_col.strip():
+                #     if encrypt_string(ored_drug_comb_col.strip()) in drug_container_dict :
+                #         drug_container =  drug_container_dict[ encrypt_string(ored_drug_comb_col.strip())]
+                #         procedure_dict[encrypt_string(procedure_id)].add(OBO.RO_0000057, drug_container)
+                #     else :
+                #         drug_container = store.resource(str(DDIEM.uri) + str(uuid.uuid4()))
+                #         drug_container.add(RDF.type, RDF.Alt)
+                #         drug_container_dict[ encrypt_string(ored_drug_comb_col.strip())] = drug_container
+                #         procedure_dict[encrypt_string(procedure_id)].add(OBO.RO_0000057, drug_container)
 
-                    for drug_col in row[24:27]:
-                        if not drug_col.strip() : 
-                            continue
+                #     for drug_col in row[24:27]:
+                #         if not drug_col.strip() : 
+                #             continue
                         
-                        for item in drug_col.split(','):
-                            drug_res = drug(drug_id=item.strip())
-                            drug_res.add(OBO.RO_0000056, procedure_dict[encrypt_string(procedure_id)])
-                            drug_container.add(RDF.li, drug_res) 
+                #         for item in drug_col.split(','):
+                #             drug_res = drug(drug_id=item.strip())
+                #             drug_res.add(OBO.RO_0000056, procedure_dict[encrypt_string(procedure_id)])
+                #             drug_container.add(RDF.li, drug_res) 
 
-                    if pubchem_cid_or:
-                        names = pubchem_cid_or_name.split(',')
-                        count = 0
-                        print("or:", pubchem_cid_or, "|", pubchem_cid_or_name)
-                        for item in pubchem_cid_or.split(','):
-                            drug_res = pubchem_drug(drug_id=item.strip(), drug_name=names[count])
-                            drug_res.add(OBO.RO_0000056, procedure_dict[encrypt_string(procedure_id)])
-                            drug_container.add(RDF.li, drug_res) 
-                            count += 1
+                #     if pubchem_cid_or:
+                #         names = pubchem_cid_or_name.split(',')
+                #         count = 0
+                #         print("or:", pubchem_cid_or, "|", pubchem_cid_or_name)
+                #         for item in pubchem_cid_or.split(','):
+                #             drug_res = pubchem_drug(drug_id=item.strip(), drug_name=names[count])
+                #             drug_res.add(OBO.RO_0000056, procedure_dict[encrypt_string(procedure_id)])
+                #             drug_container.add(RDF.li, drug_res) 
+                #             count += 1
                 
-                #drug and columns
-                for drug_col in row[28:31]:
-                    if not drug_col.strip():
-                        continue
+                # #drug and columns
+                # for drug_col in row[28:31]:
+                #     if not drug_col.strip():
+                #         continue
                         
-                    for item in drug_col.split(','):
-                        if encrypt_string(item.strip()) in drug_container_dict :
-                            drug_container =  drug_container_dict[ encrypt_string(item.strip())]
-                            procedure_dict[encrypt_string(procedure_id)].add(OBO.RO_0000057, drug_container)
-                        else :
-                            drug_container = store.resource(str(DDIEM.uri) + str(uuid.uuid4()))
-                            drug_container.add(RDF.type, RDF.Alt)
-                            drug_res = (drug(item.strip()) if item.strip() != 'NA' else drug_by_name(item.strip()))
-                            drug_res.add(OBO.RO_0000056, procedure_dict[encrypt_string(procedure_id)])
-                            drug_container.add(RDF.li, drug_res)
-                            drug_container_dict[encrypt_string(item.strip())] = drug_container
-                            procedure_dict[encrypt_string(procedure_id)].add(OBO.RO_0000057, drug_container)
+                #     for item in drug_col.split(','):
+                #         if encrypt_string(item.strip()) in drug_container_dict :
+                #             drug_container =  drug_container_dict[ encrypt_string(item.strip())]
+                #             procedure_dict[encrypt_string(procedure_id)].add(OBO.RO_0000057, drug_container)
+                #         else :
+                #             drug_container = store.resource(str(DDIEM.uri) + str(uuid.uuid4()))
+                #             drug_container.add(RDF.type, RDF.Alt)
+                #             drug_res = (drug(item.strip()) if item.strip() != 'NA' else drug_by_name(item.strip()))
+                #             drug_res.add(OBO.RO_0000056, procedure_dict[encrypt_string(procedure_id)])
+                #             drug_container.add(RDF.li, drug_res)
+                #             drug_container_dict[encrypt_string(item.strip())] = drug_container
+                #             procedure_dict[encrypt_string(procedure_id)].add(OBO.RO_0000057, drug_container)
                 
-                if pubchem_cid_and:
-                    names = pubchem_cid_and_name.split(',')
-                    count = 0
-                    print("and:", pubchem_cid_and, "|", pubchem_cid_and_name)
-                    for item in pubchem_cid_and.split(','):
-                        if encrypt_string(item.strip()) in drug_container_dict :
-                            drug_container =  drug_container_dict[ encrypt_string(item.strip())]
-                            procedure_dict[encrypt_string(procedure_id)].add(OBO.RO_0000057, drug_container)
-                        else :
-                            drug_container = store.resource(str(DDIEM.uri) + str(uuid.uuid4()))
-                            drug_container.add(RDF.type, RDF.Alt)
-                            drug_res = (pubchem_drug(item.strip(), names[count]) if item.strip() != 'NA' else drug_by_name(item.strip()))
-                            count += 1
-                            drug_res.add(OBO.RO_0000056, procedure_dict[encrypt_string(procedure_id)])
-                            drug_container.add(RDF.li, drug_res)
-                            drug_container_dict[encrypt_string(item.strip())] = drug_container
-                            procedure_dict[encrypt_string(procedure_id)].add(OBO.RO_0000057, drug_container)
+                # if pubchem_cid_and:
+                #     names = pubchem_cid_and_name.split(',')
+                #     count = 0
+                #     print("and:", pubchem_cid_and, "|", pubchem_cid_and_name)
+                #     for item in pubchem_cid_and.split(','):
+                #         if encrypt_string(item.strip()) in drug_container_dict :
+                #             drug_container =  drug_container_dict[ encrypt_string(item.strip())]
+                #             procedure_dict[encrypt_string(procedure_id)].add(OBO.RO_0000057, drug_container)
+                #         else :
+                #             drug_container = store.resource(str(DDIEM.uri) + str(uuid.uuid4()))
+                #             drug_container.add(RDF.type, RDF.Alt)
+                #             drug_res = (pubchem_drug(item.strip(), names[count]) if item.strip() != 'NA' else drug_by_name(item.strip()))
+                #             count += 1
+                #             drug_res.add(OBO.RO_0000056, procedure_dict[encrypt_string(procedure_id)])
+                #             drug_container.add(RDF.li, drug_res)
+                #             drug_container_dict[encrypt_string(item.strip())] = drug_container
+                #             procedure_dict[encrypt_string(procedure_id)].add(OBO.RO_0000057, drug_container)
                 
 
-                if use_drug_name:
-                    if encrypt_string(drug_name.strip()) in drug_container_dict :
-                        drug_container =  drug_container_dict[ encrypt_string(drug_name.strip())]
-                        procedure_dict[encrypt_string(procedure_id)].add(OBO.RO_0000057, drug_container)
-                    else :
-                        drug_container = store.resource(str(DDIEM.uri) + str(uuid.uuid4()))
-                        drug_container.add(RDF.type, RDF.Alt)
-                        drug_res = drug_by_name(drug_name.strip())
-                        drug_res.add(OBO.RO_0000056, procedure_dict[encrypt_string(procedure_id)])
-                        drug_container.add(RDF.li, drug_res)
-                        drug_container_dict[encrypt_string(drug_name.strip())] = drug_container
-                        procedure_dict[encrypt_string(procedure_id)].add(OBO.RO_0000057, drug_container)
+                # if use_drug_name:
+                #     if encrypt_string(drug_name.strip()) in drug_container_dict :
+                #         drug_container =  drug_container_dict[ encrypt_string(drug_name.strip())]
+                #         procedure_dict[encrypt_string(procedure_id)].add(OBO.RO_0000057, drug_container)
+                #     else :
+                #         drug_container = store.resource(str(DDIEM.uri) + str(uuid.uuid4()))
+                #         drug_container.add(RDF.type, RDF.Alt)
+                #         drug_res = drug_by_name(drug_name.strip())
+                #         drug_res.add(OBO.RO_0000056, procedure_dict[encrypt_string(procedure_id)])
+                #         drug_container.add(RDF.li, drug_res)
+                #         drug_container_dict[encrypt_string(drug_name.strip())] = drug_container
+                #         procedure_dict[encrypt_string(procedure_id)].add(OBO.RO_0000057, drug_container)
 
                 phenotype_col_id=37
                 phenotype = None
