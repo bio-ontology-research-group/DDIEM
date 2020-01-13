@@ -1804,7 +1804,6 @@ id,entity class,entity instance field,subject represented by,example value,entit
                     regimen_comment=None;
                     phenotype_improved_by_treatment_comment=None;
                     
-                    
                     """
                     Now assign values to the key variables
                     """;
@@ -1996,8 +1995,8 @@ id,entity class,entity instance field,subject represented by,example value,entit
                     if(drug_ID__ORed__list!=None):
                         drug_ID_ordinal_position=0;
                         for drug_ID in drug_ID__ORed__list:
+                            drug_ID_ordinal_position+=1;
                             if(drug_ID.upper()=="NA"):
-                                drug_ID_ordinal_position+=1;
                                 drug_ID_NA_position__ORed__list.append(drug_ID_ordinal_position);
                         drug_ID_NA_position__ORed__csv=list_to_csv(remove_empty_values_from_list(drug_ID_NA_position__ORed__list));
                     
@@ -2007,8 +2006,8 @@ id,entity class,entity instance field,subject represented by,example value,entit
                     if(drug_ID__ANDed__list!=None):
                         drug_ID_ordinal_position=0;
                         for drug_ID in drug_ID__ANDed__list:
+                            drug_ID_ordinal_position+=1;
                             if(drug_ID.upper()=="NA"):
-                                drug_ID_ordinal_position+=1;
                                 drug_ID_NA_position__ANDed__list.append(drug_ID_ordinal_position);
                         drug_ID_NA_position__ANDed__csv=list_to_csv(remove_empty_values_from_list(drug_ID_NA_position__ANDed__list));
                     
