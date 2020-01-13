@@ -24,7 +24,8 @@ Incooperate WHOCC drug names from "/local/data/development.minor/KAUST/BORG/raw_
 #export src_clinical_log_dataset_csv_file_name="../raw_data/2019-12-04/BORG_DDIEM__clinical_logs.2019-12-04.0804hrs.collapsed.csv";
 #export src_clinical_log_dataset_csv_file_name="../raw_data/2019-12-05/BORG_DDIEM__clinical_logs.2019-12-05.0910hrs.collapsed.csv";
 #export src_clinical_log_dataset_csv_file_name="../raw_data/2019-12-05/BORG_DDIEM__clinical_logs.2019-12-05.0959hrs.collapsed.csv";
-export src_clinical_log_dataset_csv_file_name="../raw_data/2020-01-12/BORG_DDIEM__clinical_logs.2020-01-12.1611hrs.collapsed.csv";
+#export src_clinical_log_dataset_csv_file_name="../raw_data/2020-01-12/BORG_DDIEM__clinical_logs.2020-01-12.1611hrs.collapsed.csv";
+export src_clinical_log_dataset_csv_file_name="../raw_data/2020-01-13/BORG_DDIEM__clinical_logs.2020-01-13.1726hrs.collapsed.csv";
 
 
 
