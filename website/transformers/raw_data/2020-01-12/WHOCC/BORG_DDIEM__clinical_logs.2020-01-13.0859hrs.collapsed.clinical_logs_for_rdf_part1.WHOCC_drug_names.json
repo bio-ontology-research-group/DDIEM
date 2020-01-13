@@ -1,0 +1,123 @@
+{
+	"A06AA":{
+		"name":"Softeners, emollients"
+		,"url":"https://www.whocc.no/atc_ddd_index/?code=A06AA&showdescription=yes"
+	}
+	"A11":{
+		"name":"VITAMINS"
+		,"url":"https://www.whocc.no/atc_ddd_index/?code=A11&showdescription=yes"
+	}
+	"A11E":{
+		"name":"VITAMIN B-COMPLEX, INCL. COMBINATIONS"
+		,"url":"https://www.whocc.no/atc_ddd_index/?code=A11E&showdescription=yes"
+	}
+	"A11EA":{
+		"name":"Vitamin B-complex, plain"
+		,"url":"https://www.whocc.no/atc_ddd_index/?code=A11EA&showdescription=yes"
+	}
+	"A11EB":{
+		"name":"Vitamin B-complex with vitamin C"
+		,"url":"https://www.whocc.no/atc_ddd_index/?code=A11EB&showdescription=yes"
+	}
+	"B01":{
+		"name":"ANTITHROMBOTIC AGENTS"
+		,"url":"https://www.whocc.no/atc_ddd_index/?code=B01&showdescription=yes"
+	}
+	"B01A":{
+		"name":"ANTITHROMBOTIC AGENTS"
+		,"url":"https://www.whocc.no/atc_ddd_index/?code=B01A&showdescription=yes"
+	}
+	"B02BA":{
+		"name":"Vitamin K"
+		,"url":"https://www.whocc.no/atc_ddd_index/?code=B02BA&showdescription=yes"
+	}
+	"B05BB01":{
+		"name":"electrolytes"
+		,"url":"https://www.whocc.no/atc_ddd_index/?code=B05BB01&showdescription=yes"
+	}
+	"C03":{
+		"name":"DIURETICS"
+		,"url":"https://www.whocc.no/atc_ddd_index/?code=C03&showdescription=yes"
+	}
+	"C03D":{
+		"name":"POTASSIUM-SPARING AGENTS"
+		,"url":"https://www.whocc.no/atc_ddd_index/?code=C03D&showdescription=yes"
+	}
+	"C04":{
+		"name":"PERIPHERAL VASODILATORS"
+		,"url":"https://www.whocc.no/atc_ddd_index/?code=C04&showdescription=yes"
+	}
+	"C07":{
+		"name":"BETA BLOCKING AGENTS"
+		,"url":"https://www.whocc.no/atc_ddd_index/?code=C07&showdescription=yes"
+	}
+	"C09":{
+		"name":"AGENTS ACTING ON THE RENIN-ANGIOTENSIN SYSTEM"
+		,"url":"https://www.whocc.no/atc_ddd_index/?code=C09&showdescription=yes"
+	}
+	"C09A":{
+		"name":"ACE INHIBITORS, PLAIN"
+		,"url":"https://www.whocc.no/atc_ddd_index/?code=C09A&showdescription=yes"
+	}
+	"C09C":{
+		"name":"ANGIOTENSIN II RECEPTOR BLOCKERS (ARBs), PLAIN"
+		,"url":"https://www.whocc.no/atc_ddd_index/?code=C09C&showdescription=yes"
+	}
+	"C09CA":{
+		"name":"Angiotensin II receptor blockers (ARBs), plain"
+		,"url":"https://www.whocc.no/atc_ddd_index/?code=C09CA&showdescription=yes"
+	}
+	"D07A":{
+		"name":"CORTICOSTEROIDS, PLAIN"
+		,"url":"https://www.whocc.no/atc_ddd_index/?code=D07A&showdescription=yes"
+	}
+	"H02":{
+		"name":"CORTICOSTEROIDS FOR SYSTEMIC USE"
+		,"url":"https://www.whocc.no/atc_ddd_index/?code=H02&showdescription=yes"
+	}
+	"L04":{
+		"name":"IMMUNOSUPPRESSANTS"
+		,"url":"https://www.whocc.no/atc_ddd_index/?code=L04&showdescription=yes"
+	}
+	"M01AX":{
+		"name":"Other antiinflammatory and antirheumatic agents, non-steroids"
+		,"url":"https://www.whocc.no/atc_ddd_index/?code=M01AX&showdescription=yes"
+	}
+	"M02AA":{
+		"name":"Antiinflammatory preparations, non-steroids for topical use"
+		,"url":"https://www.whocc.no/atc_ddd_index/?code=M02AA&showdescription=yes"
+	}
+	"N05A":{
+		"name":"ANTIPSYCHOTICS"
+		,"url":"https://www.whocc.no/atc_ddd_index/?code=N05A&showdescription=yes"
+	}
+	"N06AB":{
+		"name":"Selective serotonin reuptake inhibitors"
+		,"url":"https://www.whocc.no/atc_ddd_index/?code=N06AB&showdescription=yes"
+	}
+	"R03CC":{
+		"name":"Selective beta-2-adrenoreceptor agonists"
+		,"url":"https://www.whocc.no/atc_ddd_index/?code=R03CC&showdescription=yes"
+	}
+	"S01BC":{
+		"name":"Antiinflammatory agents, non-steroids"
+		,"url":"https://www.whocc.no/atc_ddd_index/?code=S01BC&showdescription=yes"
+	}
+	"S01EC":{
+		"name":"Carbonic anhydrase inhibitors"
+		,"url":"https://www.whocc.no/atc_ddd_index/?code=S01EC&showdescription=yes"
+	}
+	"S01FA":{
+		"name":"Anticholinergics"
+		,"url":"https://www.whocc.no/atc_ddd_index/?code=S01FA&showdescription=yes"
+	}
+	"S02BA":{
+		"name":"Corticosteroids"
+		,"url":"https://www.whocc.no/atc_ddd_index/?code=S02BA&showdescription=yes"
+	}
+	"S03BA":{
+		"name":"Corticosteroids"
+		,"url":"https://www.whocc.no/atc_ddd_index/?code=S03BA&showdescription=yes"
+	}
+}
+
