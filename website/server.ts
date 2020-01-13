@@ -152,30 +152,28 @@ export class DiseaseDao {
 
   async getDiseaseDrugs(iri: any) {
     console.log("diseaseId:" + iri);
-    const diseaseQuery = `PREFIX obo: <http://purl.obolibrary.org/obo/>
-    PREFIX ddiem: <http://ddiem.phenomebrowser.net/>
+    const diseaseQuery = `
     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-    PREFIX dc: <http://purl.org/dc/elements/1.1/>
+    PREFIX ddiem: <http://ddiem.phenomebrowser.net/>
+    PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+    PREFIX obo: <http://purl.obolibrary.org/obo/>
     
-    CONSTRUCT {
-      ?drug rdfs:label ?label;
-            dc:identifier ?identifier;
-            ddiem:url ?url .
-    }
+    SELECT distinct ?resource ?label ?type ?drugLabel ?drugUrl 
     FROM <http://ddiem.phenomebrowser.net>
     WHERE {
-      ?procedure obo:RO_0002599 <${iri}>  .
-      { ?procedure obo:RO_0000057 ?drug .} 
-      UNION {
-         ?procedure obo:BFO_0000050 ?procedure_part .
-         ?procedure_part obo:RO_0000057 ?drug 
+      VALUES ?type { ddiem:Drug }
+      <${iri}> rdf:type ?type;
+          rdfs:label ?drugLabel;
+          obo:RO_0000056 ?procedure .
+      optional {<${iri}e>   ddiem:url ?drugUrl . } .
+      { ?procedure obo:RO_0002599 ?resource . }
+      UNION { 
+        ?combProcedure obo:BFO_0000050 ?procedure .
+        ?combProcedure obo:RO_0002599 ?resource .
       } .
-      ?drug rdfs:label ?label .
-      optional { 
-        ?drug dc:identifier ?identifier;
-              ddiem:url ?url .
-      } .
-    }`;
+      ?resource rdf:type ddiem:Disease; 
+          rdfs:label ?label .
+    } ORDER BY ASC(?label)`;
   
     return await this.fetcher.fetchRawStream(this.serverUrl, diseaseQuery, SparqlEndpointFetcher.CONTENTTYPE_TURTLE);
 }
@@ -190,10 +188,11 @@ async getDiseaseProcedures(iri: any) {
     ?procedure ?procedureProp ?procedureObj .
     ?type ?typeProp ?typeObj .
     ?evidence ?evidenceProp ?evidenceObj .
+    ?procedurePart ?procedurePartProp ?procedurePartObj .
   }
   FROM <http://ddiem.phenomebrowser.net>
   WHERE {
-    ?procedure obo:RO_0002599 <${iri}>.
+    ?procedure obo:RO_0002599 <${iri}> .
     ?procedure ?procedureProp ?procedureObj .
     ?procedure rdf:type ?type .
     
@@ -205,6 +204,12 @@ async getDiseaseProcedures(iri: any) {
       ?procedure obo:RO_0002558 ?evidence .
       ?evidence ?evidenceProp ?evidenceObj .
     }
+
+    OPTIONAL { 
+      ?procedure obo:BFO_0000050 ?procedurePart .
+      ?procedurePart ?procedurePartProp ?procedurePartObj .
+    }
+
   }`;
 
   return await this.fetcher.fetchRawStream(this.serverUrl, query, SparqlEndpointFetcher.CONTENTTYPE_TURTLE);
