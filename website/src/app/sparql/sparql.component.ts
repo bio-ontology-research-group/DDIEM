@@ -108,11 +108,15 @@ WHERE {
     SELECT ?drugName ?drugId
     FROM <http://ddiem.phenomebrowser.net>
     WHERE {
-      ddiem:413308fd-e296-4469-8e52-3c03e8256255 rdf:type obo:OGMS_0000112;
-      obo:RO_0000057 ?drugContainer .
-      ?drugContainer (rdf:_1|rdf:_2|rdf:_3) ?drug .
-      ?drug rdfs:label ?drugName;
-            dc:identifier ?drugId .
+      ddiem:03eaeba8-187c-4763-9026-875592bb962e rdf:type obo:OGMS_0000112 .
+      { 
+         ddiem:03eaeba8-187c-4763-9026-875592bb962e obo:RO_0000057 ?drug .
+      } UNION {
+         ddiem:03eaeba8-187c-4763-9026-875592bb962e obo:BFO_0000050 ?procedure_part .
+         ddiem:03eaeba8-187c-4763-9026-875592bb962e obo:RO_0000057 ?drug 
+      } .
+      ?drug rdfs:label ?drugName .
+      ?drug dc:identifier ?drugId .
     }`;
     this.sparqlEle.nativeElement.value = query;
   }
