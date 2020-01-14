@@ -115,27 +115,48 @@
               <ng-container *ngFor="let procedure of procedures">
               <tr *ngFor="let phenotype of (procedure['obo:RO_0002212'] && procedure['obo:RO_0002212'].length > 0 ? procedure['obo:RO_0002212'] : [{}]); let phenotypeIndex = index">
                 <td [ngClass]="{'w-25': isMutationExists, 'w-30': !isMutationExists}" [attr.rowspan] = "procedure['obo:RO_0002212'] ? procedure['obo:RO_0002212'].length : 1"  *ngIf="phenotypeIndex === 0">
-                  <span *ngFor="let drugAnd of procedure['obo:RO_0000057']; let andIndex = index">
-                    <span *ngFor="let drugOr of findAltList(drugAnd['@id']); let orIndex = index">
-              
-                      <button type="button" class="btn btn-link p-0 text-left" [ngbTooltip]="procedure['rdfs:comment'] ? procedure['rdfs:comment'][0]['@value'] : ''"
-                        (click)="openInNewTab(drugOr['ddiem:url'] ? drugOr['ddiem:url']['0']['@value']: '')" [disabled]="drugOr['ddiem:url'] ? false : true" >
-                          {{toTitleCase(drugOr['rdfs:label']['0']['@value'])}}
-                      </button>
-                      <span *ngIf="orIndex !== findAltList(drugAnd['@id']).length - 1" class="font-weight-bold"> or </span> 
+                  <span *ngIf="!procedure['@type'].includes('obo:DDIEM_0000023')">
+                  <span *ngFor="let drugOr of procedure['obo:RO_0000057']; let orIndex = index">
+                    <button type="button" class="btn btn-link p-0 text-left" [ngbTooltip]="procedure['rdfs:comment'] ? procedure['rdfs:comment'][0]['@value'] : ''"
+                      (click)="openInNewTab(drug(drugOr['@id'])['ddiem:url'] ? drug(drugOr['@id'])['ddiem:url']['0']['@value']: '')" [disabled]="drug(drugOr['@id'])['ddiem:url'] ? false : true" >
+                        {{toTitleCase(drug(drugOr['@id'])['rdfs:label']['0']['@value'])}}
+                    </button>
+                    <span *ngIf="orIndex !== procedure['obo:RO_0000057'].length - 1" class="font-weight-bold"> or </span> 
+                  </span>
+                  </span>
+                  <span *ngIf="procedure['@type'].includes('obo:DDIEM_0000023')">
+                    <span *ngFor="let procedurePart of procedure['obo:BFO_0000050']; let andIndex = index">
+                      <span *ngFor="let drugOr of findProcedureData(procedurePart['@id'])['obo:RO_0000057']; let orIndex = index">
+                
+                        <button type="button" class="btn btn-link p-0 text-left" [ngbTooltip]="procedure['rdfs:comment'] ? procedure['rdfs:comment'][0]['@value'] : ''"
+                          (click)="openInNewTab(drug(drugOr['@id'])['ddiem:url'] ? drug(drugOr['@id'])['ddiem:url']['0']['@value']: '')" [disabled]="drug(drugOr['@id'])['ddiem:url'] ? false : true" >
+                            {{toTitleCase(drug(drugOr['@id'])['rdfs:label']['0']['@value'])}}
+                        </button>
+                        <span *ngIf="orIndex !== findProcedureData(procedurePart['@id'])['obo:RO_0000057'].length - 1" class="font-weight-bold"> or </span> 
+                      </span>
+                      <span *ngIf="andIndex !== procedure['obo:BFO_0000050'].length - 1 && findProcedureData(procedurePart['@id'])['obo:RO_0000057'].length > 0" class="font-weight-bold"> and </span>
                     </span>
-                    <span *ngIf="andIndex !== procedure['obo:RO_0000057'].length - 1 && findAltList(drugAnd['@id']).length > 0" class="font-weight-bold"> and </span>
                   </span> 
                   (<button type="button" class="btn btn-link p-0" ngbTooltip="Number of trials/papers that describe treatment">
                    <strong>{{procedure['dc:provenance'] ?  procedure['dc:provenance'].length : '0'}}</strong></button>)
                 </td>
                 <td [ngClass]="{'w-20': isMutationExists, 'w-30': !isMutationExists}" [attr.rowspan] = "procedure['obo:RO_0002212'] ? procedure['obo:RO_0002212'].length : 1"  *ngIf="phenotypeIndex === 0">
-                  <span *ngFor="let procedureType of procedure['@type']; let typeIndex = index">
-                    <button type="button" class="btn btn-link p-0 text-left" (click)="openInNewTab(procedureTypeUrl(procedureType))" *ngIf="procedureType != 'obo:OGMS_0000112'">
-                      {{findProcedureData(procedureType)['rdfs:label'][0]['@value']}}
-                      <span style="color:black;" *ngIf="!(typeIndex == procedure['@type'].length - 1 || procedureType == 'obo:OGMS_0000112'
-                    || (typeIndex + 1 == procedure['@type'].length - 1 && procedure['@type'][typeIndex + 1] == 'obo:OGMS_0000112'))">,</span>
-                    </button>
+                  <span *ngIf="!procedure['@type'].includes('obo:DDIEM_0000023')">
+                    <span *ngFor="let procedureType of procedure['@type']; let typeIndex = index">
+                      <button type="button" class="btn btn-link p-0 text-left" (click)="openInNewTab(procedureTypeUrl(procedureType))" *ngIf="procedureType != 'obo:OGMS_0000112'">
+                        {{findProcedureData(procedureType)['rdfs:label'][0]['@value']}}
+                      </button>
+                    </span>
+                  </span>
+                  <span *ngIf="procedure['@type'].includes('obo:DDIEM_0000023')">
+                    <span *ngFor="let procedurePart of procedure['obo:BFO_0000050']; let partIndex = index">
+                      <span *ngFor="let procedureType of findProcedureData(procedurePart['@id'])['@type']; let typeIndex = index">
+                        <button type="button" class="btn btn-link p-0 text-left" (click)="openInNewTab(procedureTypeUrl(procedureType))" *ngIf="procedureType != 'obo:OGMS_0000112'">
+                          {{findProcedureData(procedureType)['rdfs:label'][0]['@value']}}
+                          <span style="color:black;" *ngIf="partIndex != procedure['obo:BFO_0000050'].length - 1">,</span>
+                        </button>
+                      </span>
+                    </span>
                   </span>
                 </td>
                 <td [attr.rowspan] = "procedure['obo:RO_0002212'] ? procedure['obo:RO_0002212'].length : 1" *ngIf="phenotypeIndex === 0" > 

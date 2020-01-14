@@ -59,7 +59,7 @@ export class DiseaseComponent implements OnInit {
     
       this.service.getDiseaseProcedures(iri).subscribe(proceduressData => {
         this.proceduressData = proceduressData ? proceduressData["@graph"] : null;     
-        this.procedures = _.filter(this.proceduressData, (obj) => obj['@type'].includes("obo:OGMS_0000112"));
+        this.procedures = _.filter(this.proceduressData, (obj) => obj['@type'].includes("obo:OGMS_0000112") && obj["obo:RO_0002599"]);
         this.isMutationExists = _.filter(this.procedures, (obj) => obj['obo:RO_0003304'] || obj['ddiem:failedToContributeToCondition']).length > 0
         //console.log(this.procedures);
       });
@@ -88,6 +88,10 @@ export class DiseaseComponent implements OnInit {
     return _.findWhere(this.proceduressData, {'@id': id});
   }
 
+  drug(id:string) {
+    return _.findWhere(this.drugs, {'@id': id});
+  }
+
   //Finds Disease object
   d(){
     if (this.iri.startsWith(this.context.ddiem)) {
@@ -108,17 +112,17 @@ export class DiseaseComponent implements OnInit {
     return this.keggUrl + id.trim();
   }
 
-  findAltList(drugAltIri){
-    var drugAlt = _.findWhere(this.drugs, {'@id': drugAltIri})
-    if (drugAlt) {
-      var drugs = _.map(
-        _.filter( _.keys(drugAlt), (key) => key.includes('rdf:_')), (key) => {
-            return _.findWhere(this.drugs, {'@id': drugAlt[key][0]['@id']})
-          });
-      return drugs;
-    }
-    return [];
-  }
+  // findAltList(drugAltIri){
+  //   var drugAlt = _.findWhere(this.drugs, {'@id': drugAltIri})
+  //   if (drugAlt) {
+  //     var drugs = _.map(
+  //       _.filter( _.keys(drugAlt), (key) => key.includes('rdf:_')), (key) => {
+  //           return _.findWhere(this.drugs, {'@id': drugAlt[key][0]['@id']})
+  //         });
+  //     return drugs;
+  //   }
+  //   return [];
+  // }
 
   phenotypeRes(iri) {
     return _.findWhere(this.phenotypes, {'@id': iri});

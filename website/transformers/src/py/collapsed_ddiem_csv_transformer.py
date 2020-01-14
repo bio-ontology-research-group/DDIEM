@@ -431,7 +431,8 @@ if __name__ == '__main__':
                                     drug_res = drug_by_name(name.strip()) 
                                     drug_res.add(OBO.RO_0000056, procedure_ins)
                                     procedure_ins.add(OBO.RO_0000057, drug_res)
-                                    
+                            
+                            count += 1
                     else:
                         if len(procedure_type_list) > 0:
                             procedure.add(RDF.type, procedure_type_list[0])
