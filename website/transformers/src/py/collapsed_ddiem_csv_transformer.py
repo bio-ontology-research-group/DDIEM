@@ -387,7 +387,8 @@ if __name__ == '__main__':
                             procedure_ins = store.resource(str(DDIEM.uri) + str(uuid.uuid4()))
                             procedure_ins.add(RDF.type, OBO.OGMS_0000112)
                             procedure.add(OBO.BFO_0000050, procedure_ins)
-                            procedure_ins.add(RDF.type, procedure_type_list[(count + 1)]) if (count + 1) < len(procedure_type_list) - 1 else None
+                            print(procedure_type_list,(count + 1))
+                            procedure_ins.add(RDF.type, procedure_type_list[(count + 1)]) if count < (len(procedure_type_list) + 1) else None
                             
                             if count == 0 and ((row[24].strip() if row[24] else '') + (row[25].strip() if row[25] else '') 
                             + (row[26].strip() if row[26] else '') + (pubchem_cid_or if pubchem_cid_or else '')): 
