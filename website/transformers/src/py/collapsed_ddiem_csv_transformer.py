@@ -424,6 +424,8 @@ if __name__ == '__main__':
                                         continue
                                     if not na_drug_idx or (na_drug_idx and int(na_drug_idx) > len(drug_names) ):
                                         continue
+                                    if count != (int(na_drug_idx) - 1):
+                                        continue
 
                                     # print(instance, disease_id_col, drug_names, na_drug_index_col, procedure_instances)
                                     name = drug_names[int(na_drug_idx) - 1] 
