@@ -20,7 +20,9 @@ pushd .;cd /local/data/development.minor/KAUST/BORG/try1;
 #export src_csv_dataset_file_name="../raw_data/2019-12-05/BORG_DDIEM__clinical_logs.2019-12-05.0959hrs.csv";
 #export src_csv_dataset_file_name="../raw_data/2020-01-12/BORG_DDIEM__clinical_logs.2020-01-12.1611hrs.csv";
 #export src_csv_dataset_file_name="../raw_data/2020-01-13/BORG_DDIEM__clinical_logs.2020-01-13.1726hrs.csv";
-export src_csv_dataset_file_name="../raw_data/2020-01-15/BORG_DDIEM__clinical_logs.2020-01-15.1207hrs.csv";
+#export src_csv_dataset_file_name="../raw_data/2020-01-15/BORG_DDIEM__clinical_logs.2020-01-15.1207hrs.csv";
+export src_csv_dataset_file_name="../raw_data/2020-01-16/BORG_DDIEM__clinical_logs.2020-01-16.0958hrs.csv";
+
 
 
 working_dir_file_name="/local/data/tmp/BORG_DDIEM/BORG_DDIEM__parse_clinical_logs_CSV.working_dir" \
