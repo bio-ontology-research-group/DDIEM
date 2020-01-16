@@ -152,8 +152,7 @@
                     <span *ngFor="let procedurePart of procedure['obo:BFO_0000050']; let partIndex = index">
                       <span *ngFor="let procedureType of findProcedureData(procedurePart['@id'])['@type']; let typeIndex = index">
                         <button type="button" class="btn btn-link p-0 text-left" (click)="openInNewTab(procedureTypeUrl(procedureType))" *ngIf="procedureType != 'obo:OGMS_0000112'">
-                          {{findProcedureData(procedureType)['rdfs:label'][0]['@value']}}
-                          <span style="color:black;" *ngIf="partIndex != procedure['obo:BFO_0000050'].length - 1">,</span>
+                        {{findProcedureData(procedureType)['rdfs:label'][0]['@value']}}<span style="color:black;" *ngIf="partIndex != procedure['obo:BFO_0000050'].length - 1">,&nbsp;</span>
                         </button>
                       </span>
                     </span>
