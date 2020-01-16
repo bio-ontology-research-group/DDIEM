@@ -62,9 +62,9 @@ if __name__ == '__main__':
     VOID = ClosedNamespace(uri=URIRef("http://rdfs.org/ns/void#"), terms=['Dataset','sparqlEndpoint','feature'])
      
 
-    DDIEM_SOURCE_FILE = "../../raw_data/2020-01-16/BORG_DDIEM__clinical_logs.2020-01-16.1301hrs.collapsed.clinical_logs_for_rdf_part1.csv"
-    DRUG_BANK_FILE = "../../raw_data/2020-01-16/BORG_DDIEM__clinical_logs.2020-01-16.1301hrs.collapsed.clinical_logs_for_rdf_part1.drugbank_drug_names.json"
-    CHEBI_FILE = "../../raw_data/2020-01-16/BORG_DDIEM__clinical_logs.2020-01-16.1301hrs.collapsed.clinical_logs_for_rdf_part1.ChEBI_drug_names.json"
+    DDIEM_SOURCE_FILE = "../../raw_data/2020-01-16/BORG_DDIEM__clinical_logs.2020-01-16.0958hrs.collapsed.clinical_logs_for_rdf_part1.csv"
+    DRUG_BANK_FILE = "../../raw_data/2020-01-16/BORG_DDIEM__clinical_logs.2020-01-16.0958hrs.collapsed.clinical_logs_for_rdf_part1.drugbank_drug_names.json"
+    CHEBI_FILE = "../../raw_data/2020-01-16/BORG_DDIEM__clinical_logs.2020-01-16.0958hrs.collapsed.clinical_logs_for_rdf_part1.ChEBI_drug_names.json"
     WHOCC_FILE = "../../raw_data/2020-01-12/WHOCC/BORG_DDIEM__clinical_logs.2020-01-13.0859hrs.collapsed.clinical_logs_for_rdf_part1.WHOCC_drug_names.json"
 
     drug_bank = {}
@@ -101,7 +101,8 @@ if __name__ == '__main__':
         for drug_col in row[24:27]:
             if not drug_col.strip() : 
                 continue
-        
+            
+            drug_col = drug_col.replace('(','').replace(')','')
             for item in drug_col.split(','):
                 drug_res = drug(drug_id=item.strip())
                 drug_res.add(OBO.RO_0000056, procedure)
@@ -396,7 +397,8 @@ if __name__ == '__main__':
                                 for drug_col in row[28:31]:
                                     if not drug_col.strip():
                                         continue
-                                        
+                                    
+                                    drug_col = drug_col.replace('(','').replace(')','')
                                     for item in drug_col.split(','):
                                         if instance.find(item.strip()) == -1 or item.strip() == 'NA':
                                             continue
