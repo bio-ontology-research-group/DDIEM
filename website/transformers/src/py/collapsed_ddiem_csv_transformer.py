@@ -79,7 +79,7 @@ if __name__ == '__main__':
         chebi_drug_bank = json.load(json_file)
 
     def find_chebi_drug(drug_bank, drug_id): 
-        return (drug_name for key, drug in drug_bank.items() if key == drug_id for drug_name in drug if drug_name['source'] == "ChEBI" or drug_name['source'] == "UniProt")
+        return (drug_name for key, drug in drug_bank.items() if key == drug_id for drug_name in drug if len(drug) == 1 or drug_name['source'] == "ChEBI" or drug_name['source'] == "UniProt")
 
     who_drug_bank = {}
     with open(WHOCC_FILE, "r", encoding="utf-8") as json_file:
