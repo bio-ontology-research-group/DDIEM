@@ -23,7 +23,8 @@ pushd .;cd /local/data/development.minor/KAUST/BORG/try1;
 #export src_csv_dataset_file_name="../raw_data/2020-01-15/BORG_DDIEM__clinical_logs.2020-01-15.1207hrs.csv";
 #export src_csv_dataset_file_name="../raw_data/2020-01-16/BORG_DDIEM__clinical_logs.2020-01-16.0958hrs.csv";
 #export src_csv_dataset_file_name="../raw_data/2020-01-16/BORG_DDIEM__clinical_logs.2020-01-16.1116hrs.csv";
-export src_csv_dataset_file_name="../raw_data/2020-01-16/BORG_DDIEM__clinical_logs.2020-01-16.1301hrs.csv";
+#export src_csv_dataset_file_name="../raw_data/2020-01-16/BORG_DDIEM__clinical_logs.2020-01-16.1301hrs.csv";
+export src_csv_dataset_file_name="../raw_data/2020-01-16/BORG_DDIEM__clinical_logs.2020-01-16.1646hrs.csv";
 
 
 
@@ -41,7 +42,7 @@ working_dir_file_name="/local/data/tmp/BORG_DDIEM/BORG_DDIEM__parse_clinical_log
  2>&1|tee "${log_file_name}" \
  && popd && date;
  
-rm -rf /local/data/development.minor/KAUST/BORG/raw_data/2019-*/.~lock.*
+rm -rf /local/data/development.minor/KAUST/BORG/raw_data/2020-*/.~lock.*
 
 """;
 
