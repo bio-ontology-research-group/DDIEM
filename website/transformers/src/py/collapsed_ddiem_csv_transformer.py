@@ -62,9 +62,9 @@ if __name__ == '__main__':
     VOID = ClosedNamespace(uri=URIRef("http://rdfs.org/ns/void#"), terms=['Dataset','sparqlEndpoint','feature'])
      
 
-    DDIEM_SOURCE_FILE = "../../raw_data/2020-01-13/BORG_DDIEM__clinical_logs.2020-01-13.1726hrs.collapsed.clinical_logs_for_rdf_part1.csv"
-    DRUG_BANK_FILE = "../../raw_data/2020-01-13/BORG_DDIEM__clinical_logs.2020-01-13.1726hrs.collapsed.clinical_logs_for_rdf_part1.drugbank_drug_names.json"
-    CHEBI_FILE = "../../raw_data/2020-01-13/BORG_DDIEM__clinical_logs.2020-01-13.1726hrs.collapsed.clinical_logs_for_rdf_part1.ChEBI_drug_names.json"
+    DDIEM_SOURCE_FILE = "../../raw_data/2020-01-16/BORG_DDIEM__clinical_logs.2020-01-16.0958hrs.collapsed.clinical_logs_for_rdf_part1.csv"
+    DRUG_BANK_FILE = "../../raw_data/2020-01-16/BORG_DDIEM__clinical_logs.2020-01-16.0958hrs.collapsed.clinical_logs_for_rdf_part1.drugbank_drug_names.json"
+    CHEBI_FILE = "../../raw_data/2020-01-16/BORG_DDIEM__clinical_logs.2020-01-16.0958hrs.collapsed.clinical_logs_for_rdf_part1.ChEBI_drug_names.json"
     WHOCC_FILE = "../../raw_data/2020-01-12/WHOCC/BORG_DDIEM__clinical_logs.2020-01-13.0859hrs.collapsed.clinical_logs_for_rdf_part1.WHOCC_drug_names.json"
 
     drug_bank = {}
@@ -377,8 +377,6 @@ if __name__ == '__main__':
                     procedure.set(OBO.RO_0002599, disease)
                     procedure_dict[encrypt_string(procedure_id)] = procedure
 
-
-                    # print(procedure_type_list, disease_id_col, row[procedure_type_col].split("+"))
                     if len(procedure_instances) > 1:
                         procedure.add(RDF.type, OBO.DDIEM_0000023)
                         count=0
@@ -387,7 +385,7 @@ if __name__ == '__main__':
                             procedure_ins = store.resource(str(DDIEM.uri) + str(uuid.uuid4()))
                             procedure_ins.add(RDF.type, OBO.OGMS_0000112)
                             procedure.add(OBO.BFO_0000050, procedure_ins)
-                            # print(procedure_type_list,(count + 1))
+                            # print(disease_id_col, procedure_instances, procedure_type_list,(count + 1))
                             procedure_ins.add(RDF.type, procedure_type_list[(count + 1)]) if count < (len(procedure_type_list) + 1) else None
                             
                             if count == 0 and ((row[24].strip() if row[24] else '') + (row[25].strip() if row[25] else '') 
