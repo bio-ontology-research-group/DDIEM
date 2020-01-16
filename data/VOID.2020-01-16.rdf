@@ -1,13 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rdf:RDF
   xmlns:foaf="http://xmlns.com/foaf/0.1/"
-  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-  xmlns:dcterms="http://purl.org/dc/terms/"
   xmlns:void="http://rdfs.org/ns/void#"
+  xmlns:dcterms="http://purl.org/dc/terms/"
   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 >
   <void:Dataset rdf:about="http://ddiem.phenomebrowser.net/DDIEM">
+    <dcterms:contributor>
+      <foaf:Organization rdf:about="https://www.pdn.cam.ac.uk">
+        <rdfs:label>University of Cambridge</rdfs:label>
+      </foaf:Organization>
+    </dcterms:contributor>
+    <dcterms:description>DDIEM - Drug database for inborn errors of metabolism is a database on therapeutic strategies
+     for inborn errors of metabolism. These strategies are classified by mechanism and outcome in DDIEM Ontology. 
+     DDIEM uses this ontology to categprise the experimental treatments that have been proposed or applied. It 
+     includes descriptions of the phenotypes addressed by the treatment and drugs participating in treatment and procedures.</dcterms:description>
+    <dcterms:modified>2020-01-16</dcterms:modified>
+    <dcterms:license rdf:resource="https://creativecommons.org/licenses/by/4.0/"/>
+    <dcterms:contributor>
+      <foaf:Organization rdf:about="https://www.kaust.edu.sa">
+        <rdfs:label>King Abdullah University of Science and Technology</rdfs:label>
+      </foaf:Organization>
+    </dcterms:contributor>
+    <dcterms:creator>
+      <foaf:Person rdf:about="https://www.kaust.edu.sa/SenayKafkas">
+        <foaf:mbox rdf:resource="mailto:senay.kafkas@kaust.edu.sa"/>
+        <rdfs:label>Senay Kafkas</rdfs:label>
+      </foaf:Person>
+    </dcterms:creator>
     <void:sparqlEndpoint rdf:resource="http://ddiem.phenomebrowser.net/sparql"/>
+    <foaf:homepage rdf:resource="http://ddiem.phenomebrowser.net/"/>
     <foaf:page rdf:resource="https://github.com/bio-ontology-research-group/DDIEM"/>
     <dcterms:creator>
       <foaf:Person rdf:about="https://www.kaust.edu.sa/RobertHoehndorf">
@@ -17,56 +40,33 @@
     </dcterms:creator>
     <dcterms:creator>
       <foaf:Person rdf:about="https://www.kaust.edu.sa/AllanKamau">
-        <foaf:mbox rdf:resource="mailto:allan.kamau@kaust.edu.sa"/>
         <rdfs:label>Allan Kamau</rdfs:label>
+        <foaf:mbox rdf:resource="mailto:allan.kamau@kaust.edu.sa"/>
       </foaf:Person>
     </dcterms:creator>
     <dcterms:creator>
-      <foaf:Person rdf:about="https://www.kaust.edu.sa/AliRazaSyed">
-        <foaf:mbox rdf:resource="mailto:ali.syed@kaust.edu.sa"/>
-        <rdfs:label>Ali Raza Syed</rdfs:label>
+      <foaf:Person rdf:about="https://www.pdn.cam.ac.uk/PaulSchofield">
+        <rdfs:label>Dr Paul Schofield</rdfs:label>
+        <foaf:mbox rdf:resource="mailto:pns12@cam.ac.uk"/>
       </foaf:Person>
     </dcterms:creator>
+    <void:feature rdf:resource="http://www.w3.org/ns/formats/RDF_XML"/>
     <dcterms:creator>
       <foaf:Person rdf:about="https://www.kaust.edu.sa/MarwaAbdelhakim">
         <rdfs:label>Marwa Abdelhakim</rdfs:label>
         <foaf:mbox rdf:resource="mailto:marwa.abdelhakim@kaust.edu.sa"/>
       </foaf:Person>
     </dcterms:creator>
-    <dcterms:license rdf:resource="https://creativecommons.org/licenses/by/4.0/"/>
-    <dcterms:contributor>
-      <foaf:Organization rdf:about="https://www.pdn.cam.ac.uk">
-        <rdfs:label>University of Cambridge</rdfs:label>
-      </foaf:Organization>
-    </dcterms:contributor>
-    <dcterms:creator>
-      <foaf:Person rdf:about="https://www.pdn.cam.ac.uk/PaulSchofield">
-        <foaf:mbox rdf:resource="mailto:pns12@cam.ac.uk"/>
-        <rdfs:label>Dr Paul Schofield</rdfs:label>
-      </foaf:Person>
-    </dcterms:creator>
-    <foaf:homepage rdf:resource="http://ddiem.phenomebrowser.net/"/>
-    <dcterms:contributor>
-      <foaf:Organization rdf:about="https://www.kaust.edu.sa">
-        <rdfs:label>King Abdullah University of Science and Technology</rdfs:label>
-      </foaf:Organization>
-    </dcterms:contributor>
-    <dcterms:modified>2020-01-16</dcterms:modified>
-    <dcterms:description>DDIEM - Drug database for inborn errors of metabolism is a database on therapeutic strategies
-     for inborn errors of metabolism. These strategies are classified by mechanism and outcome in DDIEM Ontology. 
-     DDIEM uses this ontology to categprise the experimental treatments that have been proposed or applied. It 
-     includes descriptions of the phenotypes addressed by the treatment and drugs participating in treatment and procedures.</dcterms:description>
-    <void:feature rdf:resource="http://www.w3.org/ns/formats/RDF_XML"/>
-    <dcterms:creator>
-      <foaf:Person rdf:about="https://www.kaust.edu.sa/SenayKafkas">
-        <rdfs:label>Senay Kafkas</rdfs:label>
-        <foaf:mbox rdf:resource="mailto:senay.kafkas@kaust.edu.sa"/>
-      </foaf:Person>
-    </dcterms:creator>
     <dcterms:title>DDIEM - Drug Database for Inborn Error of Metabolism</dcterms:title>
+    <dcterms:creator>
+      <foaf:Person rdf:about="https://www.kaust.edu.sa/AliRazaSyed">
+        <foaf:mbox rdf:resource="mailto:ali.syed@kaust.edu.sa"/>
+        <rdfs:label>Ali Raza Syed</rdfs:label>
+      </foaf:Person>
+    </dcterms:creator>
   </void:Dataset>
   <foaf:Person rdf:about="https://www.pdn.cam.ac.uk/EuniceMcMurray">
-    <rdfs:label>Eunice McMurray</rdfs:label>
     <foaf:mbox rdf:resource="mailto:eym24@cam.ac.uk"/>
+    <rdfs:label>Eunice McMurray</rdfs:label>
   </foaf:Person>
 </rdf:RDF>
