@@ -108,12 +108,12 @@ WHERE {
     SELECT ?drugName ?drugId
     FROM <http://ddiem.phenomebrowser.net>
     WHERE {
-      ddiem:d5b4e471-92fd-4aef-b69e-aebbbd547554 rdf:type obo:OGMS_0000112 .
+      ddiem:0b7e0e14-cbbb-46f3-899f-9980ad0bf01a rdf:type obo:OGMS_0000112 .
       { 
-         ddiem:d5b4e471-92fd-4aef-b69e-aebbbd547554 obo:RO_0000057 ?drug .
+         ddiem:0b7e0e14-cbbb-46f3-899f-9980ad0bf01a obo:RO_0000057 ?drug .
       } UNION {
-         ddiem:d5b4e471-92fd-4aef-b69e-aebbbd547554 obo:BFO_0000050 ?procedure_part .
-         ddiem:d5b4e471-92fd-4aef-b69e-aebbbd547554 obo:RO_0000057 ?drug 
+         ddiem:0b7e0e14-cbbb-46f3-899f-9980ad0bf01a obo:BFO_0000050 ?procedure_part .
+         ddiem:0b7e0e14-cbbb-46f3-899f-9980ad0bf01a obo:RO_0000057 ?drug 
       } .
       ?drug rdfs:label ?drugName .
       ?drug dc:identifier ?drugId .
