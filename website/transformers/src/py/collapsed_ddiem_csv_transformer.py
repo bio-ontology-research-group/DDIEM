@@ -1,4 +1,16 @@
 # Transforms ddiem collapased csv to rdf 
+# DDIEM_SOURCE_FILE = "../../raw_data/2020-01-19/BORG_DDIEM__clinical_logs.2020-01-19.0800hrs.collapsed.clinical_logs_for_rdf_part1.csv"
+# DRUG_BANK_FILE = "../../raw_data/2020-01-19/BORG_DDIEM__clinical_logs.2020-01-19.0800hrs.collapsed.clinical_logs_for_rdf_part1.drugbank_drug_names.json"
+# CHEBI_FILE = "../../raw_data/2020-01-19/BORG_DDIEM__clinical_logs.2020-01-19.0800hrs.collapsed.clinical_logs_for_rdf_part1.ChEBI_drug_names.json"
+# WHOCC_FILE = "../../raw_data/2020-01-12/WHOCC/BORG_DDIEM__clinical_logs.2020-01-13.0859hrs.collapsed.clinical_logs_for_rdf_part1.WHOCC_drug_names.json"
+#
+# To Run the script run following command with parameters including ddiem_source_file_path, drug_bank_name_file_path, chebi_drug name_file_path, whodrugname_path
+# python collapsed_ddiem_csv_transformer.py \
+# 2020-01-19/BORG_DDIEM__clinical_logs.2020-01-19.0800hrs.collapsed.clinical_logs_for_rdf_part1.csv \
+# 2020-01-19/BORG_DDIEM__clinical_logs.2020-01-19.0800hrs.collapsed.clinical_logs_for_rdf_part1.drugbank_drug_names.json \
+# 2020-01-19/BORG_DDIEM__clinical_logs.2020-01-19.0800hrs.collapsed.clinical_logs_for_rdf_part1.ChEBI_drug_names.json \
+# 2020-01-12/WHOCC/BORG_DDIEM__clinical_logs.2020-01-13.0859hrs.collapsed.clinical_logs_for_rdf_part1.WHOCC_drug_names.json \
+
 from rdflib import Graph, Literal, BNode, RDF
 from rdflib.namespace import FOAF, DC, ClosedNamespace, RDFS, DCTERMS
 from rdflib.term import URIRef
@@ -9,6 +21,7 @@ import hashlib
 import uuid
 import re
 import datetime
+import sys
 
 def encrypt_string(hash_string):
     sha_signature = \
@@ -16,6 +29,16 @@ def encrypt_string(hash_string):
     return sha_signature
 
 if __name__ == '__main__':
+
+    print("Program arguments: ", sys.argv)
+    print("Number of arguments: ", len(sys.argv))
+
+    RAW_DATA_DIR = "../../raw_data/"
+    DDIEM_SOURCE_FILE = RAW_DATA_DIR + sys.argv[1]
+    DRUG_BANK_FILE = RAW_DATA_DIR + sys.argv[2]
+    CHEBI_FILE = RAW_DATA_DIR + sys.argv[3]
+    WHOCC_FILE = RAW_DATA_DIR + sys.argv[4]
+
 
     DDIEM = ClosedNamespace(
         uri=URIRef("http://ddiem.phenomebrowser.net/"),
@@ -61,12 +84,6 @@ if __name__ == '__main__':
 
     VOID = ClosedNamespace(uri=URIRef("http://rdfs.org/ns/void#"), terms=['Dataset','sparqlEndpoint','feature'])
      
-
-    DDIEM_SOURCE_FILE = "../../raw_data/2020-01-19/BORG_DDIEM__clinical_logs.2020-01-19.0800hrs.collapsed.clinical_logs_for_rdf_part1.csv"
-    DRUG_BANK_FILE = "../../raw_data/2020-01-19/BORG_DDIEM__clinical_logs.2020-01-19.0800hrs.collapsed.clinical_logs_for_rdf_part1.drugbank_drug_names.json"
-    CHEBI_FILE = "../../raw_data/2020-01-19/BORG_DDIEM__clinical_logs.2020-01-19.0800hrs.collapsed.clinical_logs_for_rdf_part1.ChEBI_drug_names.json"
-    WHOCC_FILE = "../../raw_data/2020-01-12/WHOCC/BORG_DDIEM__clinical_logs.2020-01-13.0859hrs.collapsed.clinical_logs_for_rdf_part1.WHOCC_drug_names.json"
-
     drug_bank = {}
     with open(DRUG_BANK_FILE, "r", encoding="utf-8") as json_file:
         drug_bank = json.load(json_file)
