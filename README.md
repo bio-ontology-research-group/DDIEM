@@ -14,8 +14,8 @@ This work is licensed under a [Creative Commons Attribution 4.0 International Li
 ## Disclaimer
 
 By using this site, you signify your assent to the Terms and Conditions set forth below. If you do not agree to all of these Terms and Conditions of use, do not use this site.
-The creators and editors ( hereinafter “The Authors”) of DDIEM have made every effort to ensure that all information in this database is correct at the time of production and are not responsible for errors or omissions. DDIEM makes no representation about the suitability, completeness or accuracy of the data provided for any purpose and makes no warranties either expressed or implied about the fitness for a particular purpose, or that the use of this data will not infringe any third-party patents, copyrights trademarks or other rights. The data are provided ‘as is”.
-DDIEM is a tool designed to gather, integrate and present data on inborn errors of metabolism for research, teaching and scholarly purposes. Any reproduction or use for commercial purpose is prohibited without the prior express written permission of the DDIEM Authors.
+The creators and editors (hereinafter "The Authors") of DDIEM have made every effort to ensure that all information in this database is correct at the time of production and are not responsible for errors or omissions. DDIEM makes no representation about the suitability, completeness or accuracy of the data provided for any purpose and makes no warranties either expressed or implied about the fitness for a particular purpose, or that the use of this data will not infringe any third-party patents, copyrights trademarks or other rights. The data are provided 'as is'.
+DDIEM is a tool designed to gather, integrate and present data on inborn errors of metabolism for research, teaching, and scholarly purposes.
 
 ## Medical Disclaimer
 
