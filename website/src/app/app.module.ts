@@ -15,6 +15,7 @@ import { EllipsisPipe } from '../pipes/EllipsisPipe';
 import { SparqlComponent } from './sparql/sparql.component';
 import { DiseaseSearchComponent } from './disease-search/disease-search.component';
 import { AboutComponent } from './about/about.component';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { AboutComponent } from './about/about.component';
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule
   ],
-  providers: [DiseaseService, TitleCasePipe],
+  providers: [DiseaseService, TitleCasePipe, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
