@@ -53,9 +53,9 @@ if __name__ == "__main__":
     -f {src_csv_dataset} -d raw_data --count_of_workers={count_of_workers} 2>&1|tee {log_file_name} \
     && date".format(src_csv_dataset=src_csv_dataset, count_of_workers=count_of_workers, log_file_name=log_file_name)
     
-    process = subprocess.Popen(CMD_1, stdout=subprocess.PIPE, shell=True)
+    process = subprocess.Popen(CMD_1, stdout=subprocess.PIPE, text=True, shell=True)
     for line in process.stdout:
-        print(line.strip().decode('utf-8'))
+        print(line.strip())
 
 
     src_csv_dataset_col = join(join(DATA_DIR, latest_dir), COLLAPSED_SRC_FILE_NAME + SRC_FILE_EXT)
@@ -93,9 +93,9 @@ if __name__ == "__main__":
             log_file_name=log_file_name
         ) 
     
-    process = subprocess.Popen(CMD_2, stdout=subprocess.PIPE, shell=True)
+    process = subprocess.Popen(CMD_2, stdout=subprocess.PIPE, text=True, shell=True)
     for line in process.stdout:
-        print(line.strip().decode('utf-8'))
+        print(line.strip())
 
 
     src_csv_dataset_norm = join(join(DATA_DIR, latest_dir), NORMALIZED_SRC_FILE_NAME + SRC_FILE_EXT)
@@ -112,9 +112,9 @@ if __name__ == "__main__":
             data_dir=config["data"]["dir"]
         )
 
-    process = subprocess.Popen(CMD_3, stdout=subprocess.PIPE, shell=True)
+    process = subprocess.Popen(CMD_3, stdout=subprocess.PIPE, text=True, shell=True)
     for line in process.stdout:
-        print(line.strip().decode('utf-8'))
+        print(line.strip())
 
     sparql_query="CLEAR GRAPH '" + config["rdfstore"]["graph"] + "'"  
     CMD_4 = "time curl --user " + config["rdfstore"]["user"] + ":" + config["rdfstore"]["pwd"] + " \
@@ -126,9 +126,9 @@ if __name__ == "__main__":
         --write-out '%{url_effective};%{http_code};%{time_total};%{time_namelookup};%{time_connect};%{size_download};%{speed_download}\\n' \
         ;date;"
 
-    process = subprocess.Popen(CMD_4, stdout=subprocess.PIPE, shell=True)
+    process = subprocess.Popen(CMD_4, stdout=subprocess.PIPE, text=True, shell=True)
     for line in process.stdout:
-        print(line.strip().decode('utf-8'))
+        print(line.strip())
 
     src_rdf_file = config["data"]["dir"] + "/ddiem-data." + now.strftime("%Y-%m-%d") + ".rdf"
     print(src_rdf_file)
@@ -139,6 +139,6 @@ if __name__ == "__main__":
         --write-out '%{url_effective};%{http_code};%{time_total};%{time_namelookup};%{time_connect};%{size_download};%{speed_download}\\n' \
         && echo `date +%Y-%m-%d.%H%M.%S.%N` Processing file '" + src_rdf_file + "' completed with exit status:$e_status at `date +%Y-%m-%d.%H%Mhrs:%S.%N`;"
 
-    process = subprocess.Popen(CMD_5, stdout=subprocess.PIPE, shell=True)
+    process = subprocess.Popen(CMD_5, stdout=subprocess.PIPE, text=True, shell=True)
     for line in process.stdout:
-        print(line.strip().decode('utf-8'))
+        print(line.strip())
