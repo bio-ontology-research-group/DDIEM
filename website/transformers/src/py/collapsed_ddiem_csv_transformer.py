@@ -33,11 +33,11 @@ if __name__ == '__main__':
     print("Program arguments: ", sys.argv)
     print("Number of arguments: ", len(sys.argv))
 
-    RAW_DATA_DIR = "../../raw_data/"
-    DDIEM_SOURCE_FILE = RAW_DATA_DIR + sys.argv[1]
-    DRUG_BANK_FILE = RAW_DATA_DIR + sys.argv[2]
-    CHEBI_FILE = RAW_DATA_DIR + sys.argv[3]
-    WHOCC_FILE = RAW_DATA_DIR + sys.argv[4]
+    DDIEM_SOURCE_FILE = sys.argv[1]
+    DRUG_BANK_FILE = sys.argv[2]
+    CHEBI_FILE = sys.argv[3]
+    WHOCC_FILE = sys.argv[4]
+    DATA_DIR = sys.argv[5]
 
 
     DDIEM = ClosedNamespace(
@@ -215,10 +215,9 @@ if __name__ == '__main__':
     dataset.add(VOID.feature, store.resource('http://www.w3.org/ns/formats/RDF_XML'))
 
     # Serialize the file to rdf/xml representation
-    store.serialize("../../../../data/VOID.{date}.rdf".format(date=str(datetime.date.today())), format="pretty-xml", max_depth=3)
+    store.serialize("{data_dir}/VOID.{date}.rdf".format(data_dir=DATA_DIR, date=str(datetime.date.today())), format="pretty-xml", max_depth=3)
 
-    store.load("../../../../data/ddiem.owl")
-
+    store.load("{data_dir}/ddiem.owl".format(data_dir=DATA_DIR))
     disease_dict = {}
     gene_dict = {}
     protien_dict = {}
@@ -510,4 +509,4 @@ if __name__ == '__main__':
         print("Processed " + str(line_count) + " lines.")
 
     # Serialize the file to rdf/xml representation
-    store.serialize("../../../../data/ddiem-data.{data}.rdf".format(data=str(datetime.date.today())), format="pretty-xml", max_depth=3)
+    store.serialize("{data_dir}/ddiem-data.{date}.rdf".format(data_dir=DATA_DIR, date=str(datetime.date.today())), format="pretty-xml", max_depth=3)
