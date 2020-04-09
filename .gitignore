@@ -47,4 +47,5 @@ Thumbs.db
 
 #transformer
 /website/transformers/venv/
+/website/transformers/logs/
 /website/transformers/\.vscode/
