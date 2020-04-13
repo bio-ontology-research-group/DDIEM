@@ -12,7 +12,7 @@
 # 2020-01-12/WHOCC/BORG_DDIEM__clinical_logs.2020-01-13.0859hrs.collapsed.clinical_logs_for_rdf_part1.WHOCC_drug_names.json \
 
 from rdflib import Graph, Literal, BNode, RDF
-from rdflib.namespace import FOAF, DC, ClosedNamespace, RDFS, DCTERMS
+from rdflib.namespace import FOAF, DC, ClosedNamespace, RDFS, DCTERMS, SKOS, OWL
 from rdflib.term import URIRef
 
 import csv
@@ -83,6 +83,7 @@ if __name__ == '__main__':
     )
 
     VOID = ClosedNamespace(uri=URIRef("http://rdfs.org/ns/void#"), terms=['Dataset','sparqlEndpoint','feature'])
+    ATC = ClosedNamespace(uri=URIRef("http://purl.bioontology.org/ontology/UATC/"), terms=[])
      
     drug_bank = {}
     with open(DRUG_BANK_FILE, "r", encoding="utf-8") as json_file:
@@ -98,9 +99,14 @@ if __name__ == '__main__':
     def find_chebi_drug(drug_bank, drug_id): 
         return (drug_name for key, drug in drug_bank.items() if key == drug_id for drug_name in drug if len(drug) == 1 or drug_name['source'] == "ChEBI" or drug_name['source'] == "UniProt")
 
-    who_drug_bank = {}
-    with open(WHOCC_FILE, "r", encoding="utf-8") as json_file:
-        who_drug_bank = json.load(json_file)
+    def find_whoatc_drug(drug_bank, drug_id): 
+        uri = str(ATC.uri) + drug_id
+        drug_bank_csv = csv.reader(drug_bank, delimiter=",")
+        return (row for row in drug_bank_csv if row[0] == uri)
+
+    who_drug_bank = None
+    with open(WHOCC_FILE, "r", encoding="utf-8") as csv_file:
+        who_drug_bank =  csv_file.readlines()  
 
     def find_drug_name(drug_id):
         global drug_bank, chebi_drug_bank, who_drug_bank
@@ -111,8 +117,9 @@ if __name__ == '__main__':
             drug = next(find_drug(drug_bank, drug_id), None)
             return drug['drug_name'] if drug else ''
         else :
-            drug = next(find_drug(who_drug_bank, drug_id), None)
-            return drug['name'] if drug else ''
+            drug = next(find_whoatc_drug(who_drug_bank, drug_id), None)
+            print(drug_id, "|", drug[1])
+            return drug[1] if drug else ''
 
     def add_ored_drugs(row, procedure, pubchem_cid_or, pubchem_cid_or_name):
         for drug_col in row[24:27]:
@@ -134,7 +141,7 @@ if __name__ == '__main__':
                 drug_res.add(OBO.RO_0000056, procedure)
                 procedure.add(OBO.RO_0000057, drug_res)
                 count += 1
-
+    
     store = Graph()
 
     # Bind a few prefix, namespace pairs for pretty output
