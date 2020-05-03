@@ -3,7 +3,8 @@ a="""
 
 
 
-export src_clinical_log_dataset_csv_file_name="../raw_data/2020-01-19/BORG_DDIEM__clinical_logs.2020-01-19.0800hrs.collapsed.csv";
+#export src_clinical_log_dataset_csv_file_name="../raw_data/2020-01-19/BORG_DDIEM__clinical_logs.2020-01-19.0800hrs.collapsed.csv";
+export src_clinical_log_dataset_csv_file_name="../raw_data/2020-05-03/BORG_DDIEM__clinical_logs.2020-05-03.1213hrs.parsed.collapsed.csv";
 
 export dest_dir_file_name="$(dirname ${src_clinical_log_dataset_csv_file_name})";
 working_dir_file_name="/local/data/tmp/BORG_DDIEM/BORG_DDIEM__prepare_clinical_logs_for_rdf_v2.working_dir" \
@@ -12,7 +13,7 @@ working_dir_file_name="/local/data/tmp/BORG_DDIEM/BORG_DDIEM__prepare_clinical_l
  && echo `date +%Y-%m-%d.%H%M.%S.%N.%Z`", log_file_name is:'${log_file_name}'" \
  && mkdir -p "$(dirname ${log_file_name})" \
  && pushd . && cd /local/data/development.minor/KAUST/BORG/try1 \
- && PYTHON_HOME="/local/data/apps/python/3.7.4" \
+ && PYTHON_HOME="/local/data/apps/python/3.8.0" \
  && date && time "${PYTHON_HOME}"/bin/python3 src/py/clinical_logs_data_transformation/BORG_DDIEM__prepare_clinical_logs_for_rdf_v2.py \
  --borg_ddiem_relational_ontology_graph_csv_file_name="../raw_data/2019-05-19/BORG_DDIEM__relational_ontology_graph.csv" \
  --src_clinical_log_dataset_csv_file_name="${src_clinical_log_dataset_csv_file_name}" \
@@ -2802,6 +2803,8 @@ id,entity class,entity instance field,subject represented by,example value,entit
                         ,xml_data
                     ];
                     dest_dataset_csv_writer.writerow(clinical_log_rdf_base_fields_dataset_row);
+                    if(len(clinical_log_rdf_base_fields_dataset_row)>cnt_of_fields__max):
+                    	cnt_of_fields__max=len(clinical_log_rdf_base_fields_dataset_row);
                     drug_ID2=None;
                     drug_ID__list=None;
                     """

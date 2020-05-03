@@ -3,25 +3,41 @@ a="""
 
 
 
-This script will insert a row before the first row of the supplied CSV file.
-Each field of this row will contain the numeric value of the ordinal position of the given field.
-
-This script will also insert a column before the first column of the supplied CSV file.
-The field of this column will contain the numeric value of the ordinal position of the record it is now part of.
-
+This script will trickle down the value of each non empty field to all the contigous empty cells beneath it. 
 
 pushd .;cd /local/data/development.minor/KAUST/BORG/try1;
 
-export src_csv_dataset_file_name="../raw_data/2020-05-03/BORG_DDIEM__clinical_logs.2020-05-03.1213hrs.csv";
+#export src_csv_dataset_file_name="../raw_data/2019-10-01/BORG_DDIEM__clinical_logs.2019-10-01.1418hrs.csv";
+#export src_csv_dataset_file_name="../raw_data/2019-10-10/BORG_DDIEM__clinical_logs.2019-10-10.0958hrs.csv";
+#export src_csv_dataset_file_name="../raw_data/2019-10-16/BORG_DDIEM__clinical_logs.2019-10-16.0900hrs.csv";
+#export src_csv_dataset_file_name="../raw_data/2019-10-27/BORG_DDIEM__clinical_logs.2019-10-27.1048hrs.csv";
+#export src_csv_dataset_file_name="../raw_data/2019-10-31/BORG_DDIEM__clinical_logs.2019-10-31.1014hrs.csv";
+#export src_csv_dataset_file_name="../raw_data/2019-11-22/BORG_DDIEM__clinical_logs.2019-11-22.0032hrs.csv";
+#export src_csv_dataset_file_name="../raw_data/2019-12-03/BORG_DDIEM__clinical_logs.2019-12-03.1025hrs.csv";
+#export src_csv_dataset_file_name="../raw_data/2019-12-03/BORG_DDIEM__clinical_logs.2019-12-03.1140hrs.csv";
+#export src_csv_dataset_file_name="../raw_data/2019-12-04/BORG_DDIEM__clinical_logs.2019-12-04.0804hrs.csv";
+#export src_csv_dataset_file_name="../raw_data/2019-12-05/BORG_DDIEM__clinical_logs.2019-12-05.0910hrs.csv";
+#export src_csv_dataset_file_name="../raw_data/2019-12-05/BORG_DDIEM__clinical_logs.2019-12-05.0959hrs.csv";
+#export src_csv_dataset_file_name="../raw_data/2020-01-12/BORG_DDIEM__clinical_logs.2020-01-12.1611hrs.csv";
+#export src_csv_dataset_file_name="../raw_data/2020-01-13/BORG_DDIEM__clinical_logs.2020-01-13.1726hrs.csv";
+#export src_csv_dataset_file_name="../raw_data/2020-01-15/BORG_DDIEM__clinical_logs.2020-01-15.1207hrs.csv";
+#export src_csv_dataset_file_name="../raw_data/2020-01-16/BORG_DDIEM__clinical_logs.2020-01-16.0958hrs.csv";
+#export src_csv_dataset_file_name="../raw_data/2020-01-16/BORG_DDIEM__clinical_logs.2020-01-16.1116hrs.csv";
+#export src_csv_dataset_file_name="../raw_data/2020-01-16/BORG_DDIEM__clinical_logs.2020-01-16.1301hrs.csv";
+#export src_csv_dataset_file_name="../raw_data/2020-01-16/BORG_DDIEM__clinical_logs.2020-01-16.1646hrs.csv";
+#export src_csv_dataset_file_name="../raw_data/2020-01-19/BORG_DDIEM__clinical_logs.2020-01-19.0800hrs.csv";
+export src_csv_dataset_file_name="../raw_data/2020-05-03/BORG_DDIEM__clinical_logs.2020-05-03.1213hrs.parsed.csv";
 
-working_dir_file_name="/local/data/tmp/BORG_DDIEM/BORG_DDIEM__parse_clinical_logs_CSV.working_dir" \
+
+
+working_dir_file_name="/local/data/tmp/BORG_DDIEM/BORG_DDIEM__collapse_clinical_logs_CSV.working_dir" \
  && count_of_workers=1 \
  && log_file_name="/local/data/tmp/BORG_DDIEM/logs/BORG_DDIEM__dataset.csv.log.`date +%Y-%m-%d.%H%M.%S.%N.%Z`" \
  && echo `date +%Y-%m-%d.%H%M.%S.%N.%Z`", log_file_name is:'${log_file_name}'" \
  && mkdir -p "$(dirname ${log_file_name})" \
  && pushd . && cd /local/data/development.minor/KAUST/BORG/try1 \
  && PYTHON_HOME="/local/data/apps/python/3.8.0" \
- && date && time "${PYTHON_HOME}"/bin/python3 src/py/clinical_logs_data_transformation/BORG_DDIEM__parse_clinical_logs_CSV.py \
+ && date && time "${PYTHON_HOME}"/bin/python3 src/py/clinical_logs_data_transformation/BORG_DDIEM__collapse_clinical_logs_CSV.py \
  -f"${src_csv_dataset_file_name}" \
  -d"/local/data/development.minor/KAUST/BORG/raw_data" \
  --count_of_workers=${count_of_workers} \
@@ -60,7 +76,7 @@ LOG_FORMAT=('%(levelname) -5s processes_id:%(process)d time:%(asctime)s %(name) 
     '-15s %(lineno) -5d]: %(message)s');
 LOGGER = logging.getLogger(__name__);
 
-def run_BORG_DDIEM__parse_clinical_logs_CSV(
+def run_BORG_DDIEM__collapse_clinical_logs_CSV(
     w
     ,queue
     ,worker_id
@@ -70,7 +86,7 @@ def run_BORG_DDIEM__parse_clinical_logs_CSV(
         queue.put(w._processing_outcome__dict);
     except KeyboardInterrupt:
         d.stop();
-class BORG_DDIEM__parse_clinical_logs_CSV():
+class BORG_DDIEM__collapse_clinical_logs_CSV():
     def __init__(
         self
         ,hostname,ipAddress,ppid
@@ -114,7 +130,7 @@ class BORG_DDIEM__parse_clinical_logs_CSV():
             
             raise error;
     def run(self):
-        self._processing_outcome__dict=include_ordinal_position_fields(
+        self._processing_outcome__dict=cascade_fields_values(
             self.hostname,self.ipAddress,self.ppid,self.pid
             ,self.working_dir_file_name
             ,self.task_id
@@ -128,7 +144,7 @@ class BORG_DDIEM__parse_clinical_logs_CSV():
     def get_processing_outcome(self):
         return self._processing_outcome__dict;
 
-def include_ordinal_position_fields(
+def cascade_fields_values(
     hostname,ipAddress,ppid,pid
     ,working_dir_file_name
     ,task_id
@@ -143,14 +159,16 @@ def include_ordinal_position_fields(
     task_commencement_time_obj=datetime.datetime.now();
     task_commencement_time_str=task_commencement_time_obj.strftime('%Y-%m-%d %H:%M:%S.%f');
     
-    """
-    """;
+    trickle_down_eligible_field__list=[2,3,5,6,7,10,11,24,25,26,27,28,29,30,31,32];
+    #trickle_down_eligible_field__list=[2,3,5,6,7,8,9,10,23,24,25,26,27,28,29,30,31];
+    #trickle_down_eligible_field__list=[2,3,5,6,7,8,9,10,22,23,24,25,26,27,28,29,30,31,32];
+    #trickle_down_eligible_field__list=[2,3,5,6,7];
     
     src_dataset_csv_file_name=_srcCSVFileName;
     dest_dataset_csv_file_name=os.path.join(
         _destCSVDirFileName
         ,os.path.basename(os.path.dirname(_srcCSVFileName))
-        ,"%s.parsed.csv"%(os.path.splitext(os.path.basename(_srcCSVFileName))[0])
+        ,"%s.collapsed.csv"%(os.path.splitext(os.path.basename(_srcCSVFileName))[0])
     );
     LOGGER.info("dest_dataset_csv_file_name is:'%s'"%(dest_dataset_csv_file_name));
     mkdir_p(os.path.dirname(os.path.abspath(dest_dataset_csv_file_name)));
@@ -170,33 +188,101 @@ def include_ordinal_position_fields(
     dest_dataset_csv_fh=open(dest_dataset_csv_file_name,"w");
     dest_dataset_csv_writer=csv.writer(dest_dataset_csv_fh,delimiter=',',quotechar='"',quoting=csv.QUOTE_MINIMAL);
     
-    row2=[];
+    drug_ID__previous="";
     cnt_of_fields__max=0;
+    populated_fields__dict={};
+    row2=[];
     cnt_of_fields=0;
     row_cnt=0;
     src_dataset_csv_fh.seek(0);
+    drug_name=None;
     for row in src_dataset_csv_reader:
         row_cnt+=1;
-        if(len(row)>cnt_of_fields__max):
-            cnt_of_fields__max=len(row);
         del row2[:];
-        for i, val in enumerate(row):
-            if(row[i]==None):
-                row[i]="";
-            else:
-                row[i]=row[i].strip();
-        if(row_cnt==1):
+        if(1==1 or row_cnt<5):
             """
-            We have the header record, lets generate and insert a row in the destination CSV, the fields of this row would contain the numeric ordinal position of the field.
+            Here we test to see if the drug value in the new row matches that of the preceeding row.
+            If it does not match we reset the stored values of the fields right of it. 
             """
-            row2.append(0);
+            omim_ID=row[2].strip();
+            drug_ID=row[11].strip();
+            #LOGGER.info("--------------------------------------------------------------------------drug_ID is '%s'"%(drug_ID));
+            if(len(omim_ID.strip())>0 or len(drug_ID.strip())>0):
+                #if(int(row[0])>88 and int(row[0])<94):
+                #LOGGER.info("---------------------------------------------------------row[0] is:{0}, drug_ID is '{1}'".format(row[0],drug_ID));
+                pass;
+                for i in range(11,34+1):
+                    pass;
+                    populated_fields__dict[i]=None;#
+            if(drug_ID==drug_ID__previous):
+                pass;
+                for i in range(11,34+1):
+                    pass;
+                    #populated_fields__dict[i]=None;#
+                
+            """
+            Here we test if the drug name field is non empty.
+            If it is empty we reset the stored values of the fields to the right of it.
+            """
+            drug_name=row[10].strip();
+            if(drug_name.upper()=="No treatment is available in DDIEM".upper()):
+                pass;
+                #drug_name="";
+                for i in range(11,34+1):
+                    pass;
+                    populated_fields__dict[i]=None;
+            elif(drug_name==""):
+                for i in range(10,34+1):
+                    pass;
+                    #populated_fields__dict[i]=None;
+                    
             for i, val in enumerate(row):
-                row2.append(i+1);
-            dest_dataset_csv_writer.writerow(row2);
-        row2=[];
-        row2.append(row_cnt-1);
-        row2.extend(row[:]);
-        dest_dataset_csv_writer.writerow(row2);
+                row[i]=row[i].strip();
+                """
+                For each non-trickle-down-eligible-field clean out its previous value.
+                """
+                if(i in trickle_down_eligible_field__list):
+                    pass;
+                else:
+                    populated_fields__dict[i]=None;
+                """
+                Test if the field is non-empty, if it is inject this value into the populated_fields__dict dictionary, use the field ordinal position as the key and the field value as the value.
+                """
+                if(len(row[i])>0):
+                    """
+                    Inject this value into the populated_fields__dict dictionary.
+                    """
+                    populated_fields__dict[i]=row[i];
+                
+            #LOGGER.info("row_cnt is:%d, row is:'%s', populated_fields__dict is:'%s'"%(row_cnt,json.dumps(row,indent=4),json.dumps(populated_fields__dict,indent=4)));
+            if(1==1):
+                cnt_of_fields=len(row);
+                if(cnt_of_fields__max<cnt_of_fields):
+                    cnt_of_fields__max=cnt_of_fields;
+                """
+                Now loop through the dictionary using values from 0 till cnt_of_fields__max-1 as key.
+                write out these values into an array which will be printed out to file.
+                """
+                i=0;
+                while i<cnt_of_fields__max:
+                    if(i in populated_fields__dict):
+                        row2.append(populated_fields__dict[i]);
+                    else:
+                        row2.append("");
+                    i+=1;
+                """
+                If the current row is the header row, reset the populated_fields__dict dictionary and obtain the values to write to the destination CSV from the row list.
+                """
+                if(row_cnt<=2):
+                    row2=row[:];
+                    """
+                    These are header rows, let's reset the dictionary.
+                    """
+                    populated_fields__dict={};
+                    
+                dest_dataset_csv_writer.writerow(row2);
+                drug_ID__previous=row2[11];
+                del row2[0:len(row2)-1];
     dest_dataset_csv_fh.close();
     src_dataset_csv_fh.close();
     
@@ -392,11 +478,11 @@ if __name__ == '__main__':
         for i in range(count_of_workers):
             #Instantiates the thread
             #(i) dos not make a sequence, so we use (i,)
-            worker_id2='%s__%s__%d'%('BORG_DDIEM__parse_clinical_logs_CSV',worker_id,i);
+            worker_id2='%s__%s__%d'%('BORG_DDIEM__collapse_clinical_logs_CSV',worker_id,i);
             LOGGER.info(">>>>>>>>>>worker_tag:'%s'"%(worker_id2));
             
             worker_number=i;
-            w=BORG_DDIEM__parse_clinical_logs_CSV(
+            w=BORG_DDIEM__collapse_clinical_logs_CSV(
                 hostname,ipAddress,pid
                 ,task_id
                 ,task_formulation_timestamp
@@ -408,7 +494,7 @@ if __name__ == '__main__':
             );
             """
             t=threading.Thread(
-                target=run_BORG_DDIEM__parse_clinical_logs_CSV
+                target=run_BORG_DDIEM__collapse_clinical_logs_CSV
                 ,args=(
                     d
                     ,worker_id2
@@ -419,7 +505,7 @@ if __name__ == '__main__':
             """
             q=multiprocessing.Queue();
             p=multiprocessing.Process(
-                target=run_BORG_DDIEM__parse_clinical_logs_CSV
+                target=run_BORG_DDIEM__collapse_clinical_logs_CSV
                 ,args=(
                     w
                     ,q
