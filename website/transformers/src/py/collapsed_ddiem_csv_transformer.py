@@ -18,10 +18,10 @@ from rdflib.term import URIRef
 import csv
 import json
 import hashlib
-import uuid
 import re
 import datetime
 import sys
+import itertools
 
 def encrypt_string(hash_string):
     sha_signature = \
@@ -101,6 +101,7 @@ if __name__ == '__main__':
 
     def find_whoatc_drug(drug_bank, drug_id): 
         uri = str(ATC.uri) + drug_id
+        print("ATC drug code:", drug_id)
         drug_bank_csv = csv.reader(drug_bank, delimiter=",")
         return (row for row in drug_bank_csv if row[0] == uri)
 
@@ -234,12 +235,26 @@ if __name__ == '__main__':
     pheno_dict = {}
     procedure_type_dict = {}
 
+    procedure_cont = itertools.count()
+    pheno_cont = itertools.count()
+    drug_cont = itertools.count()
+    enzyme_cont = itertools.count()
+    gene_cont = itertools.count()
+
+    drug_pref = "DG_"
+    procedure_pref = "TP_"
+    pheno_pref = "PHENO_"
+    enzyme_pref = "ENZ_"
+    gene_pref = "GENE_"
+
 
 
     def drug(drug_id):
         global drug_dict
+        global drug_pref
+        global drug_cont
         if encrypt_string(drug_id) not in drug_dict :
-            drug_res = store.resource(str(DDIEM.uri) + str(uuid.uuid4()))
+            drug_res = store.resource(str(DDIEM.uri) + drug_pref + str(next(drug_cont)))
             drug_res.set(RDF.type, DDIEM.Drug)
             drug_res.set(DC.identifier, Literal(drug_id))
             drug_res.add(DDIEM.url, Literal("https://www.drugbank.ca/drugs/" + drug_id)) if drug_id.startswith("DB") else None
@@ -256,7 +271,7 @@ if __name__ == '__main__':
     def drug_by_name(drug_name):
         global drug_dict
         if encrypt_string(drug_name) not in drug_dict :
-            drug_res = store.resource(str(DDIEM.uri) + str(uuid.uuid4()))
+            drug_res = store.resource(str(DDIEM.uri) + drug_pref + str(next(drug_cont)))
             drug_res.set(RDF.type, DDIEM.Drug)
             drug_res.set(RDFS.label, Literal(drug_name))
             drug_dict[encrypt_string(drug_name)] = drug_res
@@ -267,7 +282,7 @@ if __name__ == '__main__':
     def pubchem_drug(drug_id, drug_name):
         global drug_dict
         if encrypt_string(drug_id) not in drug_dict :
-            drug_res = store.resource(str(DDIEM.uri) + str(uuid.uuid4()))
+            drug_res = store.resource(str(DDIEM.uri) + drug_pref + str(next(drug_cont)))
             drug_res.set(RDF.type, DDIEM.Drug)
             drug_res.set(DC.identifier, Literal(drug_id))
             drug_res.set(RDFS.label, Literal(drug_name))
@@ -334,7 +349,7 @@ if __name__ == '__main__':
                 protein_enzyme_col=12
                 protein_enzyme = None
                 if encrypt_string(row[protein_enzyme_col]) not in protien_dict :
-                    protein_enzyme = store.resource(str(DDIEM.uri) + str(uuid.uuid4()))
+                    protein_enzyme = store.resource(str(DDIEM.uri) + enzyme_pref+ str(next(enzyme_cont)))
                     protein_enzyme.set(RDF.type, DDIEM.ProtienOrEnzyme)
                     protein_enzyme.set(RDFS.label, Literal(row[protein_enzyme_col]))
 
@@ -361,7 +376,7 @@ if __name__ == '__main__':
                         continue
 
                     if geneCode not in gene_dict :
-                        gene = store.resource(str(DDIEM.uri) + str(uuid.uuid4()))
+                        gene = store.resource(str(DDIEM.uri) + gene_pref + str(next(gene_cont)))
                         gene.set(RDF.type, DDIEM.Gene)
                         gene.set(RDFS.label, Literal(geneCode))
                         gene.add(DC.identifier, Literal("https://www.ncbi.nlm.nih.gov/gene/" + gene_ids[gene_split_count] if gene_ids[gene_split_count] else "https://ghr.nlm.nih.gov/gene/" + geneCode))
@@ -395,7 +410,7 @@ if __name__ == '__main__':
 
                 procedure_id = disease_id_col + ":" + drug_comb_col
                 if encrypt_string(procedure_id) not in procedure_dict :
-                    procedure = store.resource(str(DDIEM.uri) + str(uuid.uuid4()))
+                    procedure = store.resource(str(DDIEM.uri) + procedure_pref + str(next(procedure_cont)))
                     procedure.add(RDF.type, OBO.OGMS_0000112)
                     procedure.set(RDFS.comment, Literal(row[18]))
                     procedure.set(OBO.RO_0002599, disease)
@@ -406,7 +421,7 @@ if __name__ == '__main__':
                         count=0
                         for instance in procedure_instances:
                             instance = instance.replace('CHEBI:','CHEBI_')
-                            procedure_ins = store.resource(str(DDIEM.uri) + str(uuid.uuid4()))
+                            procedure_ins = store.resource(str(DDIEM.uri) + procedure_pref + str(next(procedure_cont)))
                             procedure_ins.add(RDF.type, OBO.OGMS_0000112)
                             procedure.add(OBO.BFO_0000050, procedure_ins)
                             # print(disease_id_col, procedure_instances, procedure_type_list,(count + 1))
@@ -492,7 +507,7 @@ if __name__ == '__main__':
                 phenotype = None
                 if row[phenotype_col_id].strip():
                     if encrypt_string(row[phenotype_col_id]) not in pheno_dict :
-                        phenotype = store.resource(str(DDIEM.uri) + str(uuid.uuid4()))
+                        phenotype = store.resource(str(DDIEM.uri) + pheno_pref + str(next(pheno_cont)))
                         phenotype.set(RDF.type, DDIEM.Phenotype)
                         phenotype.set(RDFS.label, Literal(row[phenotype_col_id]))
                         phenotype.set(RDFS.comment, Literal(row[39]))
