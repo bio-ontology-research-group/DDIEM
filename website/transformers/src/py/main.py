@@ -10,7 +10,8 @@ DATA_DIR = "raw_data"
 DATA_SOURCE_DIR = DATA_DIR + "/source"
 SRC_FILE_NAME = "ddiem_clinical_logs"
 SRC_FILE_EXT = ".csv"
-COLLAPSED_SRC_FILE_NAME = SRC_FILE_NAME + ".collapsed"
+PARSED_SRC_FILE_NAME = SRC_FILE_NAME + ".parsed"
+COLLAPSED_SRC_FILE_NAME = PARSED_SRC_FILE_NAME + ".collapsed"
 NORMALIZED_SRC_FILE_NAME = COLLAPSED_SRC_FILE_NAME + ".clinical_logs_for_rdf_v2"
 
 
@@ -24,6 +25,10 @@ if not os.path.isfile(configFile):
 
 config = configparser.RawConfigParser()
 config.read(configFile)
+
+def handle_output(process):
+    if process.wait() != 0:
+        exit(0)
 
 if __name__ == "__main__":
 
@@ -50,6 +55,7 @@ if __name__ == "__main__":
     os.system("mkdir -p $(dirname " + log_file_name + ")")
     os.system("echo `date +%Y-%m-%d` log_file_name is:" + log_file_name)
 
+    # Adds row and column numbers to csv
     CMD_1 = "date && time python3 src/py/clinical_logs_data_transformation/BORG_DDIEM__parse_clinical_logs_CSV.py \
     -f {src_csv_dataset} -d raw_data --count_of_workers={count_of_workers} 2>&1|tee {log_file_name} \
     && date".format(src_csv_dataset=src_csv_dataset, count_of_workers=count_of_workers, log_file_name=log_file_name)
@@ -59,10 +65,21 @@ if __name__ == "__main__":
         print(line.strip())
 
 
+    # Collapses fields to below fields whereever required
+    src_csv_dataset = join(join(DATA_DIR, latest_dir), PARSED_SRC_FILE_NAME + SRC_FILE_EXT)
+    CMD_2 = "date && time python3 src/py/clinical_logs_data_transformation/BORG_DDIEM__collapse_clinical_logs_CSV.py \
+    -f {src_csv_dataset} -d raw_data --count_of_workers={count_of_workers} 2>&1|tee {log_file_name} \
+    && date".format(src_csv_dataset=src_csv_dataset, count_of_workers=count_of_workers, log_file_name=log_file_name)
+    
+    process = subprocess.Popen(CMD_2, stdout=subprocess.PIPE, text=True, shell=True)
+    for line in process.stdout:
+        print(line.strip())
+
+    # Resolves entities from their source databases and normalizes field discrete values
     src_csv_dataset_col = join(join(DATA_DIR, latest_dir), COLLAPSED_SRC_FILE_NAME + SRC_FILE_EXT)
     dest_dir_file_name = join(DATA_DIR, latest_dir)
     os.system("echo `date +%Y-%m-%d` log_file_name is:" + log_file_name)
-    CMD_2="date && time python3 src/py/clinical_logs_data_transformation/BORG_DDIEM__prepare_clinical_logs_for_rdf_v2.py \
+    CMD_3="date && time python3 src/py/clinical_logs_data_transformation/BORG_DDIEM__prepare_clinical_logs_for_rdf_v2.py \
         --borg_ddiem_relational_ontology_graph_csv_file_name=\"raw_data/2019-05-19/BORG_DDIEM__relational_ontology_graph.csv\" \
         --src_clinical_log_dataset_csv_file_name={src_csv_dataset_col} \
         --OMIM_mimTitles_dataset_tsv_file_name={omim_src_file} \
@@ -86,7 +103,7 @@ if __name__ == "__main__":
             log_file_name=log_file_name
         ) 
     
-    process = subprocess.Popen(CMD_2, stdout=subprocess.PIPE, text=True, shell=True)
+    process = subprocess.Popen(CMD_3, stdout=subprocess.PIPE, text=True, shell=True)
     for line in process.stdout:
         print(line.strip())
 
@@ -95,7 +112,7 @@ if __name__ == "__main__":
     src_chebi_json = join(join(DATA_DIR, latest_dir), NORMALIZED_SRC_FILE_NAME + ".ChEBI_drug_names.json")
 
     # transformers normalized source data to rdf format
-    CMD_3 = "python src/py/collapsed_ddiem_csv_transformer.py \
+    CMD_4 = "python src/py/collapsed_ddiem_csv_transformer.py \
         {src_file} {drugbank_file} {chebi_file} {whocc_file} {data_dir}".format(
             src_file=src_csv_dataset_norm,
             drugbank_file=src_drugbank_json,
@@ -104,14 +121,12 @@ if __name__ == "__main__":
             data_dir=config["data"]["dir"]
         )
 
-    process = subprocess.Popen(CMD_3, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, shell=True)
-    if process.wait() != 0:
-        output, error = process.communicate()
-        print(output.strip())
-        if error.strip():
-            print(error)
-            exit(0)
+    process = subprocess.Popen(CMD_4, text=True, shell=True)
+    # for line in process.stdout:
+    #     print(line.strip())
+    handle_output(process)
 
+    # Run tests over the generated 
     TestDdiemRDF.RDF_FILE = "ddiem-data." + now.strftime("%Y-%m-%d") + ".rdf"
     # initialize the test suite
     loader = unittest.TestLoader()
@@ -124,7 +139,7 @@ if __name__ == "__main__":
         sys.exit(0)
 
     sparql_query="CLEAR GRAPH '" + config["rdfstore"]["graph"] + "'"  
-    CMD_4 = "time curl --user " + config["rdfstore"]["user"] + ":" + config["rdfstore"]["pwd"] + " \
+    CMD_5 = "time curl --user " + config["rdfstore"]["user"] + ":" + config["rdfstore"]["pwd"] + " \
         -X POST " + config["rdfstore"]["endpoint"] + "\
         -H \"Content-Type: application/x-www-form-urlencoded\" \
         -H \"Accept:application/sparql-results+json\" \
@@ -133,19 +148,19 @@ if __name__ == "__main__":
         --write-out '%{url_effective};%{http_code};%{time_total};%{time_namelookup};%{time_connect};%{size_download};%{speed_download}\\n' \
         ;date;"
 
-    process = subprocess.Popen(CMD_4, stdout=subprocess.PIPE, text=True, shell=True)
+    process = subprocess.Popen(CMD_5, stdout=subprocess.PIPE, text=True, shell=True)
     for line in process.stdout:
         print(line.strip())
 
     src_rdf_file = config["data"]["dir"] + "/ddiem-data." + now.strftime("%Y-%m-%d") + ".rdf"
     print(src_rdf_file)
     curd_endpoint = config["rdfstore"]["endpoint"] + "-graph-crud-auth?graph-uri=" + config["rdfstore"]["graph"]
-    CMD_5 = "time curl --digest --user " + config["rdfstore"]["user"] + ":" + config["rdfstore"]["pwd"] + " --verbose -X POST \
+    CMD_6 = "time curl --digest --user " + config["rdfstore"]["user"] + ":" + config["rdfstore"]["pwd"] + " --verbose -X POST \
         --url " + curd_endpoint + " \
         --upload-file '" + src_rdf_file + "' \
         --write-out '%{url_effective};%{http_code};%{time_total};%{time_namelookup};%{time_connect};%{size_download};%{speed_download}\\n' \
         && echo `date +%Y-%m-%d.%H%M.%S.%N` Processing file '" + src_rdf_file + "' completed with exit status:$e_status at `date +%Y-%m-%d.%H%Mhrs:%S.%N`;"
 
-    process = subprocess.Popen(CMD_5, stdout=subprocess.PIPE, text=True, shell=True)
+    process = subprocess.Popen(CMD_6, stdout=subprocess.PIPE, text=True, shell=True)
     for line in process.stdout:
         print(line.strip())
