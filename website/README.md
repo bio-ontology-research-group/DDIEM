@@ -35,7 +35,7 @@ On second step, it takes the normalized data, map it to DDIEM data model and tra
 To run transformation from normalized DDIEM data, first install dependencies by running the following command in transformers folder:
 
 ```sh
-pip install -r .\requirements.txt
+pip install -r requirements.txt
 ```
 After installing the dependencies go to transformers/src/py and run the below command:
 ```sh
