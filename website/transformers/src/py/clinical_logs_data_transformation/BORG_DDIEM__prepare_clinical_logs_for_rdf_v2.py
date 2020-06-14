@@ -773,25 +773,25 @@ def obtain_gene_info(
         gene_symbol_ordinal_position=j;#_gene_symbol__list.index(gene_symbol);
         #https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=AASS&retmode=json&sort=relevance&retmax=10
         url = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi";params = {"db": "gene","term":"{0}".format(gene_symbol),"retmode":"json","sort":"relevance","retmax": "10"};
-        #LOGGER.info("url is:'{0}', params are:'{1}', gene_symbol_query__cnt is:{2}".format(url,json.dumps(params,indent=4,sort_keys=False),gene_symbol_query__cnt));
+        LOGGER.info("url is:'{0}', params are:'{1}', gene_symbol_query__cnt is:{2}".format(url,json.dumps(params,indent=4,sort_keys=False),gene_symbol_query__cnt));
         data = urllib.parse.urlencode(params);data = data.encode("utf-8");req = urllib.request.Request(url, data);
         with urllib.request.urlopen(req) as f:
            response = f.read();
         #print(response.decode("utf-8"));
         response__dict=json.loads(response.decode("utf-8"));
-        #LOGGER.info("gene_symbol_query__cnt is:{0}, response__dict is:'{1}'".format(gene_symbol_query__cnt,json.dumps(response__dict,indent=4,sort_keys=False)));
+        LOGGER.info("gene_symbol_query__cnt is:{0}, response__dict is:'{1}'".format(gene_symbol_query__cnt,json.dumps(response__dict,indent=4,sort_keys=False)));
         if(response__dict is not None and "esearchresult" in response__dict and "idlist" in response__dict["esearchresult"]):
             gene_id__list2=response__dict["esearchresult"]["idlist"];
             
             #construct and issue an esummary query.
             url = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi";params = {"db": "gene","retmode":"json","sort":"relevance","id": ",".join(gene_id__list2)};
-            #LOGGER.info("url is:'{0}', params are:'{1}', gene_symbol_query__cnt is:{2}".format(url,json.dumps(params,indent=4,sort_keys=False),gene_symbol_query__cnt));
+            LOGGER.info("url is:'{0}', params are:'{1}', gene_symbol_query__cnt is:{2}".format(url,json.dumps(params,indent=4,sort_keys=False),gene_symbol_query__cnt));
             data = urllib.parse.urlencode(params);data = data.encode("utf-8");req = urllib.request.Request(url, data);
             with urllib.request.urlopen(req) as f:
                response = f.read();
             #print(response.decode("utf-8"));
             response__dict=json.loads(response.decode("utf-8"));
-            #LOGGER.info("gene_symbol_query__cnt is:{0}, response__dict is:'{1}'".format(gene_symbol_query__cnt,json.dumps(response__dict,indent=4,sort_keys=False)));
+            LOGGER.info("gene_symbol_query__cnt is:{0}, response__dict is:'{1}'".format(gene_symbol_query__cnt,json.dumps(response__dict,indent=4,sort_keys=False)));
             if("result" in response__dict and "uids" in response__dict["result"]):
                 for i, gene_id in enumerate(response__dict["result"]["uids"]):
                     #
