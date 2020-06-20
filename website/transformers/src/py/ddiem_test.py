@@ -36,13 +36,16 @@ class TestDdiemRDF(unittest.TestCase):
             if len(failures) > 0:
                 total_failures = total_failures + failures
 
-        for combination_procedure in rdf.subjects(RDF.type, self.OBO.OGMS_0000112):
-            failures  = self.evaluate(rdf, schema, combination_procedure, self.BASE.Procedure)
+        for procedure in rdf.subjects(RDF.type, self.OBO.OGMS_0000112):
+            if (procedure, RDF.type, self.OBO.DDIEM_0000023) in rdf:
+                continue
+
+            failures  = self.evaluate(rdf, schema, procedure, self.BASE.Procedure)
             if len(failures) > 0:
                 total_failures = total_failures + failures
 
-        for combination_procedure in rdf.subjects(RDF.type, self.DDIEM.ProtienOrEnzyme):
-            failures  = self.evaluate(rdf, schema, combination_procedure, self.BASE.ProtienOrEnzyme)
+        for protien in rdf.subjects(RDF.type, self.DDIEM.ProtienOrEnzyme):
+            failures  = self.evaluate(rdf, schema, protien, self.BASE.ProtienOrEnzyme)
             if len(failures) > 0:
                 total_failures = total_failures + failures
 
