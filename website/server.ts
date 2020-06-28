@@ -23,7 +23,7 @@ const fs = require('fs')
 
 export class DiseaseDao {
   private fetcher:SparqlEndpointFetcher;
-  private serverUrl = "http://ontolinator.kaust.edu.sa:8891/sparql";
+  private serverUrl = "http://10.254.146.165:8891/sparql";
 
   constructor() { 
       this.fetcher = new SparqlEndpointFetcher();
@@ -253,7 +253,7 @@ enableProdMode();
 // Express server
 const app = express();
 const apiProxy = httpProxy.createProxyServer();
-const sparqlEndpoint = 'http://ontolinator.kaust.edu.sa:8891';
+const sparqlEndpoint = 'http://10.254.146.165:8891';
 
 const diseaseDao = new DiseaseDao();
 const PORT = process.env.PORT || 4000;
@@ -291,12 +291,12 @@ app.get('/(\\d+)|([a-f0-9]{8}-?[a-f0-9]{4}-?4[a-f0-9]{3}-?[89ab][a-f0-9]{3}-?[a-
   var format = 'text/html';
   var queryString = `query=${encodeURIComponent(query)}&format=${encodeURIComponent(format)}&timeout=0&debug=on&run=${encodeURIComponent('Run Query')}`;
   req.url = `/sparql?${queryString}`;
-  console.log('redirecting to ontolinator', req.url);
+  console.log('redirecting to virtuoso sparql endpoint', req.url);
   apiProxy.web(req, res, {target: sparqlEndpoint});
 });
 
 app.get('/sparql', async (req: Request, res:Response) => {
-  console.log('redirecting to ontolinator');
+  console.log('redirecting to virtuoso sparql endpoint');
   apiProxy.web(req, res, {target: sparqlEndpoint});
 });
 
@@ -472,6 +472,6 @@ async function lastModifiedDate() {
         ?resource rdf:type void:Dataset . 
         ?resource dcterms:modified ?date
       }`;
-  return await fetcher.fetchBindings("http://ontolinator.kaust.edu.sa:8891/sparql", modifiedDateQuery);
+  return await fetcher.fetchBindings("http://10.254.146.165:8891/sparql", modifiedDateQuery);
 }
 
