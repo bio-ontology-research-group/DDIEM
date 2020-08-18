@@ -137,9 +137,19 @@ if __name__ == "__main__":
     result = test_runner.run(suite)
     if not result.wasSuccessful():
         sys.exit(0)
+    
+    os.chdir(config["virtuoso"]["dir"])
+    os.system("chmod +x start-virtuoso.sh") 
+    CMD_5 = "./start-virtuoso.sh"
+    print("command", CMD_5)
+    process = subprocess.Popen(CMD_5, stdout=subprocess.PIPE, text=True, shell=True)
+    for line in process.stdout:
+        print(line.strip())
 
+    os.chdir("../website/transformers")
+    
     sparql_query="CLEAR GRAPH '" + config["rdfstore"]["graph"] + "'"  
-    CMD_5 = "time curl --user " + config["rdfstore"]["user"] + ":" + config["rdfstore"]["pwd"] + " \
+    CMD_6 = "time curl --user " + config["rdfstore"]["user"] + ":" + config["rdfstore"]["pwd"] + " \
         -X POST " + config["rdfstore"]["endpoint"] + "\
         -H \"Content-Type: application/x-www-form-urlencoded\" \
         -H \"Accept:application/sparql-results+json\" \
@@ -147,20 +157,20 @@ if __name__ == "__main__":
         --data-urlencode \"query=" + sparql_query + "\" \
         --write-out '%{url_effective};%{http_code};%{time_total};%{time_namelookup};%{time_connect};%{size_download};%{speed_download}\\n' \
         ;date;"
-
-    process = subprocess.Popen(CMD_5, stdout=subprocess.PIPE, text=True, shell=True)
+    
+    process = subprocess.Popen(CMD_6, stdout=subprocess.PIPE, text=True, shell=True)
     for line in process.stdout:
         print(line.strip())
 
     src_rdf_file = config["data"]["dir"] + "/ddiem-data." + now.strftime("%Y-%m-%d") + ".rdf"
     print(src_rdf_file)
     curd_endpoint = config["rdfstore"]["endpoint"] + "-graph-crud-auth?graph-uri=" + config["rdfstore"]["graph"]
-    CMD_6 = "time curl --digest --user " + config["rdfstore"]["user"] + ":" + config["rdfstore"]["pwd"] + " --verbose -X POST \
+    CMD_7 = "time curl --digest --user " + config["rdfstore"]["user"] + ":" + config["rdfstore"]["pwd"] + " --verbose -X POST \
         --url " + curd_endpoint + " \
         --upload-file '" + src_rdf_file + "' \
         --write-out '%{url_effective};%{http_code};%{time_total};%{time_namelookup};%{time_connect};%{size_download};%{speed_download}\\n' \
         && echo `date +%Y-%m-%d.%H%M.%S.%N` Processing file '" + src_rdf_file + "' completed with exit status:$e_status at `date +%Y-%m-%d.%H%Mhrs:%S.%N`;"
 
-    process = subprocess.Popen(CMD_6, stdout=subprocess.PIPE, text=True, shell=True)
+    process = subprocess.Popen(CMD_7, stdout=subprocess.PIPE, text=True, shell=True)
     for line in process.stdout:
         print(line.strip())
