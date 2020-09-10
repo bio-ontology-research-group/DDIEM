@@ -34,7 +34,7 @@
     "express": "^4.17.1",
     "fetch-sparql-endpoint": "^1.4.0",
     "font-awesome": "^4.7.0",
-    "http-proxy": "^1.18.0",
+    "http-proxy": "^1.18.1",
     "jquery": "^3.4.1",
     "jsonld-streaming-serializer": "^1.0.1",
     "ngx-cookie-service": "^2.3.0",
