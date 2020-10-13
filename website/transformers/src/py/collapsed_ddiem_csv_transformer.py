@@ -327,6 +327,7 @@ if __name__ == '__main__':
                     pubchem_sid_or = row[49].strip()
                     pubchem_sid_or_name = row[50].strip()
                     pubchem_cid_and = row[53].strip()
+                    print(row[53].strip()) if '245000' in disease_id_col else None
                     pubchem_cid_and_name = row[54].strip()
                     pubchem_sid_and = row[55].strip()
                     pubchem_sid_and_name = row[56].strip()
@@ -468,9 +469,10 @@ if __name__ == '__main__':
                                         pubchem_count = 0
                                         print("and:", pubchem_cid_and, "|", pubchem_cid_and_name)
                                         for item in pubchem_cid_and.split(','):
+                                            instance = instance.replace(' ', '')
                                             if instance.find(item.strip()) == -1 or item.strip() == 'NA':
                                                 continue
-
+                                            
                                             drug_res = pubchem_drug(item.strip(), names[pubchem_count]) 
                                             pubchem_count += 1
                                             drug_res.add(OBO.RO_0000056, procedure_ins)
@@ -481,6 +483,7 @@ if __name__ == '__main__':
                                         pubchem_count = 0
                                         print("and:", pubchem_sid_and, "|", pubchem_sid_and_name)
                                         for item in pubchem_sid_and.split(','):
+                                            instance = instance.replace(' ', '')
                                             if instance.find(item.strip()) == -1 or item.strip() == 'NA':
                                                 continue
 
