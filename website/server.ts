@@ -472,6 +472,6 @@ async function lastModifiedDate() {
         ?resource rdf:type void:Dataset . 
         ?resource dcterms:modified ?date
       }`;
-  return await fetcher.fetchBindings("http://localhost:8891/sparql", modifiedDateQuery);
+  return await fetcher.fetchBindings("http://localhost:8890/sparql", modifiedDateQuery);
 }
 

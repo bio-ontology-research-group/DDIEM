@@ -19,5 +19,5 @@ COPY data/. data/.
 
 EXPOSE 80   
 EXPOSE 443
-EXPOSE 8891 
+EXPOSE 8890
 CMD npm run build:ssr && PORT=80 HTTPS_PORT=443 npm run serve:ssr
