@@ -49,3 +49,6 @@ Thumbs.db
 /website/transformers/venv/
 /website/transformers/logs/
 /website/transformers/\.vscode/
+
+__pycache__
+virtuoso/data
