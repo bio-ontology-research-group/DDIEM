@@ -253,7 +253,7 @@ enableProdMode();
 // Express server
 const app = express();
 const apiProxy = httpProxy.createProxyServer();
-const sparqlEndpoint = 'http://10.254.146.165:8891';
+const sparqlEndpoint = 'http://localhost:8890';
 
 const diseaseDao = new DiseaseDao();
 const PORT = process.env.PORT || 4000;
