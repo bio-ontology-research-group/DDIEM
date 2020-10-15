@@ -1,0 +1,3989 @@
+{
+    "gene_id__2__uniprotkb_id__dict": {
+        "100": {
+            "record_ordinal_position__list": [
+                1,
+                2,
+                3
+            ],
+            "gene_id": "100",
+            "uniprotkb_id__list": [
+                "A0A0S2Z381_HUMAN",
+                "ADA_HUMAN",
+                "F5GWI4_HUMAN"
+            ]
+        },
+        "10020": {
+            "record_ordinal_position__list": [
+                4
+            ],
+            "gene_id": "10020",
+            "uniprotkb_id__list": [
+                "GLCNE_HUMAN"
+            ]
+        },
+        "10128": {
+            "record_ordinal_position__list": [
+                5,
+                6
+            ],
+            "gene_id": "10128",
+            "uniprotkb_id__list": [
+                "E5KNY5_HUMAN",
+                "LPPRC_HUMAN"
+            ]
+        },
+        "10157": {
+            "record_ordinal_position__list": [
+                7,
+                8
+            ],
+            "gene_id": "10157",
+            "uniprotkb_id__list": [
+                "A4D0W4_HUMAN",
+                "AASS_HUMAN"
+            ]
+        },
+        "10165": {
+            "record_ordinal_position__list": [
+                9
+            ],
+            "gene_id": "10165",
+            "uniprotkb_id__list": [
+                "CMC2_HUMAN"
+            ]
+        },
+        "10195": {
+            "record_ordinal_position__list": [
+                10,
+                11
+            ],
+            "gene_id": "10195",
+            "uniprotkb_id__list": [
+                "ALG3_HUMAN",
+                "C9J7S5_HUMAN"
+            ]
+        },
+        "10329": {
+            "record_ordinal_position__list": [
+                12,
+                13
+            ],
+            "gene_id": "10329",
+            "uniprotkb_id__list": [
+                "G3V1K2_HUMAN",
+                "RXLT1_HUMAN"
+            ]
+        },
+        "10466": {
+            "record_ordinal_position__list": [
+                14
+            ],
+            "gene_id": "10466",
+            "uniprotkb_id__list": [
+                "COG5_HUMAN"
+            ]
+        },
+        "10577": {
+            "record_ordinal_position__list": [
+                15,
+                16
+            ],
+            "gene_id": "10577",
+            "uniprotkb_id__list": [
+                "A0A024R6C0_HUMAN",
+                "NPC2_HUMAN"
+            ]
+        },
+        "10585": {
+            "record_ordinal_position__list": [
+                17,
+                18
+            ],
+            "gene_id": "10585",
+            "uniprotkb_id__list": [
+                "A0A140VKE0_HUMAN",
+                "POMT1_HUMAN"
+            ]
+        },
+        "1075": {
+            "record_ordinal_position__list": [
+                19
+            ],
+            "gene_id": "1075",
+            "uniprotkb_id__list": [
+                "CATC_HUMAN"
+            ]
+        },
+        "10841": {
+            "record_ordinal_position__list": [
+                20
+            ],
+            "gene_id": "10841",
+            "uniprotkb_id__list": [
+                "FTCD_HUMAN"
+            ]
+        },
+        "10916": {
+            "record_ordinal_position__list": [
+                21,
+                22
+            ],
+            "gene_id": "10916",
+            "uniprotkb_id__list": [
+                "A0A024R9Y7_HUMAN",
+                "MAGD2_HUMAN"
+            ]
+        },
+        "11019": {
+            "record_ordinal_position__list": [
+                23,
+                24,
+                25,
+                26
+            ],
+            "gene_id": "11019",
+            "uniprotkb_id__list": [
+                "A0A024R9W0_HUMAN",
+                "B4E0L7_HUMAN",
+                "LIAS_HUMAN",
+                "Q6P5Q6_HUMAN"
+            ]
+        },
+        "11041": {
+            "record_ordinal_position__list": [
+                27,
+                28
+            ],
+            "gene_id": "11041",
+            "uniprotkb_id__list": [
+                "A0A024R5F9_HUMAN",
+                "B4GA1_HUMAN"
+            ]
+        },
+        "1120": {
+            "record_ordinal_position__list": [
+                29,
+                30
+            ],
+            "gene_id": "1120",
+            "uniprotkb_id__list": [
+                "A0A024R4X4_HUMAN",
+                "CHKB_HUMAN"
+            ]
+        },
+        "11253": {
+            "record_ordinal_position__list": [
+                31
+            ],
+            "gene_id": "11253",
+            "uniprotkb_id__list": [
+                "MA1B1_HUMAN"
+            ]
+        },
+        "113189": {
+            "record_ordinal_position__list": [
+                32
+            ],
+            "gene_id": "113189",
+            "uniprotkb_id__list": [
+                "CHSTE_HUMAN"
+            ]
+        },
+        "116519": {
+            "record_ordinal_position__list": [
+                33,
+                34
+            ],
+            "gene_id": "116519",
+            "uniprotkb_id__list": [
+                "A0A0B4RUS7_HUMAN",
+                "APOA5_HUMAN"
+            ]
+        },
+        "1175": {
+            "record_ordinal_position__list": [
+                35,
+                36,
+                37,
+                38
+            ],
+            "gene_id": "1175",
+            "uniprotkb_id__list": [
+                "AP2S1_HUMAN",
+                "M0QYZ2_HUMAN",
+                "M0R0N4_HUMAN",
+                "X6R390_HUMAN"
+            ]
+        },
+        "1188": {
+            "record_ordinal_position__list": [
+                39,
+                40
+            ],
+            "gene_id": "1188",
+            "uniprotkb_id__list": [
+                "A8K8H0_HUMAN",
+                "CLCKB_HUMAN"
+            ]
+        },
+        "1200": {
+            "record_ordinal_position__list": [
+                41
+            ],
+            "gene_id": "1200",
+            "uniprotkb_id__list": [
+                "TPP1_HUMAN"
+            ]
+        },
+        "1201": {
+            "record_ordinal_position__list": [
+                42,
+                43,
+                44,
+                45,
+                46
+            ],
+            "gene_id": "1201",
+            "uniprotkb_id__list": [
+                "A0A024QZB8_HUMAN",
+                "B4DFF3_HUMAN",
+                "B4DMY6_HUMAN",
+                "CLN3_HUMAN",
+                "Q2TA70_HUMAN"
+            ]
+        },
+        "1244": {
+            "record_ordinal_position__list": [
+                47
+            ],
+            "gene_id": "1244",
+            "uniprotkb_id__list": [
+                "MRP2_HUMAN"
+            ]
+        },
+        "131118": {
+            "record_ordinal_position__list": [
+                48,
+                49
+            ],
+            "gene_id": "131118",
+            "uniprotkb_id__list": [
+                "A0A0S2Z5X1_HUMAN",
+                "TIM14_HUMAN"
+            ]
+        },
+        "132158": {
+            "record_ordinal_position__list": [
+                50,
+                51
+            ],
+            "gene_id": "132158",
+            "uniprotkb_id__list": [
+                "A1LQE8_HUMAN",
+                "GLCTK_HUMAN"
+            ]
+        },
+        "1356": {
+            "record_ordinal_position__list": [
+                52,
+                53
+            ],
+            "gene_id": "1356",
+            "uniprotkb_id__list": [
+                "A5PL27_HUMAN",
+                "CERU_HUMAN"
+            ]
+        },
+        "1373": {
+            "record_ordinal_position__list": [
+                54,
+                55,
+                56
+            ],
+            "gene_id": "1373",
+            "uniprotkb_id__list": [
+                "A0A024R454_HUMAN",
+                "CPSM_HUMAN",
+                "Q6PEK7_HUMAN"
+            ]
+        },
+        "1374": {
+            "record_ordinal_position__list": [
+                57,
+                58,
+                59,
+                60
+            ],
+            "gene_id": "1374",
+            "uniprotkb_id__list": [
+                "A0A024R5F4_HUMAN",
+                "B2RAQ8_HUMAN",
+                "CPT1A_HUMAN",
+                "Q8WZ48_HUMAN"
+            ]
+        },
+        "1375": {
+            "record_ordinal_position__list": [
+                61,
+                62,
+                63,
+                64
+            ],
+            "gene_id": "1375",
+            "uniprotkb_id__list": [
+                "A0A024R4W7_HUMAN",
+                "A5PLL0_HUMAN",
+                "CPT1B_HUMAN",
+                "Q53FV7_HUMAN"
+            ]
+        },
+        "1376": {
+            "record_ordinal_position__list": [
+                65,
+                66,
+                67
+            ],
+            "gene_id": "1376",
+            "uniprotkb_id__list": [
+                "A0A140VK13_HUMAN",
+                "A0A1B0GTB8_HUMAN",
+                "CPT2_HUMAN"
+            ]
+        },
+        "1384": {
+            "record_ordinal_position__list": [
+                68
+            ],
+            "gene_id": "1384",
+            "uniprotkb_id__list": [
+                "CACP_HUMAN"
+            ]
+        },
+        "145173": {
+            "record_ordinal_position__list": [
+                69
+            ],
+            "gene_id": "145173",
+            "uniprotkb_id__list": [
+                "B3GLT_HUMAN"
+            ]
+        },
+        "146059": {
+            "record_ordinal_position__list": [
+                70
+            ],
+            "gene_id": "146059",
+            "uniprotkb_id__list": [
+                "CDAN1_HUMAN"
+            ]
+        },
+        "148738": {
+            "record_ordinal_position__list": [
+                71,
+                72,
+                73
+            ],
+            "gene_id": "148738",
+            "uniprotkb_id__list": [
+                "A0A024R4F5_HUMAN",
+                "A8K466_HUMAN",
+                "RGMC_HUMAN"
+            ]
+        },
+        "148789": {
+            "record_ordinal_position__list": [
+                74
+            ],
+            "gene_id": "148789",
+            "uniprotkb_id__list": [
+                "B3GL2_HUMAN"
+            ]
+        },
+        "1491": {
+            "record_ordinal_position__list": [
+                75
+            ],
+            "gene_id": "1491",
+            "uniprotkb_id__list": [
+                "CGL_HUMAN"
+            ]
+        },
+        "1497": {
+            "record_ordinal_position__list": [
+                76,
+                77,
+                78,
+                79
+            ],
+            "gene_id": "1497",
+            "uniprotkb_id__list": [
+                "A0A0S2Z3I9_HUMAN",
+                "A0A0S2Z3K3_HUMAN",
+                "CTNS_HUMAN",
+                "I3L4A9_HUMAN"
+            ]
+        },
+        "153201": {
+            "record_ordinal_position__list": [
+                80
+            ],
+            "gene_id": "153201",
+            "uniprotkb_id__list": [
+                "S36A2_HUMAN"
+            ]
+        },
+        "1585": {
+            "record_ordinal_position__list": [
+                81
+            ],
+            "gene_id": "1585",
+            "uniprotkb_id__list": [
+                "C11B2_HUMAN"
+            ]
+        },
+        "1586": {
+            "record_ordinal_position__list": [
+                82,
+                83
+            ],
+            "gene_id": "1586",
+            "uniprotkb_id__list": [
+                "CP17A_HUMAN",
+                "Q1HB44_HUMAN"
+            ]
+        },
+        "1589": {
+            "record_ordinal_position__list": [
+                84,
+                85,
+                86
+            ],
+            "gene_id": "1589",
+            "uniprotkb_id__list": [
+                "CP21A_HUMAN",
+                "Q08AG9_HUMAN",
+                "Q16874_HUMAN"
+            ]
+        },
+        "1593": {
+            "record_ordinal_position__list": [
+                87
+            ],
+            "gene_id": "1593",
+            "uniprotkb_id__list": [
+                "CP27A_HUMAN"
+            ]
+        },
+        "1605": {
+            "record_ordinal_position__list": [
+                88,
+                89
+            ],
+            "gene_id": "1605",
+            "uniprotkb_id__list": [
+                "A0A024R2W4_HUMAN",
+                "DAG1_HUMAN"
+            ]
+        },
+        "1621": {
+            "record_ordinal_position__list": [
+                90
+            ],
+            "gene_id": "1621",
+            "uniprotkb_id__list": [
+                "DOPO_HUMAN"
+            ]
+        },
+        "1629": {
+            "record_ordinal_position__list": [
+                91
+            ],
+            "gene_id": "1629",
+            "uniprotkb_id__list": [
+                "ODB2_HUMAN"
+            ]
+        },
+        "1644": {
+            "record_ordinal_position__list": [
+                92,
+                93,
+                94,
+                95
+            ],
+            "gene_id": "1644",
+            "uniprotkb_id__list": [
+                "A0A087WV24_HUMAN",
+                "A0A0S2Z3N4_HUMAN",
+                "DDC_HUMAN",
+                "Q53Y41_HUMAN"
+            ]
+        },
+        "1716": {
+            "record_ordinal_position__list": [
+                96,
+                97,
+                98,
+                99
+            ],
+            "gene_id": "1716",
+            "uniprotkb_id__list": [
+                "D6W5I0_HUMAN",
+                "DGUOK_HUMAN",
+                "E5KSL5_HUMAN",
+                "E5KSL6_HUMAN"
+            ]
+        },
+        "1718": {
+            "record_ordinal_position__list": [
+                100
+            ],
+            "gene_id": "1718",
+            "uniprotkb_id__list": [
+                "DHC24_HUMAN"
+            ]
+        },
+        "1719": {
+            "record_ordinal_position__list": [
+                101,
+                102,
+                103
+            ],
+            "gene_id": "1719",
+            "uniprotkb_id__list": [
+                "B0YJ76_HUMAN",
+                "B4DM58_HUMAN",
+                "DYR_HUMAN"
+            ]
+        },
+        "1738": {
+            "record_ordinal_position__list": [
+                104,
+                105,
+                106
+            ],
+            "gene_id": "1738",
+            "uniprotkb_id__list": [
+                "A0A024R713_HUMAN",
+                "DLDH_HUMAN",
+                "E9PEX6_HUMAN"
+            ]
+        },
+        "175": {
+            "record_ordinal_position__list": [
+                107
+            ],
+            "gene_id": "175",
+            "uniprotkb_id__list": [
+                "ASPG_HUMAN"
+            ]
+        },
+        "1763": {
+            "record_ordinal_position__list": [
+                108
+            ],
+            "gene_id": "1763",
+            "uniprotkb_id__list": [
+                "DNA2_HUMAN"
+            ]
+        },
+        "178": {
+            "record_ordinal_position__list": [
+                109,
+                110
+            ],
+            "gene_id": "178",
+            "uniprotkb_id__list": [
+                "A0A0S2A4E4_HUMAN",
+                "GDE_HUMAN"
+            ]
+        },
+        "18": {
+            "record_ordinal_position__list": [
+                111,
+                112
+            ],
+            "gene_id": "18",
+            "uniprotkb_id__list": [
+                "GABT_HUMAN",
+                "X5D8S1_HUMAN"
+            ]
+        },
+        "1806": {
+            "record_ordinal_position__list": [
+                113
+            ],
+            "gene_id": "1806",
+            "uniprotkb_id__list": [
+                "DPYD_HUMAN"
+            ]
+        },
+        "1807": {
+            "record_ordinal_position__list": [
+                114
+            ],
+            "gene_id": "1807",
+            "uniprotkb_id__list": [
+                "DPYS_HUMAN"
+            ]
+        },
+        "1822": {
+            "record_ordinal_position__list": [
+                115,
+                116
+            ],
+            "gene_id": "1822",
+            "uniprotkb_id__list": [
+                "ATN1_HUMAN",
+                "Q86V38_HUMAN"
+            ]
+        },
+        "189": {
+            "record_ordinal_position__list": [
+                117
+            ],
+            "gene_id": "189",
+            "uniprotkb_id__list": [
+                "SPYA_HUMAN"
+            ]
+        },
+        "1893": {
+            "record_ordinal_position__list": [
+                118,
+                119
+            ],
+            "gene_id": "1893",
+            "uniprotkb_id__list": [
+                "A0A140VJI7_HUMAN",
+                "ECM1_HUMAN"
+            ]
+        },
+        "19": {
+            "record_ordinal_position__list": [
+                120,
+                121,
+                122
+            ],
+            "gene_id": "19",
+            "uniprotkb_id__list": [
+                "ABCA1_HUMAN",
+                "B2RUU2_HUMAN",
+                "B7XCW9_HUMAN"
+            ]
+        },
+        "2027": {
+            "record_ordinal_position__list": [
+                123
+            ],
+            "gene_id": "2027",
+            "uniprotkb_id__list": [
+                "ENOB_HUMAN"
+            ]
+        },
+        "203859": {
+            "record_ordinal_position__list": [
+                124
+            ],
+            "gene_id": "203859",
+            "uniprotkb_id__list": [
+                "ANO5_HUMAN"
+            ]
+        },
+        "2108": {
+            "record_ordinal_position__list": [
+                125,
+                126
+            ],
+            "gene_id": "2108",
+            "uniprotkb_id__list": [
+                "A0A0S2Z3L0_HUMAN",
+                "ETFA_HUMAN"
+            ]
+        },
+        "2109": {
+            "record_ordinal_position__list": [
+                127
+            ],
+            "gene_id": "2109",
+            "uniprotkb_id__list": [
+                "ETFB_HUMAN"
+            ]
+        },
+        "2110": {
+            "record_ordinal_position__list": [
+                128,
+                129
+            ],
+            "gene_id": "2110",
+            "uniprotkb_id__list": [
+                "B4DEQ0_HUMAN",
+                "ETFD_HUMAN"
+            ]
+        },
+        "215": {
+            "record_ordinal_position__list": [
+                130
+            ],
+            "gene_id": "215",
+            "uniprotkb_id__list": [
+                "ABCD1_HUMAN"
+            ]
+        },
+        "2203": {
+            "record_ordinal_position__list": [
+                131,
+                132
+            ],
+            "gene_id": "2203",
+            "uniprotkb_id__list": [
+                "F16P1_HUMAN",
+                "Q2TU34_HUMAN"
+            ]
+        },
+        "2218": {
+            "record_ordinal_position__list": [
+                133,
+                134
+            ],
+            "gene_id": "2218",
+            "uniprotkb_id__list": [
+                "B4E2W4_HUMAN",
+                "FKTN_HUMAN"
+            ]
+        },
+        "2235": {
+            "record_ordinal_position__list": [
+                135,
+                136,
+                137
+            ],
+            "gene_id": "2235",
+            "uniprotkb_id__list": [
+                "A0A499FJN5_HUMAN",
+                "HEMH_HUMAN",
+                "Q7KZA3_HUMAN"
+            ]
+        },
+        "226": {
+            "record_ordinal_position__list": [
+                138,
+                139
+            ],
+            "gene_id": "226",
+            "uniprotkb_id__list": [
+                "ALDOA_HUMAN",
+                "V9HWN7_HUMAN"
+            ]
+        },
+        "2271": {
+            "record_ordinal_position__list": [
+                140,
+                141
+            ],
+            "gene_id": "2271",
+            "uniprotkb_id__list": [
+                "A0A0S2Z4C3_HUMAN",
+                "FUMH_HUMAN"
+            ]
+        },
+        "22845": {
+            "record_ordinal_position__list": [
+                142,
+                143
+            ],
+            "gene_id": "22845",
+            "uniprotkb_id__list": [
+                "A0A0S2Z597_HUMAN",
+                "DOLK_HUMAN"
+            ]
+        },
+        "23175": {
+            "record_ordinal_position__list": [
+                144
+            ],
+            "gene_id": "23175",
+            "uniprotkb_id__list": [
+                "LPIN1_HUMAN"
+            ]
+        },
+        "23395": {
+            "record_ordinal_position__list": [
+                145
+            ],
+            "gene_id": "23395",
+            "uniprotkb_id__list": [
+                "SYLM_HUMAN"
+            ]
+        },
+        "23417": {
+            "record_ordinal_position__list": [
+                146
+            ],
+            "gene_id": "23417",
+            "uniprotkb_id__list": [
+                "DCMC_HUMAN"
+            ]
+        },
+        "23438": {
+            "record_ordinal_position__list": [
+                147,
+                148,
+                149
+            ],
+            "gene_id": "23438",
+            "uniprotkb_id__list": [
+                "A0A2R8Y6I1_HUMAN",
+                "B4DDN8_HUMAN",
+                "SYHM_HUMAN"
+            ]
+        },
+        "23474": {
+            "record_ordinal_position__list": [
+                150,
+                151,
+                152,
+                153,
+                154
+            ],
+            "gene_id": "23474",
+            "uniprotkb_id__list": [
+                "A0A0S2Z580_HUMAN",
+                "A0A0S2Z5B3_HUMAN",
+                "A0A0S2Z5N8_HUMAN",
+                "B2RCZ7_HUMAN",
+                "ETHE1_HUMAN"
+            ]
+        },
+        "2348": {
+            "record_ordinal_position__list": [
+                155,
+                156
+            ],
+            "gene_id": "2348",
+            "uniprotkb_id__list": [
+                "A0A024R5H1_HUMAN",
+                "FOLR1_HUMAN"
+            ]
+        },
+        "23556": {
+            "record_ordinal_position__list": [
+                157,
+                158,
+                159,
+                160
+            ],
+            "gene_id": "23556",
+            "uniprotkb_id__list": [
+                "A0A024R2C3_HUMAN",
+                "A0A1W2PPR7_HUMAN",
+                "A0A1W2PQA9_HUMAN",
+                "PIGN_HUMAN"
+            ]
+        },
+        "2395": {
+            "record_ordinal_position__list": [
+                161,
+                162
+            ],
+            "gene_id": "2395",
+            "uniprotkb_id__list": [
+                "A0A0S2Z3G4_HUMAN",
+                "FRDA_HUMAN"
+            ]
+        },
+        "246243": {
+            "record_ordinal_position__list": [
+                163,
+                164,
+                165
+            ],
+            "gene_id": "246243",
+            "uniprotkb_id__list": [
+                "B3KUD4_HUMAN",
+                "E5KN15_HUMAN",
+                "RNH1_HUMAN"
+            ]
+        },
+        "249": {
+            "record_ordinal_position__list": [
+                166,
+                167
+            ],
+            "gene_id": "249",
+            "uniprotkb_id__list": [
+                "A0A024RAB4_HUMAN",
+                "PPBT_HUMAN"
+            ]
+        },
+        "2517": {
+            "record_ordinal_position__list": [
+                168,
+                169
+            ],
+            "gene_id": "2517",
+            "uniprotkb_id__list": [
+                "B5MDC5_HUMAN",
+                "FUCO_HUMAN"
+            ]
+        },
+        "2538": {
+            "record_ordinal_position__list": [
+                170
+            ],
+            "gene_id": "2538",
+            "uniprotkb_id__list": [
+                "G6PC_HUMAN"
+            ]
+        },
+        "2542": {
+            "record_ordinal_position__list": [
+                171,
+                172,
+                173,
+                174,
+                175
+            ],
+            "gene_id": "2542",
+            "uniprotkb_id__list": [
+                "A0A024R3H9_HUMAN",
+                "A0A024R3L1_HUMAN",
+                "A8K0S7_HUMAN",
+                "B4DUH2_HUMAN",
+                "G6PT1_HUMAN"
+            ]
+        },
+        "25839": {
+            "record_ordinal_position__list": [
+                176,
+                177,
+                178,
+                179
+            ],
+            "gene_id": "25839",
+            "uniprotkb_id__list": [
+                "A0A0A0MS45_HUMAN",
+                "COG4_HUMAN",
+                "J3KNI1_HUMAN",
+                "Q8N8L9_HUMAN"
+            ]
+        },
+        "2584": {
+            "record_ordinal_position__list": [
+                180,
+                181
+            ],
+            "gene_id": "2584",
+            "uniprotkb_id__list": [
+                "GALK1_HUMAN",
+                "V9HWE7_HUMAN"
+            ]
+        },
+        "2593": {
+            "record_ordinal_position__list": [
+                182,
+                183
+            ],
+            "gene_id": "2593",
+            "uniprotkb_id__list": [
+                "GAMT_HUMAN",
+                "V9HWB2_HUMAN"
+            ]
+        },
+        "25974": {
+            "record_ordinal_position__list": [
+                184,
+                185
+            ],
+            "gene_id": "25974",
+            "uniprotkb_id__list": [
+                "A0A0C4DGU2_HUMAN",
+                "MMAC_HUMAN"
+            ]
+        },
+        "2623": {
+            "record_ordinal_position__list": [
+                186
+            ],
+            "gene_id": "2623",
+            "uniprotkb_id__list": [
+                "GATA1_HUMAN"
+            ]
+        },
+        "2628": {
+            "record_ordinal_position__list": [
+                187,
+                188
+            ],
+            "gene_id": "2628",
+            "uniprotkb_id__list": [
+                "A0A140VK19_HUMAN",
+                "GATM_HUMAN"
+            ]
+        },
+        "26284": {
+            "record_ordinal_position__list": [
+                189
+            ],
+            "gene_id": "26284",
+            "uniprotkb_id__list": [
+                "ERAL1_HUMAN"
+            ]
+        },
+        "2629": {
+            "record_ordinal_position__list": [
+                190,
+                191,
+                192
+            ],
+            "gene_id": "2629",
+            "uniprotkb_id__list": [
+                "A0A068F658_HUMAN",
+                "B7Z6S9_HUMAN",
+                "GLCM_HUMAN"
+            ]
+        },
+        "2632": {
+            "record_ordinal_position__list": [
+                193,
+                194
+            ],
+            "gene_id": "2632",
+            "uniprotkb_id__list": [
+                "GLGB_HUMAN",
+                "Q59ET0_HUMAN"
+            ]
+        },
+        "2639": {
+            "record_ordinal_position__list": [
+                195,
+                196
+            ],
+            "gene_id": "2639",
+            "uniprotkb_id__list": [
+                "A0A024R7F9_HUMAN",
+                "GCDH_HUMAN"
+            ]
+        },
+        "2643": {
+            "record_ordinal_position__list": [
+                197,
+                198,
+                199
+            ],
+            "gene_id": "2643",
+            "uniprotkb_id__list": [
+                "A0A024R642_HUMAN",
+                "GCH1_HUMAN",
+                "Q8IZH9_HUMAN"
+            ]
+        },
+        "2645": {
+            "record_ordinal_position__list": [
+                200,
+                201
+            ],
+            "gene_id": "2645",
+            "uniprotkb_id__list": [
+                "HXK4_HUMAN",
+                "Q53Y25_HUMAN"
+            ]
+        },
+        "26503": {
+            "record_ordinal_position__list": [
+                202
+            ],
+            "gene_id": "26503",
+            "uniprotkb_id__list": [
+                "S17A5_HUMAN"
+            ]
+        },
+        "2678": {
+            "record_ordinal_position__list": [
+                203,
+                204
+            ],
+            "gene_id": "2678",
+            "uniprotkb_id__list": [
+                "A0A140VJJ9_HUMAN",
+                "GGT1_HUMAN"
+            ]
+        },
+        "2694": {
+            "record_ordinal_position__list": [
+                205
+            ],
+            "gene_id": "2694",
+            "uniprotkb_id__list": [
+                "IF_HUMAN"
+            ]
+        },
+        "270": {
+            "record_ordinal_position__list": [
+                206
+            ],
+            "gene_id": "270",
+            "uniprotkb_id__list": [
+                "AMPD1_HUMAN"
+            ]
+        },
+        "27034": {
+            "record_ordinal_position__list": [
+                207
+            ],
+            "gene_id": "27034",
+            "uniprotkb_id__list": [
+                "ACAD8_HUMAN"
+            ]
+        },
+        "2710": {
+            "record_ordinal_position__list": [
+                208,
+                209
+            ],
+            "gene_id": "2710",
+            "uniprotkb_id__list": [
+                "B4DH54_HUMAN",
+                "GLPK_HUMAN"
+            ]
+        },
+        "2717": {
+            "record_ordinal_position__list": [
+                210,
+                211
+            ],
+            "gene_id": "2717",
+            "uniprotkb_id__list": [
+                "AGAL_HUMAN",
+                "Q53Y83_HUMAN"
+            ]
+        },
+        "2720": {
+            "record_ordinal_position__list": [
+                212,
+                213
+            ],
+            "gene_id": "2720",
+            "uniprotkb_id__list": [
+                "B7Z6Q5_HUMAN",
+                "BGAL_HUMAN"
+            ]
+        },
+        "27232": {
+            "record_ordinal_position__list": [
+                214,
+                215,
+                216
+            ],
+            "gene_id": "27232",
+            "uniprotkb_id__list": [
+                "A0A0S2Z5F2_HUMAN",
+                "GNMT_HUMAN",
+                "V9HW60_HUMAN"
+            ]
+        },
+        "27249": {
+            "record_ordinal_position__list": [
+                217
+            ],
+            "gene_id": "27249",
+            "uniprotkb_id__list": [
+                "MMAD_HUMAN"
+            ]
+        },
+        "2746": {
+            "record_ordinal_position__list": [
+                218,
+                219
+            ],
+            "gene_id": "2746",
+            "uniprotkb_id__list": [
+                "DHE3_HUMAN",
+                "E9KL48_HUMAN"
+            ]
+        },
+        "2752": {
+            "record_ordinal_position__list": [
+                220,
+                221
+            ],
+            "gene_id": "2752",
+            "uniprotkb_id__list": [
+                "A8YXX4_HUMAN",
+                "GLNA_HUMAN"
+            ]
+        },
+        "2767": {
+            "record_ordinal_position__list": [
+                222
+            ],
+            "gene_id": "2767",
+            "uniprotkb_id__list": [
+                "GNA11_HUMAN"
+            ]
+        },
+        "285362": {
+            "record_ordinal_position__list": [
+                223
+            ],
+            "gene_id": "285362",
+            "uniprotkb_id__list": [
+                "SUMF1_HUMAN"
+            ]
+        },
+        "291": {
+            "record_ordinal_position__list": [
+                224,
+                225
+            ],
+            "gene_id": "291",
+            "uniprotkb_id__list": [
+                "A0A0S2Z3H3_HUMAN",
+                "ADT1_HUMAN"
+            ]
+        },
+        "2937": {
+            "record_ordinal_position__list": [
+                226,
+                227
+            ],
+            "gene_id": "2937",
+            "uniprotkb_id__list": [
+                "GSHB_HUMAN",
+                "V9HWJ1_HUMAN"
+            ]
+        },
+        "29929": {
+            "record_ordinal_position__list": [
+                228
+            ],
+            "gene_id": "29929",
+            "uniprotkb_id__list": [
+                "ALG6_HUMAN"
+            ]
+        },
+        "29954": {
+            "record_ordinal_position__list": [
+                229
+            ],
+            "gene_id": "29954",
+            "uniprotkb_id__list": [
+                "POMT2_HUMAN"
+            ]
+        },
+        "2998": {
+            "record_ordinal_position__list": [
+                230
+            ],
+            "gene_id": "2998",
+            "uniprotkb_id__list": [
+                "GYS2_HUMAN"
+            ]
+        },
+        "3028": {
+            "record_ordinal_position__list": [
+                231,
+                232
+            ],
+            "gene_id": "3028",
+            "uniprotkb_id__list": [
+                "A0A0S2Z410_HUMAN",
+                "HCD2_HUMAN"
+            ]
+        },
+        "3030": {
+            "record_ordinal_position__list": [
+                233,
+                234
+            ],
+            "gene_id": "3030",
+            "uniprotkb_id__list": [
+                "E9KL44_HUMAN",
+                "ECHA_HUMAN"
+            ]
+        },
+        "3033": {
+            "record_ordinal_position__list": [
+                235,
+                236,
+                237
+            ],
+            "gene_id": "3033",
+            "uniprotkb_id__list": [
+                "A0A140VK76_HUMAN",
+                "B3KTT6_HUMAN",
+                "HCDH_HUMAN"
+            ]
+        },
+        "3077": {
+            "record_ordinal_position__list": [
+                238,
+                239,
+                240
+            ],
+            "gene_id": "3077",
+            "uniprotkb_id__list": [
+                "B4DV50_HUMAN",
+                "F8W7W8_HUMAN",
+                "HFE_HUMAN"
+            ]
+        },
+        "3081": {
+            "record_ordinal_position__list": [
+                241,
+                242
+            ],
+            "gene_id": "3081",
+            "uniprotkb_id__list": [
+                "B3KW64_HUMAN",
+                "HGD_HUMAN"
+            ]
+        },
+        "3145": {
+            "record_ordinal_position__list": [
+                243
+            ],
+            "gene_id": "3145",
+            "uniprotkb_id__list": [
+                "HEM3_HUMAN"
+            ]
+        },
+        "3155": {
+            "record_ordinal_position__list": [
+                244
+            ],
+            "gene_id": "3155",
+            "uniprotkb_id__list": [
+                "HMGCL_HUMAN"
+            ]
+        },
+        "3242": {
+            "record_ordinal_position__list": [
+                245
+            ],
+            "gene_id": "3242",
+            "uniprotkb_id__list": [
+                "HPPD_HUMAN"
+            ]
+        },
+        "3251": {
+            "record_ordinal_position__list": [
+                246,
+                247
+            ],
+            "gene_id": "3251",
+            "uniprotkb_id__list": [
+                "A0A140VJL3_HUMAN",
+                "HPRT_HUMAN"
+            ]
+        },
+        "3293": {
+            "record_ordinal_position__list": [
+                248,
+                249
+            ],
+            "gene_id": "3293",
+            "uniprotkb_id__list": [
+                "DHB3_HUMAN",
+                "Q6FH62_HUMAN"
+            ]
+        },
+        "3295": {
+            "record_ordinal_position__list": [
+                250,
+                251,
+                252,
+                253
+            ],
+            "gene_id": "3295",
+            "uniprotkb_id__list": [
+                "A0A0S2Z4J1_HUMAN",
+                "B2R659_HUMAN",
+                "B3KSP2_HUMAN",
+                "DHB4_HUMAN"
+            ]
+        },
+        "338": {
+            "record_ordinal_position__list": [
+                254,
+                255,
+                256
+            ],
+            "gene_id": "338",
+            "uniprotkb_id__list": [
+                "APOB_HUMAN",
+                "Q59HB3_HUMAN",
+                "Q7Z7Q0_HUMAN"
+            ]
+        },
+        "340024": {
+            "record_ordinal_position__list": [
+                257
+            ],
+            "gene_id": "340024",
+            "uniprotkb_id__list": [
+                "S6A19_HUMAN"
+            ]
+        },
+        "3425": {
+            "record_ordinal_position__list": [
+                258
+            ],
+            "gene_id": "3425",
+            "uniprotkb_id__list": [
+                "IDUA_HUMAN"
+            ]
+        },
+        "3479": {
+            "record_ordinal_position__list": [
+                259,
+                260,
+                261,
+                262
+            ],
+            "gene_id": "3479",
+            "uniprotkb_id__list": [
+                "IGF1_HUMAN",
+                "Q13429_HUMAN",
+                "Q59GC5_HUMAN",
+                "Q5U743_HUMAN"
+            ]
+        },
+        "348": {
+            "record_ordinal_position__list": [
+                263,
+                264
+            ],
+            "gene_id": "348",
+            "uniprotkb_id__list": [
+                "A0A0S2Z3D5_HUMAN",
+                "APOE_HUMAN"
+            ]
+        },
+        "353": {
+            "record_ordinal_position__list": [
+                265
+            ],
+            "gene_id": "353",
+            "uniprotkb_id__list": [
+                "APT_HUMAN"
+            ]
+        },
+        "36": {
+            "record_ordinal_position__list": [
+                266,
+                267
+            ],
+            "gene_id": "36",
+            "uniprotkb_id__list": [
+                "A0A0S2Z3P9_HUMAN",
+                "ACDSB_HUMAN"
+            ]
+        },
+        "368": {
+            "record_ordinal_position__list": [
+                268
+            ],
+            "gene_id": "368",
+            "uniprotkb_id__list": [
+                "MRP6_HUMAN"
+            ]
+        },
+        "3712": {
+            "record_ordinal_position__list": [
+                269,
+                270,
+                271
+            ],
+            "gene_id": "3712",
+            "uniprotkb_id__list": [
+                "A0A0A0MT83_HUMAN",
+                "A0A0S2Z4K7_HUMAN",
+                "IVD_HUMAN"
+            ]
+        },
+        "3758": {
+            "record_ordinal_position__list": [
+                272,
+                273,
+                274
+            ],
+            "gene_id": "3758",
+            "uniprotkb_id__list": [
+                "A0A024R3K6_HUMAN",
+                "A8K432_HUMAN",
+                "KCNJ1_HUMAN"
+            ]
+        },
+        "38": {
+            "record_ordinal_position__list": [
+                275,
+                276,
+                277
+            ],
+            "gene_id": "38",
+            "uniprotkb_id__list": [
+                "A0A140VJX1_HUMAN",
+                "A0A5F9ZHJ0_HUMAN",
+                "THIL_HUMAN"
+            ]
+        },
+        "383": {
+            "record_ordinal_position__list": [
+                278
+            ],
+            "gene_id": "383",
+            "uniprotkb_id__list": [
+                "ARGI1_HUMAN"
+            ]
+        },
+        "3852": {
+            "record_ordinal_position__list": [
+                279
+            ],
+            "gene_id": "3852",
+            "uniprotkb_id__list": [
+                "K2C5_HUMAN"
+            ]
+        },
+        "3930": {
+            "record_ordinal_position__list": [
+                280
+            ],
+            "gene_id": "3930",
+            "uniprotkb_id__list": [
+                "LBR_HUMAN"
+            ]
+        },
+        "3931": {
+            "record_ordinal_position__list": [
+                281,
+                282
+            ],
+            "gene_id": "3931",
+            "uniprotkb_id__list": [
+                "A0A140VK24_HUMAN",
+                "LCAT_HUMAN"
+            ]
+        },
+        "3939": {
+            "record_ordinal_position__list": [
+                283,
+                284
+            ],
+            "gene_id": "3939",
+            "uniprotkb_id__list": [
+                "LDHA_HUMAN",
+                "V9HWB9_HUMAN"
+            ]
+        },
+        "3945": {
+            "record_ordinal_position__list": [
+                285,
+                286,
+                287
+            ],
+            "gene_id": "3945",
+            "uniprotkb_id__list": [
+                "A0A5F9ZHM4_HUMAN",
+                "LDHB_HUMAN",
+                "Q5U077_HUMAN"
+            ]
+        },
+        "3988": {
+            "record_ordinal_position__list": [
+                288,
+                289
+            ],
+            "gene_id": "3988",
+            "uniprotkb_id__list": [
+                "A0A0A0MT32_HUMAN",
+                "LICH_HUMAN"
+            ]
+        },
+        "3990": {
+            "record_ordinal_position__list": [
+                290,
+                291
+            ],
+            "gene_id": "3990",
+            "uniprotkb_id__list": [
+                "A6H8L5_HUMAN",
+                "LIPC_HUMAN"
+            ]
+        },
+        "4000": {
+            "record_ordinal_position__list": [
+                292,
+                293,
+                294
+            ],
+            "gene_id": "4000",
+            "uniprotkb_id__list": [
+                "A0A384MQX1_HUMAN",
+                "LMNA_HUMAN",
+                "Q5TCI8_HUMAN"
+            ]
+        },
+        "4125": {
+            "record_ordinal_position__list": [
+                295,
+                296
+            ],
+            "gene_id": "4125",
+            "uniprotkb_id__list": [
+                "A8K6A7_HUMAN",
+                "MA2B1_HUMAN"
+            ]
+        },
+        "4126": {
+            "record_ordinal_position__list": [
+                297
+            ],
+            "gene_id": "4126",
+            "uniprotkb_id__list": [
+                "MANBA_HUMAN"
+            ]
+        },
+        "4143": {
+            "record_ordinal_position__list": [
+                298
+            ],
+            "gene_id": "4143",
+            "uniprotkb_id__list": [
+                "METK1_HUMAN"
+            ]
+        },
+        "427": {
+            "record_ordinal_position__list": [
+                299,
+                300,
+                301
+            ],
+            "gene_id": "427",
+            "uniprotkb_id__list": [
+                "A8K0B6_HUMAN",
+                "ASAH1_HUMAN",
+                "Q53H01_HUMAN"
+            ]
+        },
+        "4282": {
+            "record_ordinal_position__list": [
+                302,
+                303
+            ],
+            "gene_id": "4282",
+            "uniprotkb_id__list": [
+                "I4AY87_HUMAN",
+                "MIF_HUMAN"
+            ]
+        },
+        "4329": {
+            "record_ordinal_position__list": [
+                304,
+                305
+            ],
+            "gene_id": "4329",
+            "uniprotkb_id__list": [
+                "A0A024R6G4_HUMAN",
+                "MMSA_HUMAN"
+            ]
+        },
+        "435": {
+            "record_ordinal_position__list": [
+                306,
+                307,
+                308
+            ],
+            "gene_id": "435",
+            "uniprotkb_id__list": [
+                "A0A024RDL8_HUMAN",
+                "A0A0S2Z316_HUMAN",
+                "ARLY_HUMAN"
+            ]
+        },
+        "4351": {
+            "record_ordinal_position__list": [
+                309,
+                310,
+                311,
+                312,
+                313,
+                314
+            ],
+            "gene_id": "4351",
+            "uniprotkb_id__list": [
+                "B4DW50_HUMAN",
+                "F5GX71_HUMAN",
+                "H3BPB8_HUMAN",
+                "H3BPP3_HUMAN",
+                "MPI_HUMAN",
+                "Q8NHZ6_HUMAN"
+            ]
+        },
+        "4504": {
+            "record_ordinal_position__list": [
+                315,
+                316
+            ],
+            "gene_id": "4504",
+            "uniprotkb_id__list": [
+                "A0A024R6R7_HUMAN",
+                "MT3_HUMAN"
+            ]
+        },
+        "4512": {
+            "record_ordinal_position__list": [
+                317,
+                318,
+                319
+            ],
+            "gene_id": "4512",
+            "uniprotkb_id__list": [
+                "A0A1X7RBG2_HUMAN",
+                "COX1_HUMAN",
+                "U5YWV7_HUMAN"
+            ]
+        },
+        "4513": {
+            "record_ordinal_position__list": [
+                320,
+                321,
+                322
+            ],
+            "gene_id": "4513",
+            "uniprotkb_id__list": [
+                "A0A1X7RBF7_HUMAN",
+                "COX2_HUMAN",
+                "U5Z487_HUMAN"
+            ]
+        },
+        "4514": {
+            "record_ordinal_position__list": [
+                323,
+                324,
+                325
+            ],
+            "gene_id": "4514",
+            "uniprotkb_id__list": [
+                "A0A1X7RBF0_HUMAN",
+                "COX3_HUMAN",
+                "Q7GIM7_HUMAN"
+            ]
+        },
+        "4519": {
+            "record_ordinal_position__list": [
+                326,
+                327
+            ],
+            "gene_id": "4519",
+            "uniprotkb_id__list": [
+                "CYB_HUMAN",
+                "Q0ZFD6_HUMAN"
+            ]
+        },
+        "4524": {
+            "record_ordinal_position__list": [
+                328,
+                329,
+                330,
+                331
+            ],
+            "gene_id": "4524",
+            "uniprotkb_id__list": [
+                "MTHR_HUMAN",
+                "Q59GJ6_HUMAN",
+                "Q5SNW7_HUMAN",
+                "Q8IU67_HUMAN"
+            ]
+        },
+        "4535": {
+            "record_ordinal_position__list": [
+                332,
+                333
+            ],
+            "gene_id": "4535",
+            "uniprotkb_id__list": [
+                "NU1M_HUMAN",
+                "U5Z754_HUMAN"
+            ]
+        },
+        "4538": {
+            "record_ordinal_position__list": [
+                334,
+                335,
+                336
+            ],
+            "gene_id": "4538",
+            "uniprotkb_id__list": [
+                "A0A1X7RBN5_HUMAN",
+                "H9EC08_HUMAN",
+                "NU4M_HUMAN"
+            ]
+        },
+        "4539": {
+            "record_ordinal_position__list": [
+                337,
+                338,
+                339
+            ],
+            "gene_id": "4539",
+            "uniprotkb_id__list": [
+                "A0A1X7RC16_HUMAN",
+                "NU4LM_HUMAN",
+                "Q7GXZ4_HUMAN"
+            ]
+        },
+        "4540": {
+            "record_ordinal_position__list": [
+                340,
+                341
+            ],
+            "gene_id": "4540",
+            "uniprotkb_id__list": [
+                "NU5M_HUMAN",
+                "U5ZC31_HUMAN"
+            ]
+        },
+        "4541": {
+            "record_ordinal_position__list": [
+                342,
+                343,
+                344
+            ],
+            "gene_id": "4541",
+            "uniprotkb_id__list": [
+                "A0A1X7RCR6_HUMAN",
+                "NU6M_HUMAN",
+                "U5Z977_HUMAN"
+            ]
+        },
+        "4547": {
+            "record_ordinal_position__list": [
+                345,
+                346,
+                347
+            ],
+            "gene_id": "4547",
+            "uniprotkb_id__list": [
+                "B7Z7X3_HUMAN",
+                "E9PBP6_HUMAN",
+                "MTP_HUMAN"
+            ]
+        },
+        "4548": {
+            "record_ordinal_position__list": [
+                348
+            ],
+            "gene_id": "4548",
+            "uniprotkb_id__list": [
+                "METH_HUMAN"
+            ]
+        },
+        "4552": {
+            "record_ordinal_position__list": [
+                349
+            ],
+            "gene_id": "4552",
+            "uniprotkb_id__list": [
+                "MTRR_HUMAN"
+            ]
+        },
+        "4598": {
+            "record_ordinal_position__list": [
+                350,
+                351,
+                352,
+                353
+            ],
+            "gene_id": "4598",
+            "uniprotkb_id__list": [
+                "B2RDU6_HUMAN",
+                "B7Z301_HUMAN",
+                "F5H8H2_HUMAN",
+                "KIME_HUMAN"
+            ]
+        },
+        "4620": {
+            "record_ordinal_position__list": [
+                354
+            ],
+            "gene_id": "4620",
+            "uniprotkb_id__list": [
+                "MYH2_HUMAN"
+            ]
+        },
+        "4668": {
+            "record_ordinal_position__list": [
+                355,
+                356
+            ],
+            "gene_id": "4668",
+            "uniprotkb_id__list": [
+                "A0A024R1Q5_HUMAN",
+                "NAGAB_HUMAN"
+            ]
+        },
+        "472": {
+            "record_ordinal_position__list": [
+                357,
+                358
+            ],
+            "gene_id": "472",
+            "uniprotkb_id__list": [
+                "A0A024R3C7_HUMAN",
+                "ATM_HUMAN"
+            ]
+        },
+        "4864": {
+            "record_ordinal_position__list": [
+                359
+            ],
+            "gene_id": "4864",
+            "uniprotkb_id__list": [
+                "NPC1_HUMAN"
+            ]
+        },
+        "4942": {
+            "record_ordinal_position__list": [
+                360,
+                361
+            ],
+            "gene_id": "4942",
+            "uniprotkb_id__list": [
+                "A0A140VJQ4_HUMAN",
+                "OAT_HUMAN"
+            ]
+        },
+        "4952": {
+            "record_ordinal_position__list": [
+                362,
+                363,
+                364
+            ],
+            "gene_id": "4952",
+            "uniprotkb_id__list": [
+                "A0A2X0TVZ9_HUMAN",
+                "OCRL_HUMAN",
+                "Q504W7_HUMAN"
+            ]
+        },
+        "4976": {
+            "record_ordinal_position__list": [
+                365,
+                366,
+                367
+            ],
+            "gene_id": "4976",
+            "uniprotkb_id__list": [
+                "E5KLJ9_HUMAN",
+                "E5KLK0_HUMAN",
+                "OPA1_HUMAN"
+            ]
+        },
+        "50484": {
+            "record_ordinal_position__list": [
+                368
+            ],
+            "gene_id": "50484",
+            "uniprotkb_id__list": [
+                "RIR2B_HUMAN"
+            ]
+        },
+        "5053": {
+            "record_ordinal_position__list": [
+                369,
+                370
+            ],
+            "gene_id": "5053",
+            "uniprotkb_id__list": [
+                "A0A024RBG4_HUMAN",
+                "PH4H_HUMAN"
+            ]
+        },
+        "50814": {
+            "record_ordinal_position__list": [
+                371,
+                372
+            ],
+            "gene_id": "50814",
+            "uniprotkb_id__list": [
+                "A0A384NPZ7_HUMAN",
+                "NSDHL_HUMAN"
+            ]
+        },
+        "5092": {
+            "record_ordinal_position__list": [
+                373
+            ],
+            "gene_id": "5092",
+            "uniprotkb_id__list": [
+                "PHS_HUMAN"
+            ]
+        },
+        "51099": {
+            "record_ordinal_position__list": [
+                374,
+                375
+            ],
+            "gene_id": "51099",
+            "uniprotkb_id__list": [
+                "A0A0S2Z5D6_HUMAN",
+                "ABHD5_HUMAN"
+            ]
+        },
+        "51128": {
+            "record_ordinal_position__list": [
+                376
+            ],
+            "gene_id": "51128",
+            "uniprotkb_id__list": [
+                "SAR1B_HUMAN"
+            ]
+        },
+        "51181": {
+            "record_ordinal_position__list": [
+                377,
+                378
+            ],
+            "gene_id": "51181",
+            "uniprotkb_id__list": [
+                "A0A384NY14_HUMAN",
+                "DCXR_HUMAN"
+            ]
+        },
+        "5213": {
+            "record_ordinal_position__list": [
+                379,
+                380,
+                381
+            ],
+            "gene_id": "5213",
+            "uniprotkb_id__list": [
+                "A0A024R0Y5_HUMAN",
+                "A0A2R8Y891_HUMAN",
+                "PFKAM_HUMAN"
+            ]
+        },
+        "5230": {
+            "record_ordinal_position__list": [
+                382,
+                383
+            ],
+            "gene_id": "5230",
+            "uniprotkb_id__list": [
+                "PGK1_HUMAN",
+                "V9HWF4_HUMAN"
+            ]
+        },
+        "5236": {
+            "record_ordinal_position__list": [
+                384,
+                385,
+                386
+            ],
+            "gene_id": "5236",
+            "uniprotkb_id__list": [
+                "B4DDQ8_HUMAN",
+                "B7Z6C2_HUMAN",
+                "PGM1_HUMAN"
+            ]
+        },
+        "5255": {
+            "record_ordinal_position__list": [
+                387
+            ],
+            "gene_id": "5255",
+            "uniprotkb_id__list": [
+                "KPB1_HUMAN"
+            ]
+        },
+        "5256": {
+            "record_ordinal_position__list": [
+                388
+            ],
+            "gene_id": "5256",
+            "uniprotkb_id__list": [
+                "KPB2_HUMAN"
+            ]
+        },
+        "5257": {
+            "record_ordinal_position__list": [
+                389
+            ],
+            "gene_id": "5257",
+            "uniprotkb_id__list": [
+                "KPBB_HUMAN"
+            ]
+        },
+        "5261": {
+            "record_ordinal_position__list": [
+                390
+            ],
+            "gene_id": "5261",
+            "uniprotkb_id__list": [
+                "PHKG2_HUMAN"
+            ]
+        },
+        "5265": {
+            "record_ordinal_position__list": [
+                391,
+                392
+            ],
+            "gene_id": "5265",
+            "uniprotkb_id__list": [
+                "A1AT_HUMAN",
+                "E9KL23_HUMAN"
+            ]
+        },
+        "5277": {
+            "record_ordinal_position__list": [
+                393,
+                394
+            ],
+            "gene_id": "5277",
+            "uniprotkb_id__list": [
+                "A0A2K4ZA02_HUMAN",
+                "PIGA_HUMAN"
+            ]
+        },
+        "538": {
+            "record_ordinal_position__list": [
+                395,
+                396,
+                397
+            ],
+            "gene_id": "538",
+            "uniprotkb_id__list": [
+                "ATP7A_HUMAN",
+                "B4DRW0_HUMAN",
+                "Q762B6_HUMAN"
+            ]
+        },
+        "5428": {
+            "record_ordinal_position__list": [
+                398,
+                399
+            ],
+            "gene_id": "5428",
+            "uniprotkb_id__list": [
+                "DPOG1_HUMAN",
+                "E5KNU5_HUMAN"
+            ]
+        },
+        "54344": {
+            "record_ordinal_position__list": [
+                400,
+                401,
+                402
+            ],
+            "gene_id": "54344",
+            "uniprotkb_id__list": [
+                "A0A140VJI4_HUMAN",
+                "DPM3_HUMAN",
+                "Q86TM7_HUMAN"
+            ]
+        },
+        "54658": {
+            "record_ordinal_position__list": [
+                403,
+                404
+            ],
+            "gene_id": "54658",
+            "uniprotkb_id__list": [
+                "Q5DT03_HUMAN",
+                "UD11_HUMAN"
+            ]
+        },
+        "54716": {
+            "record_ordinal_position__list": [
+                405
+            ],
+            "gene_id": "54716",
+            "uniprotkb_id__list": [
+                "S6A20_HUMAN"
+            ]
+        },
+        "5476": {
+            "record_ordinal_position__list": [
+                406,
+                407,
+                408,
+                409
+            ],
+            "gene_id": "5476",
+            "uniprotkb_id__list": [
+                "B4E324_HUMAN",
+                "PPGB_HUMAN",
+                "X6R5C5_HUMAN",
+                "X6R8A1_HUMAN"
+            ]
+        },
+        "54840": {
+            "record_ordinal_position__list": [
+                410
+            ],
+            "gene_id": "54840",
+            "uniprotkb_id__list": [
+                "APTX_HUMAN"
+            ]
+        },
+        "549": {
+            "record_ordinal_position__list": [
+                411,
+                412
+            ],
+            "gene_id": "549",
+            "uniprotkb_id__list": [
+                "AUHM_HUMAN",
+                "B4DYI6_HUMAN"
+            ]
+        },
+        "54982": {
+            "record_ordinal_position__list": [
+                413,
+                414
+            ],
+            "gene_id": "54982",
+            "uniprotkb_id__list": [
+                "A0A024R601_HUMAN",
+                "CLN6_HUMAN"
+            ]
+        },
+        "551": {
+            "record_ordinal_position__list": [
+                415,
+                416
+            ],
+            "gene_id": "551",
+            "uniprotkb_id__list": [
+                "NEU2_HUMAN",
+                "X5DQP6_HUMAN"
+            ]
+        },
+        "55157": {
+            "record_ordinal_position__list": [
+                417,
+                418
+            ],
+            "gene_id": "55157",
+            "uniprotkb_id__list": [
+                "Q9H9J7_HUMAN",
+                "SYDM_HUMAN"
+            ]
+        },
+        "55163": {
+            "record_ordinal_position__list": [
+                419,
+                420
+            ],
+            "gene_id": "55163",
+            "uniprotkb_id__list": [
+                "PNPO_HUMAN",
+                "V9HW45_HUMAN"
+            ]
+        },
+        "55343": {
+            "record_ordinal_position__list": [
+                421,
+                422
+            ],
+            "gene_id": "55343",
+            "uniprotkb_id__list": [
+                "B3KQH0_HUMAN",
+                "FUCT1_HUMAN"
+            ]
+        },
+        "5538": {
+            "record_ordinal_position__list": [
+                423
+            ],
+            "gene_id": "5538",
+            "uniprotkb_id__list": [
+                "PPT1_HUMAN"
+            ]
+        },
+        "55624": {
+            "record_ordinal_position__list": [
+                424,
+                425,
+                426
+            ],
+            "gene_id": "55624",
+            "uniprotkb_id__list": [
+                "B7Z7F2_HUMAN",
+                "B7Z7Q4_HUMAN",
+                "PMGT1_HUMAN"
+            ]
+        },
+        "55630": {
+            "record_ordinal_position__list": [
+                427,
+                428
+            ],
+            "gene_id": "55630",
+            "uniprotkb_id__list": [
+                "Q9NX22_HUMAN",
+                "S39A4_HUMAN"
+            ]
+        },
+        "55687": {
+            "record_ordinal_position__list": [
+                429,
+                430,
+                431
+            ],
+            "gene_id": "55687",
+            "uniprotkb_id__list": [
+                "MTU1_HUMAN",
+                "Q2PPL4_HUMAN",
+                "Q2PPL5_HUMAN"
+            ]
+        },
+        "56172": {
+            "record_ordinal_position__list": [
+                432
+            ],
+            "gene_id": "56172",
+            "uniprotkb_id__list": [
+                "ANKH_HUMAN"
+            ]
+        },
+        "5625": {
+            "record_ordinal_position__list": [
+                433
+            ],
+            "gene_id": "5625",
+            "uniprotkb_id__list": [
+                "PROD_HUMAN"
+            ]
+        },
+        "5631": {
+            "record_ordinal_position__list": [
+                434,
+                435
+            ],
+            "gene_id": "5631",
+            "uniprotkb_id__list": [
+                "B7ZB02_HUMAN",
+                "PRPS1_HUMAN"
+            ]
+        },
+        "5660": {
+            "record_ordinal_position__list": [
+                436,
+                437
+            ],
+            "gene_id": "5660",
+            "uniprotkb_id__list": [
+                "A0A024QZQ2_HUMAN",
+                "SAP_HUMAN"
+            ]
+        },
+        "56652": {
+            "record_ordinal_position__list": [
+                438,
+                439,
+                440,
+                441,
+                442
+            ],
+            "gene_id": "56652",
+            "uniprotkb_id__list": [
+                "A0A2R8Y4V4_HUMAN",
+                "A0A2R8Y746_HUMAN",
+                "E5KSY5_HUMAN",
+                "PEO1_HUMAN",
+                "Q9H6V3_HUMAN"
+            ]
+        },
+        "56922": {
+            "record_ordinal_position__list": [
+                443,
+                444,
+                445
+            ],
+            "gene_id": "56922",
+            "uniprotkb_id__list": [
+                "A0A0S2Z693_HUMAN",
+                "MCCA_HUMAN",
+                "Q68D27_HUMAN"
+            ]
+        },
+        "56983": {
+            "record_ordinal_position__list": [
+                446,
+                447
+            ],
+            "gene_id": "56983",
+            "uniprotkb_id__list": [
+                "B4DJ97_HUMAN",
+                "PGLT1_HUMAN"
+            ]
+        },
+        "56997": {
+            "record_ordinal_position__list": [
+                448
+            ],
+            "gene_id": "56997",
+            "uniprotkb_id__list": [
+                "COQ8A_HUMAN"
+            ]
+        },
+        "57091": {
+            "record_ordinal_position__list": [
+                449,
+                450
+            ],
+            "gene_id": "57091",
+            "uniprotkb_id__list": [
+                "B4DII4_HUMAN",
+                "CASS4_HUMAN"
+            ]
+        },
+        "57697": {
+            "record_ordinal_position__list": [
+                451
+            ],
+            "gene_id": "57697",
+            "uniprotkb_id__list": [
+                "FANCM_HUMAN"
+            ]
+        },
+        "57817": {
+            "record_ordinal_position__list": [
+                452
+            ],
+            "gene_id": "57817",
+            "uniprotkb_id__list": [
+                "HEPC_HUMAN"
+            ]
+        },
+        "5836": {
+            "record_ordinal_position__list": [
+                453
+            ],
+            "gene_id": "5836",
+            "uniprotkb_id__list": [
+                "PYGL_HUMAN"
+            ]
+        },
+        "5837": {
+            "record_ordinal_position__list": [
+                454
+            ],
+            "gene_id": "5837",
+            "uniprotkb_id__list": [
+                "PYGM_HUMAN"
+            ]
+        },
+        "5860": {
+            "record_ordinal_position__list": [
+                455,
+                456
+            ],
+            "gene_id": "5860",
+            "uniprotkb_id__list": [
+                "A0A140VKA9_HUMAN",
+                "DHPR_HUMAN"
+            ]
+        },
+        "593": {
+            "record_ordinal_position__list": [
+                457,
+                458,
+                459
+            ],
+            "gene_id": "593",
+            "uniprotkb_id__list": [
+                "A0A024R0K3_HUMAN",
+                "ODBA_HUMAN",
+                "Q59EI3_HUMAN"
+            ]
+        },
+        "594": {
+            "record_ordinal_position__list": [
+                460,
+                461,
+                462,
+                463
+            ],
+            "gene_id": "594",
+            "uniprotkb_id__list": [
+                "A0A140VKB3_HUMAN",
+                "B4E2N3_HUMAN",
+                "B7ZB80_HUMAN",
+                "ODBB_HUMAN"
+            ]
+        },
+        "5979": {
+            "record_ordinal_position__list": [
+                464,
+                465
+            ],
+            "gene_id": "5979",
+            "uniprotkb_id__list": [
+                "A0A024R7T2_HUMAN",
+                "RET_HUMAN"
+            ]
+        },
+        "6125": {
+            "record_ordinal_position__list": [
+                466,
+                467
+            ],
+            "gene_id": "6125",
+            "uniprotkb_id__list": [
+                "A2RUM7_HUMAN",
+                "RL5_HUMAN"
+            ]
+        },
+        "6135": {
+            "record_ordinal_position__list": [
+                468,
+                469
+            ],
+            "gene_id": "6135",
+            "uniprotkb_id__list": [
+                "Q5VVD0_HUMAN",
+                "RL11_HUMAN"
+            ]
+        },
+        "6165": {
+            "record_ordinal_position__list": [
+                470
+            ],
+            "gene_id": "6165",
+            "uniprotkb_id__list": [
+                "RL35A_HUMAN"
+            ]
+        },
+        "617": {
+            "record_ordinal_position__list": [
+                471,
+                472,
+                473
+            ],
+            "gene_id": "617",
+            "uniprotkb_id__list": [
+                "A0A024R445_HUMAN",
+                "A8JZZ8_HUMAN",
+                "BCS1_HUMAN"
+            ]
+        },
+        "6201": {
+            "record_ordinal_position__list": [
+                474
+            ],
+            "gene_id": "6201",
+            "uniprotkb_id__list": [
+                "RS7_HUMAN"
+            ]
+        },
+        "6204": {
+            "record_ordinal_position__list": [
+                475
+            ],
+            "gene_id": "6204",
+            "uniprotkb_id__list": [
+                "RS10_HUMAN"
+            ]
+        },
+        "6218": {
+            "record_ordinal_position__list": [
+                476
+            ],
+            "gene_id": "6218",
+            "uniprotkb_id__list": [
+                "RS17_HUMAN"
+            ]
+        },
+        "6223": {
+            "record_ordinal_position__list": [
+                477,
+                478
+            ],
+            "gene_id": "6223",
+            "uniprotkb_id__list": [
+                "B0ZBD0_HUMAN",
+                "RS19_HUMAN"
+            ]
+        },
+        "6229": {
+            "record_ordinal_position__list": [
+                479,
+                480
+            ],
+            "gene_id": "6229",
+            "uniprotkb_id__list": [
+                "A0A2R8Y849_HUMAN",
+                "RS24_HUMAN"
+            ]
+        },
+        "6231": {
+            "record_ordinal_position__list": [
+                481,
+                482
+            ],
+            "gene_id": "6231",
+            "uniprotkb_id__list": [
+                "A0A024RB14_HUMAN",
+                "RS26_HUMAN"
+            ]
+        },
+        "6309": {
+            "record_ordinal_position__list": [
+                483,
+                484
+            ],
+            "gene_id": "6309",
+            "uniprotkb_id__list": [
+                "A0A024R3G4_HUMAN",
+                "SC5D_HUMAN"
+            ]
+        },
+        "6342": {
+            "record_ordinal_position__list": [
+                485,
+                486,
+                487,
+                488,
+                489
+            ],
+            "gene_id": "6342",
+            "uniprotkb_id__list": [
+                "A0A384NY87_HUMAN",
+                "B2R761_HUMAN",
+                "E9PLD1_HUMAN",
+                "NLTP_HUMAN",
+                "Q59HG9_HUMAN"
+            ]
+        },
+        "64087": {
+            "record_ordinal_position__list": [
+                490,
+                491
+            ],
+            "gene_id": "64087",
+            "uniprotkb_id__list": [
+                "A0A140VK29_HUMAN",
+                "MCCB_HUMAN"
+            ]
+        },
+        "6442": {
+            "record_ordinal_position__list": [
+                492,
+                493,
+                494
+            ],
+            "gene_id": "6442",
+            "uniprotkb_id__list": [
+                "A0A0S2Z4P8_HUMAN",
+                "A0A0S2Z4Q1_HUMAN",
+                "SGCA_HUMAN"
+            ]
+        },
+        "6445": {
+            "record_ordinal_position__list": [
+                495
+            ],
+            "gene_id": "6445",
+            "uniprotkb_id__list": [
+                "SGCG_HUMAN"
+            ]
+        },
+        "64788": {
+            "record_ordinal_position__list": [
+                496
+            ],
+            "gene_id": "64788",
+            "uniprotkb_id__list": [
+                "LMF1_HUMAN"
+            ]
+        },
+        "6505": {
+            "record_ordinal_position__list": [
+                497
+            ],
+            "gene_id": "6505",
+            "uniprotkb_id__list": [
+                "EAA3_HUMAN"
+            ]
+        },
+        "65080": {
+            "record_ordinal_position__list": [
+                498,
+                499
+            ],
+            "gene_id": "65080",
+            "uniprotkb_id__list": [
+                "A1MA90_HUMAN",
+                "RM44_HUMAN"
+            ]
+        },
+        "6513": {
+            "record_ordinal_position__list": [
+                500,
+                501
+            ],
+            "gene_id": "6513",
+            "uniprotkb_id__list": [
+                "GTR1_HUMAN",
+                "Q59GX2_HUMAN"
+            ]
+        },
+        "6514": {
+            "record_ordinal_position__list": [
+                502,
+                503
+            ],
+            "gene_id": "6514",
+            "uniprotkb_id__list": [
+                "GTR2_HUMAN",
+                "Q6PAU8_HUMAN"
+            ]
+        },
+        "65217": {
+            "record_ordinal_position__list": [
+                504,
+                505,
+                506,
+                507,
+                508,
+                509,
+                510,
+                511,
+                512,
+                513,
+                514
+            ],
+            "gene_id": "65217",
+            "uniprotkb_id__list": [
+                "A0A087WTR6_HUMAN",
+                "A0A087WZN9_HUMAN",
+                "A0A087X1T6_HUMAN",
+                "A2A3D8_HUMAN",
+                "A2A3E6_HUMAN",
+                "A2A3E7_HUMAN",
+                "A2A3E8_HUMAN",
+                "A9Z1W1_HUMAN",
+                "E7EM53_HUMAN",
+                "E7EMG0_HUMAN",
+                "PCD15_HUMAN"
+            ]
+        },
+        "6523": {
+            "record_ordinal_position__list": [
+                515
+            ],
+            "gene_id": "6523",
+            "uniprotkb_id__list": [
+                "SC5A1_HUMAN"
+            ]
+        },
+        "6557": {
+            "record_ordinal_position__list": [
+                516,
+                517,
+                518
+            ],
+            "gene_id": "6557",
+            "uniprotkb_id__list": [
+                "B4DPF4_HUMAN",
+                "Q8IUN5_HUMAN",
+                "S12A1_HUMAN"
+            ]
+        },
+        "6559": {
+            "record_ordinal_position__list": [
+                519,
+                520
+            ],
+            "gene_id": "6559",
+            "uniprotkb_id__list": [
+                "J3QSS1_HUMAN",
+                "S12A3_HUMAN"
+            ]
+        },
+        "6576": {
+            "record_ordinal_position__list": [
+                521,
+                522,
+                523
+            ],
+            "gene_id": "6576",
+            "uniprotkb_id__list": [
+                "B4DP62_HUMAN",
+                "D9HTE9_HUMAN",
+                "TXTP_HUMAN"
+            ]
+        },
+        "6584": {
+            "record_ordinal_position__list": [
+                524
+            ],
+            "gene_id": "6584",
+            "uniprotkb_id__list": [
+                "S22A5_HUMAN"
+            ]
+        },
+        "6697": {
+            "record_ordinal_position__list": [
+                525
+            ],
+            "gene_id": "6697",
+            "uniprotkb_id__list": [
+                "SPRE_HUMAN"
+            ]
+        },
+        "6718": {
+            "record_ordinal_position__list": [
+                526
+            ],
+            "gene_id": "6718",
+            "uniprotkb_id__list": [
+                "AK1D1_HUMAN"
+            ]
+        },
+        "6833": {
+            "record_ordinal_position__list": [
+                527
+            ],
+            "gene_id": "6833",
+            "uniprotkb_id__list": [
+                "ABCC8_HUMAN"
+            ]
+        },
+        "686": {
+            "record_ordinal_position__list": [
+                528
+            ],
+            "gene_id": "686",
+            "uniprotkb_id__list": [
+                "BTD_HUMAN"
+            ]
+        },
+        "6901": {
+            "record_ordinal_position__list": [
+                529,
+                530,
+                531,
+                532,
+                533,
+                534,
+                535,
+                536
+            ],
+            "gene_id": "6901",
+            "uniprotkb_id__list": [
+                "A0A0S2Z4E6_HUMAN",
+                "A0A0S2Z4F4_HUMAN",
+                "A0A0S2Z4K0_HUMAN",
+                "A0A0S2Z4K9_HUMAN",
+                "A0A494C0C5_HUMAN",
+                "A0A499FJ53_HUMAN",
+                "A6XNE1_HUMAN",
+                "TAZ_HUMAN"
+            ]
+        },
+        "6999": {
+            "record_ordinal_position__list": [
+                537
+            ],
+            "gene_id": "6999",
+            "uniprotkb_id__list": [
+                "T23O_HUMAN"
+            ]
+        },
+        "7018": {
+            "record_ordinal_position__list": [
+                538,
+                539,
+                540
+            ],
+            "gene_id": "7018",
+            "uniprotkb_id__list": [
+                "A0PJA6_HUMAN",
+                "Q06AH7_HUMAN",
+                "TRFE_HUMAN"
+            ]
+        },
+        "7036": {
+            "record_ordinal_position__list": [
+                541
+            ],
+            "gene_id": "7036",
+            "uniprotkb_id__list": [
+                "TFR2_HUMAN"
+            ]
+        },
+        "7054": {
+            "record_ordinal_position__list": [
+                542,
+                543
+            ],
+            "gene_id": "7054",
+            "uniprotkb_id__list": [
+                "P78428_HUMAN",
+                "TY3H_HUMAN"
+            ]
+        },
+        "7084": {
+            "record_ordinal_position__list": [
+                544,
+                545,
+                546,
+                547,
+                548,
+                549
+            ],
+            "gene_id": "7084",
+            "uniprotkb_id__list": [
+                "A4IF54_HUMAN",
+                "A5PLM0_HUMAN",
+                "B4DIW4_HUMAN",
+                "B4E0Z4_HUMAN",
+                "KITM_HUMAN",
+                "Q8IZR3_HUMAN"
+            ]
+        },
+        "7156": {
+            "record_ordinal_position__list": [
+                550,
+                551
+            ],
+            "gene_id": "7156",
+            "uniprotkb_id__list": [
+                "B4DSJ0_HUMAN",
+                "TOP3A_HUMAN"
+            ]
+        },
+        "7274": {
+            "record_ordinal_position__list": [
+                552
+            ],
+            "gene_id": "7274",
+            "uniprotkb_id__list": [
+                "TTPA_HUMAN"
+            ]
+        },
+        "728294": {
+            "record_ordinal_position__list": [
+                553,
+                554,
+                555,
+                556
+            ],
+            "gene_id": "728294",
+            "uniprotkb_id__list": [
+                "B3KSR6_HUMAN",
+                "B4E3K7_HUMAN",
+                "B5MCV2_HUMAN",
+                "D2HDH_HUMAN"
+            ]
+        },
+        "7369": {
+            "record_ordinal_position__list": [
+                557
+            ],
+            "gene_id": "7369",
+            "uniprotkb_id__list": [
+                "UROM_HUMAN"
+            ]
+        },
+        "7389": {
+            "record_ordinal_position__list": [
+                558
+            ],
+            "gene_id": "7389",
+            "uniprotkb_id__list": [
+                "DCUP_HUMAN"
+            ]
+        },
+        "7390": {
+            "record_ordinal_position__list": [
+                559,
+                560,
+                561,
+                562,
+                563,
+                564
+            ],
+            "gene_id": "7390",
+            "uniprotkb_id__list": [
+                "A0A0S2Z4T8_HUMAN",
+                "A0A0S2Z5C5_HUMAN",
+                "A0A3B3ISM6_HUMAN",
+                "A0A3B3ITJ2_HUMAN",
+                "HEM4_HUMAN",
+                "Q5T3L8_HUMAN"
+            ]
+        },
+        "7809": {
+            "record_ordinal_position__list": [
+                565,
+                566
+            ],
+            "gene_id": "7809",
+            "uniprotkb_id__list": [
+                "BSND_HUMAN",
+                "Q5VU50_HUMAN"
+            ]
+        },
+        "788": {
+            "record_ordinal_position__list": [
+                567
+            ],
+            "gene_id": "788",
+            "uniprotkb_id__list": [
+                "MCAT_HUMAN"
+            ]
+        },
+        "79053": {
+            "record_ordinal_position__list": [
+                568,
+                569
+            ],
+            "gene_id": "79053",
+            "uniprotkb_id__list": [
+                "A0A024R5K5_HUMAN",
+                "ALG8_HUMAN"
+            ]
+        },
+        "79147": {
+            "record_ordinal_position__list": [
+                570,
+                571
+            ],
+            "gene_id": "79147",
+            "uniprotkb_id__list": [
+                "A0A024R0R7_HUMAN",
+                "FKRP_HUMAN"
+            ]
+        },
+        "79152": {
+            "record_ordinal_position__list": [
+                572
+            ],
+            "gene_id": "79152",
+            "uniprotkb_id__list": [
+                "FA2H_HUMAN"
+            ]
+        },
+        "79158": {
+            "record_ordinal_position__list": [
+                573
+            ],
+            "gene_id": "79158",
+            "uniprotkb_id__list": [
+                "GNPTA_HUMAN"
+            ]
+        },
+        "79783": {
+            "record_ordinal_position__list": [
+                574,
+                575
+            ],
+            "gene_id": "79783",
+            "uniprotkb_id__list": [
+                "B4DJF0_HUMAN",
+                "SUCHY_HUMAN"
+            ]
+        },
+        "79796": {
+            "record_ordinal_position__list": [
+                576
+            ],
+            "gene_id": "79796",
+            "uniprotkb_id__list": [
+                "ALG9_HUMAN"
+            ]
+        },
+        "79944": {
+            "record_ordinal_position__list": [
+                577
+            ],
+            "gene_id": "79944",
+            "uniprotkb_id__list": [
+                "L2HDH_HUMAN"
+            ]
+        },
+        "80270": {
+            "record_ordinal_position__list": [
+                578
+            ],
+            "gene_id": "80270",
+            "uniprotkb_id__list": [
+                "3BHS7_HUMAN"
+            ]
+        },
+        "8029": {
+            "record_ordinal_position__list": [
+                579
+            ],
+            "gene_id": "8029",
+            "uniprotkb_id__list": [
+                "CUBN_HUMAN"
+            ]
+        },
+        "80331": {
+            "record_ordinal_position__list": [
+                580,
+                581
+            ],
+            "gene_id": "80331",
+            "uniprotkb_id__list": [
+                "DNJC5_HUMAN",
+                "Q6AHX3_HUMAN"
+            ]
+        },
+        "80704": {
+            "record_ordinal_position__list": [
+                582
+            ],
+            "gene_id": "80704",
+            "uniprotkb_id__list": [
+                "S19A3_HUMAN"
+            ]
+        },
+        "81693": {
+            "record_ordinal_position__list": [
+                583,
+                584
+            ],
+            "gene_id": "81693",
+            "uniprotkb_id__list": [
+                "AMNLS_HUMAN",
+                "B3KP64_HUMAN"
+            ]
+        },
+        "8192": {
+            "record_ordinal_position__list": [
+                585
+            ],
+            "gene_id": "8192",
+            "uniprotkb_id__list": [
+                "CLPP_HUMAN"
+            ]
+        },
+        "825": {
+            "record_ordinal_position__list": [
+                586,
+                587
+            ],
+            "gene_id": "825",
+            "uniprotkb_id__list": [
+                "A0A0S2Z3E1_HUMAN",
+                "CAN3_HUMAN"
+            ]
+        },
+        "8291": {
+            "record_ordinal_position__list": [
+                588
+            ],
+            "gene_id": "8291",
+            "uniprotkb_id__list": [
+                "DYSF_HUMAN"
+            ]
+        },
+        "8398": {
+            "record_ordinal_position__list": [
+                589
+            ],
+            "gene_id": "8398",
+            "uniprotkb_id__list": [
+                "PLPL9_HUMAN"
+            ]
+        },
+        "84197": {
+            "record_ordinal_position__list": [
+                590
+            ],
+            "gene_id": "84197",
+            "uniprotkb_id__list": [
+                "SG196_HUMAN"
+            ]
+        },
+        "84342": {
+            "record_ordinal_position__list": [
+                591,
+                592
+            ],
+            "gene_id": "84342",
+            "uniprotkb_id__list": [
+                "A0A024R6Z6_HUMAN",
+                "COG8_HUMAN"
+            ]
+        },
+        "846": {
+            "record_ordinal_position__list": [
+                593
+            ],
+            "gene_id": "846",
+            "uniprotkb_id__list": [
+                "CASR_HUMAN"
+            ]
+        },
+        "84892": {
+            "record_ordinal_position__list": [
+                594,
+                595
+            ],
+            "gene_id": "84892",
+            "uniprotkb_id__list": [
+                "A0A024R2P4_HUMAN",
+                "PMGT2_HUMAN"
+            ]
+        },
+        "85365": {
+            "record_ordinal_position__list": [
+                596,
+                597
+            ],
+            "gene_id": "85365",
+            "uniprotkb_id__list": [
+                "A0A024R184_HUMAN",
+                "ALG2_HUMAN"
+            ]
+        },
+        "8659": {
+            "record_ordinal_position__list": [
+                598,
+                599
+            ],
+            "gene_id": "8659",
+            "uniprotkb_id__list": [
+                "A0A024RAC7_HUMAN",
+                "AL4A1_HUMAN"
+            ]
+        },
+        "875": {
+            "record_ordinal_position__list": [
+                600,
+                601,
+                602,
+                603
+            ],
+            "gene_id": "875",
+            "uniprotkb_id__list": [
+                "B7Z2D6_HUMAN",
+                "CBS_HUMAN",
+                "CBSL_HUMAN",
+                "Q9NTF0_HUMAN"
+            ]
+        },
+        "8803": {
+            "record_ordinal_position__list": [
+                604,
+                605,
+                606
+            ],
+            "gene_id": "8803",
+            "uniprotkb_id__list": [
+                "E5KS60_HUMAN",
+                "Q9Y4T0_HUMAN",
+                "SUCB1_HUMAN"
+            ]
+        },
+        "8818": {
+            "record_ordinal_position__list": [
+                607
+            ],
+            "gene_id": "8818",
+            "uniprotkb_id__list": [
+                "DPM2_HUMAN"
+            ]
+        },
+        "8869": {
+            "record_ordinal_position__list": [
+                608,
+                609
+            ],
+            "gene_id": "8869",
+            "uniprotkb_id__list": [
+                "A0A0S2Z4Q7_HUMAN",
+                "SIAT9_HUMAN"
+            ]
+        },
+        "8942": {
+            "record_ordinal_position__list": [
+                610
+            ],
+            "gene_id": "8942",
+            "uniprotkb_id__list": [
+                "KYNU_HUMAN"
+            ]
+        },
+        "9056": {
+            "record_ordinal_position__list": [
+                611,
+                612
+            ],
+            "gene_id": "9056",
+            "uniprotkb_id__list": [
+                "A0A0S2Z502_HUMAN",
+                "YLAT1_HUMAN"
+            ]
+        },
+        "91949": {
+            "record_ordinal_position__list": [
+                613,
+                614
+            ],
+            "gene_id": "91949",
+            "uniprotkb_id__list": [
+                "A0A0S2Z652_HUMAN",
+                "COG7_HUMAN"
+            ]
+        },
+        "9215": {
+            "record_ordinal_position__list": [
+                615,
+                616
+            ],
+            "gene_id": "9215",
+            "uniprotkb_id__list": [
+                "LARG1_HUMAN",
+                "X5DR28_HUMAN"
+            ]
+        },
+        "93183": {
+            "record_ordinal_position__list": [
+                617
+            ],
+            "gene_id": "93183",
+            "uniprotkb_id__list": [
+                "PIGM_HUMAN"
+            ]
+        },
+        "9382": {
+            "record_ordinal_position__list": [
+                618
+            ],
+            "gene_id": "9382",
+            "uniprotkb_id__list": [
+                "COG1_HUMAN"
+            ]
+        }
+    },
+    "gene_id__list": [],
+    "uniprotkb_id__list": [
+        "A0A0S2Z381_HUMAN",
+        "ADA_HUMAN",
+        "F5GWI4_HUMAN",
+        "GLCNE_HUMAN",
+        "E5KNY5_HUMAN",
+        "LPPRC_HUMAN",
+        "A4D0W4_HUMAN",
+        "AASS_HUMAN",
+        "CMC2_HUMAN",
+        "ALG3_HUMAN",
+        "C9J7S5_HUMAN",
+        "G3V1K2_HUMAN",
+        "RXLT1_HUMAN",
+        "COG5_HUMAN",
+        "A0A024R6C0_HUMAN",
+        "NPC2_HUMAN",
+        "A0A140VKE0_HUMAN",
+        "POMT1_HUMAN",
+        "CATC_HUMAN",
+        "FTCD_HUMAN",
+        "A0A024R9Y7_HUMAN",
+        "MAGD2_HUMAN",
+        "A0A024R9W0_HUMAN",
+        "B4E0L7_HUMAN",
+        "LIAS_HUMAN",
+        "Q6P5Q6_HUMAN",
+        "A0A024R5F9_HUMAN",
+        "B4GA1_HUMAN",
+        "A0A024R4X4_HUMAN",
+        "CHKB_HUMAN",
+        "MA1B1_HUMAN",
+        "CHSTE_HUMAN",
+        "A0A0B4RUS7_HUMAN",
+        "APOA5_HUMAN",
+        "AP2S1_HUMAN",
+        "M0QYZ2_HUMAN",
+        "M0R0N4_HUMAN",
+        "X6R390_HUMAN",
+        "A8K8H0_HUMAN",
+        "CLCKB_HUMAN",
+        "TPP1_HUMAN",
+        "A0A024QZB8_HUMAN",
+        "B4DFF3_HUMAN",
+        "B4DMY6_HUMAN",
+        "CLN3_HUMAN",
+        "Q2TA70_HUMAN",
+        "MRP2_HUMAN",
+        "A0A0S2Z5X1_HUMAN",
+        "TIM14_HUMAN",
+        "A1LQE8_HUMAN",
+        "GLCTK_HUMAN",
+        "A5PL27_HUMAN",
+        "CERU_HUMAN",
+        "A0A024R454_HUMAN",
+        "CPSM_HUMAN",
+        "Q6PEK7_HUMAN",
+        "A0A024R5F4_HUMAN",
+        "B2RAQ8_HUMAN",
+        "CPT1A_HUMAN",
+        "Q8WZ48_HUMAN",
+        "A0A024R4W7_HUMAN",
+        "A5PLL0_HUMAN",
+        "CPT1B_HUMAN",
+        "Q53FV7_HUMAN",
+        "A0A140VK13_HUMAN",
+        "A0A1B0GTB8_HUMAN",
+        "CPT2_HUMAN",
+        "CACP_HUMAN",
+        "B3GLT_HUMAN",
+        "CDAN1_HUMAN",
+        "A0A024R4F5_HUMAN",
+        "A8K466_HUMAN",
+        "RGMC_HUMAN",
+        "B3GL2_HUMAN",
+        "CGL_HUMAN",
+        "A0A0S2Z3I9_HUMAN",
+        "A0A0S2Z3K3_HUMAN",
+        "CTNS_HUMAN",
+        "I3L4A9_HUMAN",
+        "S36A2_HUMAN",
+        "C11B2_HUMAN",
+        "CP17A_HUMAN",
+        "Q1HB44_HUMAN",
+        "CP21A_HUMAN",
+        "Q08AG9_HUMAN",
+        "Q16874_HUMAN",
+        "CP27A_HUMAN",
+        "A0A024R2W4_HUMAN",
+        "DAG1_HUMAN",
+        "DOPO_HUMAN",
+        "ODB2_HUMAN",
+        "A0A087WV24_HUMAN",
+        "A0A0S2Z3N4_HUMAN",
+        "DDC_HUMAN",
+        "Q53Y41_HUMAN",
+        "D6W5I0_HUMAN",
+        "DGUOK_HUMAN",
+        "E5KSL5_HUMAN",
+        "E5KSL6_HUMAN",
+        "DHC24_HUMAN",
+        "B0YJ76_HUMAN",
+        "B4DM58_HUMAN",
+        "DYR_HUMAN",
+        "A0A024R713_HUMAN",
+        "DLDH_HUMAN",
+        "E9PEX6_HUMAN",
+        "ASPG_HUMAN",
+        "DNA2_HUMAN",
+        "A0A0S2A4E4_HUMAN",
+        "GDE_HUMAN",
+        "GABT_HUMAN",
+        "X5D8S1_HUMAN",
+        "DPYD_HUMAN",
+        "DPYS_HUMAN",
+        "ATN1_HUMAN",
+        "Q86V38_HUMAN",
+        "SPYA_HUMAN",
+        "A0A140VJI7_HUMAN",
+        "ECM1_HUMAN",
+        "ABCA1_HUMAN",
+        "B2RUU2_HUMAN",
+        "B7XCW9_HUMAN",
+        "ENOB_HUMAN",
+        "ANO5_HUMAN",
+        "A0A0S2Z3L0_HUMAN",
+        "ETFA_HUMAN",
+        "ETFB_HUMAN",
+        "B4DEQ0_HUMAN",
+        "ETFD_HUMAN",
+        "ABCD1_HUMAN",
+        "F16P1_HUMAN",
+        "Q2TU34_HUMAN",
+        "B4E2W4_HUMAN",
+        "FKTN_HUMAN",
+        "A0A499FJN5_HUMAN",
+        "HEMH_HUMAN",
+        "Q7KZA3_HUMAN",
+        "ALDOA_HUMAN",
+        "V9HWN7_HUMAN",
+        "A0A0S2Z4C3_HUMAN",
+        "FUMH_HUMAN",
+        "A0A0S2Z597_HUMAN",
+        "DOLK_HUMAN",
+        "LPIN1_HUMAN",
+        "SYLM_HUMAN",
+        "DCMC_HUMAN",
+        "A0A2R8Y6I1_HUMAN",
+        "B4DDN8_HUMAN",
+        "SYHM_HUMAN",
+        "A0A0S2Z580_HUMAN",
+        "A0A0S2Z5B3_HUMAN",
+        "A0A0S2Z5N8_HUMAN",
+        "B2RCZ7_HUMAN",
+        "ETHE1_HUMAN",
+        "A0A024R5H1_HUMAN",
+        "FOLR1_HUMAN",
+        "A0A024R2C3_HUMAN",
+        "A0A1W2PPR7_HUMAN",
+        "A0A1W2PQA9_HUMAN",
+        "PIGN_HUMAN",
+        "A0A0S2Z3G4_HUMAN",
+        "FRDA_HUMAN",
+        "B3KUD4_HUMAN",
+        "E5KN15_HUMAN",
+        "RNH1_HUMAN",
+        "A0A024RAB4_HUMAN",
+        "PPBT_HUMAN",
+        "B5MDC5_HUMAN",
+        "FUCO_HUMAN",
+        "G6PC_HUMAN",
+        "A0A024R3H9_HUMAN",
+        "A0A024R3L1_HUMAN",
+        "A8K0S7_HUMAN",
+        "B4DUH2_HUMAN",
+        "G6PT1_HUMAN",
+        "A0A0A0MS45_HUMAN",
+        "COG4_HUMAN",
+        "J3KNI1_HUMAN",
+        "Q8N8L9_HUMAN",
+        "GALK1_HUMAN",
+        "V9HWE7_HUMAN",
+        "GAMT_HUMAN",
+        "V9HWB2_HUMAN",
+        "A0A0C4DGU2_HUMAN",
+        "MMAC_HUMAN",
+        "GATA1_HUMAN",
+        "A0A140VK19_HUMAN",
+        "GATM_HUMAN",
+        "ERAL1_HUMAN",
+        "A0A068F658_HUMAN",
+        "B7Z6S9_HUMAN",
+        "GLCM_HUMAN",
+        "GLGB_HUMAN",
+        "Q59ET0_HUMAN",
+        "A0A024R7F9_HUMAN",
+        "GCDH_HUMAN",
+        "A0A024R642_HUMAN",
+        "GCH1_HUMAN",
+        "Q8IZH9_HUMAN",
+        "HXK4_HUMAN",
+        "Q53Y25_HUMAN",
+        "S17A5_HUMAN",
+        "A0A140VJJ9_HUMAN",
+        "GGT1_HUMAN",
+        "IF_HUMAN",
+        "AMPD1_HUMAN",
+        "ACAD8_HUMAN",
+        "B4DH54_HUMAN",
+        "GLPK_HUMAN",
+        "AGAL_HUMAN",
+        "Q53Y83_HUMAN",
+        "B7Z6Q5_HUMAN",
+        "BGAL_HUMAN",
+        "A0A0S2Z5F2_HUMAN",
+        "GNMT_HUMAN",
+        "V9HW60_HUMAN",
+        "MMAD_HUMAN",
+        "DHE3_HUMAN",
+        "E9KL48_HUMAN",
+        "A8YXX4_HUMAN",
+        "GLNA_HUMAN",
+        "GNA11_HUMAN",
+        "SUMF1_HUMAN",
+        "A0A0S2Z3H3_HUMAN",
+        "ADT1_HUMAN",
+        "GSHB_HUMAN",
+        "V9HWJ1_HUMAN",
+        "ALG6_HUMAN",
+        "POMT2_HUMAN",
+        "GYS2_HUMAN",
+        "A0A0S2Z410_HUMAN",
+        "HCD2_HUMAN",
+        "E9KL44_HUMAN",
+        "ECHA_HUMAN",
+        "A0A140VK76_HUMAN",
+        "B3KTT6_HUMAN",
+        "HCDH_HUMAN",
+        "B4DV50_HUMAN",
+        "F8W7W8_HUMAN",
+        "HFE_HUMAN",
+        "B3KW64_HUMAN",
+        "HGD_HUMAN",
+        "HEM3_HUMAN",
+        "HMGCL_HUMAN",
+        "HPPD_HUMAN",
+        "A0A140VJL3_HUMAN",
+        "HPRT_HUMAN",
+        "DHB3_HUMAN",
+        "Q6FH62_HUMAN",
+        "A0A0S2Z4J1_HUMAN",
+        "B2R659_HUMAN",
+        "B3KSP2_HUMAN",
+        "DHB4_HUMAN",
+        "APOB_HUMAN",
+        "Q59HB3_HUMAN",
+        "Q7Z7Q0_HUMAN",
+        "S6A19_HUMAN",
+        "IDUA_HUMAN",
+        "IGF1_HUMAN",
+        "Q13429_HUMAN",
+        "Q59GC5_HUMAN",
+        "Q5U743_HUMAN",
+        "A0A0S2Z3D5_HUMAN",
+        "APOE_HUMAN",
+        "APT_HUMAN",
+        "A0A0S2Z3P9_HUMAN",
+        "ACDSB_HUMAN",
+        "MRP6_HUMAN",
+        "A0A0A0MT83_HUMAN",
+        "A0A0S2Z4K7_HUMAN",
+        "IVD_HUMAN",
+        "A0A024R3K6_HUMAN",
+        "A8K432_HUMAN",
+        "KCNJ1_HUMAN",
+        "A0A140VJX1_HUMAN",
+        "A0A5F9ZHJ0_HUMAN",
+        "THIL_HUMAN",
+        "ARGI1_HUMAN",
+        "K2C5_HUMAN",
+        "LBR_HUMAN",
+        "A0A140VK24_HUMAN",
+        "LCAT_HUMAN",
+        "LDHA_HUMAN",
+        "V9HWB9_HUMAN",
+        "A0A5F9ZHM4_HUMAN",
+        "LDHB_HUMAN",
+        "Q5U077_HUMAN",
+        "A0A0A0MT32_HUMAN",
+        "LICH_HUMAN",
+        "A6H8L5_HUMAN",
+        "LIPC_HUMAN",
+        "A0A384MQX1_HUMAN",
+        "LMNA_HUMAN",
+        "Q5TCI8_HUMAN",
+        "A8K6A7_HUMAN",
+        "MA2B1_HUMAN",
+        "MANBA_HUMAN",
+        "METK1_HUMAN",
+        "A8K0B6_HUMAN",
+        "ASAH1_HUMAN",
+        "Q53H01_HUMAN",
+        "I4AY87_HUMAN",
+        "MIF_HUMAN",
+        "A0A024R6G4_HUMAN",
+        "MMSA_HUMAN",
+        "A0A024RDL8_HUMAN",
+        "A0A0S2Z316_HUMAN",
+        "ARLY_HUMAN",
+        "B4DW50_HUMAN",
+        "F5GX71_HUMAN",
+        "H3BPB8_HUMAN",
+        "H3BPP3_HUMAN",
+        "MPI_HUMAN",
+        "Q8NHZ6_HUMAN",
+        "A0A024R6R7_HUMAN",
+        "MT3_HUMAN",
+        "A0A1X7RBG2_HUMAN",
+        "COX1_HUMAN",
+        "U5YWV7_HUMAN",
+        "A0A1X7RBF7_HUMAN",
+        "COX2_HUMAN",
+        "U5Z487_HUMAN",
+        "A0A1X7RBF0_HUMAN",
+        "COX3_HUMAN",
+        "Q7GIM7_HUMAN",
+        "CYB_HUMAN",
+        "Q0ZFD6_HUMAN",
+        "MTHR_HUMAN",
+        "Q59GJ6_HUMAN",
+        "Q5SNW7_HUMAN",
+        "Q8IU67_HUMAN",
+        "NU1M_HUMAN",
+        "U5Z754_HUMAN",
+        "A0A1X7RBN5_HUMAN",
+        "H9EC08_HUMAN",
+        "NU4M_HUMAN",
+        "A0A1X7RC16_HUMAN",
+        "NU4LM_HUMAN",
+        "Q7GXZ4_HUMAN",
+        "NU5M_HUMAN",
+        "U5ZC31_HUMAN",
+        "A0A1X7RCR6_HUMAN",
+        "NU6M_HUMAN",
+        "U5Z977_HUMAN",
+        "B7Z7X3_HUMAN",
+        "E9PBP6_HUMAN",
+        "MTP_HUMAN",
+        "METH_HUMAN",
+        "MTRR_HUMAN",
+        "B2RDU6_HUMAN",
+        "B7Z301_HUMAN",
+        "F5H8H2_HUMAN",
+        "KIME_HUMAN",
+        "MYH2_HUMAN",
+        "A0A024R1Q5_HUMAN",
+        "NAGAB_HUMAN",
+        "A0A024R3C7_HUMAN",
+        "ATM_HUMAN",
+        "NPC1_HUMAN",
+        "A0A140VJQ4_HUMAN",
+        "OAT_HUMAN",
+        "A0A2X0TVZ9_HUMAN",
+        "OCRL_HUMAN",
+        "Q504W7_HUMAN",
+        "E5KLJ9_HUMAN",
+        "E5KLK0_HUMAN",
+        "OPA1_HUMAN",
+        "RIR2B_HUMAN",
+        "A0A024RBG4_HUMAN",
+        "PH4H_HUMAN",
+        "A0A384NPZ7_HUMAN",
+        "NSDHL_HUMAN",
+        "PHS_HUMAN",
+        "A0A0S2Z5D6_HUMAN",
+        "ABHD5_HUMAN",
+        "SAR1B_HUMAN",
+        "A0A384NY14_HUMAN",
+        "DCXR_HUMAN",
+        "A0A024R0Y5_HUMAN",
+        "A0A2R8Y891_HUMAN",
+        "PFKAM_HUMAN",
+        "PGK1_HUMAN",
+        "V9HWF4_HUMAN",
+        "B4DDQ8_HUMAN",
+        "B7Z6C2_HUMAN",
+        "PGM1_HUMAN",
+        "KPB1_HUMAN",
+        "KPB2_HUMAN",
+        "KPBB_HUMAN",
+        "PHKG2_HUMAN",
+        "A1AT_HUMAN",
+        "E9KL23_HUMAN",
+        "A0A2K4ZA02_HUMAN",
+        "PIGA_HUMAN",
+        "ATP7A_HUMAN",
+        "B4DRW0_HUMAN",
+        "Q762B6_HUMAN",
+        "DPOG1_HUMAN",
+        "E5KNU5_HUMAN",
+        "A0A140VJI4_HUMAN",
+        "DPM3_HUMAN",
+        "Q86TM7_HUMAN",
+        "Q5DT03_HUMAN",
+        "UD11_HUMAN",
+        "S6A20_HUMAN",
+        "B4E324_HUMAN",
+        "PPGB_HUMAN",
+        "X6R5C5_HUMAN",
+        "X6R8A1_HUMAN",
+        "APTX_HUMAN",
+        "AUHM_HUMAN",
+        "B4DYI6_HUMAN",
+        "A0A024R601_HUMAN",
+        "CLN6_HUMAN",
+        "NEU2_HUMAN",
+        "X5DQP6_HUMAN",
+        "Q9H9J7_HUMAN",
+        "SYDM_HUMAN",
+        "PNPO_HUMAN",
+        "V9HW45_HUMAN",
+        "B3KQH0_HUMAN",
+        "FUCT1_HUMAN",
+        "PPT1_HUMAN",
+        "B7Z7F2_HUMAN",
+        "B7Z7Q4_HUMAN",
+        "PMGT1_HUMAN",
+        "Q9NX22_HUMAN",
+        "S39A4_HUMAN",
+        "MTU1_HUMAN",
+        "Q2PPL4_HUMAN",
+        "Q2PPL5_HUMAN",
+        "ANKH_HUMAN",
+        "PROD_HUMAN",
+        "B7ZB02_HUMAN",
+        "PRPS1_HUMAN",
+        "A0A024QZQ2_HUMAN",
+        "SAP_HUMAN",
+        "A0A2R8Y4V4_HUMAN",
+        "A0A2R8Y746_HUMAN",
+        "E5KSY5_HUMAN",
+        "PEO1_HUMAN",
+        "Q9H6V3_HUMAN",
+        "A0A0S2Z693_HUMAN",
+        "MCCA_HUMAN",
+        "Q68D27_HUMAN",
+        "B4DJ97_HUMAN",
+        "PGLT1_HUMAN",
+        "COQ8A_HUMAN",
+        "B4DII4_HUMAN",
+        "CASS4_HUMAN",
+        "FANCM_HUMAN",
+        "HEPC_HUMAN",
+        "PYGL_HUMAN",
+        "PYGM_HUMAN",
+        "A0A140VKA9_HUMAN",
+        "DHPR_HUMAN",
+        "A0A024R0K3_HUMAN",
+        "ODBA_HUMAN",
+        "Q59EI3_HUMAN",
+        "A0A140VKB3_HUMAN",
+        "B4E2N3_HUMAN",
+        "B7ZB80_HUMAN",
+        "ODBB_HUMAN",
+        "A0A024R7T2_HUMAN",
+        "RET_HUMAN",
+        "A2RUM7_HUMAN",
+        "RL5_HUMAN",
+        "Q5VVD0_HUMAN",
+        "RL11_HUMAN",
+        "RL35A_HUMAN",
+        "A0A024R445_HUMAN",
+        "A8JZZ8_HUMAN",
+        "BCS1_HUMAN",
+        "RS7_HUMAN",
+        "RS10_HUMAN",
+        "RS17_HUMAN",
+        "B0ZBD0_HUMAN",
+        "RS19_HUMAN",
+        "A0A2R8Y849_HUMAN",
+        "RS24_HUMAN",
+        "A0A024RB14_HUMAN",
+        "RS26_HUMAN",
+        "A0A024R3G4_HUMAN",
+        "SC5D_HUMAN",
+        "A0A384NY87_HUMAN",
+        "B2R761_HUMAN",
+        "E9PLD1_HUMAN",
+        "NLTP_HUMAN",
+        "Q59HG9_HUMAN",
+        "A0A140VK29_HUMAN",
+        "MCCB_HUMAN",
+        "A0A0S2Z4P8_HUMAN",
+        "A0A0S2Z4Q1_HUMAN",
+        "SGCA_HUMAN",
+        "SGCG_HUMAN",
+        "LMF1_HUMAN",
+        "EAA3_HUMAN",
+        "A1MA90_HUMAN",
+        "RM44_HUMAN",
+        "GTR1_HUMAN",
+        "Q59GX2_HUMAN",
+        "GTR2_HUMAN",
+        "Q6PAU8_HUMAN",
+        "A0A087WTR6_HUMAN",
+        "A0A087WZN9_HUMAN",
+        "A0A087X1T6_HUMAN",
+        "A2A3D8_HUMAN",
+        "A2A3E6_HUMAN",
+        "A2A3E7_HUMAN",
+        "A2A3E8_HUMAN",
+        "A9Z1W1_HUMAN",
+        "E7EM53_HUMAN",
+        "E7EMG0_HUMAN",
+        "PCD15_HUMAN",
+        "SC5A1_HUMAN",
+        "B4DPF4_HUMAN",
+        "Q8IUN5_HUMAN",
+        "S12A1_HUMAN",
+        "J3QSS1_HUMAN",
+        "S12A3_HUMAN",
+        "B4DP62_HUMAN",
+        "D9HTE9_HUMAN",
+        "TXTP_HUMAN",
+        "S22A5_HUMAN",
+        "SPRE_HUMAN",
+        "AK1D1_HUMAN",
+        "ABCC8_HUMAN",
+        "BTD_HUMAN",
+        "A0A0S2Z4E6_HUMAN",
+        "A0A0S2Z4F4_HUMAN",
+        "A0A0S2Z4K0_HUMAN",
+        "A0A0S2Z4K9_HUMAN",
+        "A0A494C0C5_HUMAN",
+        "A0A499FJ53_HUMAN",
+        "A6XNE1_HUMAN",
+        "TAZ_HUMAN",
+        "T23O_HUMAN",
+        "A0PJA6_HUMAN",
+        "Q06AH7_HUMAN",
+        "TRFE_HUMAN",
+        "TFR2_HUMAN",
+        "P78428_HUMAN",
+        "TY3H_HUMAN",
+        "A4IF54_HUMAN",
+        "A5PLM0_HUMAN",
+        "B4DIW4_HUMAN",
+        "B4E0Z4_HUMAN",
+        "KITM_HUMAN",
+        "Q8IZR3_HUMAN",
+        "B4DSJ0_HUMAN",
+        "TOP3A_HUMAN",
+        "TTPA_HUMAN",
+        "B3KSR6_HUMAN",
+        "B4E3K7_HUMAN",
+        "B5MCV2_HUMAN",
+        "D2HDH_HUMAN",
+        "UROM_HUMAN",
+        "DCUP_HUMAN",
+        "A0A0S2Z4T8_HUMAN",
+        "A0A0S2Z5C5_HUMAN",
+        "A0A3B3ISM6_HUMAN",
+        "A0A3B3ITJ2_HUMAN",
+        "HEM4_HUMAN",
+        "Q5T3L8_HUMAN",
+        "BSND_HUMAN",
+        "Q5VU50_HUMAN",
+        "MCAT_HUMAN",
+        "A0A024R5K5_HUMAN",
+        "ALG8_HUMAN",
+        "A0A024R0R7_HUMAN",
+        "FKRP_HUMAN",
+        "FA2H_HUMAN",
+        "GNPTA_HUMAN",
+        "B4DJF0_HUMAN",
+        "SUCHY_HUMAN",
+        "ALG9_HUMAN",
+        "L2HDH_HUMAN",
+        "3BHS7_HUMAN",
+        "CUBN_HUMAN",
+        "DNJC5_HUMAN",
+        "Q6AHX3_HUMAN",
+        "S19A3_HUMAN",
+        "AMNLS_HUMAN",
+        "B3KP64_HUMAN",
+        "CLPP_HUMAN",
+        "A0A0S2Z3E1_HUMAN",
+        "CAN3_HUMAN",
+        "DYSF_HUMAN",
+        "PLPL9_HUMAN",
+        "SG196_HUMAN",
+        "A0A024R6Z6_HUMAN",
+        "COG8_HUMAN",
+        "CASR_HUMAN",
+        "A0A024R2P4_HUMAN",
+        "PMGT2_HUMAN",
+        "A0A024R184_HUMAN",
+        "ALG2_HUMAN",
+        "A0A024RAC7_HUMAN",
+        "AL4A1_HUMAN",
+        "B7Z2D6_HUMAN",
+        "CBS_HUMAN",
+        "CBSL_HUMAN",
+        "Q9NTF0_HUMAN",
+        "E5KS60_HUMAN",
+        "Q9Y4T0_HUMAN",
+        "SUCB1_HUMAN",
+        "DPM2_HUMAN",
+        "A0A0S2Z4Q7_HUMAN",
+        "SIAT9_HUMAN",
+        "KYNU_HUMAN",
+        "A0A0S2Z502_HUMAN",
+        "YLAT1_HUMAN",
+        "A0A0S2Z652_HUMAN",
+        "COG7_HUMAN",
+        "LARG1_HUMAN",
+        "X5DR28_HUMAN",
+        "PIGM_HUMAN",
+        "COG1_HUMAN"
+    ]
+}

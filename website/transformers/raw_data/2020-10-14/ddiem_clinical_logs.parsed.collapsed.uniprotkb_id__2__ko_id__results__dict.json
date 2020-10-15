@@ -1,0 +1,4621 @@
+{
+    "uniprotkb_id__2__ko_id__dict": {
+        "3BHS7_HUMAN": {
+            "record_ordinal_position__list": [
+                1
+            ],
+            "uniprotkb_id": "3BHS7_HUMAN",
+            "ko_id__list": [
+                "K12408"
+            ]
+        },
+        "A0A024QZB8_HUMAN": {
+            "record_ordinal_position__list": [
+                2
+            ],
+            "uniprotkb_id": "A0A024QZB8_HUMAN",
+            "ko_id__list": [
+                "K12389"
+            ]
+        },
+        "A0A024QZQ2_HUMAN": {
+            "record_ordinal_position__list": [
+                3
+            ],
+            "uniprotkb_id": "A0A024QZQ2_HUMAN",
+            "ko_id__list": [
+                "K12382"
+            ]
+        },
+        "A0A024R0K3_HUMAN": {
+            "record_ordinal_position__list": [
+                4
+            ],
+            "uniprotkb_id": "A0A024R0K3_HUMAN",
+            "ko_id__list": [
+                "K00166"
+            ]
+        },
+        "A0A024R0R7_HUMAN": {
+            "record_ordinal_position__list": [
+                5
+            ],
+            "uniprotkb_id": "A0A024R0R7_HUMAN",
+            "ko_id__list": [
+                "K19873"
+            ]
+        },
+        "A0A024R0Y5_HUMAN": {
+            "record_ordinal_position__list": [
+                6
+            ],
+            "uniprotkb_id": "A0A024R0Y5_HUMAN",
+            "ko_id__list": [
+                "K00850"
+            ]
+        },
+        "A0A024R184_HUMAN": {
+            "record_ordinal_position__list": [
+                7
+            ],
+            "uniprotkb_id": "A0A024R184_HUMAN",
+            "ko_id__list": [
+                "K03843"
+            ]
+        },
+        "A0A024R1Q5_HUMAN": {
+            "record_ordinal_position__list": [
+                8
+            ],
+            "uniprotkb_id": "A0A024R1Q5_HUMAN",
+            "ko_id__list": [
+                "K01204"
+            ]
+        },
+        "A0A024R2C3_HUMAN": {
+            "record_ordinal_position__list": [
+                9
+            ],
+            "uniprotkb_id": "A0A024R2C3_HUMAN",
+            "ko_id__list": [
+                "K05285"
+            ]
+        },
+        "A0A024R2P4_HUMAN": {
+            "record_ordinal_position__list": [
+                10
+            ],
+            "uniprotkb_id": "A0A024R2P4_HUMAN",
+            "ko_id__list": [
+                "K18207"
+            ]
+        },
+        "A0A024R2W4_HUMAN": {
+            "record_ordinal_position__list": [
+                11
+            ],
+            "uniprotkb_id": "A0A024R2W4_HUMAN",
+            "ko_id__list": [
+                "K06265"
+            ]
+        },
+        "A0A024R3C7_HUMAN": {
+            "record_ordinal_position__list": [
+                12
+            ],
+            "uniprotkb_id": "A0A024R3C7_HUMAN",
+            "ko_id__list": [
+                "K04728"
+            ]
+        },
+        "A0A024R3G4_HUMAN": {
+            "record_ordinal_position__list": [
+                13
+            ],
+            "uniprotkb_id": "A0A024R3G4_HUMAN",
+            "ko_id__list": [
+                "K00227"
+            ]
+        },
+        "A0A024R3H9_HUMAN": {
+            "record_ordinal_position__list": [
+                14
+            ],
+            "uniprotkb_id": "A0A024R3H9_HUMAN",
+            "ko_id__list": [
+                "K08171"
+            ]
+        },
+        "A0A024R445_HUMAN": {
+            "record_ordinal_position__list": [
+                15
+            ],
+            "uniprotkb_id": "A0A024R445_HUMAN",
+            "ko_id__list": [
+                "K08900"
+            ]
+        },
+        "A0A024R4F5_HUMAN": {
+            "record_ordinal_position__list": [
+                16
+            ],
+            "uniprotkb_id": "A0A024R4F5_HUMAN",
+            "ko_id__list": [
+                "K23100"
+            ]
+        },
+        "A0A024R4W7_HUMAN": {
+            "record_ordinal_position__list": [
+                17
+            ],
+            "uniprotkb_id": "A0A024R4W7_HUMAN",
+            "ko_id__list": [
+                "K19523"
+            ]
+        },
+        "A0A024R4X4_HUMAN": {
+            "record_ordinal_position__list": [
+                18
+            ],
+            "uniprotkb_id": "A0A024R4X4_HUMAN",
+            "ko_id__list": [
+                "K14156"
+            ]
+        },
+        "A0A024R5F4_HUMAN": {
+            "record_ordinal_position__list": [
+                19
+            ],
+            "uniprotkb_id": "A0A024R5F4_HUMAN",
+            "ko_id__list": [
+                "K08765"
+            ]
+        },
+        "A0A024R5F9_HUMAN": {
+            "record_ordinal_position__list": [
+                20
+            ],
+            "uniprotkb_id": "A0A024R5F9_HUMAN",
+            "ko_id__list": [
+                "K21032"
+            ]
+        },
+        "A0A024R5H1_HUMAN": {
+            "record_ordinal_position__list": [
+                21
+            ],
+            "uniprotkb_id": "A0A024R5H1_HUMAN",
+            "ko_id__list": [
+                "K13649"
+            ]
+        },
+        "A0A024R5K5_HUMAN": {
+            "record_ordinal_position__list": [
+                22
+            ],
+            "uniprotkb_id": "A0A024R5K5_HUMAN",
+            "ko_id__list": [
+                "K03849"
+            ]
+        },
+        "A0A024R601_HUMAN": {
+            "record_ordinal_position__list": [
+                23
+            ],
+            "uniprotkb_id": "A0A024R601_HUMAN",
+            "ko_id__list": [
+                "K12359"
+            ]
+        },
+        "A0A024R642_HUMAN": {
+            "record_ordinal_position__list": [
+                24
+            ],
+            "uniprotkb_id": "A0A024R642_HUMAN",
+            "ko_id__list": [
+                "K01495"
+            ]
+        },
+        "A0A024R6C0_HUMAN": {
+            "record_ordinal_position__list": [
+                25
+            ],
+            "uniprotkb_id": "A0A024R6C0_HUMAN",
+            "ko_id__list": [
+                "K13443"
+            ]
+        },
+        "A0A024R6G4_HUMAN": {
+            "record_ordinal_position__list": [
+                26
+            ],
+            "uniprotkb_id": "A0A024R6G4_HUMAN",
+            "ko_id__list": [
+                "K00140"
+            ]
+        },
+        "A0A024R6R7_HUMAN": {
+            "record_ordinal_position__list": [
+                27
+            ],
+            "uniprotkb_id": "A0A024R6R7_HUMAN",
+            "ko_id__list": [
+                "K14740"
+            ]
+        },
+        "A0A024R6Z6_HUMAN": {
+            "record_ordinal_position__list": [
+                28
+            ],
+            "uniprotkb_id": "A0A024R6Z6_HUMAN",
+            "ko_id__list": [
+                "K20295"
+            ]
+        },
+        "A0A024R713_HUMAN": {
+            "record_ordinal_position__list": [
+                29
+            ],
+            "uniprotkb_id": "A0A024R713_HUMAN",
+            "ko_id__list": [
+                "K00382"
+            ]
+        },
+        "A0A024R7F9_HUMAN": {
+            "record_ordinal_position__list": [
+                30
+            ],
+            "uniprotkb_id": "A0A024R7F9_HUMAN",
+            "ko_id__list": [
+                "K00252"
+            ]
+        },
+        "A0A024R7T2_HUMAN": {
+            "record_ordinal_position__list": [
+                31
+            ],
+            "uniprotkb_id": "A0A024R7T2_HUMAN",
+            "ko_id__list": [
+                "K05126"
+            ]
+        },
+        "A0A024R9W0_HUMAN": {
+            "record_ordinal_position__list": [
+                32
+            ],
+            "uniprotkb_id": "A0A024R9W0_HUMAN",
+            "ko_id__list": [
+                "K03644"
+            ]
+        },
+        "A0A024R9Y7_HUMAN": {
+            "record_ordinal_position__list": [
+                33
+            ],
+            "uniprotkb_id": "A0A024R9Y7_HUMAN",
+            "ko_id__list": [
+                "K24127"
+            ]
+        },
+        "A0A024RAB4_HUMAN": {
+            "record_ordinal_position__list": [
+                34
+            ],
+            "uniprotkb_id": "A0A024RAB4_HUMAN",
+            "ko_id__list": [
+                "K01077"
+            ]
+        },
+        "A0A024RAC7_HUMAN": {
+            "record_ordinal_position__list": [
+                35
+            ],
+            "uniprotkb_id": "A0A024RAC7_HUMAN",
+            "ko_id__list": [
+                "K00294"
+            ]
+        },
+        "A0A024RB14_HUMAN": {
+            "record_ordinal_position__list": [
+                36
+            ],
+            "uniprotkb_id": "A0A024RB14_HUMAN",
+            "ko_id__list": [
+                "K02976"
+            ]
+        },
+        "A0A024RBG4_HUMAN": {
+            "record_ordinal_position__list": [
+                37
+            ],
+            "uniprotkb_id": "A0A024RBG4_HUMAN",
+            "ko_id__list": [
+                "K00500"
+            ]
+        },
+        "A0A024RDL8_HUMAN": {
+            "record_ordinal_position__list": [
+                38
+            ],
+            "uniprotkb_id": "A0A024RDL8_HUMAN",
+            "ko_id__list": [
+                "K01755"
+            ]
+        },
+        "A0A068F658_HUMAN": {
+            "record_ordinal_position__list": [
+                39
+            ],
+            "uniprotkb_id": "A0A068F658_HUMAN",
+            "ko_id__list": [
+                "K01201"
+            ]
+        },
+        "A0A0A0MT83_HUMAN": {
+            "record_ordinal_position__list": [
+                40
+            ],
+            "uniprotkb_id": "A0A0A0MT83_HUMAN",
+            "ko_id__list": [
+                "K00253"
+            ]
+        },
+        "A0A0B4RUS7_HUMAN": {
+            "record_ordinal_position__list": [
+                41
+            ],
+            "uniprotkb_id": "A0A0B4RUS7_HUMAN",
+            "ko_id__list": [
+                "K09025"
+            ]
+        },
+        "A0A0S2A4E4_HUMAN": {
+            "record_ordinal_position__list": [
+                42
+            ],
+            "uniprotkb_id": "A0A0S2A4E4_HUMAN",
+            "ko_id__list": [
+                "K01196"
+            ]
+        },
+        "A0A0S2Z381_HUMAN": {
+            "record_ordinal_position__list": [
+                43
+            ],
+            "uniprotkb_id": "A0A0S2Z381_HUMAN",
+            "ko_id__list": [
+                "K01488"
+            ]
+        },
+        "A0A0S2Z3D5_HUMAN": {
+            "record_ordinal_position__list": [
+                44
+            ],
+            "uniprotkb_id": "A0A0S2Z3D5_HUMAN",
+            "ko_id__list": [
+                "K04524"
+            ]
+        },
+        "A0A0S2Z3G4_HUMAN": {
+            "record_ordinal_position__list": [
+                45
+            ],
+            "uniprotkb_id": "A0A0S2Z3G4_HUMAN",
+            "ko_id__list": [
+                "K19054"
+            ]
+        },
+        "A0A0S2Z3H3_HUMAN": {
+            "record_ordinal_position__list": [
+                46
+            ],
+            "uniprotkb_id": "A0A0S2Z3H3_HUMAN",
+            "ko_id__list": [
+                "K05863"
+            ]
+        },
+        "A0A0S2Z3K3_HUMAN": {
+            "record_ordinal_position__list": [
+                47
+            ],
+            "uniprotkb_id": "A0A0S2Z3K3_HUMAN",
+            "ko_id__list": [
+                "K12386"
+            ]
+        },
+        "A0A0S2Z3L0_HUMAN": {
+            "record_ordinal_position__list": [
+                48
+            ],
+            "uniprotkb_id": "A0A0S2Z3L0_HUMAN",
+            "ko_id__list": [
+                "K03522"
+            ]
+        },
+        "A0A0S2Z3N4_HUMAN": {
+            "record_ordinal_position__list": [
+                49
+            ],
+            "uniprotkb_id": "A0A0S2Z3N4_HUMAN",
+            "ko_id__list": [
+                "K01593"
+            ]
+        },
+        "A0A0S2Z3P9_HUMAN": {
+            "record_ordinal_position__list": [
+                50
+            ],
+            "uniprotkb_id": "A0A0S2Z3P9_HUMAN",
+            "ko_id__list": [
+                "K09478"
+            ]
+        },
+        "A0A0S2Z410_HUMAN": {
+            "record_ordinal_position__list": [
+                51
+            ],
+            "uniprotkb_id": "A0A0S2Z410_HUMAN",
+            "ko_id__list": [
+                "K08683"
+            ]
+        },
+        "A0A0S2Z4C3_HUMAN": {
+            "record_ordinal_position__list": [
+                52
+            ],
+            "uniprotkb_id": "A0A0S2Z4C3_HUMAN",
+            "ko_id__list": [
+                "K01679"
+            ]
+        },
+        "A0A0S2Z4J1_HUMAN": {
+            "record_ordinal_position__list": [
+                53
+            ],
+            "uniprotkb_id": "A0A0S2Z4J1_HUMAN",
+            "ko_id__list": [
+                "K12405"
+            ]
+        },
+        "A0A0S2Z4K0_HUMAN": {
+            "record_ordinal_position__list": [
+                54
+            ],
+            "uniprotkb_id": "A0A0S2Z4K0_HUMAN",
+            "ko_id__list": [
+                "K13511"
+            ]
+        },
+        "A0A0S2Z4Q1_HUMAN": {
+            "record_ordinal_position__list": [
+                55
+            ],
+            "uniprotkb_id": "A0A0S2Z4Q1_HUMAN",
+            "ko_id__list": [
+                "K12565"
+            ]
+        },
+        "A0A0S2Z4T8_HUMAN": {
+            "record_ordinal_position__list": [
+                56
+            ],
+            "uniprotkb_id": "A0A0S2Z4T8_HUMAN",
+            "ko_id__list": [
+                "K01719"
+            ]
+        },
+        "A0A0S2Z502_HUMAN": {
+            "record_ordinal_position__list": [
+                57
+            ],
+            "uniprotkb_id": "A0A0S2Z502_HUMAN",
+            "ko_id__list": [
+                "K13867"
+            ]
+        },
+        "A0A0S2Z597_HUMAN": {
+            "record_ordinal_position__list": [
+                58
+            ],
+            "uniprotkb_id": "A0A0S2Z597_HUMAN",
+            "ko_id__list": [
+                "K00902"
+            ]
+        },
+        "A0A0S2Z5B3_HUMAN": {
+            "record_ordinal_position__list": [
+                59
+            ],
+            "uniprotkb_id": "A0A0S2Z5B3_HUMAN",
+            "ko_id__list": [
+                "K17725"
+            ]
+        },
+        "A0A0S2Z5D6_HUMAN": {
+            "record_ordinal_position__list": [
+                60
+            ],
+            "uniprotkb_id": "A0A0S2Z5D6_HUMAN",
+            "ko_id__list": [
+                "K13699"
+            ]
+        },
+        "A0A0S2Z5X1_HUMAN": {
+            "record_ordinal_position__list": [
+                61
+            ],
+            "uniprotkb_id": "A0A0S2Z5X1_HUMAN",
+            "ko_id__list": [
+                "K09539"
+            ]
+        },
+        "A0A0S2Z652_HUMAN": {
+            "record_ordinal_position__list": [
+                62
+            ],
+            "uniprotkb_id": "A0A0S2Z652_HUMAN",
+            "ko_id__list": [
+                "K20294"
+            ]
+        },
+        "A0A0S2Z693_HUMAN": {
+            "record_ordinal_position__list": [
+                63
+            ],
+            "uniprotkb_id": "A0A0S2Z693_HUMAN",
+            "ko_id__list": [
+                "K01968"
+            ]
+        },
+        "A0A140VJI7_HUMAN": {
+            "record_ordinal_position__list": [
+                64
+            ],
+            "uniprotkb_id": "A0A140VJI7_HUMAN",
+            "ko_id__list": [
+                "K23867"
+            ]
+        },
+        "A0A140VJJ9_HUMAN": {
+            "record_ordinal_position__list": [
+                65
+            ],
+            "uniprotkb_id": "A0A140VJJ9_HUMAN",
+            "ko_id__list": [
+                "K18592"
+            ]
+        },
+        "A0A140VJL3_HUMAN": {
+            "record_ordinal_position__list": [
+                66
+            ],
+            "uniprotkb_id": "A0A140VJL3_HUMAN",
+            "ko_id__list": [
+                "K00760"
+            ]
+        },
+        "A0A140VJQ4_HUMAN": {
+            "record_ordinal_position__list": [
+                67
+            ],
+            "uniprotkb_id": "A0A140VJQ4_HUMAN",
+            "ko_id__list": [
+                "K00819"
+            ]
+        },
+        "A0A140VJX1_HUMAN": {
+            "record_ordinal_position__list": [
+                68
+            ],
+            "uniprotkb_id": "A0A140VJX1_HUMAN",
+            "ko_id__list": [
+                "K00626"
+            ]
+        },
+        "A0A140VK13_HUMAN": {
+            "record_ordinal_position__list": [
+                69
+            ],
+            "uniprotkb_id": "A0A140VK13_HUMAN",
+            "ko_id__list": [
+                "K08766"
+            ]
+        },
+        "A0A140VK19_HUMAN": {
+            "record_ordinal_position__list": [
+                70
+            ],
+            "uniprotkb_id": "A0A140VK19_HUMAN",
+            "ko_id__list": [
+                "K00613"
+            ]
+        },
+        "A0A140VK24_HUMAN": {
+            "record_ordinal_position__list": [
+                71
+            ],
+            "uniprotkb_id": "A0A140VK24_HUMAN",
+            "ko_id__list": [
+                "K00650"
+            ]
+        },
+        "A0A140VK29_HUMAN": {
+            "record_ordinal_position__list": [
+                72
+            ],
+            "uniprotkb_id": "A0A140VK29_HUMAN",
+            "ko_id__list": [
+                "K01969"
+            ]
+        },
+        "A0A140VK76_HUMAN": {
+            "record_ordinal_position__list": [
+                73
+            ],
+            "uniprotkb_id": "A0A140VK76_HUMAN",
+            "ko_id__list": [
+                "K00022"
+            ]
+        },
+        "A0A140VKA9_HUMAN": {
+            "record_ordinal_position__list": [
+                74
+            ],
+            "uniprotkb_id": "A0A140VKA9_HUMAN",
+            "ko_id__list": [
+                "K00357"
+            ]
+        },
+        "A0A140VKB3_HUMAN": {
+            "record_ordinal_position__list": [
+                75
+            ],
+            "uniprotkb_id": "A0A140VKB3_HUMAN",
+            "ko_id__list": [
+                "K00167"
+            ]
+        },
+        "A0A1X7RBF0_HUMAN": {
+            "record_ordinal_position__list": [
+                76
+            ],
+            "uniprotkb_id": "A0A1X7RBF0_HUMAN",
+            "ko_id__list": [
+                "K02262"
+            ]
+        },
+        "A0A1X7RBF7_HUMAN": {
+            "record_ordinal_position__list": [
+                77
+            ],
+            "uniprotkb_id": "A0A1X7RBF7_HUMAN",
+            "ko_id__list": [
+                "K02261"
+            ]
+        },
+        "A0A1X7RBG2_HUMAN": {
+            "record_ordinal_position__list": [
+                78
+            ],
+            "uniprotkb_id": "A0A1X7RBG2_HUMAN",
+            "ko_id__list": [
+                "K02256"
+            ]
+        },
+        "A0A1X7RBN5_HUMAN": {
+            "record_ordinal_position__list": [
+                79
+            ],
+            "uniprotkb_id": "A0A1X7RBN5_HUMAN",
+            "ko_id__list": [
+                "K03881"
+            ]
+        },
+        "A0A1X7RC16_HUMAN": {
+            "record_ordinal_position__list": [
+                80
+            ],
+            "uniprotkb_id": "A0A1X7RC16_HUMAN",
+            "ko_id__list": [
+                "K03882"
+            ]
+        },
+        "A0A1X7RCR6_HUMAN": {
+            "record_ordinal_position__list": [
+                81
+            ],
+            "uniprotkb_id": "A0A1X7RCR6_HUMAN",
+            "ko_id__list": [
+                "K03884"
+            ]
+        },
+        "A0A2K4ZA02_HUMAN": {
+            "record_ordinal_position__list": [
+                82
+            ],
+            "uniprotkb_id": "A0A2K4ZA02_HUMAN",
+            "ko_id__list": [
+                "K03857"
+            ]
+        },
+        "A0A384MQX1_HUMAN": {
+            "record_ordinal_position__list": [
+                83
+            ],
+            "uniprotkb_id": "A0A384MQX1_HUMAN",
+            "ko_id__list": [
+                "K12641"
+            ]
+        },
+        "A0A384NPZ7_HUMAN": {
+            "record_ordinal_position__list": [
+                84
+            ],
+            "uniprotkb_id": "A0A384NPZ7_HUMAN",
+            "ko_id__list": [
+                "K07748"
+            ]
+        },
+        "A0A384NY14_HUMAN": {
+            "record_ordinal_position__list": [
+                85
+            ],
+            "uniprotkb_id": "A0A384NY14_HUMAN",
+            "ko_id__list": [
+                "K03331"
+            ]
+        },
+        "A0A384NY87_HUMAN": {
+            "record_ordinal_position__list": [
+                86
+            ],
+            "uniprotkb_id": "A0A384NY87_HUMAN",
+            "ko_id__list": [
+                "K08764"
+            ]
+        },
+        "A0PJA6_HUMAN": {
+            "record_ordinal_position__list": [
+                87
+            ],
+            "uniprotkb_id": "A0PJA6_HUMAN",
+            "ko_id__list": [
+                "K14736"
+            ]
+        },
+        "A1AT_HUMAN": {
+            "record_ordinal_position__list": [
+                88
+            ],
+            "uniprotkb_id": "A1AT_HUMAN",
+            "ko_id__list": [
+                "K03984"
+            ]
+        },
+        "A1LQE8_HUMAN": {
+            "record_ordinal_position__list": [
+                89
+            ],
+            "uniprotkb_id": "A1LQE8_HUMAN",
+            "ko_id__list": [
+                "K11529"
+            ]
+        },
+        "A1MA90_HUMAN": {
+            "record_ordinal_position__list": [
+                90
+            ],
+            "uniprotkb_id": "A1MA90_HUMAN",
+            "ko_id__list": [
+                "K17425"
+            ]
+        },
+        "A2RUM7_HUMAN": {
+            "record_ordinal_position__list": [
+                91
+            ],
+            "uniprotkb_id": "A2RUM7_HUMAN",
+            "ko_id__list": [
+                "K02932"
+            ]
+        },
+        "A4D0W4_HUMAN": {
+            "record_ordinal_position__list": [
+                92
+            ],
+            "uniprotkb_id": "A4D0W4_HUMAN",
+            "ko_id__list": [
+                "K14157"
+            ]
+        },
+        "A5PL27_HUMAN": {
+            "record_ordinal_position__list": [
+                93
+            ],
+            "uniprotkb_id": "A5PL27_HUMAN",
+            "ko_id__list": [
+                "K13624"
+            ]
+        },
+        "A5PLL0_HUMAN": {
+            "record_ordinal_position__list": [
+                94
+            ],
+            "uniprotkb_id": "A5PLL0_HUMAN",
+            "ko_id__list": [
+                "K19523"
+            ]
+        },
+        "A6H8L5_HUMAN": {
+            "record_ordinal_position__list": [
+                95
+            ],
+            "uniprotkb_id": "A6H8L5_HUMAN",
+            "ko_id__list": [
+                "K22283"
+            ]
+        },
+        "A8K0B6_HUMAN": {
+            "record_ordinal_position__list": [
+                96
+            ],
+            "uniprotkb_id": "A8K0B6_HUMAN",
+            "ko_id__list": [
+                "K12348"
+            ]
+        },
+        "A8K0S7_HUMAN": {
+            "record_ordinal_position__list": [
+                97
+            ],
+            "uniprotkb_id": "A8K0S7_HUMAN",
+            "ko_id__list": [
+                "K08171"
+            ]
+        },
+        "A8K432_HUMAN": {
+            "record_ordinal_position__list": [
+                98
+            ],
+            "uniprotkb_id": "A8K432_HUMAN",
+            "ko_id__list": [
+                "K04995"
+            ]
+        },
+        "A8K8H0_HUMAN": {
+            "record_ordinal_position__list": [
+                99
+            ],
+            "uniprotkb_id": "A8K8H0_HUMAN",
+            "ko_id__list": [
+                "K05018"
+            ]
+        },
+        "A8YXX4_HUMAN": {
+            "record_ordinal_position__list": [
+                100
+            ],
+            "uniprotkb_id": "A8YXX4_HUMAN",
+            "ko_id__list": [
+                "K01915"
+            ]
+        },
+        "AASS_HUMAN": {
+            "record_ordinal_position__list": [
+                101
+            ],
+            "uniprotkb_id": "AASS_HUMAN",
+            "ko_id__list": [
+                "K14157"
+            ]
+        },
+        "ABCA1_HUMAN": {
+            "record_ordinal_position__list": [
+                102
+            ],
+            "uniprotkb_id": "ABCA1_HUMAN",
+            "ko_id__list": [
+                "K05641"
+            ]
+        },
+        "ABCC8_HUMAN": {
+            "record_ordinal_position__list": [
+                103
+            ],
+            "uniprotkb_id": "ABCC8_HUMAN",
+            "ko_id__list": [
+                "K05032"
+            ]
+        },
+        "ABCD1_HUMAN": {
+            "record_ordinal_position__list": [
+                104
+            ],
+            "uniprotkb_id": "ABCD1_HUMAN",
+            "ko_id__list": [
+                "K05675"
+            ]
+        },
+        "ABHD5_HUMAN": {
+            "record_ordinal_position__list": [
+                105
+            ],
+            "uniprotkb_id": "ABHD5_HUMAN",
+            "ko_id__list": [
+                "K13699"
+            ]
+        },
+        "ACAD8_HUMAN": {
+            "record_ordinal_position__list": [
+                106
+            ],
+            "uniprotkb_id": "ACAD8_HUMAN",
+            "ko_id__list": [
+                "K11538"
+            ]
+        },
+        "ACDSB_HUMAN": {
+            "record_ordinal_position__list": [
+                107
+            ],
+            "uniprotkb_id": "ACDSB_HUMAN",
+            "ko_id__list": [
+                "K09478"
+            ]
+        },
+        "ADA_HUMAN": {
+            "record_ordinal_position__list": [
+                108
+            ],
+            "uniprotkb_id": "ADA_HUMAN",
+            "ko_id__list": [
+                "K01488"
+            ]
+        },
+        "ADT1_HUMAN": {
+            "record_ordinal_position__list": [
+                109
+            ],
+            "uniprotkb_id": "ADT1_HUMAN",
+            "ko_id__list": [
+                "K05863"
+            ]
+        },
+        "AGAL_HUMAN": {
+            "record_ordinal_position__list": [
+                110
+            ],
+            "uniprotkb_id": "AGAL_HUMAN",
+            "ko_id__list": [
+                "K01189"
+            ]
+        },
+        "AK1D1_HUMAN": {
+            "record_ordinal_position__list": [
+                111
+            ],
+            "uniprotkb_id": "AK1D1_HUMAN",
+            "ko_id__list": [
+                "K00251"
+            ]
+        },
+        "AL4A1_HUMAN": {
+            "record_ordinal_position__list": [
+                112
+            ],
+            "uniprotkb_id": "AL4A1_HUMAN",
+            "ko_id__list": [
+                "K00294"
+            ]
+        },
+        "ALDOA_HUMAN": {
+            "record_ordinal_position__list": [
+                113
+            ],
+            "uniprotkb_id": "ALDOA_HUMAN",
+            "ko_id__list": [
+                "K01623"
+            ]
+        },
+        "ALG2_HUMAN": {
+            "record_ordinal_position__list": [
+                114
+            ],
+            "uniprotkb_id": "ALG2_HUMAN",
+            "ko_id__list": [
+                "K03843"
+            ]
+        },
+        "ALG3_HUMAN": {
+            "record_ordinal_position__list": [
+                115
+            ],
+            "uniprotkb_id": "ALG3_HUMAN",
+            "ko_id__list": [
+                "K03845"
+            ]
+        },
+        "ALG6_HUMAN": {
+            "record_ordinal_position__list": [
+                116
+            ],
+            "uniprotkb_id": "ALG6_HUMAN",
+            "ko_id__list": [
+                "K03848"
+            ]
+        },
+        "ALG8_HUMAN": {
+            "record_ordinal_position__list": [
+                117
+            ],
+            "uniprotkb_id": "ALG8_HUMAN",
+            "ko_id__list": [
+                "K03849"
+            ]
+        },
+        "ALG9_HUMAN": {
+            "record_ordinal_position__list": [
+                118
+            ],
+            "uniprotkb_id": "ALG9_HUMAN",
+            "ko_id__list": [
+                "K03846"
+            ]
+        },
+        "AMNLS_HUMAN": {
+            "record_ordinal_position__list": [
+                119
+            ],
+            "uniprotkb_id": "AMNLS_HUMAN",
+            "ko_id__list": [
+                "K18259"
+            ]
+        },
+        "AMPD1_HUMAN": {
+            "record_ordinal_position__list": [
+                120
+            ],
+            "uniprotkb_id": "AMPD1_HUMAN",
+            "ko_id__list": [
+                "K01490"
+            ]
+        },
+        "ANKH_HUMAN": {
+            "record_ordinal_position__list": [
+                121
+            ],
+            "uniprotkb_id": "ANKH_HUMAN",
+            "ko_id__list": [
+                "K22734"
+            ]
+        },
+        "ANO5_HUMAN": {
+            "record_ordinal_position__list": [
+                122
+            ],
+            "uniprotkb_id": "ANO5_HUMAN",
+            "ko_id__list": [
+                "K19480"
+            ]
+        },
+        "AP2S1_HUMAN": {
+            "record_ordinal_position__list": [
+                123
+            ],
+            "uniprotkb_id": "AP2S1_HUMAN",
+            "ko_id__list": [
+                "K11827"
+            ]
+        },
+        "APOA5_HUMAN": {
+            "record_ordinal_position__list": [
+                124
+            ],
+            "uniprotkb_id": "APOA5_HUMAN",
+            "ko_id__list": [
+                "K09025"
+            ]
+        },
+        "APOB_HUMAN": {
+            "record_ordinal_position__list": [
+                125
+            ],
+            "uniprotkb_id": "APOB_HUMAN",
+            "ko_id__list": [
+                "K14462"
+            ]
+        },
+        "APOE_HUMAN": {
+            "record_ordinal_position__list": [
+                126
+            ],
+            "uniprotkb_id": "APOE_HUMAN",
+            "ko_id__list": [
+                "K04524"
+            ]
+        },
+        "APTX_HUMAN": {
+            "record_ordinal_position__list": [
+                127
+            ],
+            "uniprotkb_id": "APTX_HUMAN",
+            "ko_id__list": [
+                "K10863"
+            ]
+        },
+        "APT_HUMAN": {
+            "record_ordinal_position__list": [
+                128
+            ],
+            "uniprotkb_id": "APT_HUMAN",
+            "ko_id__list": [
+                "K00759"
+            ]
+        },
+        "ARGI1_HUMAN": {
+            "record_ordinal_position__list": [
+                129
+            ],
+            "uniprotkb_id": "ARGI1_HUMAN",
+            "ko_id__list": [
+                "K01476"
+            ]
+        },
+        "ARLY_HUMAN": {
+            "record_ordinal_position__list": [
+                130
+            ],
+            "uniprotkb_id": "ARLY_HUMAN",
+            "ko_id__list": [
+                "K01755"
+            ]
+        },
+        "ASAH1_HUMAN": {
+            "record_ordinal_position__list": [
+                131
+            ],
+            "uniprotkb_id": "ASAH1_HUMAN",
+            "ko_id__list": [
+                "K12348"
+            ]
+        },
+        "ASPG_HUMAN": {
+            "record_ordinal_position__list": [
+                132
+            ],
+            "uniprotkb_id": "ASPG_HUMAN",
+            "ko_id__list": [
+                "K01444"
+            ]
+        },
+        "ATM_HUMAN": {
+            "record_ordinal_position__list": [
+                133
+            ],
+            "uniprotkb_id": "ATM_HUMAN",
+            "ko_id__list": [
+                "K04728"
+            ]
+        },
+        "ATN1_HUMAN": {
+            "record_ordinal_position__list": [
+                134
+            ],
+            "uniprotkb_id": "ATN1_HUMAN",
+            "ko_id__list": [
+                "K05626"
+            ]
+        },
+        "ATP7A_HUMAN": {
+            "record_ordinal_position__list": [
+                135
+            ],
+            "uniprotkb_id": "ATP7A_HUMAN",
+            "ko_id__list": [
+                "K17686"
+            ]
+        },
+        "AUHM_HUMAN": {
+            "record_ordinal_position__list": [
+                136
+            ],
+            "uniprotkb_id": "AUHM_HUMAN",
+            "ko_id__list": [
+                "K05607"
+            ]
+        },
+        "B0YJ76_HUMAN": {
+            "record_ordinal_position__list": [
+                137
+            ],
+            "uniprotkb_id": "B0YJ76_HUMAN",
+            "ko_id__list": [
+                "K00287"
+            ]
+        },
+        "B0ZBD0_HUMAN": {
+            "record_ordinal_position__list": [
+                138
+            ],
+            "uniprotkb_id": "B0ZBD0_HUMAN",
+            "ko_id__list": [
+                "K02966"
+            ]
+        },
+        "B2R659_HUMAN": {
+            "record_ordinal_position__list": [
+                139
+            ],
+            "uniprotkb_id": "B2R659_HUMAN",
+            "ko_id__list": [
+                "K12405"
+            ]
+        },
+        "B2R761_HUMAN": {
+            "record_ordinal_position__list": [
+                140
+            ],
+            "uniprotkb_id": "B2R761_HUMAN",
+            "ko_id__list": [
+                "K08764"
+            ]
+        },
+        "B2RAQ8_HUMAN": {
+            "record_ordinal_position__list": [
+                141
+            ],
+            "uniprotkb_id": "B2RAQ8_HUMAN",
+            "ko_id__list": [
+                "K08765"
+            ]
+        },
+        "B2RDU6_HUMAN": {
+            "record_ordinal_position__list": [
+                142
+            ],
+            "uniprotkb_id": "B2RDU6_HUMAN",
+            "ko_id__list": [
+                "K00869"
+            ]
+        },
+        "B2RUU2_HUMAN": {
+            "record_ordinal_position__list": [
+                143
+            ],
+            "uniprotkb_id": "B2RUU2_HUMAN",
+            "ko_id__list": [
+                "K05641"
+            ]
+        },
+        "B3GL2_HUMAN": {
+            "record_ordinal_position__list": [
+                144
+            ],
+            "uniprotkb_id": "B3GL2_HUMAN",
+            "ko_id__list": [
+                "K09654"
+            ]
+        },
+        "B3GLT_HUMAN": {
+            "record_ordinal_position__list": [
+                145
+            ],
+            "uniprotkb_id": "B3GLT_HUMAN",
+            "ko_id__list": [
+                "K13675"
+            ]
+        },
+        "B3KQH0_HUMAN": {
+            "record_ordinal_position__list": [
+                146
+            ],
+            "uniprotkb_id": "B3KQH0_HUMAN",
+            "ko_id__list": [
+                "K15279"
+            ]
+        },
+        "B4DEQ0_HUMAN": {
+            "record_ordinal_position__list": [
+                147
+            ],
+            "uniprotkb_id": "B4DEQ0_HUMAN",
+            "ko_id__list": [
+                "K00311"
+            ]
+        },
+        "B4DH54_HUMAN": {
+            "record_ordinal_position__list": [
+                148
+            ],
+            "uniprotkb_id": "B4DH54_HUMAN",
+            "ko_id__list": [
+                "K00864"
+            ]
+        },
+        "B4DJF0_HUMAN": {
+            "record_ordinal_position__list": [
+                149
+            ],
+            "uniprotkb_id": "B4DJF0_HUMAN",
+            "ko_id__list": [
+                "K18703"
+            ]
+        },
+        "B4DRW0_HUMAN": {
+            "record_ordinal_position__list": [
+                150
+            ],
+            "uniprotkb_id": "B4DRW0_HUMAN",
+            "ko_id__list": [
+                "K17686"
+            ]
+        },
+        "B4E3K7_HUMAN": {
+            "record_ordinal_position__list": [
+                151
+            ],
+            "uniprotkb_id": "B4E3K7_HUMAN",
+            "ko_id__list": [
+                "K18204"
+            ]
+        },
+        "B4GA1_HUMAN": {
+            "record_ordinal_position__list": [
+                152
+            ],
+            "uniprotkb_id": "B4GA1_HUMAN",
+            "ko_id__list": [
+                "K21032"
+            ]
+        },
+        "B7XCW9_HUMAN": {
+            "record_ordinal_position__list": [
+                153
+            ],
+            "uniprotkb_id": "B7XCW9_HUMAN",
+            "ko_id__list": [
+                "K05641"
+            ]
+        },
+        "BCS1_HUMAN": {
+            "record_ordinal_position__list": [
+                154
+            ],
+            "uniprotkb_id": "BCS1_HUMAN",
+            "ko_id__list": [
+                "K08900"
+            ]
+        },
+        "BGAL_HUMAN": {
+            "record_ordinal_position__list": [
+                155
+            ],
+            "uniprotkb_id": "BGAL_HUMAN",
+            "ko_id__list": [
+                "K12309"
+            ]
+        },
+        "BSND_HUMAN": {
+            "record_ordinal_position__list": [
+                156
+            ],
+            "uniprotkb_id": "BSND_HUMAN",
+            "ko_id__list": [
+                "K19331"
+            ]
+        },
+        "BTD_HUMAN": {
+            "record_ordinal_position__list": [
+                157
+            ],
+            "uniprotkb_id": "BTD_HUMAN",
+            "ko_id__list": [
+                "K01435"
+            ]
+        },
+        "C11B2_HUMAN": {
+            "record_ordinal_position__list": [
+                158
+            ],
+            "uniprotkb_id": "C11B2_HUMAN",
+            "ko_id__list": [
+                "K07433"
+            ]
+        },
+        "CAN3_HUMAN": {
+            "record_ordinal_position__list": [
+                159
+            ],
+            "uniprotkb_id": "CAN3_HUMAN",
+            "ko_id__list": [
+                "K08573"
+            ]
+        },
+        "CASR_HUMAN": {
+            "record_ordinal_position__list": [
+                160
+            ],
+            "uniprotkb_id": "CASR_HUMAN",
+            "ko_id__list": [
+                "K04612"
+            ]
+        },
+        "CATC_HUMAN": {
+            "record_ordinal_position__list": [
+                161
+            ],
+            "uniprotkb_id": "CATC_HUMAN",
+            "ko_id__list": [
+                "K01275"
+            ]
+        },
+        "CBSL_HUMAN": {
+            "record_ordinal_position__list": [
+                162
+            ],
+            "uniprotkb_id": "CBSL_HUMAN",
+            "ko_id__list": [
+                "K01697"
+            ]
+        },
+        "CBS_HUMAN": {
+            "record_ordinal_position__list": [
+                163
+            ],
+            "uniprotkb_id": "CBS_HUMAN",
+            "ko_id__list": [
+                "K01697"
+            ]
+        },
+        "CDAN1_HUMAN": {
+            "record_ordinal_position__list": [
+                164
+            ],
+            "uniprotkb_id": "CDAN1_HUMAN",
+            "ko_id__list": [
+                "K19531"
+            ]
+        },
+        "CERU_HUMAN": {
+            "record_ordinal_position__list": [
+                165
+            ],
+            "uniprotkb_id": "CERU_HUMAN",
+            "ko_id__list": [
+                "K13624"
+            ]
+        },
+        "CGL_HUMAN": {
+            "record_ordinal_position__list": [
+                166
+            ],
+            "uniprotkb_id": "CGL_HUMAN",
+            "ko_id__list": [
+                "K01758"
+            ]
+        },
+        "CHKB_HUMAN": {
+            "record_ordinal_position__list": [
+                167
+            ],
+            "uniprotkb_id": "CHKB_HUMAN",
+            "ko_id__list": [
+                "K14156"
+            ]
+        },
+        "CHSTE_HUMAN": {
+            "record_ordinal_position__list": [
+                168
+            ],
+            "uniprotkb_id": "CHSTE_HUMAN",
+            "ko_id__list": [
+                "K08105"
+            ]
+        },
+        "CLCKB_HUMAN": {
+            "record_ordinal_position__list": [
+                169
+            ],
+            "uniprotkb_id": "CLCKB_HUMAN",
+            "ko_id__list": [
+                "K05018"
+            ]
+        },
+        "CLN3_HUMAN": {
+            "record_ordinal_position__list": [
+                170
+            ],
+            "uniprotkb_id": "CLN3_HUMAN",
+            "ko_id__list": [
+                "K12389"
+            ]
+        },
+        "CLN6_HUMAN": {
+            "record_ordinal_position__list": [
+                171
+            ],
+            "uniprotkb_id": "CLN6_HUMAN",
+            "ko_id__list": [
+                "K12359"
+            ]
+        },
+        "CLPP_HUMAN": {
+            "record_ordinal_position__list": [
+                172
+            ],
+            "uniprotkb_id": "CLPP_HUMAN",
+            "ko_id__list": [
+                "K01358"
+            ]
+        },
+        "CMC2_HUMAN": {
+            "record_ordinal_position__list": [
+                173
+            ],
+            "uniprotkb_id": "CMC2_HUMAN",
+            "ko_id__list": [
+                "K15105"
+            ]
+        },
+        "COG1_HUMAN": {
+            "record_ordinal_position__list": [
+                174
+            ],
+            "uniprotkb_id": "COG1_HUMAN",
+            "ko_id__list": [
+                "K20288"
+            ]
+        },
+        "COG4_HUMAN": {
+            "record_ordinal_position__list": [
+                175
+            ],
+            "uniprotkb_id": "COG4_HUMAN",
+            "ko_id__list": [
+                "K20291"
+            ]
+        },
+        "COG5_HUMAN": {
+            "record_ordinal_position__list": [
+                176
+            ],
+            "uniprotkb_id": "COG5_HUMAN",
+            "ko_id__list": [
+                "K20292"
+            ]
+        },
+        "COG7_HUMAN": {
+            "record_ordinal_position__list": [
+                177
+            ],
+            "uniprotkb_id": "COG7_HUMAN",
+            "ko_id__list": [
+                "K20294"
+            ]
+        },
+        "COG8_HUMAN": {
+            "record_ordinal_position__list": [
+                178
+            ],
+            "uniprotkb_id": "COG8_HUMAN",
+            "ko_id__list": [
+                "K20295"
+            ]
+        },
+        "COQ8A_HUMAN": {
+            "record_ordinal_position__list": [
+                179
+            ],
+            "uniprotkb_id": "COQ8A_HUMAN",
+            "ko_id__list": [
+                "K08869"
+            ]
+        },
+        "COX1_HUMAN": {
+            "record_ordinal_position__list": [
+                180
+            ],
+            "uniprotkb_id": "COX1_HUMAN",
+            "ko_id__list": [
+                "K02256"
+            ]
+        },
+        "COX2_HUMAN": {
+            "record_ordinal_position__list": [
+                181
+            ],
+            "uniprotkb_id": "COX2_HUMAN",
+            "ko_id__list": [
+                "K02261"
+            ]
+        },
+        "COX3_HUMAN": {
+            "record_ordinal_position__list": [
+                182
+            ],
+            "uniprotkb_id": "COX3_HUMAN",
+            "ko_id__list": [
+                "K02262"
+            ]
+        },
+        "CP17A_HUMAN": {
+            "record_ordinal_position__list": [
+                183
+            ],
+            "uniprotkb_id": "CP17A_HUMAN",
+            "ko_id__list": [
+                "K00512"
+            ]
+        },
+        "CP21A_HUMAN": {
+            "record_ordinal_position__list": [
+                184
+            ],
+            "uniprotkb_id": "CP21A_HUMAN",
+            "ko_id__list": [
+                "K00513"
+            ]
+        },
+        "CP27A_HUMAN": {
+            "record_ordinal_position__list": [
+                185
+            ],
+            "uniprotkb_id": "CP27A_HUMAN",
+            "ko_id__list": [
+                "K00488"
+            ]
+        },
+        "CPSM_HUMAN": {
+            "record_ordinal_position__list": [
+                186
+            ],
+            "uniprotkb_id": "CPSM_HUMAN",
+            "ko_id__list": [
+                "K01948"
+            ]
+        },
+        "CPT1A_HUMAN": {
+            "record_ordinal_position__list": [
+                187
+            ],
+            "uniprotkb_id": "CPT1A_HUMAN",
+            "ko_id__list": [
+                "K08765"
+            ]
+        },
+        "CPT1B_HUMAN": {
+            "record_ordinal_position__list": [
+                188
+            ],
+            "uniprotkb_id": "CPT1B_HUMAN",
+            "ko_id__list": [
+                "K19523"
+            ]
+        },
+        "CPT2_HUMAN": {
+            "record_ordinal_position__list": [
+                189
+            ],
+            "uniprotkb_id": "CPT2_HUMAN",
+            "ko_id__list": [
+                "K08766"
+            ]
+        },
+        "CTNS_HUMAN": {
+            "record_ordinal_position__list": [
+                190
+            ],
+            "uniprotkb_id": "CTNS_HUMAN",
+            "ko_id__list": [
+                "K12386"
+            ]
+        },
+        "CUBN_HUMAN": {
+            "record_ordinal_position__list": [
+                191
+            ],
+            "uniprotkb_id": "CUBN_HUMAN",
+            "ko_id__list": [
+                "K14616"
+            ]
+        },
+        "CYB_HUMAN": {
+            "record_ordinal_position__list": [
+                192
+            ],
+            "uniprotkb_id": "CYB_HUMAN",
+            "ko_id__list": [
+                "K00412"
+            ]
+        },
+        "D2HDH_HUMAN": {
+            "record_ordinal_position__list": [
+                193
+            ],
+            "uniprotkb_id": "D2HDH_HUMAN",
+            "ko_id__list": [
+                "K18204"
+            ]
+        },
+        "DAG1_HUMAN": {
+            "record_ordinal_position__list": [
+                194
+            ],
+            "uniprotkb_id": "DAG1_HUMAN",
+            "ko_id__list": [
+                "K06265"
+            ]
+        },
+        "DCMC_HUMAN": {
+            "record_ordinal_position__list": [
+                195
+            ],
+            "uniprotkb_id": "DCMC_HUMAN",
+            "ko_id__list": [
+                "K01578"
+            ]
+        },
+        "DCUP_HUMAN": {
+            "record_ordinal_position__list": [
+                196
+            ],
+            "uniprotkb_id": "DCUP_HUMAN",
+            "ko_id__list": [
+                "K01599"
+            ]
+        },
+        "DCXR_HUMAN": {
+            "record_ordinal_position__list": [
+                197
+            ],
+            "uniprotkb_id": "DCXR_HUMAN",
+            "ko_id__list": [
+                "K03331"
+            ]
+        },
+        "DDC_HUMAN": {
+            "record_ordinal_position__list": [
+                198
+            ],
+            "uniprotkb_id": "DDC_HUMAN",
+            "ko_id__list": [
+                "K01593"
+            ]
+        },
+        "DGUOK_HUMAN": {
+            "record_ordinal_position__list": [
+                199
+            ],
+            "uniprotkb_id": "DGUOK_HUMAN",
+            "ko_id__list": [
+                "K00904"
+            ]
+        },
+        "DHB3_HUMAN": {
+            "record_ordinal_position__list": [
+                200
+            ],
+            "uniprotkb_id": "DHB3_HUMAN",
+            "ko_id__list": [
+                "K10207"
+            ]
+        },
+        "DHB4_HUMAN": {
+            "record_ordinal_position__list": [
+                201
+            ],
+            "uniprotkb_id": "DHB4_HUMAN",
+            "ko_id__list": [
+                "K12405"
+            ]
+        },
+        "DHC24_HUMAN": {
+            "record_ordinal_position__list": [
+                202
+            ],
+            "uniprotkb_id": "DHC24_HUMAN",
+            "ko_id__list": [
+                "K09828"
+            ]
+        },
+        "DHE3_HUMAN": {
+            "record_ordinal_position__list": [
+                203
+            ],
+            "uniprotkb_id": "DHE3_HUMAN",
+            "ko_id__list": [
+                "K00261"
+            ]
+        },
+        "DHPR_HUMAN": {
+            "record_ordinal_position__list": [
+                204
+            ],
+            "uniprotkb_id": "DHPR_HUMAN",
+            "ko_id__list": [
+                "K00357"
+            ]
+        },
+        "DLDH_HUMAN": {
+            "record_ordinal_position__list": [
+                205
+            ],
+            "uniprotkb_id": "DLDH_HUMAN",
+            "ko_id__list": [
+                "K00382"
+            ]
+        },
+        "DNA2_HUMAN": {
+            "record_ordinal_position__list": [
+                206
+            ],
+            "uniprotkb_id": "DNA2_HUMAN",
+            "ko_id__list": [
+                "K10742"
+            ]
+        },
+        "DNJC5_HUMAN": {
+            "record_ordinal_position__list": [
+                207
+            ],
+            "uniprotkb_id": "DNJC5_HUMAN",
+            "ko_id__list": [
+                "K09525"
+            ]
+        },
+        "DOLK_HUMAN": {
+            "record_ordinal_position__list": [
+                208
+            ],
+            "uniprotkb_id": "DOLK_HUMAN",
+            "ko_id__list": [
+                "K00902"
+            ]
+        },
+        "DOPO_HUMAN": {
+            "record_ordinal_position__list": [
+                209
+            ],
+            "uniprotkb_id": "DOPO_HUMAN",
+            "ko_id__list": [
+                "K00503"
+            ]
+        },
+        "DPM2_HUMAN": {
+            "record_ordinal_position__list": [
+                210
+            ],
+            "uniprotkb_id": "DPM2_HUMAN",
+            "ko_id__list": [
+                "K09658"
+            ]
+        },
+        "DPM3_HUMAN": {
+            "record_ordinal_position__list": [
+                211
+            ],
+            "uniprotkb_id": "DPM3_HUMAN",
+            "ko_id__list": [
+                "K09659"
+            ]
+        },
+        "DPOG1_HUMAN": {
+            "record_ordinal_position__list": [
+                212
+            ],
+            "uniprotkb_id": "DPOG1_HUMAN",
+            "ko_id__list": [
+                "K02332"
+            ]
+        },
+        "DPYD_HUMAN": {
+            "record_ordinal_position__list": [
+                213
+            ],
+            "uniprotkb_id": "DPYD_HUMAN",
+            "ko_id__list": [
+                "K00207"
+            ]
+        },
+        "DPYS_HUMAN": {
+            "record_ordinal_position__list": [
+                214
+            ],
+            "uniprotkb_id": "DPYS_HUMAN",
+            "ko_id__list": [
+                "K01464"
+            ]
+        },
+        "DYR_HUMAN": {
+            "record_ordinal_position__list": [
+                215
+            ],
+            "uniprotkb_id": "DYR_HUMAN",
+            "ko_id__list": [
+                "K00287"
+            ]
+        },
+        "DYSF_HUMAN": {
+            "record_ordinal_position__list": [
+                216
+            ],
+            "uniprotkb_id": "DYSF_HUMAN",
+            "ko_id__list": [
+                "K18261"
+            ]
+        },
+        "E5KN15_HUMAN": {
+            "record_ordinal_position__list": [
+                217
+            ],
+            "uniprotkb_id": "E5KN15_HUMAN",
+            "ko_id__list": [
+                "K03469"
+            ]
+        },
+        "E5KNU5_HUMAN": {
+            "record_ordinal_position__list": [
+                218
+            ],
+            "uniprotkb_id": "E5KNU5_HUMAN",
+            "ko_id__list": [
+                "K02332"
+            ]
+        },
+        "E5KNY5_HUMAN": {
+            "record_ordinal_position__list": [
+                219
+            ],
+            "uniprotkb_id": "E5KNY5_HUMAN",
+            "ko_id__list": [
+                "K17964"
+            ]
+        },
+        "E5KS60_HUMAN": {
+            "record_ordinal_position__list": [
+                220
+            ],
+            "uniprotkb_id": "E5KS60_HUMAN",
+            "ko_id__list": [
+                "K01900"
+            ]
+        },
+        "E5KSL5_HUMAN": {
+            "record_ordinal_position__list": [
+                221
+            ],
+            "uniprotkb_id": "E5KSL5_HUMAN",
+            "ko_id__list": [
+                "K00904"
+            ]
+        },
+        "E5KSY5_HUMAN": {
+            "record_ordinal_position__list": [
+                222
+            ],
+            "uniprotkb_id": "E5KSY5_HUMAN",
+            "ko_id__list": [
+                "K17680"
+            ]
+        },
+        "E9KL23_HUMAN": {
+            "record_ordinal_position__list": [
+                223
+            ],
+            "uniprotkb_id": "E9KL23_HUMAN",
+            "ko_id__list": [
+                "K03984"
+            ]
+        },
+        "E9KL44_HUMAN": {
+            "record_ordinal_position__list": [
+                224
+            ],
+            "uniprotkb_id": "E9KL44_HUMAN",
+            "ko_id__list": [
+                "K07515"
+            ]
+        },
+        "E9KL48_HUMAN": {
+            "record_ordinal_position__list": [
+                225
+            ],
+            "uniprotkb_id": "E9KL48_HUMAN",
+            "ko_id__list": [
+                "K00261"
+            ]
+        },
+        "EAA3_HUMAN": {
+            "record_ordinal_position__list": [
+                226
+            ],
+            "uniprotkb_id": "EAA3_HUMAN",
+            "ko_id__list": [
+                "K05612"
+            ]
+        },
+        "ECHA_HUMAN": {
+            "record_ordinal_position__list": [
+                227
+            ],
+            "uniprotkb_id": "ECHA_HUMAN",
+            "ko_id__list": [
+                "K07515"
+            ]
+        },
+        "ECM1_HUMAN": {
+            "record_ordinal_position__list": [
+                228
+            ],
+            "uniprotkb_id": "ECM1_HUMAN",
+            "ko_id__list": [
+                "K23867"
+            ]
+        },
+        "ENOB_HUMAN": {
+            "record_ordinal_position__list": [
+                229
+            ],
+            "uniprotkb_id": "ENOB_HUMAN",
+            "ko_id__list": [
+                "K01689"
+            ]
+        },
+        "ERAL1_HUMAN": {
+            "record_ordinal_position__list": [
+                230
+            ],
+            "uniprotkb_id": "ERAL1_HUMAN",
+            "ko_id__list": [
+                "K03595"
+            ]
+        },
+        "ETFA_HUMAN": {
+            "record_ordinal_position__list": [
+                231
+            ],
+            "uniprotkb_id": "ETFA_HUMAN",
+            "ko_id__list": [
+                "K03522"
+            ]
+        },
+        "ETFB_HUMAN": {
+            "record_ordinal_position__list": [
+                232
+            ],
+            "uniprotkb_id": "ETFB_HUMAN",
+            "ko_id__list": [
+                "K03521"
+            ]
+        },
+        "ETFD_HUMAN": {
+            "record_ordinal_position__list": [
+                233
+            ],
+            "uniprotkb_id": "ETFD_HUMAN",
+            "ko_id__list": [
+                "K00311"
+            ]
+        },
+        "ETHE1_HUMAN": {
+            "record_ordinal_position__list": [
+                234
+            ],
+            "uniprotkb_id": "ETHE1_HUMAN",
+            "ko_id__list": [
+                "K17725"
+            ]
+        },
+        "F16P1_HUMAN": {
+            "record_ordinal_position__list": [
+                235
+            ],
+            "uniprotkb_id": "F16P1_HUMAN",
+            "ko_id__list": [
+                "K03841"
+            ]
+        },
+        "FA2H_HUMAN": {
+            "record_ordinal_position__list": [
+                236
+            ],
+            "uniprotkb_id": "FA2H_HUMAN",
+            "ko_id__list": [
+                "K19703"
+            ]
+        },
+        "FANCM_HUMAN": {
+            "record_ordinal_position__list": [
+                237
+            ],
+            "uniprotkb_id": "FANCM_HUMAN",
+            "ko_id__list": [
+                "K10896"
+            ]
+        },
+        "FKRP_HUMAN": {
+            "record_ordinal_position__list": [
+                238
+            ],
+            "uniprotkb_id": "FKRP_HUMAN",
+            "ko_id__list": [
+                "K19873"
+            ]
+        },
+        "FKTN_HUMAN": {
+            "record_ordinal_position__list": [
+                239
+            ],
+            "uniprotkb_id": "FKTN_HUMAN",
+            "ko_id__list": [
+                "K19872"
+            ]
+        },
+        "FOLR1_HUMAN": {
+            "record_ordinal_position__list": [
+                240
+            ],
+            "uniprotkb_id": "FOLR1_HUMAN",
+            "ko_id__list": [
+                "K13649"
+            ]
+        },
+        "FRDA_HUMAN": {
+            "record_ordinal_position__list": [
+                241
+            ],
+            "uniprotkb_id": "FRDA_HUMAN",
+            "ko_id__list": [
+                "K19054"
+            ]
+        },
+        "FTCD_HUMAN": {
+            "record_ordinal_position__list": [
+                242
+            ],
+            "uniprotkb_id": "FTCD_HUMAN",
+            "ko_id__list": [
+                "K13990"
+            ]
+        },
+        "FUCO_HUMAN": {
+            "record_ordinal_position__list": [
+                243
+            ],
+            "uniprotkb_id": "FUCO_HUMAN",
+            "ko_id__list": [
+                "K01206"
+            ]
+        },
+        "FUCT1_HUMAN": {
+            "record_ordinal_position__list": [
+                244
+            ],
+            "uniprotkb_id": "FUCT1_HUMAN",
+            "ko_id__list": [
+                "K15279"
+            ]
+        },
+        "FUMH_HUMAN": {
+            "record_ordinal_position__list": [
+                245
+            ],
+            "uniprotkb_id": "FUMH_HUMAN",
+            "ko_id__list": [
+                "K01679"
+            ]
+        },
+        "G6PC_HUMAN": {
+            "record_ordinal_position__list": [
+                246
+            ],
+            "uniprotkb_id": "G6PC_HUMAN",
+            "ko_id__list": [
+                "K01084"
+            ]
+        },
+        "G6PT1_HUMAN": {
+            "record_ordinal_position__list": [
+                247
+            ],
+            "uniprotkb_id": "G6PT1_HUMAN",
+            "ko_id__list": [
+                "K08171"
+            ]
+        },
+        "GABT_HUMAN": {
+            "record_ordinal_position__list": [
+                248
+            ],
+            "uniprotkb_id": "GABT_HUMAN",
+            "ko_id__list": [
+                "K13524"
+            ]
+        },
+        "GALK1_HUMAN": {
+            "record_ordinal_position__list": [
+                249
+            ],
+            "uniprotkb_id": "GALK1_HUMAN",
+            "ko_id__list": [
+                "K00849"
+            ]
+        },
+        "GAMT_HUMAN": {
+            "record_ordinal_position__list": [
+                250
+            ],
+            "uniprotkb_id": "GAMT_HUMAN",
+            "ko_id__list": [
+                "K00542"
+            ]
+        },
+        "GATA1_HUMAN": {
+            "record_ordinal_position__list": [
+                251
+            ],
+            "uniprotkb_id": "GATA1_HUMAN",
+            "ko_id__list": [
+                "K09182"
+            ]
+        },
+        "GATM_HUMAN": {
+            "record_ordinal_position__list": [
+                252
+            ],
+            "uniprotkb_id": "GATM_HUMAN",
+            "ko_id__list": [
+                "K00613"
+            ]
+        },
+        "GCDH_HUMAN": {
+            "record_ordinal_position__list": [
+                253
+            ],
+            "uniprotkb_id": "GCDH_HUMAN",
+            "ko_id__list": [
+                "K00252"
+            ]
+        },
+        "GCH1_HUMAN": {
+            "record_ordinal_position__list": [
+                254
+            ],
+            "uniprotkb_id": "GCH1_HUMAN",
+            "ko_id__list": [
+                "K01495"
+            ]
+        },
+        "GDE_HUMAN": {
+            "record_ordinal_position__list": [
+                255
+            ],
+            "uniprotkb_id": "GDE_HUMAN",
+            "ko_id__list": [
+                "K01196"
+            ]
+        },
+        "GGT1_HUMAN": {
+            "record_ordinal_position__list": [
+                256
+            ],
+            "uniprotkb_id": "GGT1_HUMAN",
+            "ko_id__list": [
+                "K18592"
+            ]
+        },
+        "GLCM_HUMAN": {
+            "record_ordinal_position__list": [
+                257
+            ],
+            "uniprotkb_id": "GLCM_HUMAN",
+            "ko_id__list": [
+                "K01201"
+            ]
+        },
+        "GLCNE_HUMAN": {
+            "record_ordinal_position__list": [
+                258
+            ],
+            "uniprotkb_id": "GLCNE_HUMAN",
+            "ko_id__list": [
+                "K12409"
+            ]
+        },
+        "GLCTK_HUMAN": {
+            "record_ordinal_position__list": [
+                259
+            ],
+            "uniprotkb_id": "GLCTK_HUMAN",
+            "ko_id__list": [
+                "K11529"
+            ]
+        },
+        "GLGB_HUMAN": {
+            "record_ordinal_position__list": [
+                260
+            ],
+            "uniprotkb_id": "GLGB_HUMAN",
+            "ko_id__list": [
+                "K00700"
+            ]
+        },
+        "GLNA_HUMAN": {
+            "record_ordinal_position__list": [
+                261
+            ],
+            "uniprotkb_id": "GLNA_HUMAN",
+            "ko_id__list": [
+                "K01915"
+            ]
+        },
+        "GLPK_HUMAN": {
+            "record_ordinal_position__list": [
+                262
+            ],
+            "uniprotkb_id": "GLPK_HUMAN",
+            "ko_id__list": [
+                "K00864"
+            ]
+        },
+        "GNA11_HUMAN": {
+            "record_ordinal_position__list": [
+                263
+            ],
+            "uniprotkb_id": "GNA11_HUMAN",
+            "ko_id__list": [
+                "K04635"
+            ]
+        },
+        "GNMT_HUMAN": {
+            "record_ordinal_position__list": [
+                264
+            ],
+            "uniprotkb_id": "GNMT_HUMAN",
+            "ko_id__list": [
+                "K00552"
+            ]
+        },
+        "GNPTA_HUMAN": {
+            "record_ordinal_position__list": [
+                265
+            ],
+            "uniprotkb_id": "GNPTA_HUMAN",
+            "ko_id__list": [
+                "K08239"
+            ]
+        },
+        "GSHB_HUMAN": {
+            "record_ordinal_position__list": [
+                266
+            ],
+            "uniprotkb_id": "GSHB_HUMAN",
+            "ko_id__list": [
+                "K21456"
+            ]
+        },
+        "GTR1_HUMAN": {
+            "record_ordinal_position__list": [
+                267
+            ],
+            "uniprotkb_id": "GTR1_HUMAN",
+            "ko_id__list": [
+                "K07299"
+            ]
+        },
+        "GTR2_HUMAN": {
+            "record_ordinal_position__list": [
+                268
+            ],
+            "uniprotkb_id": "GTR2_HUMAN",
+            "ko_id__list": [
+                "K07593"
+            ]
+        },
+        "GYS2_HUMAN": {
+            "record_ordinal_position__list": [
+                269
+            ],
+            "uniprotkb_id": "GYS2_HUMAN",
+            "ko_id__list": [
+                "K00693"
+            ]
+        },
+        "H9EC08_HUMAN": {
+            "record_ordinal_position__list": [
+                270
+            ],
+            "uniprotkb_id": "H9EC08_HUMAN",
+            "ko_id__list": [
+                "K03881"
+            ]
+        },
+        "HCD2_HUMAN": {
+            "record_ordinal_position__list": [
+                271
+            ],
+            "uniprotkb_id": "HCD2_HUMAN",
+            "ko_id__list": [
+                "K08683"
+            ]
+        },
+        "HCDH_HUMAN": {
+            "record_ordinal_position__list": [
+                272
+            ],
+            "uniprotkb_id": "HCDH_HUMAN",
+            "ko_id__list": [
+                "K00022"
+            ]
+        },
+        "HEM3_HUMAN": {
+            "record_ordinal_position__list": [
+                273
+            ],
+            "uniprotkb_id": "HEM3_HUMAN",
+            "ko_id__list": [
+                "K01749"
+            ]
+        },
+        "HEM4_HUMAN": {
+            "record_ordinal_position__list": [
+                274
+            ],
+            "uniprotkb_id": "HEM4_HUMAN",
+            "ko_id__list": [
+                "K01719"
+            ]
+        },
+        "HEMH_HUMAN": {
+            "record_ordinal_position__list": [
+                275
+            ],
+            "uniprotkb_id": "HEMH_HUMAN",
+            "ko_id__list": [
+                "K01772"
+            ]
+        },
+        "HEPC_HUMAN": {
+            "record_ordinal_position__list": [
+                276
+            ],
+            "uniprotkb_id": "HEPC_HUMAN",
+            "ko_id__list": [
+                "K23106"
+            ]
+        },
+        "HGD_HUMAN": {
+            "record_ordinal_position__list": [
+                277
+            ],
+            "uniprotkb_id": "HGD_HUMAN",
+            "ko_id__list": [
+                "K00451"
+            ]
+        },
+        "HMGCL_HUMAN": {
+            "record_ordinal_position__list": [
+                278
+            ],
+            "uniprotkb_id": "HMGCL_HUMAN",
+            "ko_id__list": [
+                "K01640"
+            ]
+        },
+        "HPPD_HUMAN": {
+            "record_ordinal_position__list": [
+                279
+            ],
+            "uniprotkb_id": "HPPD_HUMAN",
+            "ko_id__list": [
+                "K00457"
+            ]
+        },
+        "HPRT_HUMAN": {
+            "record_ordinal_position__list": [
+                280
+            ],
+            "uniprotkb_id": "HPRT_HUMAN",
+            "ko_id__list": [
+                "K00760"
+            ]
+        },
+        "HXK4_HUMAN": {
+            "record_ordinal_position__list": [
+                281
+            ],
+            "uniprotkb_id": "HXK4_HUMAN",
+            "ko_id__list": [
+                "K12407"
+            ]
+        },
+        "I4AY87_HUMAN": {
+            "record_ordinal_position__list": [
+                282
+            ],
+            "uniprotkb_id": "I4AY87_HUMAN",
+            "ko_id__list": [
+                "K07253"
+            ]
+        },
+        "IDUA_HUMAN": {
+            "record_ordinal_position__list": [
+                283
+            ],
+            "uniprotkb_id": "IDUA_HUMAN",
+            "ko_id__list": [
+                "K01217"
+            ]
+        },
+        "IF_HUMAN": {
+            "record_ordinal_position__list": [
+                284
+            ],
+            "uniprotkb_id": "IF_HUMAN",
+            "ko_id__list": [
+                "K14615"
+            ]
+        },
+        "IGF1_HUMAN": {
+            "record_ordinal_position__list": [
+                285
+            ],
+            "uniprotkb_id": "IGF1_HUMAN",
+            "ko_id__list": [
+                "K05459"
+            ]
+        },
+        "IVD_HUMAN": {
+            "record_ordinal_position__list": [
+                286
+            ],
+            "uniprotkb_id": "IVD_HUMAN",
+            "ko_id__list": [
+                "K00253"
+            ]
+        },
+        "J3KNI1_HUMAN": {
+            "record_ordinal_position__list": [
+                287
+            ],
+            "uniprotkb_id": "J3KNI1_HUMAN",
+            "ko_id__list": [
+                "K20291"
+            ]
+        },
+        "K2C5_HUMAN": {
+            "record_ordinal_position__list": [
+                288
+            ],
+            "uniprotkb_id": "K2C5_HUMAN",
+            "ko_id__list": [
+                "K07605"
+            ]
+        },
+        "KCNJ1_HUMAN": {
+            "record_ordinal_position__list": [
+                289
+            ],
+            "uniprotkb_id": "KCNJ1_HUMAN",
+            "ko_id__list": [
+                "K04995"
+            ]
+        },
+        "KIME_HUMAN": {
+            "record_ordinal_position__list": [
+                290
+            ],
+            "uniprotkb_id": "KIME_HUMAN",
+            "ko_id__list": [
+                "K00869"
+            ]
+        },
+        "KITM_HUMAN": {
+            "record_ordinal_position__list": [
+                291
+            ],
+            "uniprotkb_id": "KITM_HUMAN",
+            "ko_id__list": [
+                "K00857"
+            ]
+        },
+        "KPB1_HUMAN": {
+            "record_ordinal_position__list": [
+                292
+            ],
+            "uniprotkb_id": "KPB1_HUMAN",
+            "ko_id__list": [
+                "K07190"
+            ]
+        },
+        "KPB2_HUMAN": {
+            "record_ordinal_position__list": [
+                293
+            ],
+            "uniprotkb_id": "KPB2_HUMAN",
+            "ko_id__list": [
+                "K07190"
+            ]
+        },
+        "KPBB_HUMAN": {
+            "record_ordinal_position__list": [
+                294
+            ],
+            "uniprotkb_id": "KPBB_HUMAN",
+            "ko_id__list": [
+                "K07190"
+            ]
+        },
+        "KYNU_HUMAN": {
+            "record_ordinal_position__list": [
+                295
+            ],
+            "uniprotkb_id": "KYNU_HUMAN",
+            "ko_id__list": [
+                "K01556"
+            ]
+        },
+        "L2HDH_HUMAN": {
+            "record_ordinal_position__list": [
+                296
+            ],
+            "uniprotkb_id": "L2HDH_HUMAN",
+            "ko_id__list": [
+                "K00109"
+            ]
+        },
+        "LARG1_HUMAN": {
+            "record_ordinal_position__list": [
+                297
+            ],
+            "uniprotkb_id": "LARG1_HUMAN",
+            "ko_id__list": [
+                "K09668"
+            ]
+        },
+        "LBR_HUMAN": {
+            "record_ordinal_position__list": [
+                298
+            ],
+            "uniprotkb_id": "LBR_HUMAN",
+            "ko_id__list": [
+                "K19532"
+            ]
+        },
+        "LCAT_HUMAN": {
+            "record_ordinal_position__list": [
+                299
+            ],
+            "uniprotkb_id": "LCAT_HUMAN",
+            "ko_id__list": [
+                "K00650"
+            ]
+        },
+        "LDHA_HUMAN": {
+            "record_ordinal_position__list": [
+                300
+            ],
+            "uniprotkb_id": "LDHA_HUMAN",
+            "ko_id__list": [
+                "K00016"
+            ]
+        },
+        "LDHB_HUMAN": {
+            "record_ordinal_position__list": [
+                301
+            ],
+            "uniprotkb_id": "LDHB_HUMAN",
+            "ko_id__list": [
+                "K00016"
+            ]
+        },
+        "LIAS_HUMAN": {
+            "record_ordinal_position__list": [
+                302
+            ],
+            "uniprotkb_id": "LIAS_HUMAN",
+            "ko_id__list": [
+                "K03644"
+            ]
+        },
+        "LICH_HUMAN": {
+            "record_ordinal_position__list": [
+                303
+            ],
+            "uniprotkb_id": "LICH_HUMAN",
+            "ko_id__list": [
+                "K01052"
+            ]
+        },
+        "LIPC_HUMAN": {
+            "record_ordinal_position__list": [
+                304
+            ],
+            "uniprotkb_id": "LIPC_HUMAN",
+            "ko_id__list": [
+                "K22283"
+            ]
+        },
+        "LMF1_HUMAN": {
+            "record_ordinal_position__list": [
+                305
+            ],
+            "uniprotkb_id": "LMF1_HUMAN",
+            "ko_id__list": [
+                "K23555"
+            ]
+        },
+        "LMNA_HUMAN": {
+            "record_ordinal_position__list": [
+                306
+            ],
+            "uniprotkb_id": "LMNA_HUMAN",
+            "ko_id__list": [
+                "K12641"
+            ]
+        },
+        "LPIN1_HUMAN": {
+            "record_ordinal_position__list": [
+                307
+            ],
+            "uniprotkb_id": "LPIN1_HUMAN",
+            "ko_id__list": [
+                "K15728"
+            ]
+        },
+        "LPPRC_HUMAN": {
+            "record_ordinal_position__list": [
+                308
+            ],
+            "uniprotkb_id": "LPPRC_HUMAN",
+            "ko_id__list": [
+                "K17964"
+            ]
+        },
+        "MA1B1_HUMAN": {
+            "record_ordinal_position__list": [
+                309
+            ],
+            "uniprotkb_id": "MA1B1_HUMAN",
+            "ko_id__list": [
+                "K23741"
+            ]
+        },
+        "MA2B1_HUMAN": {
+            "record_ordinal_position__list": [
+                310
+            ],
+            "uniprotkb_id": "MA2B1_HUMAN",
+            "ko_id__list": [
+                "K12311"
+            ]
+        },
+        "MAGD2_HUMAN": {
+            "record_ordinal_position__list": [
+                311
+            ],
+            "uniprotkb_id": "MAGD2_HUMAN",
+            "ko_id__list": [
+                "K24127"
+            ]
+        },
+        "MANBA_HUMAN": {
+            "record_ordinal_position__list": [
+                312
+            ],
+            "uniprotkb_id": "MANBA_HUMAN",
+            "ko_id__list": [
+                "K01192"
+            ]
+        },
+        "MCAT_HUMAN": {
+            "record_ordinal_position__list": [
+                313
+            ],
+            "uniprotkb_id": "MCAT_HUMAN",
+            "ko_id__list": [
+                "K15109"
+            ]
+        },
+        "MCCA_HUMAN": {
+            "record_ordinal_position__list": [
+                314
+            ],
+            "uniprotkb_id": "MCCA_HUMAN",
+            "ko_id__list": [
+                "K01968"
+            ]
+        },
+        "MCCB_HUMAN": {
+            "record_ordinal_position__list": [
+                315
+            ],
+            "uniprotkb_id": "MCCB_HUMAN",
+            "ko_id__list": [
+                "K01969"
+            ]
+        },
+        "METH_HUMAN": {
+            "record_ordinal_position__list": [
+                316
+            ],
+            "uniprotkb_id": "METH_HUMAN",
+            "ko_id__list": [
+                "K00548"
+            ]
+        },
+        "METK1_HUMAN": {
+            "record_ordinal_position__list": [
+                317
+            ],
+            "uniprotkb_id": "METK1_HUMAN",
+            "ko_id__list": [
+                "K00789"
+            ]
+        },
+        "MIF_HUMAN": {
+            "record_ordinal_position__list": [
+                318
+            ],
+            "uniprotkb_id": "MIF_HUMAN",
+            "ko_id__list": [
+                "K07253"
+            ]
+        },
+        "MMAC_HUMAN": {
+            "record_ordinal_position__list": [
+                319
+            ],
+            "uniprotkb_id": "MMAC_HUMAN",
+            "ko_id__list": [
+                "K14618"
+            ]
+        },
+        "MMSA_HUMAN": {
+            "record_ordinal_position__list": [
+                320
+            ],
+            "uniprotkb_id": "MMSA_HUMAN",
+            "ko_id__list": [
+                "K00140"
+            ]
+        },
+        "MPI_HUMAN": {
+            "record_ordinal_position__list": [
+                321
+            ],
+            "uniprotkb_id": "MPI_HUMAN",
+            "ko_id__list": [
+                "K01809"
+            ]
+        },
+        "MRP2_HUMAN": {
+            "record_ordinal_position__list": [
+                322
+            ],
+            "uniprotkb_id": "MRP2_HUMAN",
+            "ko_id__list": [
+                "K05666"
+            ]
+        },
+        "MRP6_HUMAN": {
+            "record_ordinal_position__list": [
+                323
+            ],
+            "uniprotkb_id": "MRP6_HUMAN",
+            "ko_id__list": [
+                "K05669"
+            ]
+        },
+        "MT3_HUMAN": {
+            "record_ordinal_position__list": [
+                324
+            ],
+            "uniprotkb_id": "MT3_HUMAN",
+            "ko_id__list": [
+                "K14740"
+            ]
+        },
+        "MTHR_HUMAN": {
+            "record_ordinal_position__list": [
+                325
+            ],
+            "uniprotkb_id": "MTHR_HUMAN",
+            "ko_id__list": [
+                "K00297"
+            ]
+        },
+        "MTP_HUMAN": {
+            "record_ordinal_position__list": [
+                326
+            ],
+            "uniprotkb_id": "MTP_HUMAN",
+            "ko_id__list": [
+                "K14463"
+            ]
+        },
+        "MTRR_HUMAN": {
+            "record_ordinal_position__list": [
+                327
+            ],
+            "uniprotkb_id": "MTRR_HUMAN",
+            "ko_id__list": [
+                "K00597"
+            ]
+        },
+        "MTU1_HUMAN": {
+            "record_ordinal_position__list": [
+                328
+            ],
+            "uniprotkb_id": "MTU1_HUMAN",
+            "ko_id__list": [
+                "K21027"
+            ]
+        },
+        "MYH2_HUMAN": {
+            "record_ordinal_position__list": [
+                329
+            ],
+            "uniprotkb_id": "MYH2_HUMAN",
+            "ko_id__list": [
+                "K24220"
+            ]
+        },
+        "NAGAB_HUMAN": {
+            "record_ordinal_position__list": [
+                330
+            ],
+            "uniprotkb_id": "NAGAB_HUMAN",
+            "ko_id__list": [
+                "K01204"
+            ]
+        },
+        "NEU2_HUMAN": {
+            "record_ordinal_position__list": [
+                331
+            ],
+            "uniprotkb_id": "NEU2_HUMAN",
+            "ko_id__list": [
+                "K05242"
+            ]
+        },
+        "NLTP_HUMAN": {
+            "record_ordinal_position__list": [
+                332
+            ],
+            "uniprotkb_id": "NLTP_HUMAN",
+            "ko_id__list": [
+                "K08764"
+            ]
+        },
+        "NPC1_HUMAN": {
+            "record_ordinal_position__list": [
+                333
+            ],
+            "uniprotkb_id": "NPC1_HUMAN",
+            "ko_id__list": [
+                "K12385"
+            ]
+        },
+        "NPC2_HUMAN": {
+            "record_ordinal_position__list": [
+                334
+            ],
+            "uniprotkb_id": "NPC2_HUMAN",
+            "ko_id__list": [
+                "K13443"
+            ]
+        },
+        "NSDHL_HUMAN": {
+            "record_ordinal_position__list": [
+                335
+            ],
+            "uniprotkb_id": "NSDHL_HUMAN",
+            "ko_id__list": [
+                "K07748"
+            ]
+        },
+        "NU1M_HUMAN": {
+            "record_ordinal_position__list": [
+                336
+            ],
+            "uniprotkb_id": "NU1M_HUMAN",
+            "ko_id__list": [
+                "K03878"
+            ]
+        },
+        "NU4LM_HUMAN": {
+            "record_ordinal_position__list": [
+                337
+            ],
+            "uniprotkb_id": "NU4LM_HUMAN",
+            "ko_id__list": [
+                "K03882"
+            ]
+        },
+        "NU4M_HUMAN": {
+            "record_ordinal_position__list": [
+                338
+            ],
+            "uniprotkb_id": "NU4M_HUMAN",
+            "ko_id__list": [
+                "K03881"
+            ]
+        },
+        "NU5M_HUMAN": {
+            "record_ordinal_position__list": [
+                339
+            ],
+            "uniprotkb_id": "NU5M_HUMAN",
+            "ko_id__list": [
+                "K03883"
+            ]
+        },
+        "NU6M_HUMAN": {
+            "record_ordinal_position__list": [
+                340
+            ],
+            "uniprotkb_id": "NU6M_HUMAN",
+            "ko_id__list": [
+                "K03884"
+            ]
+        },
+        "OAT_HUMAN": {
+            "record_ordinal_position__list": [
+                341
+            ],
+            "uniprotkb_id": "OAT_HUMAN",
+            "ko_id__list": [
+                "K00819"
+            ]
+        },
+        "OCRL_HUMAN": {
+            "record_ordinal_position__list": [
+                342
+            ],
+            "uniprotkb_id": "OCRL_HUMAN",
+            "ko_id__list": [
+                "K01099"
+            ]
+        },
+        "ODB2_HUMAN": {
+            "record_ordinal_position__list": [
+                343
+            ],
+            "uniprotkb_id": "ODB2_HUMAN",
+            "ko_id__list": [
+                "K09699"
+            ]
+        },
+        "ODBA_HUMAN": {
+            "record_ordinal_position__list": [
+                344
+            ],
+            "uniprotkb_id": "ODBA_HUMAN",
+            "ko_id__list": [
+                "K00166"
+            ]
+        },
+        "ODBB_HUMAN": {
+            "record_ordinal_position__list": [
+                345
+            ],
+            "uniprotkb_id": "ODBB_HUMAN",
+            "ko_id__list": [
+                "K00167"
+            ]
+        },
+        "OPA1_HUMAN": {
+            "record_ordinal_position__list": [
+                346
+            ],
+            "uniprotkb_id": "OPA1_HUMAN",
+            "ko_id__list": [
+                "K17079"
+            ]
+        },
+        "P78428_HUMAN": {
+            "record_ordinal_position__list": [
+                347
+            ],
+            "uniprotkb_id": "P78428_HUMAN",
+            "ko_id__list": [
+                "K00501"
+            ]
+        },
+        "PCD15_HUMAN": {
+            "record_ordinal_position__list": [
+                348
+            ],
+            "uniprotkb_id": "PCD15_HUMAN",
+            "ko_id__list": [
+                "K16500"
+            ]
+        },
+        "PEO1_HUMAN": {
+            "record_ordinal_position__list": [
+                349
+            ],
+            "uniprotkb_id": "PEO1_HUMAN",
+            "ko_id__list": [
+                "K17680"
+            ]
+        },
+        "PFKAM_HUMAN": {
+            "record_ordinal_position__list": [
+                350
+            ],
+            "uniprotkb_id": "PFKAM_HUMAN",
+            "ko_id__list": [
+                "K00850"
+            ]
+        },
+        "PGK1_HUMAN": {
+            "record_ordinal_position__list": [
+                351
+            ],
+            "uniprotkb_id": "PGK1_HUMAN",
+            "ko_id__list": [
+                "K00927"
+            ]
+        },
+        "PGLT1_HUMAN": {
+            "record_ordinal_position__list": [
+                352
+            ],
+            "uniprotkb_id": "PGLT1_HUMAN",
+            "ko_id__list": [
+                "K13667"
+            ]
+        },
+        "PGM1_HUMAN": {
+            "record_ordinal_position__list": [
+                353
+            ],
+            "uniprotkb_id": "PGM1_HUMAN",
+            "ko_id__list": [
+                "K01835"
+            ]
+        },
+        "PH4H_HUMAN": {
+            "record_ordinal_position__list": [
+                354
+            ],
+            "uniprotkb_id": "PH4H_HUMAN",
+            "ko_id__list": [
+                "K00500"
+            ]
+        },
+        "PHKG2_HUMAN": {
+            "record_ordinal_position__list": [
+                355
+            ],
+            "uniprotkb_id": "PHKG2_HUMAN",
+            "ko_id__list": [
+                "K00871"
+            ]
+        },
+        "PHS_HUMAN": {
+            "record_ordinal_position__list": [
+                356
+            ],
+            "uniprotkb_id": "PHS_HUMAN",
+            "ko_id__list": [
+                "K01724"
+            ]
+        },
+        "PIGA_HUMAN": {
+            "record_ordinal_position__list": [
+                357
+            ],
+            "uniprotkb_id": "PIGA_HUMAN",
+            "ko_id__list": [
+                "K03857"
+            ]
+        },
+        "PIGM_HUMAN": {
+            "record_ordinal_position__list": [
+                358
+            ],
+            "uniprotkb_id": "PIGM_HUMAN",
+            "ko_id__list": [
+                "K05284"
+            ]
+        },
+        "PIGN_HUMAN": {
+            "record_ordinal_position__list": [
+                359
+            ],
+            "uniprotkb_id": "PIGN_HUMAN",
+            "ko_id__list": [
+                "K05285"
+            ]
+        },
+        "PLPL9_HUMAN": {
+            "record_ordinal_position__list": [
+                360
+            ],
+            "uniprotkb_id": "PLPL9_HUMAN",
+            "ko_id__list": [
+                "K16343"
+            ]
+        },
+        "PMGT1_HUMAN": {
+            "record_ordinal_position__list": [
+                361
+            ],
+            "uniprotkb_id": "PMGT1_HUMAN",
+            "ko_id__list": [
+                "K09666"
+            ]
+        },
+        "PMGT2_HUMAN": {
+            "record_ordinal_position__list": [
+                362
+            ],
+            "uniprotkb_id": "PMGT2_HUMAN",
+            "ko_id__list": [
+                "K18207"
+            ]
+        },
+        "PNPO_HUMAN": {
+            "record_ordinal_position__list": [
+                363
+            ],
+            "uniprotkb_id": "PNPO_HUMAN",
+            "ko_id__list": [
+                "K00275"
+            ]
+        },
+        "POMT1_HUMAN": {
+            "record_ordinal_position__list": [
+                364
+            ],
+            "uniprotkb_id": "POMT1_HUMAN",
+            "ko_id__list": [
+                "K00728"
+            ]
+        },
+        "POMT2_HUMAN": {
+            "record_ordinal_position__list": [
+                365
+            ],
+            "uniprotkb_id": "POMT2_HUMAN",
+            "ko_id__list": [
+                "K00728"
+            ]
+        },
+        "PPBT_HUMAN": {
+            "record_ordinal_position__list": [
+                366
+            ],
+            "uniprotkb_id": "PPBT_HUMAN",
+            "ko_id__list": [
+                "K01077"
+            ]
+        },
+        "PPGB_HUMAN": {
+            "record_ordinal_position__list": [
+                367
+            ],
+            "uniprotkb_id": "PPGB_HUMAN",
+            "ko_id__list": [
+                "K13289"
+            ]
+        },
+        "PPT1_HUMAN": {
+            "record_ordinal_position__list": [
+                368
+            ],
+            "uniprotkb_id": "PPT1_HUMAN",
+            "ko_id__list": [
+                "K01074"
+            ]
+        },
+        "PROD_HUMAN": {
+            "record_ordinal_position__list": [
+                369
+            ],
+            "uniprotkb_id": "PROD_HUMAN",
+            "ko_id__list": [
+                "K00318"
+            ]
+        },
+        "PRPS1_HUMAN": {
+            "record_ordinal_position__list": [
+                370
+            ],
+            "uniprotkb_id": "PRPS1_HUMAN",
+            "ko_id__list": [
+                "K00948"
+            ]
+        },
+        "PYGL_HUMAN": {
+            "record_ordinal_position__list": [
+                371
+            ],
+            "uniprotkb_id": "PYGL_HUMAN",
+            "ko_id__list": [
+                "K00688"
+            ]
+        },
+        "PYGM_HUMAN": {
+            "record_ordinal_position__list": [
+                372
+            ],
+            "uniprotkb_id": "PYGM_HUMAN",
+            "ko_id__list": [
+                "K00688"
+            ]
+        },
+        "Q06AH7_HUMAN": {
+            "record_ordinal_position__list": [
+                373
+            ],
+            "uniprotkb_id": "Q06AH7_HUMAN",
+            "ko_id__list": [
+                "K14736"
+            ]
+        },
+        "Q08AG9_HUMAN": {
+            "record_ordinal_position__list": [
+                374
+            ],
+            "uniprotkb_id": "Q08AG9_HUMAN",
+            "ko_id__list": [
+                "K00513"
+            ]
+        },
+        "Q0ZFD6_HUMAN": {
+            "record_ordinal_position__list": [
+                375
+            ],
+            "uniprotkb_id": "Q0ZFD6_HUMAN",
+            "ko_id__list": [
+                "K00412"
+            ]
+        },
+        "Q16874_HUMAN": {
+            "record_ordinal_position__list": [
+                376
+            ],
+            "uniprotkb_id": "Q16874_HUMAN",
+            "ko_id__list": [
+                "K00513"
+            ]
+        },
+        "Q1HB44_HUMAN": {
+            "record_ordinal_position__list": [
+                377
+            ],
+            "uniprotkb_id": "Q1HB44_HUMAN",
+            "ko_id__list": [
+                "K00512"
+            ]
+        },
+        "Q53FV7_HUMAN": {
+            "record_ordinal_position__list": [
+                378
+            ],
+            "uniprotkb_id": "Q53FV7_HUMAN",
+            "ko_id__list": [
+                "K19523"
+            ]
+        },
+        "Q53H01_HUMAN": {
+            "record_ordinal_position__list": [
+                379
+            ],
+            "uniprotkb_id": "Q53H01_HUMAN",
+            "ko_id__list": [
+                "K12348"
+            ]
+        },
+        "Q53Y25_HUMAN": {
+            "record_ordinal_position__list": [
+                380
+            ],
+            "uniprotkb_id": "Q53Y25_HUMAN",
+            "ko_id__list": [
+                "K12407"
+            ]
+        },
+        "Q53Y41_HUMAN": {
+            "record_ordinal_position__list": [
+                381
+            ],
+            "uniprotkb_id": "Q53Y41_HUMAN",
+            "ko_id__list": [
+                "K01593"
+            ]
+        },
+        "Q53Y83_HUMAN": {
+            "record_ordinal_position__list": [
+                382
+            ],
+            "uniprotkb_id": "Q53Y83_HUMAN",
+            "ko_id__list": [
+                "K01189"
+            ]
+        },
+        "Q59ET0_HUMAN": {
+            "record_ordinal_position__list": [
+                383
+            ],
+            "uniprotkb_id": "Q59ET0_HUMAN",
+            "ko_id__list": [
+                "K00700"
+            ]
+        },
+        "Q59GJ6_HUMAN": {
+            "record_ordinal_position__list": [
+                384
+            ],
+            "uniprotkb_id": "Q59GJ6_HUMAN",
+            "ko_id__list": [
+                "K00297"
+            ]
+        },
+        "Q59GX2_HUMAN": {
+            "record_ordinal_position__list": [
+                385
+            ],
+            "uniprotkb_id": "Q59GX2_HUMAN",
+            "ko_id__list": [
+                "K07299"
+            ]
+        },
+        "Q59HB3_HUMAN": {
+            "record_ordinal_position__list": [
+                386
+            ],
+            "uniprotkb_id": "Q59HB3_HUMAN",
+            "ko_id__list": [
+                "K14462"
+            ]
+        },
+        "Q59HG9_HUMAN": {
+            "record_ordinal_position__list": [
+                387
+            ],
+            "uniprotkb_id": "Q59HG9_HUMAN",
+            "ko_id__list": [
+                "K08764"
+            ]
+        },
+        "Q5DT03_HUMAN": {
+            "record_ordinal_position__list": [
+                388
+            ],
+            "uniprotkb_id": "Q5DT03_HUMAN",
+            "ko_id__list": [
+                "K00699"
+            ]
+        },
+        "Q5U077_HUMAN": {
+            "record_ordinal_position__list": [
+                389
+            ],
+            "uniprotkb_id": "Q5U077_HUMAN",
+            "ko_id__list": [
+                "K00016"
+            ]
+        },
+        "Q5VU50_HUMAN": {
+            "record_ordinal_position__list": [
+                390
+            ],
+            "uniprotkb_id": "Q5VU50_HUMAN",
+            "ko_id__list": [
+                "K19331"
+            ]
+        },
+        "Q5VVD0_HUMAN": {
+            "record_ordinal_position__list": [
+                391
+            ],
+            "uniprotkb_id": "Q5VVD0_HUMAN",
+            "ko_id__list": [
+                "K02868"
+            ]
+        },
+        "Q6AHX3_HUMAN": {
+            "record_ordinal_position__list": [
+                392
+            ],
+            "uniprotkb_id": "Q6AHX3_HUMAN",
+            "ko_id__list": [
+                "K09525"
+            ]
+        },
+        "Q6FH62_HUMAN": {
+            "record_ordinal_position__list": [
+                393
+            ],
+            "uniprotkb_id": "Q6FH62_HUMAN",
+            "ko_id__list": [
+                "K10207"
+            ]
+        },
+        "Q6PEK7_HUMAN": {
+            "record_ordinal_position__list": [
+                394
+            ],
+            "uniprotkb_id": "Q6PEK7_HUMAN",
+            "ko_id__list": [
+                "K01948"
+            ]
+        },
+        "Q762B6_HUMAN": {
+            "record_ordinal_position__list": [
+                395
+            ],
+            "uniprotkb_id": "Q762B6_HUMAN",
+            "ko_id__list": [
+                "K17686"
+            ]
+        },
+        "Q7GIM7_HUMAN": {
+            "record_ordinal_position__list": [
+                396
+            ],
+            "uniprotkb_id": "Q7GIM7_HUMAN",
+            "ko_id__list": [
+                "K02262"
+            ]
+        },
+        "Q7GXZ4_HUMAN": {
+            "record_ordinal_position__list": [
+                397
+            ],
+            "uniprotkb_id": "Q7GXZ4_HUMAN",
+            "ko_id__list": [
+                "K03882"
+            ]
+        },
+        "Q7KZA3_HUMAN": {
+            "record_ordinal_position__list": [
+                398
+            ],
+            "uniprotkb_id": "Q7KZA3_HUMAN",
+            "ko_id__list": [
+                "K01772"
+            ]
+        },
+        "Q7Z7Q0_HUMAN": {
+            "record_ordinal_position__list": [
+                399
+            ],
+            "uniprotkb_id": "Q7Z7Q0_HUMAN",
+            "ko_id__list": [
+                "K14462"
+            ]
+        },
+        "Q86TM7_HUMAN": {
+            "record_ordinal_position__list": [
+                400
+            ],
+            "uniprotkb_id": "Q86TM7_HUMAN",
+            "ko_id__list": [
+                "K09659"
+            ]
+        },
+        "Q86V38_HUMAN": {
+            "record_ordinal_position__list": [
+                401
+            ],
+            "uniprotkb_id": "Q86V38_HUMAN",
+            "ko_id__list": [
+                "K05626"
+            ]
+        },
+        "Q8IU67_HUMAN": {
+            "record_ordinal_position__list": [
+                402
+            ],
+            "uniprotkb_id": "Q8IU67_HUMAN",
+            "ko_id__list": [
+                "K00297"
+            ]
+        },
+        "Q8IUN5_HUMAN": {
+            "record_ordinal_position__list": [
+                403
+            ],
+            "uniprotkb_id": "Q8IUN5_HUMAN",
+            "ko_id__list": [
+                "K14425"
+            ]
+        },
+        "Q8IZR3_HUMAN": {
+            "record_ordinal_position__list": [
+                404
+            ],
+            "uniprotkb_id": "Q8IZR3_HUMAN",
+            "ko_id__list": [
+                "K00857"
+            ]
+        },
+        "Q8N8L9_HUMAN": {
+            "record_ordinal_position__list": [
+                405
+            ],
+            "uniprotkb_id": "Q8N8L9_HUMAN",
+            "ko_id__list": [
+                "K20291"
+            ]
+        },
+        "Q8WZ48_HUMAN": {
+            "record_ordinal_position__list": [
+                406
+            ],
+            "uniprotkb_id": "Q8WZ48_HUMAN",
+            "ko_id__list": [
+                "K08765"
+            ]
+        },
+        "Q9H6V3_HUMAN": {
+            "record_ordinal_position__list": [
+                407
+            ],
+            "uniprotkb_id": "Q9H6V3_HUMAN",
+            "ko_id__list": [
+                "K17680"
+            ]
+        },
+        "Q9H9J7_HUMAN": {
+            "record_ordinal_position__list": [
+                408
+            ],
+            "uniprotkb_id": "Q9H9J7_HUMAN",
+            "ko_id__list": [
+                "K01876"
+            ]
+        },
+        "Q9NTF0_HUMAN": {
+            "record_ordinal_position__list": [
+                409
+            ],
+            "uniprotkb_id": "Q9NTF0_HUMAN",
+            "ko_id__list": [
+                "K01697"
+            ]
+        },
+        "Q9Y4T0_HUMAN": {
+            "record_ordinal_position__list": [
+                410
+            ],
+            "uniprotkb_id": "Q9Y4T0_HUMAN",
+            "ko_id__list": [
+                "K01900"
+            ]
+        },
+        "RET_HUMAN": {
+            "record_ordinal_position__list": [
+                411
+            ],
+            "uniprotkb_id": "RET_HUMAN",
+            "ko_id__list": [
+                "K05126"
+            ]
+        },
+        "RGMC_HUMAN": {
+            "record_ordinal_position__list": [
+                412
+            ],
+            "uniprotkb_id": "RGMC_HUMAN",
+            "ko_id__list": [
+                "K23100"
+            ]
+        },
+        "RIR2B_HUMAN": {
+            "record_ordinal_position__list": [
+                413
+            ],
+            "uniprotkb_id": "RIR2B_HUMAN",
+            "ko_id__list": [
+                "K10808"
+            ]
+        },
+        "RL11_HUMAN": {
+            "record_ordinal_position__list": [
+                414
+            ],
+            "uniprotkb_id": "RL11_HUMAN",
+            "ko_id__list": [
+                "K02868"
+            ]
+        },
+        "RL35A_HUMAN": {
+            "record_ordinal_position__list": [
+                415
+            ],
+            "uniprotkb_id": "RL35A_HUMAN",
+            "ko_id__list": [
+                "K02917"
+            ]
+        },
+        "RL5_HUMAN": {
+            "record_ordinal_position__list": [
+                416
+            ],
+            "uniprotkb_id": "RL5_HUMAN",
+            "ko_id__list": [
+                "K02932"
+            ]
+        },
+        "RM44_HUMAN": {
+            "record_ordinal_position__list": [
+                417
+            ],
+            "uniprotkb_id": "RM44_HUMAN",
+            "ko_id__list": [
+                "K17425"
+            ]
+        },
+        "RNH1_HUMAN": {
+            "record_ordinal_position__list": [
+                418
+            ],
+            "uniprotkb_id": "RNH1_HUMAN",
+            "ko_id__list": [
+                "K03469"
+            ]
+        },
+        "RS10_HUMAN": {
+            "record_ordinal_position__list": [
+                419
+            ],
+            "uniprotkb_id": "RS10_HUMAN",
+            "ko_id__list": [
+                "K02947"
+            ]
+        },
+        "RS17_HUMAN": {
+            "record_ordinal_position__list": [
+                420
+            ],
+            "uniprotkb_id": "RS17_HUMAN",
+            "ko_id__list": [
+                "K02962"
+            ]
+        },
+        "RS19_HUMAN": {
+            "record_ordinal_position__list": [
+                421
+            ],
+            "uniprotkb_id": "RS19_HUMAN",
+            "ko_id__list": [
+                "K02966"
+            ]
+        },
+        "RS24_HUMAN": {
+            "record_ordinal_position__list": [
+                422
+            ],
+            "uniprotkb_id": "RS24_HUMAN",
+            "ko_id__list": [
+                "K02974"
+            ]
+        },
+        "RS26_HUMAN": {
+            "record_ordinal_position__list": [
+                423
+            ],
+            "uniprotkb_id": "RS26_HUMAN",
+            "ko_id__list": [
+                "K02976"
+            ]
+        },
+        "RS7_HUMAN": {
+            "record_ordinal_position__list": [
+                424
+            ],
+            "uniprotkb_id": "RS7_HUMAN",
+            "ko_id__list": [
+                "K02993"
+            ]
+        },
+        "RXLT1_HUMAN": {
+            "record_ordinal_position__list": [
+                425
+            ],
+            "uniprotkb_id": "RXLT1_HUMAN",
+            "ko_id__list": [
+                "K21052"
+            ]
+        },
+        "S12A1_HUMAN": {
+            "record_ordinal_position__list": [
+                426
+            ],
+            "uniprotkb_id": "S12A1_HUMAN",
+            "ko_id__list": [
+                "K14425"
+            ]
+        },
+        "S12A3_HUMAN": {
+            "record_ordinal_position__list": [
+                427
+            ],
+            "uniprotkb_id": "S12A3_HUMAN",
+            "ko_id__list": [
+                "K14426"
+            ]
+        },
+        "S17A5_HUMAN": {
+            "record_ordinal_position__list": [
+                428
+            ],
+            "uniprotkb_id": "S17A5_HUMAN",
+            "ko_id__list": [
+                "K12301"
+            ]
+        },
+        "S19A3_HUMAN": {
+            "record_ordinal_position__list": [
+                429
+            ],
+            "uniprotkb_id": "S19A3_HUMAN",
+            "ko_id__list": [
+                "K14610"
+            ]
+        },
+        "S22A5_HUMAN": {
+            "record_ordinal_position__list": [
+                430
+            ],
+            "uniprotkb_id": "S22A5_HUMAN",
+            "ko_id__list": [
+                "K08202"
+            ]
+        },
+        "S36A2_HUMAN": {
+            "record_ordinal_position__list": [
+                431
+            ],
+            "uniprotkb_id": "S36A2_HUMAN",
+            "ko_id__list": [
+                "K14209"
+            ]
+        },
+        "S39A4_HUMAN": {
+            "record_ordinal_position__list": [
+                432
+            ],
+            "uniprotkb_id": "S39A4_HUMAN",
+            "ko_id__list": [
+                "K14710"
+            ]
+        },
+        "S6A19_HUMAN": {
+            "record_ordinal_position__list": [
+                433
+            ],
+            "uniprotkb_id": "S6A19_HUMAN",
+            "ko_id__list": [
+                "K05334"
+            ]
+        },
+        "S6A20_HUMAN": {
+            "record_ordinal_position__list": [
+                434
+            ],
+            "uniprotkb_id": "S6A20_HUMAN",
+            "ko_id__list": [
+                "K05048"
+            ]
+        },
+        "SAP_HUMAN": {
+            "record_ordinal_position__list": [
+                435
+            ],
+            "uniprotkb_id": "SAP_HUMAN",
+            "ko_id__list": [
+                "K12382"
+            ]
+        },
+        "SAR1B_HUMAN": {
+            "record_ordinal_position__list": [
+                436
+            ],
+            "uniprotkb_id": "SAR1B_HUMAN",
+            "ko_id__list": [
+                "K07953"
+            ]
+        },
+        "SC5A1_HUMAN": {
+            "record_ordinal_position__list": [
+                437
+            ],
+            "uniprotkb_id": "SC5A1_HUMAN",
+            "ko_id__list": [
+                "K14158"
+            ]
+        },
+        "SC5D_HUMAN": {
+            "record_ordinal_position__list": [
+                438
+            ],
+            "uniprotkb_id": "SC5D_HUMAN",
+            "ko_id__list": [
+                "K00227"
+            ]
+        },
+        "SG196_HUMAN": {
+            "record_ordinal_position__list": [
+                439
+            ],
+            "uniprotkb_id": "SG196_HUMAN",
+            "ko_id__list": [
+                "K17547"
+            ]
+        },
+        "SGCA_HUMAN": {
+            "record_ordinal_position__list": [
+                440
+            ],
+            "uniprotkb_id": "SGCA_HUMAN",
+            "ko_id__list": [
+                "K12565"
+            ]
+        },
+        "SGCG_HUMAN": {
+            "record_ordinal_position__list": [
+                441
+            ],
+            "uniprotkb_id": "SGCG_HUMAN",
+            "ko_id__list": [
+                "K12564"
+            ]
+        },
+        "SIAT9_HUMAN": {
+            "record_ordinal_position__list": [
+                442
+            ],
+            "uniprotkb_id": "SIAT9_HUMAN",
+            "ko_id__list": [
+                "K03370"
+            ]
+        },
+        "SPRE_HUMAN": {
+            "record_ordinal_position__list": [
+                443
+            ],
+            "uniprotkb_id": "SPRE_HUMAN",
+            "ko_id__list": [
+                "K00072"
+            ]
+        },
+        "SPYA_HUMAN": {
+            "record_ordinal_position__list": [
+                444
+            ],
+            "uniprotkb_id": "SPYA_HUMAN",
+            "ko_id__list": [
+                "K00830"
+            ]
+        },
+        "SUCB1_HUMAN": {
+            "record_ordinal_position__list": [
+                445
+            ],
+            "uniprotkb_id": "SUCB1_HUMAN",
+            "ko_id__list": [
+                "K01900"
+            ]
+        },
+        "SUCHY_HUMAN": {
+            "record_ordinal_position__list": [
+                446
+            ],
+            "uniprotkb_id": "SUCHY_HUMAN",
+            "ko_id__list": [
+                "K18703"
+            ]
+        },
+        "SUMF1_HUMAN": {
+            "record_ordinal_position__list": [
+                447
+            ],
+            "uniprotkb_id": "SUMF1_HUMAN",
+            "ko_id__list": [
+                "K13444"
+            ]
+        },
+        "SYDM_HUMAN": {
+            "record_ordinal_position__list": [
+                448
+            ],
+            "uniprotkb_id": "SYDM_HUMAN",
+            "ko_id__list": [
+                "K01876"
+            ]
+        },
+        "SYHM_HUMAN": {
+            "record_ordinal_position__list": [
+                449
+            ],
+            "uniprotkb_id": "SYHM_HUMAN",
+            "ko_id__list": [
+                "K01892"
+            ]
+        },
+        "SYLM_HUMAN": {
+            "record_ordinal_position__list": [
+                450
+            ],
+            "uniprotkb_id": "SYLM_HUMAN",
+            "ko_id__list": [
+                "K01869"
+            ]
+        },
+        "T23O_HUMAN": {
+            "record_ordinal_position__list": [
+                451
+            ],
+            "uniprotkb_id": "T23O_HUMAN",
+            "ko_id__list": [
+                "K00453"
+            ]
+        },
+        "TAZ_HUMAN": {
+            "record_ordinal_position__list": [
+                452
+            ],
+            "uniprotkb_id": "TAZ_HUMAN",
+            "ko_id__list": [
+                "K13511"
+            ]
+        },
+        "TFR2_HUMAN": {
+            "record_ordinal_position__list": [
+                453
+            ],
+            "uniprotkb_id": "TFR2_HUMAN",
+            "ko_id__list": [
+                "K23910"
+            ]
+        },
+        "THIL_HUMAN": {
+            "record_ordinal_position__list": [
+                454
+            ],
+            "uniprotkb_id": "THIL_HUMAN",
+            "ko_id__list": [
+                "K00626"
+            ]
+        },
+        "TIM14_HUMAN": {
+            "record_ordinal_position__list": [
+                455
+            ],
+            "uniprotkb_id": "TIM14_HUMAN",
+            "ko_id__list": [
+                "K09539"
+            ]
+        },
+        "TOP3A_HUMAN": {
+            "record_ordinal_position__list": [
+                456
+            ],
+            "uniprotkb_id": "TOP3A_HUMAN",
+            "ko_id__list": [
+                "K03165"
+            ]
+        },
+        "TPP1_HUMAN": {
+            "record_ordinal_position__list": [
+                457
+            ],
+            "uniprotkb_id": "TPP1_HUMAN",
+            "ko_id__list": [
+                "K01279"
+            ]
+        },
+        "TRFE_HUMAN": {
+            "record_ordinal_position__list": [
+                458
+            ],
+            "uniprotkb_id": "TRFE_HUMAN",
+            "ko_id__list": [
+                "K14736"
+            ]
+        },
+        "TXTP_HUMAN": {
+            "record_ordinal_position__list": [
+                459
+            ],
+            "uniprotkb_id": "TXTP_HUMAN",
+            "ko_id__list": [
+                "K15100"
+            ]
+        },
+        "TY3H_HUMAN": {
+            "record_ordinal_position__list": [
+                460
+            ],
+            "uniprotkb_id": "TY3H_HUMAN",
+            "ko_id__list": [
+                "K00501"
+            ]
+        },
+        "U5YWV7_HUMAN": {
+            "record_ordinal_position__list": [
+                461
+            ],
+            "uniprotkb_id": "U5YWV7_HUMAN",
+            "ko_id__list": [
+                "K02256"
+            ]
+        },
+        "U5Z487_HUMAN": {
+            "record_ordinal_position__list": [
+                462
+            ],
+            "uniprotkb_id": "U5Z487_HUMAN",
+            "ko_id__list": [
+                "K02261"
+            ]
+        },
+        "U5Z754_HUMAN": {
+            "record_ordinal_position__list": [
+                463
+            ],
+            "uniprotkb_id": "U5Z754_HUMAN",
+            "ko_id__list": [
+                "K03878"
+            ]
+        },
+        "U5Z977_HUMAN": {
+            "record_ordinal_position__list": [
+                464
+            ],
+            "uniprotkb_id": "U5Z977_HUMAN",
+            "ko_id__list": [
+                "K03884"
+            ]
+        },
+        "U5ZC31_HUMAN": {
+            "record_ordinal_position__list": [
+                465
+            ],
+            "uniprotkb_id": "U5ZC31_HUMAN",
+            "ko_id__list": [
+                "K03883"
+            ]
+        },
+        "UD11_HUMAN": {
+            "record_ordinal_position__list": [
+                466
+            ],
+            "uniprotkb_id": "UD11_HUMAN",
+            "ko_id__list": [
+                "K00699"
+            ]
+        },
+        "UROM_HUMAN": {
+            "record_ordinal_position__list": [
+                467
+            ],
+            "uniprotkb_id": "UROM_HUMAN",
+            "ko_id__list": [
+                "K18274"
+            ]
+        },
+        "V9HW45_HUMAN": {
+            "record_ordinal_position__list": [
+                468
+            ],
+            "uniprotkb_id": "V9HW45_HUMAN",
+            "ko_id__list": [
+                "K00275"
+            ]
+        },
+        "V9HW60_HUMAN": {
+            "record_ordinal_position__list": [
+                469
+            ],
+            "uniprotkb_id": "V9HW60_HUMAN",
+            "ko_id__list": [
+                "K00552"
+            ]
+        },
+        "V9HWB2_HUMAN": {
+            "record_ordinal_position__list": [
+                470
+            ],
+            "uniprotkb_id": "V9HWB2_HUMAN",
+            "ko_id__list": [
+                "K00542"
+            ]
+        },
+        "V9HWB9_HUMAN": {
+            "record_ordinal_position__list": [
+                471
+            ],
+            "uniprotkb_id": "V9HWB9_HUMAN",
+            "ko_id__list": [
+                "K00016"
+            ]
+        },
+        "V9HWE7_HUMAN": {
+            "record_ordinal_position__list": [
+                472
+            ],
+            "uniprotkb_id": "V9HWE7_HUMAN",
+            "ko_id__list": [
+                "K00849"
+            ]
+        },
+        "V9HWF4_HUMAN": {
+            "record_ordinal_position__list": [
+                473
+            ],
+            "uniprotkb_id": "V9HWF4_HUMAN",
+            "ko_id__list": [
+                "K00927"
+            ]
+        },
+        "V9HWJ1_HUMAN": {
+            "record_ordinal_position__list": [
+                474
+            ],
+            "uniprotkb_id": "V9HWJ1_HUMAN",
+            "ko_id__list": [
+                "K21456"
+            ]
+        },
+        "V9HWN7_HUMAN": {
+            "record_ordinal_position__list": [
+                475
+            ],
+            "uniprotkb_id": "V9HWN7_HUMAN",
+            "ko_id__list": [
+                "K01623"
+            ]
+        },
+        "X5D8S1_HUMAN": {
+            "record_ordinal_position__list": [
+                476
+            ],
+            "uniprotkb_id": "X5D8S1_HUMAN",
+            "ko_id__list": [
+                "K13524"
+            ]
+        },
+        "X5DQP6_HUMAN": {
+            "record_ordinal_position__list": [
+                477
+            ],
+            "uniprotkb_id": "X5DQP6_HUMAN",
+            "ko_id__list": [
+                "K05242"
+            ]
+        },
+        "X5DR28_HUMAN": {
+            "record_ordinal_position__list": [
+                478
+            ],
+            "uniprotkb_id": "X5DR28_HUMAN",
+            "ko_id__list": [
+                "K09668"
+            ]
+        },
+        "X6R8A1_HUMAN": {
+            "record_ordinal_position__list": [
+                479
+            ],
+            "uniprotkb_id": "X6R8A1_HUMAN",
+            "ko_id__list": [
+                "K13289"
+            ]
+        },
+        "YLAT1_HUMAN": {
+            "record_ordinal_position__list": [
+                480
+            ],
+            "uniprotkb_id": "YLAT1_HUMAN",
+            "ko_id__list": [
+                "K13867"
+            ]
+        }
+    },
+    "uniprotkb_id__list": [],
+    "ko_id__list": [
+        "K12408",
+        "K12389",
+        "K12382",
+        "K00166",
+        "K19873",
+        "K00850",
+        "K03843",
+        "K01204",
+        "K05285",
+        "K18207",
+        "K06265",
+        "K04728",
+        "K00227",
+        "K08171",
+        "K08900",
+        "K23100",
+        "K19523",
+        "K14156",
+        "K08765",
+        "K21032",
+        "K13649",
+        "K03849",
+        "K12359",
+        "K01495",
+        "K13443",
+        "K00140",
+        "K14740",
+        "K20295",
+        "K00382",
+        "K00252",
+        "K05126",
+        "K03644",
+        "K24127",
+        "K01077",
+        "K00294",
+        "K02976",
+        "K00500",
+        "K01755",
+        "K01201",
+        "K00253",
+        "K09025",
+        "K01196",
+        "K01488",
+        "K04524",
+        "K19054",
+        "K05863",
+        "K12386",
+        "K03522",
+        "K01593",
+        "K09478",
+        "K08683",
+        "K01679",
+        "K12405",
+        "K13511",
+        "K12565",
+        "K01719",
+        "K13867",
+        "K00902",
+        "K17725",
+        "K13699",
+        "K09539",
+        "K20294",
+        "K01968",
+        "K23867",
+        "K18592",
+        "K00760",
+        "K00819",
+        "K00626",
+        "K08766",
+        "K00613",
+        "K00650",
+        "K01969",
+        "K00022",
+        "K00357",
+        "K00167",
+        "K02262",
+        "K02261",
+        "K02256",
+        "K03881",
+        "K03882",
+        "K03884",
+        "K03857",
+        "K12641",
+        "K07748",
+        "K03331",
+        "K08764",
+        "K14736",
+        "K03984",
+        "K11529",
+        "K17425",
+        "K02932",
+        "K14157",
+        "K13624",
+        "K22283",
+        "K12348",
+        "K04995",
+        "K05018",
+        "K01915",
+        "K05641",
+        "K05032",
+        "K05675",
+        "K11538",
+        "K01189",
+        "K00251",
+        "K01623",
+        "K03845",
+        "K03848",
+        "K03846",
+        "K18259",
+        "K01490",
+        "K22734",
+        "K19480",
+        "K11827",
+        "K14462",
+        "K10863",
+        "K00759",
+        "K01476",
+        "K01444",
+        "K05626",
+        "K17686",
+        "K05607",
+        "K00287",
+        "K02966",
+        "K00869",
+        "K09654",
+        "K13675",
+        "K15279",
+        "K00311",
+        "K00864",
+        "K18703",
+        "K18204",
+        "K12309",
+        "K19331",
+        "K01435",
+        "K07433",
+        "K08573",
+        "K04612",
+        "K01275",
+        "K01697",
+        "K19531",
+        "K01758",
+        "K08105",
+        "K01358",
+        "K15105",
+        "K20288",
+        "K20291",
+        "K20292",
+        "K08869",
+        "K00512",
+        "K00513",
+        "K00488",
+        "K01948",
+        "K14616",
+        "K00412",
+        "K01578",
+        "K01599",
+        "K00904",
+        "K10207",
+        "K09828",
+        "K00261",
+        "K10742",
+        "K09525",
+        "K00503",
+        "K09658",
+        "K09659",
+        "K02332",
+        "K00207",
+        "K01464",
+        "K18261",
+        "K03469",
+        "K17964",
+        "K01900",
+        "K17680",
+        "K07515",
+        "K05612",
+        "K01689",
+        "K03595",
+        "K03521",
+        "K03841",
+        "K19703",
+        "K10896",
+        "K19872",
+        "K13990",
+        "K01206",
+        "K01084",
+        "K13524",
+        "K00849",
+        "K00542",
+        "K09182",
+        "K12409",
+        "K00700",
+        "K04635",
+        "K00552",
+        "K08239",
+        "K21456",
+        "K07299",
+        "K07593",
+        "K00693",
+        "K01749",
+        "K01772",
+        "K23106",
+        "K00451",
+        "K01640",
+        "K00457",
+        "K12407",
+        "K07253",
+        "K01217",
+        "K14615",
+        "K05459",
+        "K07605",
+        "K00857",
+        "K07190",
+        "K01556",
+        "K00109",
+        "K09668",
+        "K19532",
+        "K00016",
+        "K01052",
+        "K23555",
+        "K15728",
+        "K23741",
+        "K12311",
+        "K01192",
+        "K15109",
+        "K00548",
+        "K00789",
+        "K14618",
+        "K01809",
+        "K05666",
+        "K05669",
+        "K00297",
+        "K14463",
+        "K00597",
+        "K21027",
+        "K24220",
+        "K05242",
+        "K12385",
+        "K03878",
+        "K03883",
+        "K01099",
+        "K09699",
+        "K17079",
+        "K00501",
+        "K16500",
+        "K00927",
+        "K13667",
+        "K01835",
+        "K00871",
+        "K01724",
+        "K05284",
+        "K16343",
+        "K09666",
+        "K00275",
+        "K00728",
+        "K13289",
+        "K01074",
+        "K00318",
+        "K00948",
+        "K00688",
+        "K00699",
+        "K02868",
+        "K14425",
+        "K01876",
+        "K10808",
+        "K02917",
+        "K02947",
+        "K02962",
+        "K02974",
+        "K02993",
+        "K21052",
+        "K14426",
+        "K12301",
+        "K14610",
+        "K08202",
+        "K14209",
+        "K14710",
+        "K05334",
+        "K05048",
+        "K07953",
+        "K14158",
+        "K17547",
+        "K12564",
+        "K03370",
+        "K00072",
+        "K00830",
+        "K13444",
+        "K01892",
+        "K01869",
+        "K00453",
+        "K23910",
+        "K03165",
+        "K01279",
+        "K15100",
+        "K18274"
+    ]
+}
