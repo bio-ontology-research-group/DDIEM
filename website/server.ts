@@ -23,7 +23,7 @@ const fs = require('fs')
 
 export class DiseaseDao {
   private fetcher:SparqlEndpointFetcher;
-  private serverUrl = "http://localhost:8890/sparql";
+  private serverUrl = "http://10.254.147.50:8890/sparql";
 
   constructor() { 
       this.fetcher = new SparqlEndpointFetcher();
@@ -253,7 +253,7 @@ enableProdMode();
 // Express server
 const app = express();
 const apiProxy = httpProxy.createProxyServer();
-const sparqlEndpoint = 'http://localhost:8890';
+const sparqlEndpoint = 'http://10.254.147.50:8890';
 
 const diseaseDao = new DiseaseDao();
 const PORT = process.env.PORT || 4000;
@@ -472,6 +472,6 @@ async function lastModifiedDate() {
         ?resource rdf:type void:Dataset . 
         ?resource dcterms:modified ?date
       }`;
-  return await fetcher.fetchBindings("http://localhost:8890/sparql", modifiedDateQuery);
+  return await fetcher.fetchBindings("http://10.254.147.50:8890/sparql", modifiedDateQuery);
 }
 
